@@ -1,4 +1,4 @@
-package com.hsp.product;
+package com.hsp.shoppingcart;
 
 import java.io.Serializable;
 

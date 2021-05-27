@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsp.shoppingcart.ShoppingCartMapper">
+    <resultMap id="shoppingCartResultMap" type="com.hsp.shoppingcart.ShoppingCart">
+        <result column="USER_ID" property="user_id" />
+        <result column="PRODUCT_ID" property="product_id" />
+        <result column="PRODUCT_COUNT" property="product_count" />
+        <result column="CART_TYPE" property="cart_type" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="user_id != null and user_id != ''">
+                AND USER_ID = #{user_id}
+            </if>
+            <if test="product_id != null and product_id != ''">
+                AND PRODUCT_ID = #{product_id}
+            </if>
+            <if test="product_count != null and product_count != ''">
+                AND PRODUCT_COUNT = #{product_count}
+            </if>
+            <if test="cart_type != null and cart_type != ''">
+                AND CART_TYPE = #{cart_type}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="com.hsp.shoppingcart.ShoppingCart" resultType="int">
+        SELECT COUNT(*)
+        FROM SHOPPING_CART
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="com.hsp.shoppingcart.ShoppingCart" resultMap="shoppingCartResultMap">
+        SELECT *
+        FROM (
+            SELECT
+            	USER_ID,
+				PRODUCT_ID,
+				PRODUCT_COUNT,
+  				CART_TYPE
+            FROM SHOPPING_CART
+            <include refid="whereSql" />
+	        ORDER BY PRODUCT_ID DESC
+        ) TB
+    </select>
+
+    <select id="select" parameterType="com.hsp.shoppingcart.ShoppingCart" resultMap="shoppingCartResultMap">
+        SELECT
+        	USER_ID,
+			PRODUCT_ID,
+			PRODUCT_COUNT,
+  			CART_TYPE
+        FROM SHOPPING_CART
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="com.hsp.shoppingcart.ShoppingCart">
+        INSERT INTO MISSION (
+            USER_ID,
+			PRODUCT_ID,
+			PRODUCT_COUNT,
+  			CART_TYPE
+        ) VALUES (
+            #{user_id},
+            #{product_id},
+            #{product_count},
+            #{cart_type},
+        )
+    </insert>
+
+    <update id="update" parameterType="com.hsp.shoppingcart.ShoppingCart">
+        UPDATE MISSION
+        <set>
+        	<if test="user_id != null">
+                USER_ID = #{user_id},
+            </if>
+            <if test="product_id != null">
+                PRODUCT_ID = #{product_id},
+            </if>
+            <if test="product_count != 0">
+                PRODUCT_COUNT = #{product_count},
+            </if>
+            <if test="cart_type != null">
+                CART_TYPE = #{cart_type},
+            </if>
+        </set>
+        <where>
+        	USER_ID = #{user_id}
+        	AND  PRODUCT_ID = #{product_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.hsp.shoppingcart.ShoppingCart">
+        DELETE FROM SHOPPING_CART
+        <include refid="whereSql" />
+    </delete>
+</mapper>
