@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsp.orders.ReturnsMapper">
+    <resultMap id="returnsMapperResultMap" type="com.hsp.orders.Returns">
+        <result column="RETURN_ID" property="return_id" />
+        <result column="ORDER_ID" property="order_id" />
+        <result column="PRODUCT_ID" property="product_id" />
+        <result column="RETURN_REASON" property="return_reason" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="return_id != null and return_id != ''">
+                AND RETURN_ID = #{return_id}
+            </if>
+            <if test="order_id != null and order_id != ''">
+                AND ORDER_ID = #{order_id}
+            </if>
+            <if test="product_id != null and product_id != ''">
+                AND PRODUCT_ID = #{product_id}
+            </if>
+            <if test="return_reason != null and return_reason != ''">
+                AND RETURN_REASON = #{return_reason}
+            </if>
+        </where>
+    </sql>
+
+    <select id="select" parameterType="com.hsp.orders.Returns" resultMap="returnsMapperResultMap">
+        SELECT
+            	RETURN_ID,
+            	ORDER_ID,
+            	PRODUCT_ID,
+            	RETURN_REASON
+        FROM RETURNS
+        <include refid="whereSql" />
+    </select>
+
+</mapper>

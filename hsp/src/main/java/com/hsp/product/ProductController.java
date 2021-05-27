@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/product")
 public class ProductController {
 
-	@GetMapping("/main")
+	@GetMapping("/regit")
 	public ModelAndView main() {
 		ModelAndView modelAndView = null;
 		return modelAndView;
