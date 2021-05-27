@@ -5,35 +5,36 @@
 
 <mapper namespace="com.hsp.product.ProductMapper">
     <resultMap id="productResultMap" type="com.hsp.product.Product">
-        <result column="USER_ID" property="user_id" />
-        <result column="PASSWORD" property="password" />
+        <result column="PRODUCT_ID" property="product_id" />
+        <result column="CHANNEL_ID" property="channel_id" />
+        <result column="PRODUCT_IMG" property="product_img" />
+        <result column="PRODUCT_PRICE" property="product_price" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="PRODUCT_DETAIL" property="product_detail" />
+        <result column="ORDERABLE_CYCLE" property="orderable_cycle" />
     </resultMap>
 
     <sql id="whereSql">
         <where>
             <if test="user_id != null and user_id != ''">
-                AND USER_ID = #{user_id}
+                AND PRODUCT_ID = #{product_id}
             </if>
             <if test="password != null and password != ''">
-                AND PASSWORD = #{password}
+                AND CHANNEL_ID = #{channel_id}
             </if>
         </where>
     </sql>
 
     <select id="select" parameterType="com.hsp.product.Product" resultMap="productResultMap">
         SELECT
-            	USER_ID,
-            	PHONE,
-            	NAME,
-            	PASSWORD,
-            	ADDRESS,
-            	DETAIL_ADDRESS,
-            	ZIP_CODE,
-            	BANK_NAME,
-            	ACCOUNT_NUMBER,
-            	AUTH,
-            	REGIT_DATE
-        FROM USER
+            	PRODUCT_ID,
+            	CHANNEL_ID,
+            	PRODUCT_IMG,
+            	PRODUCT_PRICE,
+            	DISCOUNT,
+            	PRODUCT_DETAIL,
+            	ORDERABLE_CYCLE
+        FROM ORDER
         <include refid="whereSql" />
     </select>
 
