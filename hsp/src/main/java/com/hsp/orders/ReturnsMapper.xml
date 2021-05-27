@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hsp.order.ReturnsMapper">
-    <resultMap id="returnsMapperResultMap" type="com.hsp.order.Returns">
+<mapper namespace="com.hsp.orders.ReturnsMapper">
+    <resultMap id="returnsMapperResultMap" type="com.hsp.orders.Returns">
         <result column="RETURN_ID" property="return_id" />
         <result column="ORDER_ID" property="order_id" />
         <result column="PRODUCT_ID" property="product_id" />
@@ -28,7 +28,7 @@
         </where>
     </sql>
 
-    <select id="select" parameterType="com.hsp.order.Returns" resultMap="returnsMapperResultMap">
+    <select id="select" parameterType="com.hsp.orders.Returns" resultMap="returnsMapperResultMap">
         SELECT
             	RETURN_ID,
             	ORDER_ID,

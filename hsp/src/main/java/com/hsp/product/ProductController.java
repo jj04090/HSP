@@ -16,7 +16,7 @@ import com.hsp.user.User;
 @RequestMapping("/product")
 public class ProductController {
 
-	@GetMapping("/main")
+	@GetMapping("/regit")
 	public ModelAndView main() {
 		ModelAndView modelAndView = null;
 		return modelAndView;

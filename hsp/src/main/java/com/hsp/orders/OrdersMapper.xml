@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hsp.order.OrdersMapper">
-    <resultMap id="ordersResultMap" type="com.hsp.order.Orders">
+<mapper namespace="com.hsp.orders.OrdersMapper">
+    <resultMap id="ordersResultMap" type="com.hsp.orders.Orders">
         <result column="ORDER_ID" property="order_id" />
         <result column="USER_ID" property="user_id" />
         <result column="ORDER_TYPE" property="order_type" />
@@ -32,7 +32,7 @@
         </where>
     </sql>
 
-    <select id="select" parameterType="com.hsp.order.Orders" resultMap="orderResultMap">
+    <select id="select" parameterType="com.hsp.orders.Orders" resultMap="ordersResultMap">
         SELECT
             	ORDER_ID,
             	USER_ID,
@@ -43,7 +43,7 @@
         <include refid="whereSql" />
     </select>
     
-    <select id="list"  resultMap="orderResultMap">
+    <select id="list"  resultMap="ordersResultMap">
         SELECT
             	ORDER_ID,
             	USER_ID,
