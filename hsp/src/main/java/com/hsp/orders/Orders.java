@@ -1,19 +1,19 @@
-package com.hsp.order;
+package com.hsp.orders;
 
 import java.io.Serializable;
 
-public class Order implements Serializable {
+public class Orders implements Serializable {
 	private String order_id;
 	private String user_id;
 	private String order_type;
 	private String order_date;
 	private String order_status;
 	
-	public Order() {
+	public Orders() {
 		
 	}
 	
-	public Order(String order_id, String user_id, String order_type, String order_date, String order_status) {
+	public Orders(String order_id, String user_id, String order_type, String order_date, String order_status) {
 		this.order_id = order_id;
 		this.user_id = user_id;
 		this.order_type = order_type;

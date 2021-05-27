@@ -1,4 +1,4 @@
-package com.hsp.order;
+package com.hsp.orders;
 
 import java.io.Serializable;
 

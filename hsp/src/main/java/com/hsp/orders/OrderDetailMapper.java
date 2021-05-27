@@ -1,7 +1,7 @@
-package com.hsp.order;
+package com.hsp.orders;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OrderDetailMapper {
-	public Order select(Order user) throws Exception;
+	public Orders select(Orders user) throws Exception;
 }

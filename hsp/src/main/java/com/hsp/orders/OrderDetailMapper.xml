@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsp.order.OrderDetailMapper">
+    <resultMap id="orderDetailResultMap" type="com.hsp.order.OrderDetail">
+        <result column="ORDER_ID" property="order_id" />
+        <result column="PRODUCT_ID" property="product_id" />
+        <result column="PRODUCT_QTY" property="product_qty" />
+        <result column="PRICE" property="price" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="DELEVERY_FEE" property="delevery_fee" />
+        <result column="DELEVERY_STATUS" property="delevery_status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="user_id != null and user_id != ''">
+                AND USER_ID = #{user_id}
+            </if>
+            <if test="password != null and password != ''">
+                AND PASSWORD = #{password}
+            </if>
+        </where>
+    </sql>
+
+    <select id="select" parameterType="com.hsp.order.OrderDetail" resultMap="orderDetailResultMap">
+        SELECT
+            	ORDER_ID,
+            	PRODUCT_ID,
+            	PRODUCT_QTY,
+            	PRICE,
+            	DISCOUNT,
+            	DELEVERY_FEE,
+            	DELEVERY_STATUS,
+        FROM ORDER_DETAIL
+        <include refid="whereSql" />
+    </select>
+
+</mapper>
