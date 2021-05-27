@@ -16,6 +16,12 @@ import com.hsp.user.User;
 @RequestMapping("/product")
 public class ProductController {
 
+	@GetMapping("/main")
+	public ModelAndView main() {
+		ModelAndView modelAndView = null;
+		return modelAndView;
+	}
+	
 	// 장바구니 조회
 	@GetMapping("/shoppingcart")
 	public ModelAndView viewShoppingCart(User user) {
