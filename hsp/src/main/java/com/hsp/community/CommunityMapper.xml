@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hsp.shoppingcart.ShoppingCartMapper">
-    <resultMap id="shoppingCartResultMap" type="com.hsp.shoppingcart.ShoppingCart">
+<mapper namespace="com.hsp.community.CommunityMapper">
+    <resultMap id="communityResultMap" type="com.hsp.community.Community">
         <result column="USER_ID" property="user_id" />
         <result column="PRODUCT_ID" property="product_id" />
         <result column="PRODUCT_COUNT" property="product_count" />
