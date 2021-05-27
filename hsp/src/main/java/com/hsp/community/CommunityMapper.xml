@@ -27,13 +27,13 @@
         </where>
     </sql>
 
-    <select id="count" parameterType="com.hsp.shoppingcart.ShoppingCart" resultType="int">
+    <select id="count" parameterType="com.hsp.community.CommunityMapper" resultType="int">
         SELECT COUNT(*)
         FROM SHOPPING_CART
         <include refid="whereSql" />
     </select>
 
-    <select id="list" parameterType="com.hsp.shoppingcart.ShoppingCart" resultMap="shoppingCartResultMap">
+    <select id="list" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
         SELECT *
         FROM (
             SELECT
@@ -47,7 +47,7 @@
         ) TB
     </select>
 
-    <select id="select" parameterType="com.hsp.shoppingcart.ShoppingCart" resultMap="shoppingCartResultMap">
+    <select id="select" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
         SELECT
         	USER_ID,
 			PRODUCT_ID,
@@ -57,7 +57,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.shoppingcart.ShoppingCart">
+    <insert id="insert" parameterType="com.hsp.community.CommunityMapper">
         INSERT INTO MISSION (
             USER_ID,
 			PRODUCT_ID,
@@ -71,7 +71,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.hsp.shoppingcart.ShoppingCart">
+    <update id="update" parameterType="com.hsp.community.CommunityMapper">
         UPDATE MISSION
         <set>
         	<if test="user_id != null">
@@ -93,7 +93,7 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.shoppingcart.ShoppingCart">
+    <delete id="delete" parameterType="com.hsp.community.CommunityMapper">
         DELETE FROM SHOPPING_CART
         <include refid="whereSql" />
     </delete>
