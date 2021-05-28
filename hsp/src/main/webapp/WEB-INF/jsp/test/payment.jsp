@@ -8,10 +8,13 @@
 <meta charset="UTF-8">
 </head>
 <body>
-		
-	<button style="font-weight: bold;" id="payment" type="button">
-		등록
-	</button>
+
+	<button id="payment" type="button">등록</button>
+
+	<form id="blogForm" action="/shoppingcart" method="POST">
+		<input type="hidden" name="_method" value="PUT" />
+		<button type="submit">미션등록</button>
+	</form>
 
 </body>
 
@@ -21,7 +24,7 @@
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	document.getElementById('payment').addEventListener('click', ajax_call);
 	

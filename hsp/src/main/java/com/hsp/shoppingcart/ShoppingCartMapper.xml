@@ -58,7 +58,7 @@
     </select>
 
     <insert id="insert" parameterType="com.hsp.shoppingcart.ShoppingCart">
-        INSERT INTO MISSION (
+        INSERT INTO SHOPPING_CART (
             USER_ID,
 			PRODUCT_ID,
 			PRODUCT_COUNT,
@@ -72,7 +72,7 @@
     </insert>
 
     <update id="update" parameterType="com.hsp.shoppingcart.ShoppingCart">
-        UPDATE MISSION
+        UPDATE SHOPPING_CART
         <set>
         	<if test="user_id != null">
                 USER_ID = #{user_id},

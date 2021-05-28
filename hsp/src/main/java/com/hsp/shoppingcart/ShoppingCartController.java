@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.hsp.product.Product;
 import com.hsp.user.User;
@@ -38,13 +43,15 @@ public class ShoppingCartController {
 	@PostMapping
 	public String registShoppingCart(Product product) {
 
-		return "";
+		return "ddddd";
 	}
 
 	// 장바구니 수정
 	@PutMapping
-	public void updateShoppingCart(List<ShoppingCart> list) {
+	public ModelAndView updateShoppingCart() {
+		ModelAndView mv = new ModelAndView(new RedirectView("/hsp/main"));
 
+		return mv;
 	}
 
 	// 장바구니 삭제
