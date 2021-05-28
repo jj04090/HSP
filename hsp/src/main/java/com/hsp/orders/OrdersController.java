@@ -12,21 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/hsp")
 public class OrdersController {
 	
-	@Autowired
-	private OrdersMapper orderMapper;
-	
 	@GetMapping("/order")
 	public ModelAndView main() {
-		ModelAndView modelAndView = null;
-		try {
-//			Order order = new Order();
-//			order.setOrder_id("O01");
-			List<Orders> result = orderMapper.list();
-			System.out.println(result);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("");
 		return modelAndView;
 	}
 }

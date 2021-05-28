@@ -8,6 +8,7 @@
         <result column="PRODUCT_ID" property="product_id" />
         <result column="CHANNEL_ID" property="channel_id" />
         <result column="PRODUCT_IMG" property="product_img" />
+        <result column="PRODUCT_NAME" property="product_name" />
         <result column="PRODUCT_PRICE" property="product_price" />
         <result column="DISCOUNT" property="discount" />
         <result column="PRODUCT_DETAIL" property="product_detail" />
@@ -16,26 +17,103 @@
 
     <sql id="whereSql">
         <where>
-            <if test="user_id != null and user_id != ''">
+            <if test="product_id != null and product_id != ''">
                 AND PRODUCT_ID = #{product_id}
             </if>
-            <if test="password != null and password != ''">
+            <if test="channel_id != null and channel_id != ''">
                 AND CHANNEL_ID = #{channel_id}
+            </if>
+            <if test="product_img != null and product_img != ''">
+                AND PRODUCT_IMG = #{product_img}
+            </if>
+            <if test="product_name != null and product_name != ''">
+                AND PRODUCT_NAME = #{product_name}
+            </if>
+            <if test="product_price != null and product_price != ''">
+                AND PRODUCT_PRICE = #{product_price}
+            </if>
+            <if test="discount != null and discount != ''">
+                AND DISCOUNT = #{discount}
+            </if>
+            <if test="product_detail != null and product_detail != ''">
+                AND PRODUCT_DETAIL = #{product_detail}
+            </if>
+            <if test="orderable_cycle != null and orderable_cycle != ''">
+                AND ORDERABLE_CYCLE = #{orderable_cycle}
             </if>
         </where>
     </sql>
 
     <select id="select" parameterType="com.hsp.product.Product" resultMap="productResultMap">
         SELECT
-            	PRODUCT_ID,
-            	CHANNEL_ID,
-            	PRODUCT_IMG,
-            	PRODUCT_PRICE,
-            	DISCOUNT,
-            	PRODUCT_DETAIL,
-            	ORDERABLE_CYCLE
-        FROM ORDER
+            	PRODUCT_ID
+            	, CHANNEL_ID
+            	, PRODUCT_IMG
+            	, PRODUCT_NAME
+            	, PRODUCT_PRICE
+            	, DISCOUNT
+            	, PRODUCT_DETAIL
+            	, ORDERABLE_CYCLE
+        FROM PRODUCT
         <include refid="whereSql" />
     </select>
+    
+    <select id="list" resultMap="productResultMap">
+        SELECT
+            	PRODUCT_ID
+            	, CHANNEL_ID
+            	, PRODUCT_IMG
+            	, PRODUCT_NAME
+            	, PRODUCT_PRICE
+            	, DISCOUNT
+            	, PRODUCT_DETAIL
+            	, ORDERABLE_CYCLE
+        FROM PRODUCT
+        <include refid="whereSql" />
+    </select>
+    
+    <insert id="insert" parameterType="com.hsp.product.Product">
+        INSERT INTO PRODUCT (
+            					PRODUCT_ID
+            					, CHANNEL_ID
+            					, PRODUCT_IMG
+            					, PRODUCT_NAME
+            					, PRODUCT_PRICE
+            					, DISCOUNT
+            					, PRODUCT_DETAIL
+            					, ORDERABLE_CYCLE
+        ) VALUES (
+            #{product_id}
+            , #{channel_id}
+            , #{product_img}
+            , #{product_name}
+            , #{product_price}
+            , #{discount}
+            , #{product_detail}
+            , #{orderable_cycle}
+        )
+    </insert>
+    
+    <update id="update" parameterType="com.hsp.product.Product">
+        UPDATE PRODUCT
+        <set>
+            <if test="product_img != ''">
+                PRODUCT_IMG = #{product_img},
+            </if>
+            <if test="product_name != ''">
+                PRODUCT_NAME = #{product_name},
+            </if>
+            <if test="product_price != ''">
+                PRODUCT_PRICE = #{product_price},
+            </if>
+            <if test="discount != ''">
+                DISCOUNT = #{discount},
+            </if>
+            <if test="product_detail != ''">
+                PRODUCT_DETAIL = #{product_detail},
+            </if>
+        </set>
+        WHERE PRODUCT_ID = #{product_id}
+    </update>
 
 </mapper>

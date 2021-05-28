@@ -1,7 +1,12 @@
 package com.hsp.product;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ProductMapper {
-	public Product select(Product user) throws Exception;
+	public Product select(Product product) throws Exception;
+	public List<Product> list() throws Exception;
+	public void insert(Product product) throws Exception;
+	public void update(Product product) throws Exception;
 }
