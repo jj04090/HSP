@@ -26,6 +26,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void applyOrder(Orders orders) {
 		// TODO Auto-generated method stub
+		//product의 값이 없음 -> 장바구니에서 결제한거 select를 한번 해줘야함 -> 주문등록 -> 주문명세
+		//product의 값이 있음 -> 단일결제 -> 정기인지 일반인지 구별
+		//일반일 경우에는 주문 등록 -> 주문 명세 등록하고 
+		//정기일 경우에는 주문등록 하기 전에 결제를 진행 paymentService.routinePayment(Orders orders, int price //최종결젝 계산해서)->
 		
 	}
 
