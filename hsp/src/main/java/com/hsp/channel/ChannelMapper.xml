@@ -4,97 +4,64 @@
 
 <mapper namespace="com.hsp.channel.ChannelMapper">
     <resultMap id="channelResultMap" type="com.hsp.channel.Channel">
+        <result column="CHANNEL_ID" property="channel_id" />
         <result column="USER_ID" property="user_id" />
-        <result column="PRODUCT_ID" property="product_id" />
-        <result column="PRODUCT_COUNT" property="product_count" />
-        <result column="CART_TYPE" property="cart_type" />
+        <result column="CHANNEL_NAME" property="channel_name" />
+        <result column="CATEGORY" property="category" />
+        <result column="INTRODUCTION" property="introduction" />
+        <result column="DELIVERY_FEE" property="delivery_fee" />
+        <result column="BUSINESS_NO" property="business_no" />
     </resultMap>
 
     <sql id="whereSql">
         <where>
+            <if test="channel_id != null and channel_id != ''">
+                AND CHANNEL_ID = #{channel_id}
+            </if>
             <if test="user_id != null and user_id != ''">
                 AND USER_ID = #{user_id}
             </if>
-            <if test="product_id != null and product_id != ''">
-                AND PRODUCT_ID = #{product_id}
+            <if test="channel_name != null and channel_name != ''">
+                AND CHANNEL_NAME = #{channel_name}
             </if>
-            <if test="product_count != null and product_count != ''">
-                AND PRODUCT_COUNT = #{product_count}
+            <if test="category != null and category != ''">
+                AND CATEGORY = #{category}
             </if>
-            <if test="cart_type != null and cart_type != ''">
-                AND CART_TYPE = #{cart_type}
+            <if test="introduction != null and introduction != ''">
+                AND INTRODUCTION = #{introduction}
+            </if>
+            <if test="delivery_fee != null and delivery_fee != ''">
+                AND DELIVERY_FEE = #{delivery_fee}
+            </if>
+            <if test="business_no != null and business_no != ''">
+                AND BUSINESS_NO = #{business_no}
             </if>
         </where>
     </sql>
-
-    <select id="count" parameterType="com.hsp.channel.ChannelMapper" resultType="int">
-        SELECT COUNT(*)
-        FROM SHOPPING_CART
-        <include refid="whereSql" />
-    </select>
-
-    <select id="list" parameterType="com.hsp.channel.ChannelMapper" resultMap="channelResultMap">
-        SELECT *
-        FROM (
-            SELECT
-            	USER_ID,
-				PRODUCT_ID,
-				PRODUCT_COUNT,
-  				CART_TYPE
-            FROM SHOPPING_CART
-            <include refid="whereSql" />
-	        ORDER BY PRODUCT_ID DESC
-        ) TB
-    </select>
-
+    
     <select id="select" parameterType="com.hsp.channel.ChannelMapper" resultMap="channelResultMap">
         SELECT
-        	USER_ID,
-			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
-        FROM SHOPPING_CART
+        	CHANNEL_ID,
+			USER_ID,
+			CHANNEL_NAME,
+  			CATEGORY,
+  			INTRODUCTION,
+  			DELIVERY_FEE,
+  			BUSINESS_NO
+        FROM CHANNEL
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.channel.ChannelMapper">
-        INSERT INTO MISSION (
-            USER_ID,
-			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
-        ) VALUES (
-            #{user_id},
-            #{product_id},
-            #{product_count},
-            #{cart_type},
-        )
-    </insert>
-
-    <update id="update" parameterType="com.hsp.channel.ChannelMapper">
-        UPDATE MISSION
-        <set>
-        	<if test="user_id != null">
-                USER_ID = #{user_id},
-            </if>
-            <if test="product_id != null">
-                PRODUCT_ID = #{product_id},
-            </if>
-            <if test="product_count != 0">
-                PRODUCT_COUNT = #{product_count},
-            </if>
-            <if test="cart_type != null">
-                CART_TYPE = #{cart_type},
-            </if>
-        </set>
-        <where>
-        	USER_ID = #{user_id}
-        	AND  PRODUCT_ID = #{product_id}
-        </where>
-    </update>
-
-    <delete id="delete" parameterType="com.hsp.channel.ChannelMapper">
-        DELETE FROM SHOPPING_CART
-        <include refid="whereSql" />
-    </delete>
+    <select id="list" resultMap="channelResultMap">
+        SELECT
+        	CHANNEL_ID,
+			USER_ID,
+			CHANNEL_NAME,
+  			CATEGORY,
+  			INTRODUCTION,
+  			DELIVERY_FEE,
+  			BUSINESS_NO
+        FROM CHANNEL
+    </select>
+    
 </mapper>
