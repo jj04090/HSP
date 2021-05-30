@@ -63,7 +63,7 @@
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						var iconValue = 'success';
 						location.replace('/shoppingcart');
-						/* $.ajax({      //주문등록으로 보내기, 회원이랑 상품PK를 보냄
+						/* $.ajax({      //주문등록으로 보내기, 주문이랑(orders_id) 상품PK를 보냄
 						    type: 'POST',
 						    url: '/payment',
 						    headers: { "Content-Type": "application/json" },

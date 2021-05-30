@@ -55,7 +55,7 @@ public class PaymentController {
 		return new IamportRequest();
 	}
 
-	// 정기 결제
+	// 정기 결제 정보 전송
 	@PostMapping("/routine")
 	@ResponseBody
 	public IamportRequest routinePayment(User user, Product product) {
