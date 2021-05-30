@@ -43,7 +43,7 @@
         <include refid="whereSql" />
     </select>
     
-    <select id="list"  resultMap="ordersResultMap">
+    <select id="list" parameterType="com.hsp.orders.Orders" resultMap="ordersResultMap">
         SELECT
             	ORDER_ID,
             	USER_ID,
@@ -52,5 +52,6 @@
             	ORDER_STATUS
         FROM ORDERS
     </select>
+    
 
 </mapper>

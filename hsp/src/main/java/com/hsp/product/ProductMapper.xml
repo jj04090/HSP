@@ -58,7 +58,7 @@
         <include refid="whereSql" />
     </select>
     
-    <select id="list" resultMap="productResultMap">
+    <select id="list" parameterType="com.hsp.product.Product" resultMap="productResultMap">
         SELECT
             	PRODUCT_ID
             	, CHANNEL_ID

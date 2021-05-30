@@ -16,26 +16,65 @@
 
     <sql id="whereSql">
         <where>
-            <if test="user_id != null and user_id != ''">
-                AND USER_ID = #{user_id}
+            <if test="order_id != null and order_id != ''">
+                AND ORDER_ID = #{order_id}
             </if>
-            <if test="password != null and password != ''">
-                AND PASSWORD = #{password}
+            <if test="product_id != null and product_id != ''">
+                AND PRODUCT_ID = #{product_id}
+            </if>
+            <if test="product_qty != null and product_qty != ''">
+                AND PRODUCT_QTY = #{product_qty}
+            </if>
+            <if test="price != null and price != ''">
+                AND PRICE = #{price}
+            </if>
+            <if test="discount != null and discount != ''">
+                AND DISCOUNT = #{discount}
+            </if>
+            <if test="delevery_fee != null and delevery_fee != ''">
+                AND DELEVERY_FEE = #{delevery_fee}
+            </if>
+            <if test="delevery_status != null and delevery_status != ''">
+                AND DELEVERY_STATUS = #{delevery_status}
             </if>
         </where>
     </sql>
 
     <select id="select" parameterType="com.hsp.orders.OrderDetail" resultMap="orderDetailResultMap">
         SELECT
-            	ORDER_ID,
-            	PRODUCT_ID,
-            	PRODUCT_QTY,
-            	PRICE,
-            	DISCOUNT,
-            	DELEVERY_FEE,
-            	DELEVERY_STATUS,
+            	ORDER_ID
+            	, PRODUCT_ID
+            	, PRODUCT_QTY
+            	, PRICE
+            	, DISCOUNT
+            	, DELEVERY_FEE
+            	, DELEVERY_STATUS
         FROM ORDER_DETAIL
         <include refid="whereSql" />
     </select>
+    
+    <select id="list" parameterType="com.hsp.orders.OrderDetail" resultMap="orderDetailResultMap">
+        SELECT
+            	ORDER_ID
+            	, PRODUCT_ID
+            	, PRODUCT_QTY
+            	, PRICE
+            	, DISCOUNT
+            	, DELEVERY_FEE
+            	, DELEVERY_STATUS
+        FROM ORDER_DETAIL
+    </select>
 
+	<select id="selectByChannelId" parameterType="String" resultMap="orderDetailResultMap">
+    	SELECT ORD.ORDER_ID
+    	  	   , ORD.PRODUCT_ID
+    	       , ORD.PRODUCT_QTY
+    	   	   , ORD.PRICE
+    	   	   , ORD.DELEVERY_STATUS
+		FROM PRODUCT P
+		     , ORDER_DETAIL ORD
+		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
+		AND P.CHANNEL_ID = #{channel_id}
+    </select>
+	
 </mapper>

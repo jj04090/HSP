@@ -19,12 +19,8 @@
 <body>
 	<h1>상품 수정</h1>
 	
-	<!-- 	
 	<form name="edit" action="/hsp/product" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="PUT" />
-		 -->
-	<form name="edit" action="/hsp/productupdate" method="post" enctype="multipart/form-data">
-		<!-- <input type="hidden" name="_method" value="PUT" />  -->
 		
 		<div>
 			채널 ID : <input type="text" name="channel_id" value=${product.channel_id} id="channel_id" readonly />

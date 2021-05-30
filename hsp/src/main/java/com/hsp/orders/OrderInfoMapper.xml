@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsp.orders.OrderInfoMapper">
+    <resultMap id="orderInfoResultMap" type="com.hsp.orders.OrderInfo">
+        <result column="ORDER_ID" property="order_id" />
+        <result column="USER_ID" property="user_id" />
+        <result column="ORDER_TYPE" property="order_type" />
+        <result column="PRODUCT_NAME" property="product_name" />
+        <result column="PRODUCT_ID" property="product_id" />
+        <result column="PRODUCT_QTY" property="product_qty" />
+        <result column="PRICE" property="price" />
+        <result column="DISCOUNT" property="discount" />
+        <result column="DELEVERY_FEE" property="delevery_fee" />
+        <result column="DELEVERY_STATUS" property="delevery_status" />
+        <result column="NAME" property="name" />
+        <result column="ADDRESS" property="address" />
+        <result column="DETAIL_ADDRESS" property="detail_address" />
+        <result column="ZIP_CODE" property="zip_code" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="order_id != null and order_id != ''">
+                AND ORDER_ID = #{order_id}
+            </if>
+            <if test="user_id != null and user_id != ''">
+                AND USER_ID = #{user_id}
+            </if>
+            <if test="order_type != null and order_type != ''">
+                AND ORDER_TYPE = #{order_type}
+            </if>
+            <if test="product_name != null and product_name != ''">
+                AND PRODUCT_NAME = #{product_name}
+            </if>
+            <if test="product_id != null and product_id != ''">
+                AND PRODUCT_ID = #{product_id}
+            </if>
+            <if test="product_qty != null and product_qty != ''">
+                AND PRODUCT_QTY = #{product_qty}
+            </if>
+            <if test="price != null and price != ''">
+                AND PRICE = #{price}
+            </if>
+            <if test="discount != null and discount != ''">
+                AND DISCOUNT = #{discount}
+            </if>
+            <if test="delevery_fee != null and delevery_fee != ''">
+                AND DELEVERY_FEE = #{delevery_fee}
+            </if>
+            <if test="delevery_status != null and delevery_status != ''">
+                AND DELEVERY_STATUS = #{delevery_status}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="address != null and address != ''">
+                AND ADDRESS = #{address}
+            </if>
+            <if test="detail_address != null and detail_address != ''">
+                AND DETAIL_ADDRESS = #{detail_address}
+            </if>
+            <if test="zip_code != null and zip_code != ''">
+                AND ZIP_CODE = #{zip_code}
+            </if>
+        </where>
+    </sql>
+
+    <select id="select" parameterType="com.hsp.orders.OrderInfo" resultMap="orderInfoResultMap">
+        SELECT
+            	ORDER_ID
+            	, PRODUCT_NAME
+            	, PRODUCT_ID
+            	, PRODUCT_QTY
+            	, PRICE
+            	, DISCOUNT
+            	, DELEVERY_FEE
+            	, DELEVERY_STATUS
+            	, NAME
+            	, ADDRESS
+            	, DETAIL_ADDRESS
+            	, ZIP_CODE
+        FROM ORDER_DETAIL
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="selectByOrder_id" parameterType="hashmap" resultMap="orderInfoResultMap">
+        SELECT ORD.ORDER_ID
+        	   , O.ORDER_TYPE
+        	   , P.PRODUCT_NAME
+        	   , P.PRODUCT_ID
+        	   , ORD.PRODUCT_QTY
+        	   , ORD.PRICE
+	 		   , ORD.DISCOUNT
+	 		   , ORD.DELEVERY_FEE
+	 		   , ORD.DELEVERY_STATUS
+	 		   , U.NAME
+	 		   , U.ADDRESS
+	 		   , U.DETAIL_ADDRESS
+	 		   , U.ZIP_CODE
+		FROM PRODUCT P
+			 , ORDER_DETAIL ORD
+			 , ORDERS O
+			 ,(SELECT USER_ID, NAME, ADDRESS, DETAIL_ADDRESS, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
+		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
+			AND (O.ORDER_ID = ORD.ORDER_ID)
+			AND ORD.ORDER_ID = #{order_id}
+    </select>
+    
+    <select id="selectForBiz" parameterType="String" resultMap="orderInfoResultMap">
+        SELECT ORD.ORDER_ID
+        	   , O.ORDER_TYPE
+        	   , P.PRODUCT_NAME
+        	   , P.PRODUCT_ID
+        	   , ORD.PRODUCT_QTY
+        	   , ORD.PRICE
+			   , ORD.DISCOUNT
+			   , ORD.DELEVERY_FEE
+			   , ORD.DELEVERY_STATUS
+		FROM PRODUCT P, ORDER_DETAIL ORD, ORDERS O
+		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
+		AND (O.ORDER_ID = ORD.ORDER_ID)
+		AND ORD.ORDER_ID = #{order_id}
+    </select>
+    
+    <select id="list" parameterType="com.hsp.orders.OrderInfo" resultMap="orderInfoResultMap">
+        SELECT
+            	ORDER_ID
+            	, PRODUCT_ID
+            	, PRODUCT_QTY
+            	, PRICE
+            	, DISCOUNT
+            	, DELEVERY_FEE
+            	, DELEVERY_STATUS
+        FROM ORDER_DETAIL
+    </select>
+
+</mapper>
