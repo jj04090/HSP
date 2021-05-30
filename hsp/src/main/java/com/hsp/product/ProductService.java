@@ -2,6 +2,9 @@ package com.hsp.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,5 +18,6 @@ public interface ProductService {
 	public Product viewProduct(Product product);
 	
 	public String imgUpload(MultipartFile attach);
+	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload);
 	public ResponseEntity<Resource> display(String fileName);
 }
