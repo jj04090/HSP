@@ -15,7 +15,7 @@
         <result column="EMAIL" property="email" />
         <result column="BANK_NAME" property="bank_name" />
         <result column="ACCOUNT_NUMBER" property="account_number" />
-        <result column="USER_TYPE" property="user_type" />
+        <result column="AUTH" property="auth" />
         <result column="REGIT_DATE" property="regit_date" />
     </resultMap>
 
@@ -51,8 +51,8 @@
             <if test="account_number != null and account_number != ''">
                 AND ACCOUNT_NUMBER = #{account_number}
             </if>
-            <if test="user_type != null and user_type != ''">
-                AND USER_TYPE = #{user_type}
+            <if test="auth != null and auth != ''">
+                AND AUTH = #{auth}
             </if>
             <if test="regit_date != null and regit_date != ''">
                 AND REGIT_DATE = #{regit_date}
@@ -72,7 +72,7 @@
            	EMAIL,
            	BANK_NAME,
            	ACCOUNT_NUMBER,
-           	USER_TYPE,
+           	AUTH,
            	REGIT_DATE
         FROM USER
         <include refid="whereSql" />
@@ -90,7 +90,7 @@
            	EMAIL,
            	BANK_NAME,
            	ACCOUNT_NUMBER,
-           	USER_TYPE,
+           	AUTH,
            	REGIT_DATE
         ) VALUES (
             #{user_id},
@@ -103,7 +103,7 @@
             #{email},
             #{bank_name},
             #{account_number},
-            #{user_type},
+            #{auth},
             #{regit_date}
         )
     </insert>
@@ -141,8 +141,8 @@
             <if test="account_number != null and account_number != ''">
                 ACCOUNT_NUMBER = #{account_number},
             </if>
-            <if test="user_type != null and user_type != ''">
-                USER_TYPE = #{user_type},
+            <if test="auth != null and auth != ''">
+                AUTH = #{auth},
             </if>
             <if test="regit_date != null and regit_date != ''">
                 REGIT_DATE = #{regit_date},

@@ -13,7 +13,7 @@ public class User implements Serializable {
     private String email;
     private String bank_name;
     private String account_number;
-    private String user_type;
+    private String auth;
     private String regit_date;
 
     private int itemStart;
@@ -24,7 +24,7 @@ public class User implements Serializable {
     }
 
 	public User(String user_id, String phone, String name, String password, String address, String detail_address,
-			String zip_code, String email, String bank_name, String account_number, String user_type, String regit_date,
+			String zip_code, String email, String bank_name, String account_number, String auth, String regit_date,
 			int itemStart, int itemSizePerPage) {
 		this.user_id = user_id;
 		this.phone = phone;
@@ -36,7 +36,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.bank_name = bank_name;
 		this.account_number = account_number;
-		this.user_type = user_type;
+		this.auth = auth;
 		this.regit_date = regit_date;
 		this.itemStart = itemStart;
 		this.itemSizePerPage = itemSizePerPage;
@@ -122,12 +122,12 @@ public class User implements Serializable {
 		this.account_number = account_number;
 	}
 
-	public String getUser_type() {
-		return user_type;
+	public String getAuth() {
+		return auth;
 	}
 
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 
 	public String getRegit_date() {
@@ -158,7 +158,7 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [user_id=" + user_id + ", phone=" + phone + ", name=" + name + ", password=" + password
 				+ ", address=" + address + ", detail_address=" + detail_address + ", zip_code=" + zip_code + ", email="
-				+ email + ", bank_name=" + bank_name + ", account_number=" + account_number + ", user_type=" + user_type
+				+ email + ", bank_name=" + bank_name + ", account_number=" + account_number + ", user_type=" + auth
 				+ ", regit_date=" + regit_date + ", itemStart=" + itemStart + ", itemSizePerPage=" + itemSizePerPage
 				+ "]";
 	}
