@@ -20,4 +20,6 @@ public interface OrderService {
 	public void confirmDelivery(OrderDetail orderDetail);
 	public void applyReturn(Returns returns);
 	public void confirmReturn(Returns returns, String status);
+	
+	//public void schedualTest(); // 스케줄러 테스트 메소드
 }

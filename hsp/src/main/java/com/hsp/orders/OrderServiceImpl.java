@@ -3,13 +3,13 @@ package com.hsp.orders;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hsp.product.ProductMapper;
 import com.hsp.user.User;
+import com.hsp.user.UserMapper;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -22,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
 	ProductMapper productMapper;
 	@Autowired
 	OrderInfoMapper orderInfoMapper;
+	@Autowired
+	UserMapper userMapper;
 	
 	@Override
 	public void applyOrder(Orders orders) {
@@ -83,9 +85,13 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderInfo> orderInfoList = null;
 		List<OrderInfo> orderInfoFull = new ArrayList<OrderInfo>();
 		try {
-			ordersByorder_id = ordersMapper.select(orders); // 여기에 주문한 user_id가 담겨있음
+			ordersByorder_id = ordersMapper.select(orders); // 여기에 주문한 user_id가 담겨있음 Orders를 반환
 			//User에서 쿼리해서 주소 가져와야됨
-			User user = null;// 유저매퍼에서 유저ID를 기준으로 -> User를 가져옴
+			System.out.println("+++++++++++++++++++++++++++++++++");
+			User userSet = new User();
+			userSet.setUser_id(ordersByorder_id.getUser_id());
+			User user = userMapper.select(userSet); // 유저매퍼에서 유저ID를 기준으로 -> User를 가져옴
+			System.out.println("==================================");
 			orderInfoList = orderInfoMapper.selectForBiz(order_id);
 			for (int i = 0; i < orderInfoList.size(); i++) {
 				OrderInfo orderInfoBlank = orderInfoList.get(i);
@@ -125,5 +131,13 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/*
+	@Override
+	@Scheduled(cron = " 0/10 * * * * *")
+	public void schedualTest() {
+		System.out.println("현재 시각 : " + new Date(System.currentTimeMillis()));
+	}
+	*/
 
 }
