@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface OrderService {
 	public void applyOrder(Orders orders);
-	public void cancelOreder(Orders orders);
+	public void cancelOrder(String order_id); // 파라미터 Orders -> String
 	public List<Orders> viewOrderList(String user_id);
 	
 	public List<OrderDetail> viewSoldList(String channel_id); //new

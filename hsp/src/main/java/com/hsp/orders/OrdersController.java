@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,18 +54,22 @@ public class OrdersController {
 		if (!channel_id.isEmpty()) { // 사업자 접근
 			orderInfo = orderServiceImpl.viewSoldDetail(order_id);
 			modelAndView.addObject("orderInfo", orderInfo);
+			modelAndView.addObject("auth", "B");
 		} else { // 사용자 접근
 			orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
 			modelAndView.addObject("orderInfo", orderInfo);
+			modelAndView.addObject("auth", "C");
 		}
 		modelAndView.setViewName("/order/orderView");
 		return modelAndView;
 	}
 	
 	@GetMapping("/returnform") // 반품 신청 폼
-	public ModelAndView orderReturn() {
+	public ModelAndView orderReturn(@RequestParam(value = "order_id") String order_id, @RequestParam(value = "product_id") String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("");
+		modelAndView.setViewName("/order/returnFrom");
+		modelAndView.addObject("order_id", order_id);
+		modelAndView.addObject("product_id", product_id);
 		return modelAndView;
 	}
 	
@@ -89,9 +94,10 @@ public class OrdersController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/cancel/{orderId}")
-	public ModelAndView orderList(String orderId) {
+	@GetMapping("/cancel/{order_id}")
+	public ModelAndView orderCancel(@PathVariable String order_id) {
 		ModelAndView modelAndView = new ModelAndView();
+		
 		modelAndView.setViewName("");
 		return modelAndView;
 	}

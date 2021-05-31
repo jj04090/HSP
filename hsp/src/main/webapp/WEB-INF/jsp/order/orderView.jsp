@@ -33,6 +33,14 @@
 			<li>상세 주소 : ${list.detail_address} </li>
 			<li>우편 번호 : ${list.zip_code} </li>
 			<li>제품 상태: ${list.delevery_status} </li>
+			
+			<c:if test="${auth == 'C'}">
+				<div>
+				<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>/order/returnform?order_id=${list.order_id}&product_id=${list.product_id}'">반품 신청</button>
+				
+				</div>
+			</c:if>
+			
 		</ul>
 	</c:forEach>
 	

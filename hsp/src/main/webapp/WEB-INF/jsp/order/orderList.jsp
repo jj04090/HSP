@@ -25,6 +25,11 @@
 			</li>
 			<li>주문 일자 : <c:out value="${list.order_date}" /> </li>
 			<li>결제 상태 : <c:out value="${list.order_status}" /> </li>
+			
+			<div>
+				<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>/order/cancel/${list.order_id}'">주문 취소</button>
+				
+			</div>
 		</ul>
 	</c:forEach>
 	

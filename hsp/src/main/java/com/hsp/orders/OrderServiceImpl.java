@@ -32,9 +32,22 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void cancelOreder(Orders orders) {
-		// TODO Auto-generated method stub
-		
+	public void cancelOrder(String order_id) {
+		OrderDetail orderDetail = new OrderDetail();
+		orderDetail.setOrder_id(order_id);
+		List<OrderDetail> orderDetailList = null;
+		try {
+			orderDetailList = orderDetailMapper.list(orderDetail);
+			for (int i = 0; i < orderDetailList.size(); i++) {
+				if (!orderDetailList.get(i).getDelevery_status().equals("O")) {
+					System.out.println("주문 취소 못함");
+				} else {
+					
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -87,11 +100,9 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			ordersByorder_id = ordersMapper.select(orders); // 여기에 주문한 user_id가 담겨있음 Orders를 반환
 			//User에서 쿼리해서 주소 가져와야됨
-			System.out.println("+++++++++++++++++++++++++++++++++");
 			User userSet = new User();
 			userSet.setUser_id(ordersByorder_id.getUser_id());
 			User user = userMapper.select(userSet); // 유저매퍼에서 유저ID를 기준으로 -> User를 가져옴
-			System.out.println("==================================");
 			orderInfoList = orderInfoMapper.selectForBiz(order_id);
 			for (int i = 0; i < orderInfoList.size(); i++) {
 				OrderInfo orderInfoBlank = orderInfoList.get(i);
