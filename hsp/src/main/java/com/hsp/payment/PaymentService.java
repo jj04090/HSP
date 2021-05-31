@@ -2,6 +2,9 @@ package com.hsp.payment;
 
 import java.util.List;
 
+import com.hsp.orders.Orders;
+import com.hsp.product.Product;
+
 public interface PaymentService {
 	/*
 	 * public IamportRequest paymentProcess(Mission mission, String merchantUid)
@@ -16,4 +19,8 @@ public interface PaymentService {
 	 * 
 	 * public boolean paymentCancel(Payment payment) throws Exception;
 	 */
+	
+	public boolean cancelPayment(String merchant_uid) throws Exception;
+	
+	public boolean routinePayment(Orders orders, int amount) throws Exception;
 }
