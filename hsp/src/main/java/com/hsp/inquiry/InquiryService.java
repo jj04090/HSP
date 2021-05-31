@@ -6,6 +6,6 @@ public interface InquiryService {
 	public void registInquiry(Inquiry inquiry);
 	public void updateInquiry(Inquiry inquiry);
 	public void deleteInquiry(Inquiry inquiry);
-	public List<Inquiry> viewInquiryList(Inquiry inquiry);
+	public List<Inquiry> viewInquiryList();
 	public Inquiry viewInquiry(Inquiry inquiry);
 }

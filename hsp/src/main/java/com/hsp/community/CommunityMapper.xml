@@ -47,6 +47,18 @@
         <include refid="whereSql" />
     </select>
 
+	<select id="list" resultMap="communityResultMap">
+        SELECT
+            	COMMUNITY_ID,
+            	CHANNEL_ID,
+            	COMMUNITY_TITLE,
+            	COMMUNITY_CONTENT,
+            	REGIT_DATE,
+            	MEDIAFILE
+        FROM COMMUNITY
+        <include refid="whereSql" />
+    </select>
+
     <insert id="insert" parameterType="com.hsp.community.CommunityMapper">
         INSERT INTO COMMUNITY (
             COMMUNITY_ID,
