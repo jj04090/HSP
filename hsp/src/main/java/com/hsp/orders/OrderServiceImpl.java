@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
 			for (int i = 0; i < orderInfoList.size(); i++) {
 				OrderInfo orderInfoBlank = orderInfoList.get(i);
 				orderInfoBlank.setAddress(user.getAddress());
-				orderInfoBlank.setDetail_address(user.getDetail_address());
+				orderInfoBlank.setDetail_address(user.getDetail_add());
 				orderInfoBlank.setZip_code(user.getZip_code());
 				
 				orderInfoFull.add(orderInfoBlank);

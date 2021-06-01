@@ -6,7 +6,15 @@
 <mapper namespace="com.hsp.user.UserMapper">
     <resultMap id="userResultMap" type="com.hsp.user.User">
         <result column="USER_ID" property="user_id" />
+        <result column="PHONE" property="phone" />
+        <result column="NAME" property="name" />
         <result column="PASSWORD" property="password" />
+        <result column="ADDRESS" property="address" />
+        <result column="DETAIL_ADD" property="detail_add" />
+        <result column="ZIP_CODE" property="zip_code" />
+        <result column="EMAIL" property="email" />
+		<result column="USER_TYPE" property="user_type" />
+        <result column="REGIT_DATE" property="regit_date" />
     </resultMap>
 
     <sql id="whereSql">
@@ -14,27 +22,118 @@
             <if test="user_id != null and user_id != ''">
                 AND USER_ID = #{user_id}
             </if>
+            <if test="phone != null and phone != ''">
+                AND PHONE = #{phone}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
             <if test="password != null and password != ''">
                 AND PASSWORD = #{password}
+            </if>
+            <if test="address != null and address != ''">
+                AND ADDRESS = #{address}
+            </if>
+            <if test="detail_add != null and detail_add != ''">
+                AND DETAIL_ADD = #{detail_add}
+            </if>
+            <if test="zip_code != null and zip_code != ''">
+                AND ZIP_CODE = #{zip_code}
+            </if>
+            <if test="email != null and email != ''">
+                AND EMAIL = #{email}
+            </if>
+            <if test="user_type != null and user_type != ''">
+                AND USER_TYPE = #{user_type}
+            </if>
+            <if test="regit_date != null and regit_date != ''">
+                AND REGIT_DATE = #{regit_date}
             </if>
         </where>
     </sql>
 
     <select id="select" parameterType="com.hsp.user.User" resultMap="userResultMap">
         SELECT
-            	USER_ID,
-            	PHONE,
-            	NAME,
-            	PASSWORD,
-            	ADDRESS,
-            	DETAIL_ADDRESS,
-            	ZIP_CODE,
-            	BANK_NAME,
-            	ACCOUNT_NUMBER,
-            	AUTH,
-            	REGIT_DATE
+            USER_ID,
+            PHONE,
+            NAME,
+            PASSWORD,
+           	ADDRESS,
+           	DETAIL_ADDRESS,
+           	ZIP_CODE,
+           	EMAIL,
+           	USER_TYPE,
+           	REGIT_DATE
         FROM USER
         <include refid="whereSql" />
     </select>
+    
+    <insert id="insert" parameterType="com.hsp.user.User">
+        INSERT INTO USER (
+            USER_ID,
+            PHONE,
+            NAME,
+            PASSWORD,
+           	ADDRESS,
+           	DETAIL_ADDRESS,
+           	ZIP_CODE,
+           	EMAIL,
+           	USER_TYPE,
+           	REGIT_DATE
+        ) VALUES (
+            #{user_id},
+            #{phone},
+            #{name},
+            #{password},
+            #{address},
+            #{detail_address},
+            #{zip_code},
+            #{email},
+            #{user_type},
+            #{regit_date}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.hsp.user.User">
+        UPDATE USER
+        <set>
+        	<if test="user_id != null and user_id != ''">
+                USER_ID = #{user_id},
+            </if>
+            <if test="phone != null and phone != ''">
+                PHONE = #{phone},
+            </if>
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="password != null and password != ''">
+                PASSWORD = #{password},
+            </if>
+            <if test="address != null and address != ''">
+                ADDRESS = #{address},
+            </if>
+            <if test="detail_address != null and detail_address != ''">
+                DETAIL_ADDRESS = #{detail_address},
+            </if>
+            <if test="zip_code != null and zip_code != ''">
+                ZIP_CODE = #{zip_code},
+            </if>
+            <if test="email != null and email != ''">
+                EMAIL = #{email},
+            </if>
+            <if test="user_type != null and user_type != ''">
+                USER_TYPE = #{user_type},
+            </if>
+            <if test="regit_date != null and regit_date != ''">
+                REGIT_DATE = #{regit_date},
+            </if>
+        </set>
+        WHERE USER_ID = #{user_id}
+    </update>
+
+    <delete id="delete" parameterType="com.hsp.user.User">
+        DELETE FROM USER
+        <include refid="whereSql" />
+    </delete>
 
 </mapper>
