@@ -61,7 +61,8 @@ public class PaymentController {
 	public IamportRequest routinePayment(User user, Product product) {
 		IamportRequest iamportRequest = null;
 		//user_id+"customerhsp";
-		return new IamportRequest("html5_inicis.INIBillTst","merchant_uid"+UUID.randomUUID().toString(), "사과", 100, "jj04090@naver.com", "유상진", "cid_111");
+		//빌링키를 조회하여 만약 존재한다면 카드등록말고 그대로 진행한다. 아니 선택지를 준다
+		return new IamportRequest("html5_inicis.INIBillTst","merchant_uid"+UUID.randomUUID().toString(), "수박", 100, "jj04090@naver.com", "유상진", "cid_113");
 	}
 	
 	

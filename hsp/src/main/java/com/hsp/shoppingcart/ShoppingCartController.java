@@ -1,5 +1,6 @@
 package com.hsp.shoppingcart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import com.hsp.payment.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,21 +38,37 @@ public class ShoppingCartController {
 	private ShoppingCartMapper shoppingCartMapper;
 	
 	@Autowired
-	private PaymentServiceImpl paymentServiceImpl;
+	private ShoppingCartServiceImpl shoppingCartServiceImpl;
 	
 	// 장바구니 조회
-	@GetMapping
-	public ModelAndView viewShoppingCart(User user) {
+	@GetMapping("/{cartType}")
+	public ModelAndView viewShoppingCart(@PathVariable String cartType) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/hsp/main");
+		mv.setViewName("/shoppingcart/shoppingCartList");
+		
+		ShoppingCart shoppingCart = new ShoppingCart();
+		shoppingCart.setCart_type(cartType);
+		shoppingCart.setUser_id("a"); //세션에서 가져오기
+		
 		try {
-			paymentServiceImpl.routinePayment(new Orders(), 0);
+			List<ShoppingCart> shoppingList = new ArrayList<ShoppingCart>();
+			
+			shoppingList = shoppingCartServiceImpl.viewShoppingCart(shoppingCart);
+			
+			mv.addObject("shoppingList", shoppingList);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return mv;
 	}
+	/*
+	 * @GetMapping public ModelAndView viewShoppingCart(User user) { ModelAndView mv
+	 * = new ModelAndView();
+	 * mv.setViewName("redirect:/testapi.openbanking.or.kr/v2.0/authorize");
+	 * 
+	 * return mv; }
+	 */
 
 	/*
 	 * // 장바구니 등록
@@ -66,15 +84,8 @@ public class ShoppingCartController {
 	// 장바구니 등록
 		@PostMapping
 		@ResponseBody
-		public String registShoppingCart(Orders orders) {
-			try {
-				System.out.println(orders.getOrder_id());
-				paymentServiceImpl.cancelPayment(orders.getOrder_id());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return "ddddd";
+		public void registShoppingCart(Orders orders) {
+			
 		}
 
 	// 장바구니 수정

@@ -18,6 +18,7 @@
 
 	<button id="cancel" type="button">취소</button>
 
+	<button id="auth" type="button">본인인증</button>	
 
 </body>
 
@@ -62,7 +63,7 @@
 						var msg = '결제가 완료되었습니다.\n';
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						var iconValue = 'success';
-						location.replace('/shoppingcart');
+						//location.replace('/shoppingcart');
 						/* $.ajax({      //주문등록으로 보내기, 주문이랑(orders_id) 상품PK를 보냄
 						    type: 'POST',
 						    url: '/payment',
@@ -98,5 +99,18 @@
 			}
 		});
 	}
+	
+	$("#auth").click(function(){
+        var tmpWindow = window.open('about:blank','_blank','width=500,height=600,top=60,left=500')
+        tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"+
+			"response_type=code&"+
+            "client_id=728a9fc1-5d1d-4db9-b7e9-e9efcadf2f12&"+ // 
+            "redirect_uri=http://localhost/payment&"+
+            "scope=login inquiry transfer&"+
+            "state=12345678901234567890123456789012&"+
+            "auth_type=0&"+
+            "authorized_cert_yn=N"
+    })
+
 </script>
 </html>

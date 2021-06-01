@@ -6,21 +6,13 @@ import com.hsp.orders.Orders;
 import com.hsp.product.Product;
 
 public interface PaymentService {
-	/*
-	 * public IamportRequest paymentProcess(Mission mission, String merchantUid)
-	 * throws Exception;
-	 * 
-	 * public void paymentRegister(Mission mission, String merchantUid) throws
-	 * Exception;
-	 * 
-	 * public List<Payment> paymentList(Payment payment) throws Exception;
-	 * 
-	 * public Payment paymentInquiry(Payment payment) throws Exception;
-	 * 
-	 * public boolean paymentCancel(Payment payment) throws Exception;
-	 */
-	
+
+	//결제 취소
 	public boolean cancelPayment(String merchant_uid) throws Exception;
 	
+	//정기 결제
 	public boolean routinePayment(Orders orders, int amount) throws Exception;
+	
+	//결제 정산
+	public boolean calculate() throws Exception;
 }
