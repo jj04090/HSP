@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface OrdersMapper {
 	public Orders select(Orders order) throws Exception;
 	public List<Orders> list(Orders order) throws Exception;
+	public void update(Orders order) throws Exception;
 }

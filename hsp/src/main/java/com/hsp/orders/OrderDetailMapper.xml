@@ -63,6 +63,7 @@
             	, DELEVERY_FEE
             	, DELEVERY_STATUS
         FROM ORDER_DETAIL
+        <include refid="whereSql" />
     </select>
 
 	<select id="selectByChannelId" parameterType="String" resultMap="orderDetailResultMap">
@@ -76,5 +77,16 @@
 		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
 		AND P.CHANNEL_ID = #{channel_id}
     </select>
+    
+    <update id="statusUpdate" parameterType="com.hsp.orders.OrderDetail">
+        UPDATE ORDER_DETAIL
+        <set>
+            <if test="delevery_status != null and delevery_status != ''">
+                DELEVERY_STATUS = #{delevery_status}
+            </if>
+        </set>
+        WHERE ORDER_ID = '${order_id}'
+        AND PRODUCT_ID = '${product_id}'
+    </update>
 	
 </mapper>

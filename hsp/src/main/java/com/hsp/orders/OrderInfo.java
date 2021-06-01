@@ -8,6 +8,7 @@ public class OrderInfo implements Serializable{
 	private String order_type;
 	private String product_name;
 	private String product_id;
+	private String product_img;
 	private String product_qty;
 	private String price;
 	private String discount;
@@ -23,13 +24,14 @@ public class OrderInfo implements Serializable{
 	}
 	
 	public OrderInfo(String order_id, String user_id, String order_type, String product_name, String product_id,
-			String product_qty, String price, String discount, String delevery_fee, String delevery_status, String name,
-			String address, String detail_address, String zip_code) {
+			String product_img, String product_qty, String price, String discount, String delevery_fee,
+			String delevery_status, String name, String address, String detail_address, String zip_code) {
 		this.order_id = order_id;
 		this.user_id = user_id;
 		this.order_type = order_type;
 		this.product_name = product_name;
 		this.product_id = product_id;
+		this.product_img = product_img;
 		this.product_qty = product_qty;
 		this.price = price;
 		this.discount = discount;
@@ -39,6 +41,14 @@ public class OrderInfo implements Serializable{
 		this.address = address;
 		this.detail_address = detail_address;
 		this.zip_code = zip_code;
+	}
+
+	public String getProduct_img() {
+		return product_img;
+	}
+
+	public void setProduct_img(String product_img) {
+		this.product_img = product_img;
 	}
 
 	public String getUser_id() {
@@ -157,11 +167,11 @@ public class OrderInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "OrderInfo [order_id=" + order_id + ", user_id=" + user_id + ", order_type=" + order_type
-				+ ", product_name=" + product_name + ", product_id=" + product_id + ", product_qty=" + product_qty
-				+ ", price=" + price + ", discount=" + discount + ", delevery_fee=" + delevery_fee
-				+ ", delevery_status=" + delevery_status + ", name=" + name + ", address=" + address
+				+ ", product_name=" + product_name + ", product_id=" + product_id + ", product_img=" + product_img
+				+ ", product_qty=" + product_qty + ", price=" + price + ", discount=" + discount + ", delevery_fee="
+				+ delevery_fee + ", delevery_status=" + delevery_status + ", name=" + name + ", address=" + address
 				+ ", detail_address=" + detail_address + ", zip_code=" + zip_code + "]";
 	}
-	
+
 	
 }

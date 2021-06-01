@@ -16,7 +16,7 @@
 <body>
 	<h1>주문 리스트</h1>
 	
-	<c:forEach items="${ordersList}" var = "list">
+	<c:forEach items="${ordersList}" var = "list" varStatus="status">
 		<ul>
 			<li> 주문 ID : <a href="/order/${list.order_id}"> <c:out value="${list.order_id}" /> </a> </li>
 			<li>주문 종류 : 
@@ -25,12 +25,17 @@
 			</li>
 			<li>주문 일자 : <c:out value="${list.order_date}" /> </li>
 			<li>결제 상태 : <c:out value="${list.order_status}" /> </li>
-			
+		
+		
+		<c:if test="${cancelAble[status.index] == 'Y'}">
 			<div>
-				<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>/order/cancel/${list.order_id}'">주문 취소</button>
-				
+				<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>
+					/order/cancel/${list.order_id}'">주문 취소</button>
 			</div>
+		</c:if>
+		
 		</ul>
+		
 	</c:forEach>
 	
 </body>

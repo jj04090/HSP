@@ -28,7 +28,7 @@
 		
 		<div>
 		반품 사유
-		<textarea rows="5" cols="50" id="productDes" name="product_detail"></textarea>
+		<textarea rows="5" cols="50" id="return_reason" name="return_reason"></textarea>
 
 		<script>
 			var ckeditor_config = {
@@ -38,7 +38,7 @@
 				filebrowserUploadUrl : "/hsp/product/ckUpload"
 			};
 
-			CKEDITOR.replace("productDes", ckeditor_config);
+			CKEDITOR.replace("return_reason", ckeditor_config);
 		</script>
 		</div>
 		

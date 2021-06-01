@@ -1,16 +1,19 @@
 package com.hsp.orders;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.hsp.product.Product;
 
 @RestController
 @RequestMapping("/order")
@@ -24,8 +27,10 @@ public class OrdersController {
 	OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
 	
 	@PostMapping("") // 주문 등록 Json으로 값 들어옴 -> 예상 파라미터 (Order, List<String>) -> List<String> : Prodcut_id
-	public ModelAndView orderRegit(String orderId) {
+	@ResponseBody
+	public ModelAndView orderRegit(Orders orders, Product product) {
 		ModelAndView modelAndView = new ModelAndView();
+		orderServiceImpl.applyOrder(orders, product);
 		modelAndView.setViewName("");
 		return modelAndView;
 	}
@@ -41,7 +46,9 @@ public class OrdersController {
 			modelAndView.setViewName("/order/orderBizList");
 		} else { // 사용자인 경우 -> User_id로 Order Table Select
 			result = orderServiceImpl.viewOrderList(user_id);
+			List<String> cancelAble = orderServiceImpl.getStatus(result);
 			modelAndView.addObject("ordersList", result);
+			modelAndView.addObject("cancelAble", cancelAble);
 			modelAndView.setViewName("/order/orderList");
 		}
 		return modelAndView;
@@ -51,16 +58,19 @@ public class OrdersController {
 	public ModelAndView orderView(@PathVariable(name = "order_id") String order_id) { 
 		ModelAndView modelAndView = new ModelAndView();
 		List<OrderInfo> orderInfo = null;
-		if (!channel_id.isEmpty()) { // 사업자 접근
-			orderInfo = orderServiceImpl.viewSoldDetail(order_id);
-			modelAndView.addObject("orderInfo", orderInfo);
-			modelAndView.addObject("auth", "B");
-		} else { // 사용자 접근
-			orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
-			modelAndView.addObject("orderInfo", orderInfo);
-			modelAndView.addObject("auth", "C");
-		}
+		orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
+		modelAndView.addObject("orderInfo", orderInfo);
+		modelAndView.addObject("auth", "C");
 		modelAndView.setViewName("/order/orderView");
+		return modelAndView;
+	}
+	
+	@GetMapping("/{order_id}/{product_id}") // 사업자 주문 상세 조회
+	public ModelAndView soldView(@PathVariable(name = "order_id") String order_id, @PathVariable(name = "product_id") String product_id) {
+		ModelAndView modelAndView = new ModelAndView();
+		OrderInfo orderInfo = orderServiceImpl.viewSold(order_id, product_id);
+		modelAndView.addObject("orderInfo", orderInfo);
+		modelAndView.setViewName("/order/orderBizView");
 		return modelAndView;
 	}
 	
@@ -76,36 +86,43 @@ public class OrdersController {
 	@PostMapping("/return") // 반품 신청
 	public ModelAndView orderReturn(Returns returns) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("");
+		orderServiceImpl.applyReturn(returns);
+		modelAndView.setViewName("redirect:/order");
 		return modelAndView;
 	}
 	
-	@GetMapping("/return") // 신청된 반품 리스트 (세션에 채널ID 들어가있어야됨)
+	@GetMapping("/return") // 신청된 반품 리스트 (세션에 채널ID 들어가있어야됨) // 사업자만
 	public ModelAndView orderReturnList() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("");
+		List<Returns> returnsList = orderServiceImpl.viewReturnList(channel_id);
+		modelAndView.addObject("returnsList", returnsList);
+		modelAndView.setViewName("/order/returnList");
 		return modelAndView;
 	}
 	
-	@GetMapping("/return/{returnId}") // 신청된 반품 상세 보기
-	public ModelAndView orderReturnView(String returnId) {
+	@GetMapping("/return/{return_id}") // 신청된 반품 상세 보기 // 사업자만
+	public ModelAndView orderReturnView(@PathVariable String return_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("");
+		Returns returnView = orderServiceImpl.viewReturn(return_id);
+		modelAndView.addObject("returns", returnView);
+		modelAndView.setViewName("/order/returnView");
 		return modelAndView;
 	}
 	
 	@GetMapping("/cancel/{order_id}")
 	public ModelAndView orderCancel(@PathVariable String order_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		
-		modelAndView.setViewName("");
+		String result = orderServiceImpl.cancelOrder(order_id);
+		modelAndView.setViewName("redirect:/order");
+		modelAndView.addObject("log", result); // 처리 메시지는 어떻게 할건지 나중에 논의
 		return modelAndView;
 	}
 	
-	@GetMapping("/change/{orderStauts}")
-	public ModelAndView orderStatusChange(String orderStatus) {
+	@PutMapping("/change") // 요청방식 변경 GET -> PUT
+	public ModelAndView orderStatusChange(String order_id, String product_id, String delevery_status) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("");
+		orderServiceImpl.changeStatus(order_id, product_id, delevery_status);
+		modelAndView.setViewName("redirect:/order");
 		return modelAndView;
 	}
 }

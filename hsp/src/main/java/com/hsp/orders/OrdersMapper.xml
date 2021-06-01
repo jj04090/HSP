@@ -51,7 +51,16 @@
             	ORDER_DATE,
             	ORDER_STATUS
         FROM ORDERS
+        <include refid="whereSql" />
     </select>
     
-
+	<update id="update" parameterType="com.hsp.orders.Orders">
+        UPDATE ORDERS
+        <set>
+        	<if test="order_status != null and order_status != ''">
+                AND ORDER_STATUS = #{order_status} ,
+            </if>
+        </set>
+        Where ORDER_ID = ${order_id}
+    </update>
 </mapper>
