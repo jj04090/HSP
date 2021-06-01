@@ -13,6 +13,7 @@ public interface ChannelService {
 	/* 구독 */
 	public void startSubscribe(Subscribe subscribe);
 	public void finishSubscribe(Subscribe subscribe);
+	public Subscribe viewSubscribe(Subscribe subscribe);
 	public List<Subscribe> viewSubscribeList(Subscribe subscribe);
 	
 }

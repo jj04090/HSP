@@ -98,6 +98,17 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
+	public Subscribe viewSubscribe(Subscribe subscribe) {
+		try {
+			return subscribeMapper.select(subscribe);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
 	public List<Subscribe> viewSubscribeList(Subscribe subscribe) {
 		try {
 			return subscribeMapper.list(subscribe);
@@ -107,5 +118,6 @@ public class ChannelServiceImpl implements ChannelService {
 		}
 		return null;
 	}
+
 
 }
