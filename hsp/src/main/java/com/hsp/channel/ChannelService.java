@@ -2,8 +2,6 @@ package com.hsp.channel;
 
 import java.util.List;
 
-import com.hsp.orders.OrderDetail;
-
 public interface ChannelService {
 	/* 채널 */
 	public void registChannel(Channel channel);

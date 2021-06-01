@@ -1,5 +1,8 @@
 package com.hsp.certification;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CertificationServiceImpl implements CertificationService {
 
 	@Override
