@@ -33,5 +33,13 @@
         DELETE FROM SUBSCRIBE
         <include refid="whereSql" />
     </delete>
+    
+    <select id="list" resultMap="subscribeResultMap">
+        SELECT
+			USER_ID,
+			CHANNEL_ID
+        FROM SUBSCRIBE
+        <include refid="whereSql" />
+    </select>
 
 </mapper>

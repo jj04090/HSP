@@ -8,22 +8,33 @@ public class Channel implements Serializable {
 	private String channel_name;
 	private String category;
 	private String introduction;
-	private int delivery_fee;
 	private int business_no;
+	private String bank_name;
+	private String account;
+	private String auth_code;
+	private String access_token;
+	private String refresh_token;
+	private String seq_no;
 	
 	public Channel() {
 		
 	}
-	
+
 	public Channel(String channel_id, String user_id, String channel_name, String category, String introduction,
-			int delivery_fee, int business_no) {
+			int business_no, String bank_name, String account, String auth_code, String access_token,
+			String refresh_token, String seq_no) {
 		this.channel_id = channel_id;
 		this.user_id = user_id;
 		this.channel_name = channel_name;
 		this.category = category;
 		this.introduction = introduction;
-		this.delivery_fee = delivery_fee;
 		this.business_no = business_no;
+		this.bank_name = bank_name;
+		this.account = account;
+		this.auth_code = auth_code;
+		this.access_token = access_token;
+		this.refresh_token = refresh_token;
+		this.seq_no = seq_no;
 	}
 
 	public String getChannel_id() {
@@ -66,14 +77,6 @@ public class Channel implements Serializable {
 		this.introduction = introduction;
 	}
 
-	public int getDelivery_fee() {
-		return delivery_fee;
-	}
-
-	public void setDelivery_fee(int delivery_fee) {
-		this.delivery_fee = delivery_fee;
-	}
-
 	public int getBusiness_no() {
 		return business_no;
 	}
@@ -82,11 +85,60 @@ public class Channel implements Serializable {
 		this.business_no = business_no;
 	}
 
+	public String getBank_name() {
+		return bank_name;
+	}
+
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getAuth_code() {
+		return auth_code;
+	}
+
+	public void setAuth_code(String auth_code) {
+		this.auth_code = auth_code;
+	}
+
+	public String getAccess_token() {
+		return access_token;
+	}
+
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
+
+	public String getRefresh_token() {
+		return refresh_token;
+	}
+
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
+	}
+
+	public String getSeq_no() {
+		return seq_no;
+	}
+
+	public void setSeq_no(String seq_no) {
+		this.seq_no = seq_no;
+	}
+
 	@Override
 	public String toString() {
 		return "Channel [channel_id=" + channel_id + ", user_id=" + user_id + ", channel_name=" + channel_name
-				+ ", category=" + category + ", introduction=" + introduction + ", delivery_fee=" + delivery_fee
-				+ ", business_no=" + business_no + "]";
+				+ ", category=" + category + ", introduction=" + introduction + ", business_no=" + business_no
+				+ ", bank_name=" + bank_name + ", account=" + account + ", auth_code=" + auth_code + ", access_token="
+				+ access_token + ", refresh_token=" + refresh_token + ", seq_no=" + seq_no + "]";
 	}
 	
 }

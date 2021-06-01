@@ -10,12 +10,10 @@
         <result column="NAME" property="name" />
         <result column="PASSWORD" property="password" />
         <result column="ADDRESS" property="address" />
-        <result column="DETAIL_ADDRESS" property="detail_address" />
+        <result column="DETAIL_ADD" property="detail_add" />
         <result column="ZIP_CODE" property="zip_code" />
         <result column="EMAIL" property="email" />
-        <result column="BANK_NAME" property="bank_name" />
-        <result column="ACCOUNT_NUMBER" property="account_number" />
-        <result column="AUTH" property="auth" />
+		<result column="USER_TYPE" property="user_type" />
         <result column="REGIT_DATE" property="regit_date" />
     </resultMap>
 
@@ -36,8 +34,8 @@
             <if test="address != null and address != ''">
                 AND ADDRESS = #{address}
             </if>
-            <if test="detail_address != null and detail_address != ''">
-                AND DETAIL_ADDRESS = #{detail_address}
+            <if test="detail_add != null and detail_add != ''">
+                AND DETAIL_ADD = #{detail_add}
             </if>
             <if test="zip_code != null and zip_code != ''">
                 AND ZIP_CODE = #{zip_code}
@@ -45,14 +43,8 @@
             <if test="email != null and email != ''">
                 AND EMAIL = #{email}
             </if>
-            <if test="bank_name != null and bank_name != ''">
-                AND BANK_NAME = #{bank_name}
-            </if>
-            <if test="account_number != null and account_number != ''">
-                AND ACCOUNT_NUMBER = #{account_number}
-            </if>
-            <if test="auth != null and auth != ''">
-                AND AUTH = #{auth}
+            <if test="user_type != null and user_type != ''">
+                AND USER_TYPE = #{user_type}
             </if>
             <if test="regit_date != null and regit_date != ''">
                 AND REGIT_DATE = #{regit_date}
@@ -70,9 +62,7 @@
            	DETAIL_ADDRESS,
            	ZIP_CODE,
            	EMAIL,
-           	BANK_NAME,
-           	ACCOUNT_NUMBER,
-           	AUTH,
+           	USER_TYPE,
            	REGIT_DATE
         FROM USER
         <include refid="whereSql" />
@@ -88,9 +78,7 @@
            	DETAIL_ADDRESS,
            	ZIP_CODE,
            	EMAIL,
-           	BANK_NAME,
-           	ACCOUNT_NUMBER,
-           	AUTH,
+           	USER_TYPE,
            	REGIT_DATE
         ) VALUES (
             #{user_id},
@@ -101,9 +89,7 @@
             #{detail_address},
             #{zip_code},
             #{email},
-            #{bank_name},
-            #{account_number},
-            #{auth},
+            #{user_type},
             #{regit_date}
         )
     </insert>
@@ -135,14 +121,8 @@
             <if test="email != null and email != ''">
                 EMAIL = #{email},
             </if>
-            <if test="bank_name != null and bank_name != ''">
-                BANK_NAME = #{bank_name},
-            </if>
-            <if test="account_number != null and account_number != ''">
-                ACCOUNT_NUMBER = #{account_number},
-            </if>
-            <if test="auth != null and auth != ''">
-                AUTH = #{auth},
+            <if test="user_type != null and user_type != ''">
+                USER_TYPE = #{user_type},
             </if>
             <if test="regit_date != null and regit_date != ''">
                 REGIT_DATE = #{regit_date},
@@ -152,7 +132,7 @@
     </update>
 
     <delete id="delete" parameterType="com.hsp.user.User">
-        DELETE FROM SHOPPING_CART
+        DELETE FROM USER
         <include refid="whereSql" />
     </delete>
 

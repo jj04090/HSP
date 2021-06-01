@@ -9,8 +9,13 @@
         <result column="CHANNEL_NAME" property="channel_name" />
         <result column="CATEGORY" property="category" />
         <result column="INTRODUCTION" property="introduction" />
-        <result column="DELIVERY_FEE" property="delivery_fee" />
         <result column="BUSINESS_NO" property="business_no" />
+        <result column="BANK_NAME" property="bank_name" />
+        <result column="ACCOUNT" property="account" />
+        <result column="AUTH_CODE" property="auth_code" />
+        <result column="ACCESS_TOKEN" property="access_token" />
+        <result column="REFRESH_TOKEN" property="refresh_token" />
+        <result column="SEQ_NO" property="seq_no" />
     </resultMap>
 
     <sql id="whereSql">
@@ -30,24 +35,123 @@
             <if test="introduction != null and introduction != ''">
                 AND INTRODUCTION = #{introduction}
             </if>
-            <if test="delivery_fee != null and delivery_fee != ''">
-                AND DELIVERY_FEE = #{delivery_fee}
-            </if>
             <if test="business_no != null and business_no != ''">
                 AND BUSINESS_NO = #{business_no}
+            </if>
+            <if test="bank_name != null and bank_name != ''">
+                AND BANK_NAME = #{bank_name}
+            </if>
+            <if test="account != null and account != ''">
+                AND ACCOUNT = #{account}
+            </if>
+            <if test="auth_code != null and auth_code != ''">
+                AND AUTH_CODE = #{auth_code}
+            </if>
+            <if test="access_token != null and access_token != ''">
+                AND ACCESS_TOKEN = #{access_token}
+            </if>
+            <if test="refresh_token != null and refresh_token != ''">
+                AND REFRESH_TOKEN = #{refresh_token}
+            </if>
+            <if test="seq_no != null and seq_no != ''">
+                AND SEQ_NO = #{seq_no}
             </if>
         </where>
     </sql>
     
-    <select id="select" parameterType="com.hsp.channel.ChannelMapper" resultMap="channelResultMap">
+    <insert id="insert" parameterType="com.hsp.channel.Channel">
+        INSERT INTO CHANNEL (
+            CHANNEL_ID,
+            USER_ID,
+            CHANNEL_NAME,
+            CATEGORY,
+            INTRODUCTION,
+            BUSINESS_NO,
+            BANK_NAME,
+            ACCOUNT,
+            AUTH_CODE,
+            ACCESS_TOKEN,
+            REFRESH_TOKEN,
+            SEQ_NO
+            
+        ) VALUES (
+            #{channel_id},
+            #{user_id},
+            #{channel_name},
+            #{category},
+            #{introduction},
+            #{business_no},
+            #{bank_name},
+            #{account},
+            #{auth_code},
+            #{access_token},
+            #{refresh_token},
+            #{seq_no}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.hsp.channel.Channel">
+        UPDATE CHANNEL
+        <set>
+        	<if test="channel_id != null and channel_id != ''">
+                CHANNEL_ID = #{channel_id},
+            </if>
+            <if test="user_id != null and user_id != ''">
+                USER_ID = #{user_id},
+            </if>
+            <if test="channel_name != null and channel_name != ''">
+                CHANNEL_NAME = #{channel_name},
+            </if>
+            <if test="category != null and category != ''">
+                CATEGORY = #{category},
+            </if>
+            <if test="introduction != null and introduction != ''">
+                INTRODUCTION = #{introduction},
+            </if>
+            <if test="business_no != null and business_no != ''">
+                BUSINESS_NO = #{business_no},
+            </if>
+            <if test="bank_name != null and bank_name != ''">
+                BANK_NAME = #{bank_name},
+            </if>
+            <if test="account != null and account != ''">
+                ACCOUNT = #{account},
+            </if>
+            <if test="auth_code != null and auth_code != ''">
+                AUTH_CODE = #{auth_code},
+            </if>
+            <if test="access_token != null and access_token != ''">
+                ACCESS_TOKEN = #{access_token},
+            </if>
+            <if test="refresh_token != null and refresh_token != ''">
+                REFRESH_TOKEN = #{refresh_token},
+            </if>
+            <if test="seq_no != null and seq_no != ''">
+                SEQ_NO = #{seq_no},
+            </if>
+        </set>
+        WHERE CHANNEL_ID = #{channel_id}
+    </update>
+
+    <delete id="delete" parameterType="com.hsp.channel.Channel">
+        DELETE FROM CHANNEL
+        <include refid="whereSql" />
+    </delete>
+    
+    <select id="select" parameterType="com.hsp.channel.Channel" resultMap="channelResultMap">
         SELECT
         	CHANNEL_ID,
-			USER_ID,
-			CHANNEL_NAME,
-  			CATEGORY,
-  			INTRODUCTION,
-  			DELIVERY_FEE,
-  			BUSINESS_NO
+            USER_ID,
+            CHANNEL_NAME,
+            CATEGORY,
+            INTRODUCTION,
+            BUSINESS_NO,
+            BANK_NAME,
+            ACCOUNT,
+            AUTH_CODE,
+            ACCESS_TOKEN,
+            REFRESH_TOKEN,
+            SEQ_NO
         FROM CHANNEL
         <include refid="whereSql" />
     </select>
@@ -55,12 +159,17 @@
     <select id="list" resultMap="channelResultMap">
         SELECT
         	CHANNEL_ID,
-			USER_ID,
-			CHANNEL_NAME,
-  			CATEGORY,
-  			INTRODUCTION,
-  			DELIVERY_FEE,
-  			BUSINESS_NO
+            USER_ID,
+            CHANNEL_NAME,
+            CATEGORY,
+            INTRODUCTION,
+            BUSINESS_NO,
+            BANK_NAME,
+            ACCOUNT,
+            AUTH_CODE,
+            ACCESS_TOKEN,
+            REFRESH_TOKEN,
+            SEQ_NO
         FROM CHANNEL
     </select>
     

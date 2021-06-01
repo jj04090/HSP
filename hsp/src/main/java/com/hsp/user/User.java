@@ -8,12 +8,10 @@ public class User implements Serializable {
     private String name;
     private String password;
     private String address;
-    private String detail_address;
+    private String detail_add;
     private String zip_code;
     private String email;
-    private String bank_name;
-    private String account_number;
-    private String auth;
+    private String user_type;
     private String regit_date;
 
     private int itemStart;
@@ -23,20 +21,18 @@ public class User implements Serializable {
     	
     }
 
-	public User(String user_id, String phone, String name, String password, String address, String detail_address,
-			String zip_code, String email, String bank_name, String account_number, String auth, String regit_date,
-			int itemStart, int itemSizePerPage) {
+	public User(String user_id, String phone, String name, String password, String address, String detail_add,
+			String zip_code, String email, String user_type, String regit_date, int itemStart, int itemSizePerPage) {
+		super();
 		this.user_id = user_id;
 		this.phone = phone;
 		this.name = name;
 		this.password = password;
 		this.address = address;
-		this.detail_address = detail_address;
+		this.detail_add = detail_add;
 		this.zip_code = zip_code;
 		this.email = email;
-		this.bank_name = bank_name;
-		this.account_number = account_number;
-		this.auth = auth;
+		this.user_type = user_type;
 		this.regit_date = regit_date;
 		this.itemStart = itemStart;
 		this.itemSizePerPage = itemSizePerPage;
@@ -82,12 +78,12 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public String getDetail_address() {
-		return detail_address;
+	public String getDetail_add() {
+		return detail_add;
 	}
 
-	public void setDetail_address(String detail_address) {
-		this.detail_address = detail_address;
+	public void setDetail_add(String detail_add) {
+		this.detail_add = detail_add;
 	}
 
 	public String getZip_code() {
@@ -106,28 +102,12 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getBank_name() {
-		return bank_name;
+	public String getUser_type() {
+		return user_type;
 	}
 
-	public void setBank_name(String bank_name) {
-		this.bank_name = bank_name;
-	}
-
-	public String getAccount_number() {
-		return account_number;
-	}
-
-	public void setAccount_number(String account_number) {
-		this.account_number = account_number;
-	}
-
-	public String getAuth() {
-		return auth;
-	}
-
-	public void setAuth(String auth) {
-		this.auth = auth;
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
 
 	public String getRegit_date() {
@@ -153,14 +133,6 @@ public class User implements Serializable {
 	public void setItemSizePerPage(int itemSizePerPage) {
 		this.itemSizePerPage = itemSizePerPage;
 	}
-
-	@Override
-	public String toString() {
-		return "User [user_id=" + user_id + ", phone=" + phone + ", name=" + name + ", password=" + password
-				+ ", address=" + address + ", detail_address=" + detail_address + ", zip_code=" + zip_code + ", email="
-				+ email + ", bank_name=" + bank_name + ", account_number=" + account_number + ", user_type=" + auth
-				+ ", regit_date=" + regit_date + ", itemStart=" + itemStart + ", itemSizePerPage=" + itemSizePerPage
-				+ "]";
-	}
-
+    
+    
 }
