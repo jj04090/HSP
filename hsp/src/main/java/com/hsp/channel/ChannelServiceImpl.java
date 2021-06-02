@@ -89,12 +89,18 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public void finishSubscribe(Subscribe subscribe) {
-		try {
-			subscribeMapper.delete(subscribe);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		List<Subscribe> getSubscribes = viewSubscribeList(subscribe);
+		
+		for(int i=0; i<getSubscribes.size(); i++) {
+			if(subscribe.getChannel_id() == getSubscribes.get(i).getChannel_id()) {
+				try {
+					subscribeMapper.delete(subscribe);
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}		
 	}
 
 	@Override
