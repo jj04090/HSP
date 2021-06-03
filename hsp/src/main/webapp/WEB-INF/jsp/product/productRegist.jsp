@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Product Register</title>
+<%@ include file="../include/header.jsp"%>
 
-<script src="/resources/ckeditor/ckeditor.js"></script>
+	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
+            <div class="custom-container">
+                <div class="breadcrumb-content text-center">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="active"> 상품 등록 </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    <div class="login-register-area pt-75 pb-75">
+		<div class="container">
 
-<style>
-	.image_container img { margin:20px 0; }
-</style>
-
-</head>
-<body>
-	<h1>상품 등록</h1>
-
-	<form name='regit' action="/hsp/product" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/product" method="post" enctype="multipart/form-data">
 		<div>
 			채널 ID : <input type="text" name="channel_id" value=${channel_id} id="channel_id" readonly />
 		</div>
@@ -67,7 +69,7 @@
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/product/ckUpload"
+				filebrowserUploadUrl : "/product/ckUpload"
 			};
 
 			CKEDITOR.replace("productDes", ckeditor_config);
@@ -77,6 +79,10 @@
 			<button type="submit">글 작성</button>
 		</div>
 	</form>
+	
+		</div>
+	</div>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

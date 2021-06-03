@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Product Update</title>
+<%@ include file="../include/header.jsp"%>
 
-<script src="/resources/ckeditor/ckeditor.js"></script>
-
-<style>
-	.image_container img { margin:20px 0; }
-	.small1 { width: 500px; }
-	.small2 { height: 100px; }
-</style>
-
-</head>
-<body>
-	<h1>상품 수정</h1>
+	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
+            <div class="custom-container">
+                <div class="breadcrumb-content text-center">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="active"> 상품 수정 </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 	
-	<form name="edit" action="/hsp/product" method="post" enctype="multipart/form-data">
+	<div class="login-register-area pt-75 pb-75">
+		<div class="container">
+	
+	<form name="edit" action="/product" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
@@ -35,7 +35,7 @@
 		</div>
 		
 		<div>
-			상품 사진 : <img class='small1' src="/hsp/product/display?filename=${product.product_img}"/>
+			상품 사진 : <img class='small1' src="/product/display?filename=${product.product_img}"/>
 			<input type="hidden" name="product_img" value="${product.product_img}">
 		</div>
 		
@@ -76,7 +76,7 @@
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/product/ckUpload"
+				filebrowserUploadUrl : "/product/ckUpload"
 			};
 
 			CKEDITOR.replace("productDes", ckeditor_config);
@@ -86,6 +86,11 @@
 			<button type="submit">상품 수정</button>
 		</div>
 	</form>
+	
+	
+		</div>
+	</div>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

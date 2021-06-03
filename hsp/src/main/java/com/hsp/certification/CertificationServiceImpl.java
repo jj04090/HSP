@@ -3,7 +3,7 @@ package com.hsp.certification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hsp.channel.Channel;
+import com.hsp.channel.Channel; 
 import com.hsp.channel.ChannelMapper;
 
 @Service

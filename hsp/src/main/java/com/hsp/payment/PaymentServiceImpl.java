@@ -90,7 +90,14 @@ public class PaymentServiceImpl implements PaymentService {
 		return order;
 	}
 
+	@Override
+	public void calculate() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	// 결제 정산
+	/*
 	@Override
 	public void calculate() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
@@ -104,9 +111,9 @@ public class PaymentServiceImpl implements PaymentService {
 		JSONObject finalJsonObject = new JSONObject();
 
 		
-		/*
-		 * order 테이블의 주문상태가 결제완료인 것들을 확인하여 order_detail의 주문상태가 전부 O인 경우가 아니면 정산 진행
-		 */
+
+		 // order 테이블의 주문상태가 결제완료인 것들을 확인하여 order_detail의 주문상태가 전부 O인 경우가 아니면 정산 진행
+
 
 		List<Orders> list = ordersMapper.list(new Orders());
 
@@ -160,9 +167,9 @@ public class PaymentServiceImpl implements PaymentService {
 				}	
 			}
 		}
-	}
+	} */
 
-	public Map<OrderDetail, Channel> calCheck(Orders orders) throws Exception {
+	/*public Map<OrderDetail, Channel> calCheck(Orders orders) throws Exception {
 		// 주문한 상품들의 채널을 가져옴
 		Map<OrderDetail, Channel> map = new HashMap<>();
 		List<OrderDetail> detailList;
@@ -184,5 +191,5 @@ public class PaymentServiceImpl implements PaymentService {
 			return map;
 		}
 		return null;
-	}
+	}*/
 }

@@ -8,23 +8,24 @@ public class OrderDetail implements Serializable{
 	private String product_qty;
 	private String price;
 	private String discount;
-	private String delevery_fee;
 	private String delevery_status;
+	private String total_price;
 	
 	public OrderDetail() {
 		
 	}
 	
 	public OrderDetail(String order_id, String product_id, String product_qty, String price, String discount,
-			String delevery_fee, String delevery_status) {
+			String delevery_status, String total_price) {
 		this.order_id = order_id;
 		this.product_id = product_id;
 		this.product_qty = product_qty;
 		this.price = price;
 		this.discount = discount;
-		this.delevery_fee = delevery_fee;
 		this.delevery_status = delevery_status;
+		this.total_price = total_price;
 	}
+
 	public String getOrder_id() {
 		return order_id;
 	}
@@ -55,24 +56,29 @@ public class OrderDetail implements Serializable{
 	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
-	public String getDelevery_fee() {
-		return delevery_fee;
-	}
-	public void setDelevery_fee(String delevery_fee) {
-		this.delevery_fee = delevery_fee;
-	}
+	
 	public String getDelevery_status() {
 		return delevery_status;
 	}
 	public void setDelevery_status(String delevery_status) {
 		this.delevery_status = delevery_status;
 	}
+	
+	public String getTotal_price() {
+		return total_price;
+	}
+
+
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetail [order_id=" + order_id + ", product_id=" + product_id + ", product_qty=" + product_qty
-				+ ", price=" + price + ", discount=" + discount + ", delevery_fee=" + delevery_fee
-				+ ", delevery_status=" + delevery_status + "]";
+				+ ", price=" + price + ", discount=" + discount + ", delevery_status=" + delevery_status
+				+ ", total_price=" + total_price + "]";
 	}
-	
+
 	
 }

@@ -37,5 +37,28 @@
         FROM RETURNS
         <include refid="whereSql" />
     </select>
-
+    
+    <select id="list" parameterType="com.hsp.orders.Returns" resultMap="returnsMapperResultMap">
+        SELECT
+            	RETURN_ID,
+            	ORDER_ID,
+            	PRODUCT_ID,
+            	RETURN_REASON
+        FROM RETURNS
+        <include refid="whereSql" />
+    </select>
+	
+	<insert id="insert" parameterType="com.hsp.orders.Returns">
+        INSERT INTO RETURNS (
+            					RETURN_ID
+            					, ORDER_ID
+            					, PRODUCT_ID
+            					, RETURN_REASON
+        ) VALUES (
+            #{return_id}
+            , #{order_id}
+            , #{product_id}
+            , #{return_reason}
+        )
+    </insert>
 </mapper>

@@ -9,12 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -33,25 +31,31 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public List<Product> viewProductList() {
-		List<Product> listProduct = null;
+	public List<Product> viewProductList(String channel_id) {
 		Product product = new Product();
+		product.setChannel_id(channel_id);
+		List<Product> listProduct = null;
+		
 		try {
 			listProduct = productMapper.list(product);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return listProduct;
 	}
 
 	@Override
 	public Product viewProduct(Product product) {
 		Product result = null;
+		
 		try {
 			result = productMapper.select(product);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return result;
 	}
 
@@ -61,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
 			String physicalName = this.imgUpload(attach);
 			product.setProduct_img(physicalName);
 			productMapper.insert(product);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -157,7 +162,7 @@ public class ProductServiceImpl implements ProductService {
 			out.flush();  // out에 저장된 데이터를 전송하고 초기화
 			
 			printWriter = res.getWriter();
-			String fileUrl = "/hsp/product/display?filename=" + uid + "_" + fileName;  // 작성화면
+			String fileUrl = "/product/display?filename=" + uid + "_" + fileName;  // 작성화면
 			
 			// 업로드시 메시지 출력
 			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");

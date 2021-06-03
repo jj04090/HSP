@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hsp.orders.OrderDetail;
-
 @Service
 public class ChannelServiceImpl implements ChannelService {
 	@Autowired
@@ -91,12 +89,29 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public void finishSubscribe(Subscribe subscribe) {
+		List<Subscribe> getSubscribes = viewSubscribeList(subscribe);
+		
+		for(int i=0; i<getSubscribes.size(); i++) {
+			if(subscribe.getChannel_id() == getSubscribes.get(i).getChannel_id()) {
+				try {
+					subscribeMapper.delete(subscribe);
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+	}
+
+	@Override
+	public Subscribe viewSubscribe(Subscribe subscribe) {
 		try {
-			subscribeMapper.delete(subscribe);
+			return subscribeMapper.select(subscribe);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -109,5 +124,6 @@ public class ChannelServiceImpl implements ChannelService {
 		}
 		return null;
 	}
+
 
 }
