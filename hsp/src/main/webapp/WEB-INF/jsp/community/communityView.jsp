@@ -22,15 +22,17 @@
 		<li>미디어 파일 : <img class='small1' src="/community/display?filename=${community.mediafile}"> </li>
 		<li>게시글 제목 : ${community.community_title} </li>
 		<li>게시글 내용 : ${community.community_content} </li>
-		<li>게시글 등록 날짜 : ${community.regit_date} </li>
-		
+		<li>게시글 등록 날짜 : ${community.regit_date} </li>	
+	</ul>
+	<form name="edit" action="/${community.community_id}/editform" method="get">
+		<button type="submit">게시글 수정</button>
+	</form>
 		<c:forEach items="${listComment}" var = "list">
 			<ul>
 				<li>댓글 내용 : <c:out value="${list.comment_content}" /></li>
 				<li>댓글 작성자 : <c:out value="${list.user_id}" /></li>
 			</ul>
 		</c:forEach>
-	</ul>
 	
 <%@ include file="../include/footer.jsp"%>
 </body>

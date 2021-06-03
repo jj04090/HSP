@@ -16,15 +16,11 @@
         </div>
     </div>
 	
-	<!-- 	
-	<form name="edit" action="/hsp/review" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="_method" value="PUT" />
-		 -->
-	<form name="edit" action="/hsp/reviewupdate" method="post" enctype="multipart/form-data">
+	<form name="edit" action="/reviewupdate" method="post" enctype="multipart/form-data">
 		<!-- <input type="hidden" name="_method" value="PUT" />  -->
 		
 		<div>
-			리뷰 ID : <input type="text" name="review_id" value=${review.review_id} id="channel_id" readonly />
+			리뷰 ID : <input type="text" name="review_id" value=${review.review_id} id="review_id" readonly />
 		</div>
 
 		<div>
@@ -40,7 +36,7 @@
 		</div>
 		
 		<div>
-			사진 : <img class='small1' src="/hsp/review/display?filename=${review.review_img}"/>
+			사진 : <img class='small1' src="/review/display?filename=${review.review_img}"/>
 			<input type="hidden" name="review_img" value="${review.review_img}">
 		</div>
 		
@@ -74,7 +70,7 @@
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/review/ckUpload"
+				filebrowserUploadUrl : "/review/ckUpload"
 			};
 
 			CKEDITOR.replace("reviewDes", ckeditor_config);

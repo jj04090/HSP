@@ -97,7 +97,7 @@ public class CommunityController {
 	
 	//게시글 등록
 	@PostMapping("")
-	public ModelAndView regitCommunity(@ModelAttribute Community community, @RequestParam("attach") MultipartFile attach) {
+	public ModelAndView regitCommunity(Community community, @RequestParam("attach") MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.registCommunity(community, attach);
 		modelAndView.setViewName("redirect:/community/" + community.getChannel_id());

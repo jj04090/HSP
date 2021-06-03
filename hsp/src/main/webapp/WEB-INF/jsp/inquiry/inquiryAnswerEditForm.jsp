@@ -16,7 +16,11 @@
         </div>
     </div>
 	
-	<form name="edit" action="/inquiryupdate" method="post" enctype="multipart/form-data">
+	<!-- 	
+	<form name="edit" action="/hsp/inquiry" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="PUT" />
+		 -->
+	<form name="edit" action="/inquiryanswerupdate" method="post" enctype="multipart/form-data">
 		<!-- <input type="hidden" name="_method" value="PUT" />  -->
 		
 		<div>
@@ -32,11 +36,7 @@
 		</div>
 
 		<div>
-			문의 제목 : <input type="text" name="inquiry_title" placeholder=${inquiry.inquiry_title} id="inquiry_title" />
-		</div>
-		
-		<div>
-			문의 내용 : <input type="text" name="inquiry_content" placeholder=${inquiry.inquiry_content} id="inquiry_content" />
+			답변 내용 : <input type="text" name="answer" placeholder=${inquiry.answer} id="answer" />
 		</div>
 
 		<textarea rows="5" cols="50" id="inquiryDes" name="inquiry_detail">${inquiry.inquiry_detail}</textarea>

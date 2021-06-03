@@ -11,10 +11,12 @@ public class InquiryServiceImpl implements InquiryService {
 	InquiryMapper inquiryMapper;
 	
 	@Override
-	public List<Inquiry> viewInquiryList() {
+	public List<Inquiry> viewInquiryList(String product_id) {
+		Inquiry inquiry = new Inquiry();
+		inquiry.setProduct_id(product_id);
 		List<Inquiry> listinquiry = null;
 		try {
-			listinquiry = inquiryMapper.list();
+			listinquiry = inquiryMapper.list(inquiry);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,7 +55,7 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public void updateAnswer(Inquiry inquiry) {
 		try {
-			inquiryMapper.update(inquiry);
+			inquiryMapper.answer(inquiry);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

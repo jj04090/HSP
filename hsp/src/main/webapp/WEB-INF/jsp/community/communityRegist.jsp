@@ -26,6 +26,10 @@
 		</div>
 
 		<div>
+			게시글 작성 시간 : <input type="text" name="regit_date" value=${regit_date} id="regit_date" readonly />
+		</div>
+
+		<div>
 			게시글 제목 : <input type="text" name="community_title" placeholder="제목" id="community_title" />
 		</div>
 		

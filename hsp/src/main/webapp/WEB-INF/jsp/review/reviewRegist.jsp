@@ -16,7 +16,7 @@
         </div>
     </div>
 
-	<form name='regit' action="/hsp/review" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/review" method="post" enctype="multipart/form-data">
 		<div>
 			리뷰 ID : <input type="text" name="review_id" value=${review_id} id="review_id" readonly />
 		</div>

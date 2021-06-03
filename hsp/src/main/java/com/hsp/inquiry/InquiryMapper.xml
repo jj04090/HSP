@@ -39,22 +39,19 @@
         </where>
     </sql>
 
-    <select id="list" parameterType="com.hsp.inquiry.InquiryMapper" resultMap="inquiryResultMap">
-        SELECT *
-        FROM (
-            SELECT
+    <select id="list" parameterType="com.hsp.inquiry.Inquiry" resultMap="inquiryResultMap">
+        SELECT
             	INQUIRY_ID,
-				USER_ID,
-				PRODUCT_ID,
-  				INQUIRY_TITLE,
-  				INQUIRY_REGIT_DATE
-            FROM INQUIRY
-            <include refid="whereSql" />
-	        ORDER BY INQUIRY_ID DESC
-        ) TB
+            	USER_ID,
+            	PRODUCT_ID,
+            	INQUIRY_TITLE,
+            	INQUIRY_CONTENT,
+            	INQUIRY_REGIT_DATE
+        FROM INQUIRY
+        <include refid="whereSql" />
     </select>
 
-    <select id="select" parameterType="com.hsp.inquiry.InquiryMapper" resultMap="inquiryResultMap">
+    <select id="select" parameterType="com.hsp.inquiry.Inquiry" resultMap="inquiryResultMap">
         SELECT
             INQUIRY_ID,
 			USER_ID,
@@ -67,7 +64,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.inquiry.InquiryMapper">
+    <insert id="insert" parameterType="com.hsp.inquiry.Inquiry">
         INSERT INTO INQUIRY (
             INQUIRY_ID,
 			USER_ID,
@@ -81,10 +78,11 @@
             #{product_id},
             #{inquiry_title},
             #{inquiry_content},
+            #{inquiry_regit_date}
         )
     </insert>
 
-    <update id="update" parameterType="com.hsp.inquiry.InquiryMapper">
+    <update id="update" parameterType="com.hsp.inquiry.Inquiry">
         UPDATE MISSION
         <set>
             <if test="inquiry_title != null">
@@ -101,7 +99,7 @@
         </where>
     </update>
     
-    <update id="answer" parameterType="com.hsp.inquiry.InquiryMapper">
+    <update id="answer" parameterType="com.hsp.inquiry.Inquiry">
         UPDATE MISSION
         <set>
             <if test="answer != null">
@@ -115,8 +113,12 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.inquiry.InquiryMapper">
+    <delete id="delete" parameterType="com.hsp.inquiry.Inquiry">
         DELETE FROM INQUIRY
+        <where>
+        	INQUIRY_ID = #{inquiry_id}
+        	AND PRODUCT_ID = #{product_id}
+        </where>
         <include refid="whereSql" />
     </delete>
 </mapper>

@@ -16,7 +16,7 @@
         </div>
     </div>
 
-	<form name='regit' action="/hsp/inquiry" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/inquiry" method="post" enctype="multipart/form-data">
 		<div>
 			문의 ID : <input type="text" name="inquiry_id" value=${inquiry_id} id="inquiry_id" readonly />
 		</div>
@@ -27,6 +27,10 @@
 		
 		<div>
 			상품 ID : <input type="text" name="product_id" value=${product_id} id="product_id" readonly />
+		</div>
+
+		<div>
+			문의 작성 시간 : <input type="text" name="inquiry_regit_date" value=${inquiry_regit_date} id="inquiry_regit_date" readonly />
 		</div>
 
 		<div>

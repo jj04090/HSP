@@ -18,10 +18,14 @@
 	
 	<c:forEach items="${listInquiry}" var = "list">
 		<ul>
-			<li>제목 : <a href="/hsp/inquiry/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
+			<li>제목 : <a href="/inquiry/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
 			<li>내용 : <c:out value="${list.inquiry_content}" /></li>
 		</ul>
 	</c:forEach>
+	
+	<form name="regit" action="/inquiry/registform" method="get">
+		<button type="submit">문의 등록</button>
+	</form>
 	
 <%@ include file="../include/footer.jsp"%>
 </body>

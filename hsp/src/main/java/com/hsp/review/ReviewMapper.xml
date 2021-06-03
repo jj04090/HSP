@@ -39,22 +39,18 @@
         </where>
     </sql>
 
-    <select id="list" parameterType="com.hsp.review.ReviewMapper" resultMap="reviewResultMap">
-        SELECT *
-        FROM (
-            SELECT
-            	REVIEW_ID,
-				ORDER_ID,
-				PRODUCT_ID,
-  				PRODUCT_GRADE,
-  				REVIEW_TITLE
-            FROM REVIEW
+    <select id="list" parameterType="com.hsp.review.Review" resultMap="reviewResultMap">
+        SELECT
+            REVIEW_ID,
+			ORDER_ID,
+			PRODUCT_ID,
+  			PRODUCT_GRADE,
+  			REVIEW_TITLE
+        FROM REVIEW
             <include refid="whereSql" />
-	        ORDER BY REVIEW_ID DESC
-        ) TB
     </select>
 
-    <select id="select" parameterType="com.hsp.review.ReviewMapper" resultMap="reviewResultMap">
+    <select id="select" parameterType="com.hsp.review.Review" resultMap="reviewResultMap">
         SELECT
         	REVIEW_ID,
 			ORDER_ID,
@@ -82,7 +78,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.review.ReviewMapper">
+    <insert id="insert" parameterType="com.hsp.review.Review">
         INSERT INTO REVIEW (
             REVIEW_ID,
 			ORDER_ID,
@@ -102,7 +98,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.hsp.review.ReviewMapper">
+    <update id="update" parameterType="com.hsp.review.Review">
         UPDATE MISSION
         <set>
         	<if test="review_title != null">
@@ -120,7 +116,7 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.review.ReviewMapper">
+    <delete id="delete" parameterType="com.hsp.review.Review">
         DELETE FROM REVIEW
         <include refid="whereSql" />
     </delete>
