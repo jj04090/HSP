@@ -55,7 +55,7 @@ public class ShoppingCartController {
 			
 			shoppingList = shoppingCartServiceImpl.viewShoppingCart(shoppingCart);
 			
-			mv.addObject("shoppingList", shoppingList);
+			mv.addObject("listProduct", shoppingList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

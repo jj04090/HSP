@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hsp.product.Product;
+import com.hsp.product.ProductMapper;
+
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
@@ -16,6 +19,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
+	
+	@Autowired
+	private ProductMapper productMapper;
+	
 
 	//장바구니 등록
 	@Override
@@ -32,8 +39,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	//장바구니 조회
 	@Override
 	public List<ShoppingCart> viewShoppingCart(ShoppingCart shoppingCart) throws Exception {
+		Product product = new Product();
+		List<ShoppingList> sl = new ArrayList<ShoppingList>();
 		List<ShoppingCart> shoppingList = new ArrayList<ShoppingCart>();
 		shoppingList = shoppingCartMapper.list(shoppingCart);
+
+		for (ShoppingCart sc : shoppingList) {
+			product.setProduct_id(sc.getProduct_id());
+			ShoppingList temp = new ShoppingList();
+			temp.setProduct(productMapper.select(product));
+		}
+		
 		return shoppingList;
 	}
 
@@ -43,8 +59,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-	
-
 }
