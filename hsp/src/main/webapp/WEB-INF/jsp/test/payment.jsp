@@ -38,14 +38,14 @@
 		IMP.init('imp99346121'); //이거 받아와서 숨기기
 		$.ajax({
 			type : 'POST',
-			url : '/payment/routine', //구별하기
+			url : '/payment', //구별하기
 			data : {
 				user : {
 					user_id : "aa"
-				},
+				}/* ,
 				product : {
-					product_id : null
-				}
+					product_id : 1
+				} */
 			},
 			success : function(data) {
 				console.log(data);
@@ -64,7 +64,7 @@
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						var iconValue = 'success';
 						//location.replace('/shoppingcart');
-						/* $.ajax({      //주문등록으로 보내기, 주문이랑(orders_id) 상품PK를 보냄
+						/* $.ajax({      //주문등록으로 보내기, 주문객체(orders_id) 보냄
 						    type: 'POST',
 						    url: '/payment',
 						    headers: { "Content-Type": "application/json" },
@@ -100,12 +100,13 @@
 		});
 	}
 	
+	//ajax로 채널생성하고 성공이면 이걸 실행 -> 실패시 인증받으라고 알려주기, 성공 시 성공 표시하고 창 닫기
 	$("#auth").click(function(){
         var tmpWindow = window.open('about:blank','_blank','width=500,height=600,top=60,left=500')
         tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"+
 			"response_type=code&"+
             "client_id=728a9fc1-5d1d-4db9-b7e9-e9efcadf2f12&"+ // 
-            "redirect_uri=http://localhost/payment&"+
+            "redirect_uri=http://localhost/certification&"+
             "scope=login inquiry transfer&"+
             "state=12345678901234567890123456789012&"+
             "auth_type=0&"+

@@ -34,6 +34,12 @@ public class PaymentController {
 	@GetMapping
 	public ModelAndView paymentProcess() {
 		ModelAndView mv = new ModelAndView();
+		
+		try {
+			paymentServiceImpl.calculate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mv.setViewName("/test/payment");
 
 		return mv;
@@ -42,23 +48,14 @@ public class PaymentController {
 	// 일반 결제 정보 전송
 	@PostMapping
 	@ResponseBody
-	public IamportRequest normalPayment(User user, Product product) {
-		//장바구니 결제
-		if (product.getProduct_id() == null) {
+	public IamportRequest normalPayment(User user) {
 			return new IamportRequest("html5_inicis","merchant_uid"+UUID.randomUUID().toString(), "사과", 100, "jj04090@naver.com", "유상진");
-		} 
-		//단일 상품 결제
-		else {
-			
-		}
-		
-		return new IamportRequest();
 	}
 
 	// 정기 결제 정보 전송
 	@PostMapping("/routine")
 	@ResponseBody
-	public IamportRequest routinePayment(User user, Product product) {
+	public IamportRequest routinePayment(User user) {
 		IamportRequest iamportRequest = null;
 		//user_id+"customerhsp";
 		//빌링키를 조회하여 만약 존재한다면 카드등록말고 그대로 진행한다. 아니 선택지를 준다

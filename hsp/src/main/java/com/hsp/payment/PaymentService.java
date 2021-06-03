@@ -14,5 +14,5 @@ public interface PaymentService {
 	public boolean routinePayment(Orders orders, int amount) throws Exception;
 	
 	//결제 정산
-	public boolean calculate() throws Exception;
+	public void calculate() throws Exception;
 }

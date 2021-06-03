@@ -14,7 +14,7 @@ public class Channel implements Serializable {
 	private String auth_code;
 	private String access_token;
 	private String refresh_token;
-	private String seq_no;
+	private String user_seq_no;
 	
 	public Channel() {
 		
@@ -22,7 +22,7 @@ public class Channel implements Serializable {
 
 	public Channel(String channel_id, String user_id, String channel_name, String category, String introduction,
 			int business_no, String bank_name, String account, String auth_code, String access_token,
-			String refresh_token, String seq_no) {
+			String refresh_token, String user_seq_no) {
 		this.channel_id = channel_id;
 		this.user_id = user_id;
 		this.channel_name = channel_name;
@@ -34,7 +34,7 @@ public class Channel implements Serializable {
 		this.auth_code = auth_code;
 		this.access_token = access_token;
 		this.refresh_token = refresh_token;
-		this.seq_no = seq_no;
+		this.user_seq_no = user_seq_no;
 	}
 
 	public String getChannel_id() {
@@ -125,12 +125,12 @@ public class Channel implements Serializable {
 		this.refresh_token = refresh_token;
 	}
 
-	public String getSeq_no() {
-		return seq_no;
+	public String getUser_seq_no() {
+		return user_seq_no;
 	}
 
-	public void setSeq_no(String seq_no) {
-		this.seq_no = seq_no;
+	public void setUser_seq_no(String user_seq_no) {
+		this.user_seq_no = user_seq_no;
 	}
 
 	@Override
@@ -138,7 +138,10 @@ public class Channel implements Serializable {
 		return "Channel [channel_id=" + channel_id + ", user_id=" + user_id + ", channel_name=" + channel_name
 				+ ", category=" + category + ", introduction=" + introduction + ", business_no=" + business_no
 				+ ", bank_name=" + bank_name + ", account=" + account + ", auth_code=" + auth_code + ", access_token="
-				+ access_token + ", refresh_token=" + refresh_token + ", seq_no=" + seq_no + "]";
+				+ access_token + ", refresh_token=" + refresh_token + ", user_seq_no=" + user_seq_no + "]";
 	}
+
+	
+
 	
 }

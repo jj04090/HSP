@@ -74,12 +74,6 @@
     <update id="update" parameterType="com.hsp.shoppingcart.ShoppingCart">
         UPDATE SHOPPING_CART
         <set>
-        	<if test="user_id != null">
-                USER_ID = #{user_id},
-            </if>
-            <if test="product_id != null">
-                PRODUCT_ID = #{product_id},
-            </if>
             <if test="product_count != 0">
                 PRODUCT_COUNT = #{product_count},
             </if>
@@ -88,9 +82,10 @@
             </if>
         </set>
         <where>
-        	USER_ID = #{user_id}
-        	AND  PRODUCT_ID = #{product_id}
-        </where>
+	        <if test="user_id != ''">
+	        		USER_ID = #{user_id}
+	       	</if>
+       	</where>
     </update>
 
     <delete id="delete" parameterType="com.hsp.shoppingcart.ShoppingCart">
