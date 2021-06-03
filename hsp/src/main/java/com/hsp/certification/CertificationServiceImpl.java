@@ -12,12 +12,6 @@ public class CertificationServiceImpl implements CertificationService {
 	private ChannelMapper channerMapper;
 
 	@Override
-	public boolean certEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
 	public void certAccount(Channel channel) {
 		try {
 			channerMapper.update(channel);

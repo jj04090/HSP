@@ -7,7 +7,7 @@ public interface UserService {
 	public void deleteUser(User user);
 	public void updateUser(User user);
 	public User viewUser(User user);
-	public User findID(User user);
-	public boolean findPW(User user);
-	
+	public void findID(User user);
+	public void findPW(User user);
+	public String encryptPW(String password);
 }
