@@ -49,6 +49,15 @@ public class InquiryServiceImpl implements InquiryService {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void updateAnswer(Inquiry inquiry) {
+		try {
+			inquiryMapper.update(inquiry);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void deleteInquiry(Inquiry inquiry) {

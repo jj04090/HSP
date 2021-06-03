@@ -8,4 +8,5 @@ public interface InquiryService {
 	public void deleteInquiry(Inquiry inquiry);
 	public List<Inquiry> viewInquiryList();
 	public Inquiry viewInquiry(Inquiry inquiry);
+	public void updateAnswer(Inquiry inquiry);
 }

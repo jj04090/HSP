@@ -60,6 +60,18 @@ public class InquiryController {
 		return modelAndView;
 	}
 	
+	//문의 답변 수정 폼
+	@GetMapping("/inquiry/{inquiry_id}/editform")
+	public ModelAndView updateAnswer(@PathVariable(name = "inquiry_id") String inquiry_id) {
+		ModelAndView modelAndView = new ModelAndView();
+		Inquiry inquiry = new Inquiry();
+		inquiry.setInquiry_id(inquiry_id);
+		Inquiry result = inquiryServiceImpl.viewInquiry(inquiry);
+		modelAndView.setViewName("/inquiry/inquiryAnswerEditForm");
+		modelAndView.addObject("inquiry", result);
+		return modelAndView;
+	}
+	
 	//문의 등록 폼
 	@GetMapping("/inquiry/registform")
 	public ModelAndView regitInquiry() {
@@ -83,6 +95,15 @@ public class InquiryController {
 	//문의 수정
 	@PostMapping("/inquiryupdate")
 	public ModelAndView updateInquiry(Inquiry inquiry) {
+		ModelAndView modelAndView = new ModelAndView();
+		inquiryServiceImpl.updateInquiry(inquiry);
+		modelAndView.setViewName("redirect:/hsp/inquiry/" + inquiry.getInquiry_id());
+		return modelAndView;
+	}
+	
+	//문의 답변 수정
+	@PostMapping("/inquiryupdate")
+	public ModelAndView updateAnswer(Inquiry inquiry) {
 		ModelAndView modelAndView = new ModelAndView();
 		inquiryServiceImpl.updateInquiry(inquiry);
 		modelAndView.setViewName("redirect:/hsp/inquiry/" + inquiry.getInquiry_id());
