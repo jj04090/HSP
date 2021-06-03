@@ -23,6 +23,9 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	CommunityMapper communityMapper;
 	
+	@Autowired
+	CommentMapper commentMapper;
+	
 	@Override
 	public List<Community> viewCommunityList() {
 		List<Community> listCommunity = null;
@@ -32,6 +35,17 @@ public class CommunityServiceImpl implements CommunityService {
 			e.printStackTrace();
 		}
 		return listCommunity;
+	}
+	
+	@Override
+	public List<Comment> viewCommentList(Community community) {
+		List<Comment> listComment = null;
+		try {
+			listComment = commentMapper.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listComment;
 	}
 	
 	@Override

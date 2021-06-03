@@ -11,6 +11,7 @@ public interface CommunityService {
 	public void updateCommunity(Community community, MultipartFile attach);
 	public void deleteCommunity(Community community);
 	public List<Community> viewCommunityList();
+	public List<Comment> viewCommentList(Community community);
 	public Community viewCommunity(Community community);
 	
 	public String imgUpload(MultipartFile attach);

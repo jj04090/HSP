@@ -53,9 +53,13 @@ public class CommunityController {
 		Community community = new Community();
 		community.setCommunity_id(community_id);
 		Community result = communityServiceImpl.viewCommunity(community);
+		
+		List<Comment> listComment = communityServiceImpl.viewCommentList(community);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/community/communityView");
 		modelAndView.addObject("community", result);
+		modelAndView.addObject("listComment", listComment);
 		return modelAndView;
 	}
 	

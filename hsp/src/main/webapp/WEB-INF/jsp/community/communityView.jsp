@@ -23,6 +23,8 @@
 		<li>게시글 제목 : ${community.community_title} </li>
 		<li>게시글 내용 : ${community.community_content} </li>
 		<li>게시글 등록 날짜 : ${community.regit_date} </li>
+		<li>댓글 내용 : ${comment.comment_content} </li>
+		<li>댓글 게시글 ID : ${comment.community_id} </li>
 	</ul>
 	
 </body>

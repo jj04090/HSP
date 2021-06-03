@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hsp.comment.CommentMapper">
-    <resultMap id="communityResultMap" type="com.hsp.community.Community">
+<mapper namespace="com.hsp.community.CommentMapper">
+    <resultMap id="commentResultMap" type="com.hsp.community.Comment">
         <result column="COMMENT_ID" property="comment_id" />
-        <result column="COMMUNITY_ID" property="COMMUNITY_ID" />
+        <result column="COMMUNITY_ID" property="community_id" />
         <result column="USER_ID" property="user_id" />
         <result column="COMMENT_CONTENT" property="comment_content" />
         <result column="REGIT_DATE" property="regit_date" />
@@ -30,7 +30,7 @@
         </where>
     </sql>
 
-    <select id="list" parameterType="com.hsp.comment.CommentMapper" resultMap="commentResultMap">
+    <select id="list" parameterType="com.hsp.community.CommentMapper" resultMap="commentResultMap">
         SELECT
             	COMMENT_ID,
             	COMMUNITY_ID,
@@ -41,7 +41,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.comment.CommentMapper">
+    <insert id="insert" parameterType="com.hsp.community.CommentMapper">
         INSERT INTO COMMENT (
             COMMENT_ID,
 			COMMUNITY_ID,
@@ -58,7 +58,7 @@
         <include refid="whereSql" />
     </insert>
 
-    <update id="update" parameterType="com.hsp.comment.CommentMapper">
+    <update id="update" parameterType="com.hsp.community.CommentMapper">
         UPDATE COMMENT
         <set>
         	<if test="comment_id != null">
@@ -83,7 +83,7 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.comment.CommentMapper">
+    <delete id="delete" parameterType="com.hsp.community.CommentMapper">
         DELETE FROM COMMENT
         <where>
         	COMMENT_ID = #{comment_id}
