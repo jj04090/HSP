@@ -12,6 +12,7 @@ public class HspApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HspApplication.class, args);
+		
 	}
 
 }
