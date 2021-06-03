@@ -44,7 +44,7 @@ public class ChannelController {
 	
 	@GetMapping("/regist")
 	public ModelAndView registChannel() {
-		return new ModelAndView("channel/registChannel");
+		return new ModelAndView("/channel/registChannel");
 	}
 	
 	@PostMapping
@@ -57,7 +57,7 @@ public class ChannelController {
 	
 	@GetMapping("/edit")
 	public ModelAndView updateChannel() {
-		return new ModelAndView("channel/registChannel");
+		return new ModelAndView("/channel/updateChannel");
 	}
 	
 	@PutMapping
@@ -100,9 +100,9 @@ public class ChannelController {
 		channelServiceImpl.finishSubscribe(subscribe);
 	}
 	
-	@GetMapping("/listsub")
+	@GetMapping("/subscribe")
 	public ModelAndView listSubscribe() {
-		ModelAndView mav = new ModelAndView("channel/subscribe");
+		ModelAndView mav = new ModelAndView("/channel/subscribe");
 		
 		User getUser = (User)session.getAttribute("user");
 		Subscribe subscribe = new Subscribe();

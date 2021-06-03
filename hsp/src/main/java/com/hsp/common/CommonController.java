@@ -19,12 +19,12 @@ public class CommonController {
 	
 	@GetMapping("/main")
 	public ModelAndView main() {
-		return new ModelAndView("main");
+		return new ModelAndView("/main");
 	}
 	
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("login");
+		return new ModelAndView("/login");
 	}
 	
 	@PostMapping("/login")
@@ -43,7 +43,7 @@ public class CommonController {
 	
 	@GetMapping("/findID")
 	public ModelAndView findID() {
-		return new ModelAndView("findID");
+		return new ModelAndView("/findID");
 	}
 	
 	@PostMapping("/findID")
@@ -55,7 +55,7 @@ public class CommonController {
 	
 	@GetMapping("/findPW")
 	public ModelAndView findPW() {
-		return new ModelAndView("findPW");
+		return new ModelAndView("/findPW");
 	}
 	
 	@PostMapping("/findPW")
