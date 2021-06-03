@@ -61,7 +61,7 @@ public class InquiryController {
 	}
 	
 	//문의 답변 수정 폼
-	@GetMapping("/inquiry/{inquiry_id}/editform")
+	@GetMapping("/inquiry/{inquiry_id}/answereditform")
 	public ModelAndView updateAnswer(@PathVariable(name = "inquiry_id") String inquiry_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Inquiry inquiry = new Inquiry();
@@ -102,7 +102,7 @@ public class InquiryController {
 	}
 	
 	//문의 답변 수정
-	@PostMapping("/inquiryupdate")
+	@PostMapping("/inquiryanswerupdate")
 	public ModelAndView updateAnswer(Inquiry inquiry) {
 		ModelAndView modelAndView = new ModelAndView();
 		inquiryServiceImpl.updateInquiry(inquiry);

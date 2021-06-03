@@ -27,7 +27,7 @@
 		</div>
 
 		<div>
-			게시글 제목 : <input type="text" name="community_content" placeholder="제목" id="community_content" />
+			게시글 제목 : <input type="text" name="community_title" placeholder="제목" id="community_title" />
 		</div>
 		
 		<input type="file" name="attach" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
