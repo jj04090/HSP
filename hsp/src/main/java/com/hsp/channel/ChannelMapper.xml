@@ -171,6 +171,24 @@
         FROM CHANNEL
     </select>
     
+    <select id="topChannel" resultMap="channelResultMap">
+    	SELECT 
+    		C.CHANNEL_ID,
+    		C.USER_ID,
+	        C.CHANNEL_NAME,
+	        C.CATEGORY,
+	        C.INTODUCTION,
+	        C.BUSINESS_NO,
+		FROM 
+		   	CHANNEL C, SUBSCRIBE S
+		WHERE 
+			(C.CHANNEL_ID = S.CHANNEL_ID)
+		GROUP BY 
+			S.CHANNEL_ID
+		ORDER BY 
+			COUNT(S.CHANNEL_ID) DESC LIMIT 3
+    </select>
+    
     <select id="selectByProductId" parameterType="String" resultMap="channelResultMap">
     	SELECT CHANNEL.*
 		FROM CHANNEL,
