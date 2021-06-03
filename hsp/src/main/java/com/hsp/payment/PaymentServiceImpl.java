@@ -74,18 +74,20 @@ public class PaymentServiceImpl implements PaymentService {
 
 	// 정기 결제
 	@Override
-	public boolean routinePayment(Orders orders, int price) throws Exception {
+	public Orders routinePayment(Orders orders, int price) throws Exception {
 		User user = (User) httpSession.getAttribute("user");
 		BigDecimal amount = new BigDecimal(100);
-
-		AgainPaymentData againPaymentData = new AgainPaymentData("cid_113", "biling" + new Date().getTime(), amount);
+		String merchantUid = "biling" + new Date().getTime();
+		AgainPaymentData againPaymentData = new AgainPaymentData("cid_113", merchantUid, amount);
 		againPaymentData.setName("빌링키 결제테스트상품입니다.");
 
 		IamportResponse<Payment> iamportResponse = new IamportClient("1722439638143134",
 				"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N")
 						.againPayment(againPaymentData);
 		System.out.println(iamportResponse.getMessage() + iamportResponse.getCode() + iamportResponse.getResponse());
-		return false;
+		Orders order = new Orders();
+		order.setOrder_id(merchantUid);
+		return order;
 	}
 
 	// 결제 정산
