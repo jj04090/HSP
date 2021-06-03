@@ -4,97 +4,115 @@
 
 <mapper namespace="com.hsp.community.CommunityMapper">
     <resultMap id="communityResultMap" type="com.hsp.community.Community">
-        <result column="USER_ID" property="user_id" />
-        <result column="PRODUCT_ID" property="product_id" />
-        <result column="PRODUCT_COUNT" property="product_count" />
-        <result column="CART_TYPE" property="cart_type" />
+        <result column="COMMUNITY_ID" property="community_id" />
+        <result column="CHANNEL_ID" property="channel_id" />
+        <result column="COMMUNITY_TITLE" property="community_title" />
+        <result column="COMMUNITY_CONTENT" property="community_content" />
+        <result column="REGIT_DATE" property="regit_date" />
+        <result column="MEDIAFILE" property="mediafile" />
     </resultMap>
 
     <sql id="whereSql">
         <where>
-            <if test="user_id != null and user_id != ''">
-                AND USER_ID = #{user_id}
+            <if test="community_id != null and community_id != ''">
+                AND COMMUNITY_ID = #{community_id}
             </if>
-            <if test="product_id != null and product_id != ''">
-                AND PRODUCT_ID = #{product_id}
+            <if test="channel_id != null and channel_id != ''">
+                AND CHANNEL_ID = #{channel_id}
             </if>
-            <if test="product_count != null and product_count != ''">
-                AND PRODUCT_COUNT = #{product_count}
+            <if test="community_title != null and community_title != ''">
+                AND COMMUNITY_TITLE = #{community_title}
             </if>
-            <if test="cart_type != null and cart_type != ''">
-                AND CART_TYPE = #{cart_type}
+            <if test="community_content != null and community_content != ''">
+                AND COMMUNITY_CONTENT = #{community_content}
+            </if>
+            <if test="regit_date != null and regit_date != ''">
+                AND REGIT_DATE = #{regit_date}
+            </if>
+            <if test="mediafile != null and mediafile != ''">
+                AND MEDIAFILE = #{mediafile}
             </if>
         </where>
     </sql>
 
-    <select id="count" parameterType="com.hsp.community.CommunityMapper" resultType="int">
-        SELECT COUNT(*)
-        FROM SHOPPING_CART
+    <select id="select" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
+        SELECT
+            	COMMUNITY_ID,
+            	CHANNEL_ID,
+            	COMMUNITY_TITLE,
+            	COMMUNITY_CONTENT,
+            	REGIT_DATE,
+            	MEDIAFILE
+        FROM COMMUNITY
         <include refid="whereSql" />
     </select>
 
-    <select id="list" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
-        SELECT *
-        FROM (
-            SELECT
-            	USER_ID,
-				PRODUCT_ID,
-				PRODUCT_COUNT,
-  				CART_TYPE
-            FROM SHOPPING_CART
-            <include refid="whereSql" />
-	        ORDER BY PRODUCT_ID DESC
-        ) TB
-    </select>
-
-    <select id="select" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
+	<select id="list" resultMap="communityResultMap">
         SELECT
-        	USER_ID,
-			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
-        FROM SHOPPING_CART
+            	COMMUNITY_ID,
+            	CHANNEL_ID,
+            	COMMUNITY_TITLE,
+            	COMMUNITY_CONTENT,
+            	REGIT_DATE,
+            	MEDIAFILE
+        FROM COMMUNITY
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="com.hsp.community.CommunityMapper">
-        INSERT INTO MISSION (
-            USER_ID,
-			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
+        INSERT INTO COMMUNITY (
+            COMMUNITY_ID,
+			CHANNEL_ID,
+			COMMUNITY_TITLE,
+  			COMMUNITY_CONTENT,
+  			REGIT_DATE,
+  			MEDIAFILE
         ) VALUES (
-            #{user_id},
-            #{product_id},
-            #{product_count},
-            #{cart_type},
+            #{community_id},
+            #{channel_id},
+            #{community_title},
+            #{community_content},
+            #{regit_date},
+            #{mediafile},
         )
+        <include refid="whereSql" />
     </insert>
 
     <update id="update" parameterType="com.hsp.community.CommunityMapper">
-        UPDATE MISSION
+        UPDATE COMMUNITY
         <set>
-        	<if test="user_id != null">
-                USER_ID = #{user_id},
+        	<if test="community_id != null">
+                COMMUNITY_ID = #{community_id},
             </if>
-            <if test="product_id != null">
-                PRODUCT_ID = #{product_id},
+            <if test="channel_id != null">
+                CHANNEL_ID = #{channel_id},
             </if>
-            <if test="product_count != 0">
-                PRODUCT_COUNT = #{product_count},
+            <if test="community_title != null">
+                COMMUNITY_TITLE = #{community_title},
             </if>
-            <if test="cart_type != null">
-                CART_TYPE = #{cart_type},
+            <if test="community_content != null">
+                COMMUNITY_CONTENT = #{community_content},
+            </if>
+            <if test="regit_date != null">
+                REGIT_DATE = #{regit_date},
+            </if>
+            <if test="mediafile != null">
+                MEDIAFILE = #{mediafile},
             </if>
         </set>
         <where>
-        	USER_ID = #{user_id}
-        	AND  PRODUCT_ID = #{product_id}
+        	COMMUNITY_ID = #{community_id}
+        	AND  CHANNEL_ID = #{channel_id}
         </where>
     </update>
 
     <delete id="delete" parameterType="com.hsp.community.CommunityMapper">
-        DELETE FROM SHOPPING_CART
+        DELETE FROM COMMUNITY
+        <where>
+        	COMMUNITY_ID = #{community_id}
+        	AND  CHANNEL_ID = #{channel_id}
+        </where>
         <include refid="whereSql" />
     </delete>
+    
 </mapper>

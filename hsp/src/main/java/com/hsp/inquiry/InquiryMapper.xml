@@ -4,97 +4,119 @@
 
 <mapper namespace="com.hsp.inquiry.InquiryMapper">
     <resultMap id="inquiryResultMap" type="com.hsp.inquiry.Inquiry">
+        <result column="INQUIRY_ID" property="inquiry_id" />
         <result column="USER_ID" property="user_id" />
         <result column="PRODUCT_ID" property="product_id" />
-        <result column="PRODUCT_COUNT" property="product_count" />
-        <result column="CART_TYPE" property="cart_type" />
+        <result column="INQUIRY_TITLE" property="inquiry_title" />
+        <result column="INQUIRY_CONTENT" property="inquiry_content" />
+        <result column="INQUIRY_REGIT_DATE" property="inquriy_regit_date" />
+        <result column="ANSWER" property="answer" />
     </resultMap>
 
     <sql id="whereSql">
         <where>
+            <if test="inquiry_id != null and inquiry_id != ''">
+                AND INQUIRY_ID = #{inquiry_id}
+            </if>
             <if test="user_id != null and user_id != ''">
                 AND USER_ID = #{user_id}
             </if>
             <if test="product_id != null and product_id != ''">
                 AND PRODUCT_ID = #{product_id}
             </if>
-            <if test="product_count != null and product_count != ''">
-                AND PRODUCT_COUNT = #{product_count}
+            <if test="inquiry_title != null and inquiry_title != ''">
+                AND INQUIRY_TITLE = #{inquiry_title}
             </if>
-            <if test="cart_type != null and cart_type != ''">
-                AND CART_TYPE = #{cart_type}
+            <if test="inquiry_content != null and inquiry_content != ''">
+                AND INQUIRY_CONTENT = #{inquiry_content}
+            </if>
+            <if test="inquriy_regit_date != null and inquriy_regit_date != ''">
+                AND INQUIRY_REGIT_DATE = #{inquriy_regit_date}
+            </if>
+            <if test="answer != null and answer != ''">
+                AND ANSWER = #{answer}
             </if>
         </where>
     </sql>
-
-    <select id="count" parameterType="com.hsp.inquiry.InquiryMapper" resultType="int">
-        SELECT COUNT(*)
-        FROM SHOPPING_CART
-        <include refid="whereSql" />
-    </select>
 
     <select id="list" parameterType="com.hsp.inquiry.InquiryMapper" resultMap="inquiryResultMap">
         SELECT *
         FROM (
             SELECT
-            	USER_ID,
+            	INQUIRY_ID,
+				USER_ID,
 				PRODUCT_ID,
-				PRODUCT_COUNT,
-  				CART_TYPE
-            FROM SHOPPING_CART
+  				INQUIRY_TITLE,
+  				INQUIRY_REGIT_DATE
+            FROM INQUIRY
             <include refid="whereSql" />
-	        ORDER BY PRODUCT_ID DESC
+	        ORDER BY INQUIRY_ID DESC
         ) TB
     </select>
 
     <select id="select" parameterType="com.hsp.inquiry.InquiryMapper" resultMap="inquiryResultMap">
         SELECT
-        	USER_ID,
+            INQUIRY_ID,
+			USER_ID,
 			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
-        FROM SHOPPING_CART
+  			INQUIRY_TITLE,
+  			INQUIRY_CONTENT,
+  			INQUIRY_REGIT_DATE,
+  			ANSWER
+        FROM INQUIRY
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="com.hsp.inquiry.InquiryMapper">
-        INSERT INTO MISSION (
-            USER_ID,
+        INSERT INTO INQUIRY (
+            INQUIRY_ID,
+			USER_ID,
 			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
+  			INQUIRY_TITLE,
+  			INQUIRY_CONTENT,
+  			INQUIRY_REGIT_DATE
         ) VALUES (
+            #{inquiry_id},
             #{user_id},
             #{product_id},
-            #{product_count},
-            #{cart_type},
+            #{inquiry_title},
+            #{inquiry_content},
         )
     </insert>
 
     <update id="update" parameterType="com.hsp.inquiry.InquiryMapper">
         UPDATE MISSION
         <set>
-        	<if test="user_id != null">
-                USER_ID = #{user_id},
+            <if test="inquiry_title != null">
+                INQUIRY_TITLE = #{inquiry_title},
             </if>
-            <if test="product_id != null">
-                PRODUCT_ID = #{product_id},
-            </if>
-            <if test="product_count != 0">
-                PRODUCT_COUNT = #{product_count},
-            </if>
-            <if test="cart_type != null">
-                CART_TYPE = #{cart_type},
+            <if test="inquiry_content != null">
+                INQUIRY_CONTENT = #{inquiry_content},
             </if>
         </set>
         <where>
-        	USER_ID = #{user_id}
-        	AND  PRODUCT_ID = #{product_id}
+        	INQUIRY_ID = #{inquiry_id}
+        	AND USER_ID = #{user_id}
+        	AND PRODUCT_ID = #{product_id}
+        </where>
+    </update>
+    
+    <update id="answer" parameterType="com.hsp.inquiry.InquiryMapper">
+        UPDATE MISSION
+        <set>
+            <if test="answer != null">
+                ANSWER = #{answer},
+            </if>
+        </set>
+        <where>
+        	INQUIRY_ID = #{inquiry_id}
+        	AND USER_ID = #{user_id}
+        	AND PRODUCT_ID = #{product_id}
         </where>
     </update>
 
     <delete id="delete" parameterType="com.hsp.inquiry.InquiryMapper">
-        DELETE FROM SHOPPING_CART
+        DELETE FROM INQUIRY
         <include refid="whereSql" />
     </delete>
 </mapper>

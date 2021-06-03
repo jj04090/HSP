@@ -1,17 +1,17 @@
 package com.hsp.inquiry;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface InquiryMapper {
-	/*
-	 * public List<Channel> list(Channel shoppingCart) throws Exception;
-	 * 
-	 * public Channel select(Channel shoppingCart) throws Exception;
-	 * 
-	 * public void insert(Channel shoppingCart) throws Exception;
-	 * 
-	 * public void update(Channel shoppingCart) throws Exception;
-	 * 
-	 * public void delete(Channel shoppingCart) throws Exception;
-	 */
+	public List<Inquiry> list() throws Exception;
+
+	public Inquiry select(Inquiry inquiry) throws Exception;
+
+	public void insert(Inquiry inquiry) throws Exception;
+
+	public void update(Inquiry inquiry) throws Exception;
+
+	public void delete(Inquiry inquiry) throws Exception;
 }

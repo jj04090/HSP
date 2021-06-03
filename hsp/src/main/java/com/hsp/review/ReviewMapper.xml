@@ -4,97 +4,109 @@
 
 <mapper namespace="com.hsp.review.ReviewMapper">
     <resultMap id="reviewResultMap" type="com.hsp.review.Review">
-        <result column="USER_ID" property="user_id" />
+        <result column="REVIEW_ID" property="review_id" />
+        <result column="ORDER_ID" property="order_id" />
         <result column="PRODUCT_ID" property="product_id" />
-        <result column="PRODUCT_COUNT" property="product_count" />
-        <result column="CART_TYPE" property="cart_type" />
+        <result column="PRODUCT_GRADE" property="product_grade" />
+        <result column="REVIEW_TITLE" property="review_title" />
+        <result column="REVIEW_CONTENT" property="review_content" />
+        <result column="REVIEW_IMG" property="review_img" />
     </resultMap>
 
     <sql id="whereSql">
         <where>
-            <if test="user_id != null and user_id != ''">
-                AND USER_ID = #{user_id}
+            <if test="review_id != null and review_id != ''">
+                AND REVIEW_ID = #{review_id}
+            </if>
+            <if test="order_id != null and order_id != ''">
+                AND ORDER_ID = #{order_id}
             </if>
             <if test="product_id != null and product_id != ''">
                 AND PRODUCT_ID = #{product_id}
             </if>
-            <if test="product_count != null and product_count != ''">
-                AND PRODUCT_COUNT = #{product_count}
+            <if test="product_grade != null and product_grade != ''">
+                AND PRODUCT_GRADE = #{product_grade}
             </if>
-            <if test="cart_type != null and cart_type != ''">
-                AND CART_TYPE = #{cart_type}
+            <if test="review_title != null and review_title != ''">
+                AND REVIEW_TITLE = #{review_title}
+            </if>
+            <if test="review_content != null and review_content != ''">
+                AND REVIEW_CONTENT = #{review_content}
+            </if>
+            <if test="review_img != null and review_img != ''">
+                AND REVIEW_IMG = #{review_img}
             </if>
         </where>
     </sql>
-
-    <select id="count" parameterType="com.hsp.review.ReviewMapper" resultType="int">
-        SELECT COUNT(*)
-        FROM SHOPPING_CART
-        <include refid="whereSql" />
-    </select>
 
     <select id="list" parameterType="com.hsp.review.ReviewMapper" resultMap="reviewResultMap">
         SELECT *
         FROM (
             SELECT
-            	USER_ID,
+            	REVIEW_ID,
+				ORDER_ID,
 				PRODUCT_ID,
-				PRODUCT_COUNT,
-  				CART_TYPE
-            FROM SHOPPING_CART
+  				PRODUCT_GRADE,
+  				REVIEW_TITLE
+            FROM REVIEW
             <include refid="whereSql" />
-	        ORDER BY PRODUCT_ID DESC
+	        ORDER BY REVIEW_ID DESC
         ) TB
     </select>
 
     <select id="select" parameterType="com.hsp.review.ReviewMapper" resultMap="reviewResultMap">
         SELECT
-        	USER_ID,
+        	REVIEW_ID,
+			ORDER_ID,
 			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
-        FROM SHOPPING_CART
+  			PRODUCT_GRADE,
+  			REVIEW_TITLE,
+  			REVIEW_CONTENT,
+  			REVIEW_IMG
+        FROM REVIEW
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="com.hsp.review.ReviewMapper">
-        INSERT INTO MISSION (
-            USER_ID,
+        INSERT INTO REVIEW (
+            REVIEW_ID,
+			ORDER_ID,
 			PRODUCT_ID,
-			PRODUCT_COUNT,
-  			CART_TYPE
+  			PRODUCT_GRADE,
+  			REVIEW_TITLE,
+  			REVIEW_CONTENT,
+  			REVIEW_IMG
         ) VALUES (
-            #{user_id},
+            #{review_id},
+            #{order_id},
             #{product_id},
-            #{product_count},
-            #{cart_type},
+            #{product_grade},
+            #{review_title},
+            #{review_content},
+            #{review_img},
         )
     </insert>
 
     <update id="update" parameterType="com.hsp.review.ReviewMapper">
         UPDATE MISSION
         <set>
-        	<if test="user_id != null">
-                USER_ID = #{user_id},
+        	<if test="review_title != null">
+                REVIEW_TITLE = #{review_title},
             </if>
-            <if test="product_id != null">
-                PRODUCT_ID = #{product_id},
+            <if test="review_content != null">
+                REVIEW_CONTENT = #{review_content},
             </if>
-            <if test="product_count != 0">
-                PRODUCT_COUNT = #{product_count},
-            </if>
-            <if test="cart_type != null">
-                CART_TYPE = #{cart_type},
+            <if test="review_img != 0">
+                REVIEW_IMG = #{review_img},
             </if>
         </set>
         <where>
-        	USER_ID = #{user_id}
-        	AND  PRODUCT_ID = #{product_id}
+        	REVIEW_ID = #{review_id}
         </where>
     </update>
 
     <delete id="delete" parameterType="com.hsp.review.ReviewMapper">
-        DELETE FROM SHOPPING_CART
+        DELETE FROM REVIEW
         <include refid="whereSql" />
     </delete>
 </mapper>
