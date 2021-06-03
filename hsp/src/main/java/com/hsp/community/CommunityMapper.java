@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface CommunityMapper {
-	public List<Community> list() throws Exception;
+	public List<Community> list(Community community) throws Exception;
 
 	public Community select(Community community) throws Exception;
 

@@ -27,10 +27,12 @@ public class CommunityServiceImpl implements CommunityService {
 	CommentMapper commentMapper;
 	
 	@Override
-	public List<Community> viewCommunityList() {
+	public List<Community> viewCommunityList(String channel_id) {
+		Community community = new Community();
+		community.setChannel_id(channel_id);
 		List<Community> listCommunity = null;
 		try {
-			listCommunity = communityMapper.list();
+			listCommunity = communityMapper.list(community);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,10 +40,12 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 	
 	@Override
-	public List<Comment> viewCommentList(Community community) {
+	public List<Comment> viewCommentList(String community_id) {
+		Comment comment = new Comment();
+		comment.setCommunity_id(community_id);
 		List<Comment> listComment = null;
 		try {
-			listComment = commentMapper.list();
+			listComment = commentMapper.list(comment);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

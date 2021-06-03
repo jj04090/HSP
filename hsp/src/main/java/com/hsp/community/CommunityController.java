@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/hsp")
+@RequestMapping("/community")
 public class CommunityController {
 	@Autowired
 	private HttpSession httpSession;
@@ -34,27 +35,26 @@ public class CommunityController {
 	@Autowired
 	CommunityServiceImpl communityServiceImpl;
 	
-	//테스트용
-	String channel_id = "C01";
-	
 	//게시글 목록 조회
-	@GetMapping("/community")
-	public ModelAndView listCommunity() {
+	@GetMapping("/{channel_id}")
+	public ModelAndView listCommunity(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Community> listCommunity = communityServiceImpl.viewCommunityList();
+		List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
 		modelAndView.setViewName("/community/communityList");
+		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listCommunity", listCommunity);
 		return modelAndView;
 	}
 	
 	//게시글 상세 조회
-	@GetMapping("/community/{community_id}")
-	public ModelAndView viewCommunity(@PathVariable(name = "community_id") String community_id) {
+	@GetMapping("/{channel_id}/{community_id}")
+	public ModelAndView viewCommunity(@PathVariable String channel_id, @PathVariable String community_id) {
 		Community community = new Community();
+		community.setChannel_id(channel_id);
 		community.setCommunity_id(community_id);
 		Community result = communityServiceImpl.viewCommunity(community);
 		
-		List<Comment> listComment = communityServiceImpl.viewCommentList(community);
+		List<Comment> listComment = communityServiceImpl.viewCommentList(community_id);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/community/communityView");
@@ -64,7 +64,7 @@ public class CommunityController {
 	}
 	
 	//게시글 수정 폼
-	@GetMapping("/community/{community_id}/editform")
+	@GetMapping("/{community_id}/editform")
 	public ModelAndView updateCommunity(@PathVariable(name = "community_id") String community_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Community community = new Community();
@@ -76,7 +76,7 @@ public class CommunityController {
 	}
 	
 	//게시글 등록 폼
-	@GetMapping("/community/registform")
+	@GetMapping("/registform")
 	public ModelAndView regitCommunity() {
 		ModelAndView modelAndView = new ModelAndView();
 		String community_id = "C" + UUID.randomUUID().toString().subSequence(0, 9);
@@ -87,25 +87,25 @@ public class CommunityController {
 	}
 	
 	//게시글 등록
-	@PostMapping("/community")
+	@PostMapping("")
 	public ModelAndView regitCommunity(Community community, @RequestParam("attach") MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.registCommunity(community, attach);
-		modelAndView.setViewName("redirect:/hsp/community");
+		modelAndView.setViewName("redirect:/community");
 		return modelAndView;
 	}
 	
 	//게시글 수정
-	@PostMapping("/communityupdate")
+	@PutMapping("")
 	public ModelAndView updateCommunity(Community community, MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.updateCommunity(community, attach);
-		modelAndView.setViewName("redirect:/hsp/community/" + community.getCommunity_id());
+		modelAndView.setViewName("redirect:/community/" + community.getCommunity_id());
 		return modelAndView;
 	}
 	
 	//게시글 삭제
-	@DeleteMapping("/community")
+	@DeleteMapping("")
 	public ModelAndView deleteCommunity(Community community) {
 		ModelAndView modelAndView = null;
 		return modelAndView;

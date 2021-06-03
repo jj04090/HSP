@@ -14,4 +14,6 @@ public interface ReviewMapper {
 	public void update(Review review) throws Exception;
 
 	public void delete(Review review) throws Exception;
+	
+	public Review highRate() throws Exception;
 }
