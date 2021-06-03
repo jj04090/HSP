@@ -27,12 +27,12 @@ public class ChannelController {
 	
 	@GetMapping
 	public ModelAndView channel() {
-		return new ModelAndView("channel/channel");
+		return new ModelAndView("/channel/channel");
 	}
 	
 	@GetMapping("/{channel_id}")
 	public ModelAndView viewChannel(@PathVariable String channel_id) {
-		ModelAndView mav = new ModelAndView("channel/viewChannel");
+		ModelAndView mav = new ModelAndView("/channel/viewChannel");
 					
 		Channel channel = new Channel();
 		channel.setChannel_id(channel_id);
@@ -100,7 +100,7 @@ public class ChannelController {
 		channelServiceImpl.finishSubscribe(subscribe);
 	}
 	
-	@GetMapping
+	@GetMapping("/listsub")
 	public ModelAndView listSubscribe() {
 		ModelAndView mav = new ModelAndView("channel/subscribe");
 		
