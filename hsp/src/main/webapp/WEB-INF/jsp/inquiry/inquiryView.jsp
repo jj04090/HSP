@@ -22,7 +22,6 @@
 		<li>상품 ID : ${inquiry.product_id} </li>
 		<li>문의 제목 : ${inquiry.inquiry_title} </li>
 		<li>문의 내용 : ${inquiry.inquiry_content} </li>
-		<li>문의 등록 날짜 : ${inquiry.inquiry_regit_date} </li>
 	</ul>
 	
 </body>

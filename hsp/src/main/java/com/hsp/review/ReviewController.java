@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/hsp")
 public class ReviewController {
 	@Autowired
 	private HttpSession httpSession;

@@ -14,13 +14,12 @@
 
 </head>
 <body>
-	<h1>게시글 리스트</h1>
+	<h1>문의 리스트</h1>
 	
 	<c:forEach items="${listInquiry}" var = "list">
 		<ul>
-			<li>제목 : <a href="/hsp/community/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
+			<li>제목 : <a href="/hsp/inquiry/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
 			<li>내용 : <c:out value="${list.inquiry_content}" /></li>
-			<li>등록날짜 : <c:out value="${list.inquiry_regit_date}" /></li>
 		</ul>
 	</c:forEach>
 	

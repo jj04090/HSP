@@ -35,7 +35,7 @@ public class CommunityController {
 	CommunityServiceImpl communityServiceImpl;
 	
 	//테스트용
-	String channel_id = "AAAAAAAA";
+	String channel_id = "C01";
 	
 	//게시글 목록 조회
 	@GetMapping("/community")

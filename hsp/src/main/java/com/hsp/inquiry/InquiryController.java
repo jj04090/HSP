@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/inquiry")
+@RequestMapping("/hsp")
 public class InquiryController {
 	@Autowired
 	private HttpSession httpSession;
