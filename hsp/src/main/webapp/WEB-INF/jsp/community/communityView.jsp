@@ -19,7 +19,7 @@
 	<ul>
 		<li>게시글 ID : ${community.community_id} </li>
 		<li>채널 ID : ${community.channel_id} </li>
-		<li>미디어 파일 : <img class='small1' src="/hsp/community/display?filename=${community.mediafile}"> </li>
+		<li>미디어 파일 : <img class='small1' src="/community/display?filename=${community.mediafile}"> </li>
 		<li>게시글 제목 : ${community.community_title} </li>
 		<li>게시글 내용 : ${community.community_content} </li>
 		<li>게시글 등록 날짜 : ${community.regit_date} </li>

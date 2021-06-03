@@ -16,11 +16,7 @@
         </div>
     </div>
 	
-	<!-- 	
-	<form name="edit" action="/hsp/community" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="_method" value="PUT" />
-		 -->
-	<form name="edit" action="/hsp/communityupdate" method="post" enctype="multipart/form-data">
+	<form name="edit" action="/communityupdate" method="post" enctype="multipart/form-data">
 		<!-- <input type="hidden" name="_method" value="PUT" />  -->
 		
 		<div>
@@ -36,7 +32,7 @@
 		</div>
 		
 		<div>
-			미디어파일 : <img class='small1' src="/hsp/community/display?filename=${community.mediafile}"/>
+			미디어파일 : <img class='small1' src="/community/display?filename=${community.mediafile}"/>
 			<input type="hidden" name="mediafile" value="${community.mediafile}">
 		</div>
 		
@@ -66,7 +62,7 @@
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/community/ckUpload"
+				filebrowserUploadUrl : "/community/ckUpload"
 			};
 
 			CKEDITOR.replace("communityDes", ckeditor_config);

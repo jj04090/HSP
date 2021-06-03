@@ -18,12 +18,16 @@
 	
 	<c:forEach items="${listCommunity}" var = "list">
 		<ul>
-			<li>사진 : <img class='small1' src="/hsp/community/display?filename=${list.mediafile}"> </li>
-			<li>제목 : <a href="/hsp/community/${list.community_id}"> <c:out value="${list.community_title}" /> </a> </li>
+			<li>사진 : <img class='small1' src="/community/display?filename=${list.mediafile}"> </li>
+			<li>제목 : <a href="/community/${list.channel_id}/${list.community_id}"> <c:out value="${list.community_title}" /> </a> </li>
 			<li>내용 : <c:out value="${list.community_content}" /></li>
 			<li>등록날짜 : <c:out value="${list.regit_date}" /></li>
 		</ul>
 	</c:forEach>
+	
+	<form name="regit" action="/community/registform" method="get">
+		<button type="submit">게시글 등록</button>
+	</form>
 	
 <%@ include file="../include/footer.jsp"%>
 </body>

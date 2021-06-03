@@ -16,7 +16,7 @@
         </div>
     </div>
 
-	<form name='regit' action="/hsp/community" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/community" method="post" enctype="multipart/form-data">
 		<div>
 			게시글 ID : <input type="text" name="community_id" value=${community_id} id="community_id" readonly />
 		</div>
@@ -48,14 +48,12 @@
 			게시글 내용 : <input type="text" name="community_content" placeholder="내용" id="community_content" />
 		</div>
 
-		<textarea rows="5" cols="50" id="communityDes" name="community_detail"></textarea>
-
 		<script>
 			var ckeditor_config = {
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/community/ckUpload"
+				filebrowserUploadUrl : "/community/ckUpload"
 			};
 
 			CKEDITOR.replace("communityDes", ckeditor_config);

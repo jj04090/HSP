@@ -35,7 +35,7 @@
         </where>
     </sql>
 
-    <select id="select" parameterType="com.hsp.community.CommunityMapper" resultMap="communityResultMap">
+    <select id="select" parameterType="com.hsp.community.Community" resultMap="communityResultMap">
         SELECT
             	COMMUNITY_ID,
             	CHANNEL_ID,
@@ -47,7 +47,7 @@
         <include refid="whereSql" />
     </select>
 
-	<select id="list" resultMap="communityResultMap">
+	<select id="list" parameterType="com.hsp.community.Community" resultMap="communityResultMap">
         SELECT
             	COMMUNITY_ID,
             	CHANNEL_ID,
@@ -59,7 +59,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.community.CommunityMapper">
+    <insert id="insert" parameterType="com.hsp.community.Community">
         INSERT INTO COMMUNITY (
             COMMUNITY_ID,
 			CHANNEL_ID,
@@ -73,12 +73,11 @@
             #{community_title},
             #{community_content},
             #{regit_date},
-            #{mediafile},
+            #{mediafile}
         )
-        <include refid="whereSql" />
     </insert>
 
-    <update id="update" parameterType="com.hsp.community.CommunityMapper">
+    <update id="update" parameterType="com.hsp.community.Community">
         UPDATE COMMUNITY
         <set>
         	<if test="community_id != null">
@@ -106,7 +105,7 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.community.CommunityMapper">
+    <delete id="delete" parameterType="com.hsp.community.Community">
         DELETE FROM COMMUNITY
         <where>
         	COMMUNITY_ID = #{community_id}
