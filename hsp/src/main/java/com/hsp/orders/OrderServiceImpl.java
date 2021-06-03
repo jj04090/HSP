@@ -346,7 +346,7 @@ public class OrderServiceImpl implements OrderService {
 				Subscribe subscribe = new Subscribe();
 				subscribe.setChannel_id(productQty.getKey().getChannel_id());
 				subscribe.setUser_id(user_id);
-//				subscribe = subscribeMapper.select(subscribe);
+				subscribe = subscribeMapper.select(subscribe);
 				
 				int price = Integer.parseInt(productQty.getKey().getProduct_price());
 				int count = 1;

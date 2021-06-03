@@ -14,8 +14,9 @@ public interface ProductService {
 	public void registProduct(Product product, MultipartFile attach);
 	public void updateProduct(Product product, MultipartFile attach); // Multipart 추가
 	public void deleteProduct(Product product);
-	public List<Product> viewProductList(String channel_id); // 파라미터 Product -> X
+	public List<Product> viewProductList(); // 파라미터 Product -> X
 	public Product viewProduct(Product product);
+	public List<Product> channelProduct(String channel_id);
 	
 	public String imgUpload(MultipartFile attach);
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload);

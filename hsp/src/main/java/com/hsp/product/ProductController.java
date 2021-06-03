@@ -42,13 +42,23 @@ public class ProductController {
 	
 	String channel_id = "C01";
 
-	@GetMapping("/{channel_id}")
-	public ModelAndView listProduct(@PathVariable String channel_id) {
+	@GetMapping("")
+	public ModelAndView listProduct() {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Product> listProduct = productServiceImpl.viewProductList(channel_id);
-		modelAndView.setViewName("/product/productList");
+		List<Product> listProduct = productServiceImpl.viewProductList();
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
+		modelAndView.setViewName("/product/productAll");
+		return modelAndView;
+	}
+	
+	@GetMapping("/{channel_id}")
+	public ModelAndView channelProduct(@PathVariable String channel_id) {
+		ModelAndView modelAndView = new ModelAndView();
+		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
+		modelAndView.addObject("channel_id", channel_id);
+		modelAndView.addObject("listProduct", listProduct);
+		modelAndView.setViewName("/product/productList");
 		return modelAndView;
 	}
 	

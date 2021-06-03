@@ -100,19 +100,18 @@
                 <div class="custom-container">
                     <div class="header-wrap header-space-between position-relative">
                         <div class="logo logo-width-1">
-                            <a href="index.html"><img src="/assets/images/logo/logo.png" alt="logo"></a>
+                            <a href="/main"><img src="/assets/images/logo/logo.png" alt="logo"></a>
                         </div>
                         <div class="main-menu main-menu-padding-1 main-menu-lh-1 d-none d-lg-block hover-boder">
                             <nav>
                                 <ul>
                                     <li><a class="active" href="index.html">Home <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="index.html">Home 1 – Medical Supplies</a></li>
-                                            <li><a href="index-2.html">Home 2 – Mega Shop</a></li>
-                                            <li><a href="index-3.html">Home 3 – Medical Equipment</a></li>
+                                            <li><a href="/main">Home 1 – 사용자 화면</a></li>
+                                            <li><a href="index-2.html">Home 2 – 사업자 화면</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="shop.html">Shop <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="shop.html">Channel <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop.html">Shop – Left Sidebar</a></li>
                                             <li><a href="shop-right-sidebar.html">Shop – Right Sidebar</a></li>
@@ -133,8 +132,8 @@
                                         </ul>
                                     </li>
                                     
-                                    <!-- 
-                                    <li class="position-static"><a href="#">Collection <i class="fa fa-chevron-down"></i></a>
+                                    
+                                    <li class="position-static"><a href="/product">Product <i class="fa fa-chevron-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Medical Accessories</a>
@@ -187,8 +186,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                                     -->
-                                    <li><a href="blog.html">Blog <i class="fa fa-chevron-down"></i></a>
+                                    
+                                    <li><a href="blog.html">Community <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
                                             <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>
@@ -203,6 +202,8 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    
+                                    <!-- 
                                     <li><a href="#">Pages <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="about-us.html">About Us</a></li>
@@ -216,6 +217,8 @@
                                             <li><a href="404.html">404 Page</a></li>
                                         </ul>
                                     </li>
+                                     -->
+                                    
                                     <li><a href="contact-us.html">Contact</a></li>
                                 </ul>
                             </nav>

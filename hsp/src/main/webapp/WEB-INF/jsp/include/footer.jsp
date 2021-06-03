@@ -1,4 +1,6 @@
-<!-- 바디 마지막에 적용 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!-- ë°ë ë§ì§ë§ì ì ì© -->
 <footer class="footer-area pt-75 pb-35">
             <div class="custom-container">
                 <div class="row">
@@ -8,27 +10,26 @@
                                 <a href="index.html"><img src="/assets/images/logo/logo.png" alt="logo"></a>
                             </div>
                             <div class="copyright">
-                                <p>Copyright © 2020 HasThemes | <a target="_blank" href="https://hasthemes.com/">Built with <span>Medizin</span> by HasThemes</a>.</p>
+                                <p>Copyright © 2021 HSP |</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-width-22 custom-common-column">
                         <div class="footer-widget mb-40">
-                            <h3 class="footer-title">Customer Service</h3>
+                            <h3 class="footer-title">제공되는 서비스</h3>
                             <div class="footer-info-list">
                                 <ul>
-                                    <li><a href="#"> Shipping Options</a></li>
-                                    <li><a href="wishlist.html"> My Wishlist </a></li>
-                                    <li><a href="my-account.html"> My Account </a></li>
-                                    <li><a href="return-policy.html"> Return Policy </a></li>
-                                    <li><a href="#"> Shopping FAQs </a></li>
+                                    <li><a href="wishlist.html"> 쇼핑카트 </a></li>
+                                    <li><a href="my-account.html"> 마이페이지 </a></li>
+                                    <li><a href="return-policy.html"> 교환 </a></li>
+                                    <li><a href="#"> 상품 문의 </a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-width-22 custom-common-column">
                         <div class="footer-widget mb-40">
-                            <h3 class="footer-title">Our Company</h3>
+                            <h3 class="footer-title">캡스톤 3조</h3>
                             <div class="footer-info-list">
                                 <ul>
                                     <li><a href="about-us.html"> About Us</a></li>
@@ -42,9 +43,9 @@
                     </div>
                     <div class="col-width-31 custom-common-column">
                         <div class="footer-widget mb-40">
-                            <h3 class="footer-title">Download Our App</h3>
+                            <h3 class="footer-title">다양한 기능 준비중</h3>
                             <div class="app-visa-wrap">
-                                <p>Fast & Convenient Access</p>
+                                <p>정기 구매를 통해 계속된 상품 배송</p>
                                 <div class="app-google-img">
                                     <a href="#"><img src="/assets/images/icon-img/app-store.jpg" alt=""></a>
                                     <a href="#"><img src="/assets/images/icon-img/google-play.jpg" alt=""></a>
@@ -125,7 +126,7 @@
                 </div>
                 <div class="mobile-search search-style-3 mobile-header-border">
                     <form action="#">
-                        <input type="text" placeholder="Search…">
+                        <input type="text" placeholder="Searchâ¦">
                         <button type="submit"> <i class="far fa-search"></i> </button>
                     </form>
                 </div>
@@ -135,27 +136,27 @@
                         <ul class="mobile-menu">
                             <li class="menu-item-has-children"><a href="index.html">Home</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">Home 1 – Medical Supplies</a></li>
-                                    <li><a href="index-2.html">Home 2 – Mega Shop</a></li>
-                                    <li><a href="index-3.html">Home 3 – Medical Equipment</a></li>
+                                    <li><a href="index.html">Home 1 â Medical Supplies</a></li>
+                                    <li><a href="index-2.html">Home 2 â Mega Shop</a></li>
+                                    <li><a href="index-3.html">Home 3 â Medical Equipment</a></li>
                                 </ul>
                             </li>
                             <li class="menu-item-has-children "><a href="shop.html">shop</a>
                                 <ul class="dropdown">
-                                    <li><a href="shop.html">Shop – Left Sidebar</a></li>
-                                    <li><a href="shop-right-sidebar.html">Shop – Right Sidebar</a></li>
-                                    <li><a href="shop-filter.html">Shop – Filter</a></li>
+                                    <li><a href="shop.html">Shop â Left Sidebar</a></li>
+                                    <li><a href="shop-right-sidebar.html">Shop â Right Sidebar</a></li>
+                                    <li><a href="shop-filter.html">Shop â Filter</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="cart.html">Shopping Cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li class="menu-item-has-children"><a href="#">Single Layout</a>
                                         <ul class="dropdown">
-                                            <li><a href="product-details.html">List – Left Sidebar</a></li>
-                                            <li><a href="product-details-right-sidebar.html">List – Right Sidebar</a></li>
-                                            <li><a href="product-details-no-sidebar.html">List – No Sidebar</a></li>
-                                            <li><a href="product-details-tab-left-sidebar.html">Tabs – Left Sidebar</a></li>
-                                            <li><a href="product-details-tab-right-sidebar.html">Tabs – Right Sidebar</a></li>
-                                            <li><a href="product-details-tab-no-sidebar.html">Tabs – No Sidebar</a></li>
+                                            <li><a href="product-details.html">List â Left Sidebar</a></li>
+                                            <li><a href="product-details-right-sidebar.html">List â Right Sidebar</a></li>
+                                            <li><a href="product-details-no-sidebar.html">List â No Sidebar</a></li>
+                                            <li><a href="product-details-tab-left-sidebar.html">Tabs â Left Sidebar</a></li>
+                                            <li><a href="product-details-tab-right-sidebar.html">Tabs â Right Sidebar</a></li>
+                                            <li><a href="product-details-tab-no-sidebar.html">Tabs â No Sidebar</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -190,9 +191,9 @@
                             </li>
                             <li class="menu-item-has-children "><a href="blog.html">Blog</a>
                                 <ul class="dropdown">
-                                    <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>
-                                    <li><a href="blog-grid-no-sidebar.html">Blog Grid – No Sidebar</a></li>
+                                    <li><a href="blog.html">Blog Grid â Left Sidebar</a></li>
+                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid â Right Sidebar</a></li>
+                                    <li><a href="blog-grid-no-sidebar.html">Blog Grid â No Sidebar</a></li>
                                     <li><a href="blog-grid-wide.html">Grid Wide</a></li>
                                     <li class="menu-item-has-children"><a href="#">Single Layout</a>
                                         <ul class="dropdown">

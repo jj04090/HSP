@@ -66,6 +66,16 @@
         <include refid="whereSql" />
     </select>
     
+    <select id="mostSelling" resultMap="orderDetailResultMap">
+        SELECT 
+        	PRODUCT_ID
+		FROM ORDER_DETAIL
+		GROUP BY PRODUCT_ID
+		HAVING COUNT(*) = (SELECT MAX(MYCOUNT)
+							FROM (SELECT PRODUCT_ID, COUNT(*) AS MYCOUNT
+									FROM ORDER_DETAIL GROUP BY PRODUCT_ID) AS RESULT)
+    </select>
+    
     <update id="statusUpdate" parameterType="com.hsp.orders.OrderDetail">
         UPDATE ORDER_DETAIL
         <set>

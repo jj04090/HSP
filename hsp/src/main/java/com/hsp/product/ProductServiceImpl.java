@@ -1,5 +1,7 @@
 package com.hsp.product;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,9 +33,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public List<Product> viewProductList(String channel_id) {
+	public List<Product> viewProductList() {
 		Product product = new Product();
-		product.setChannel_id(channel_id);
 		List<Product> listProduct = null;
 		
 		try {
@@ -43,6 +44,22 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		return listProduct;
+	}
+	
+	@Override
+	public List<Product> channelProduct(String channel_id) {
+		List<Product> productList = null;
+		Product product = new Product();
+		product.setChannel_id(channel_id);
+		
+		try {
+			productList = productMapper.list(product);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return productList;
 	}
 
 	@Override
@@ -179,4 +196,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		return;	
 	}
+
+	
 }
