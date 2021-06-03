@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/hsp")
+@RequestMapping("/product")
 public class ProductController {
 	
 	@Autowired
@@ -42,19 +42,21 @@ public class ProductController {
 	
 	String channel_id = "C01";
 
-	@GetMapping("/product")
-	public ModelAndView listProduct() {
+	@GetMapping("/{channel_id}")
+	public ModelAndView listProduct(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Product> listProduct = productServiceImpl.viewProductList();
+		List<Product> listProduct = productServiceImpl.viewProductList(channel_id);
 		modelAndView.setViewName("/product/productList");
+		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
 		return modelAndView;
 	}
 	
-	@GetMapping("/product/{product_id}")
-	public ModelAndView viewProduct(@PathVariable(name = "product_id") String product_id) {
+	@GetMapping("/{channel_id}/{product_id}")
+	public ModelAndView viewProduct(@PathVariable String channel_id, @PathVariable String product_id) {
 		Product product = new Product();
 		product.setProduct_id(product_id);
+		product.setChannel_id(channel_id);
 		Product result = productServiceImpl.viewProduct(product);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/product/productView");
@@ -62,7 +64,7 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/product/{product_id}/editform")
+	@GetMapping("/{product_id}/editform")
 	public ModelAndView updateProduct(@PathVariable(name = "product_id") String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Product product = new Product();
@@ -73,7 +75,7 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/product/registform")
+	@GetMapping("/registform")
 	public ModelAndView regitProduct() {
 		ModelAndView modelAndView = new ModelAndView();
 		String product_id = "P" + UUID.randomUUID().toString().subSequence(0, 9);
@@ -83,35 +85,35 @@ public class ProductController {
 		return modelAndView;
 	}
 
-	@PostMapping("/product")
+	@PostMapping("")
 	public ModelAndView regitProduct(Product product, @RequestParam("attach") MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		productServiceImpl.registProduct(product, attach);
-		modelAndView.setViewName("redirect:/hsp/product");
+		modelAndView.setViewName("redirect:/product");
 		return modelAndView;
 	}
 	
-	@PutMapping("/product")
+	@PutMapping("")
 	public ModelAndView updateProduct(Product product, MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		productServiceImpl.updateProduct(product, attach);
-		modelAndView.setViewName("redirect:/hsp/product/" + product.getProduct_id());
+		modelAndView.setViewName("redirect:/product/" + product.getProduct_id());
 		return modelAndView;
 	}
 	
-	@DeleteMapping("/product")
+	@DeleteMapping("")
 	public ModelAndView deleteProduct(Product product) {
 		ModelAndView modelAndView = null;
 		//나중에
 		return modelAndView;
 	}
 	
-	@PostMapping("/product/ckUpload")
+	@PostMapping("/ckUpload")
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload) throws Exception {
 		productServiceImpl.postCKEditorImgUpload(req, res, upload);
 	}
 	
-	@GetMapping("/product/display")
+	@GetMapping("/display")
 	public ResponseEntity<Resource> display(@RequestParam("filename") String fileName)throws Exception{
 		
 		return productServiceImpl.display(fileName);

@@ -18,7 +18,7 @@
 	
 	<c:forEach items="${ordersList}" var = "list">
 		<ul>
-			<li>주문 ID : <a href="/order/${list.order_id}"> <c:out value="${list.order_id}" /> </a> </li>
+			<li>주문 ID : <a href="/order/${list.order_id}/${list.product_id}"> <c:out value="${list.order_id}" /> </a> </li>
 			<li>상품 ID : <c:out value="${list.product_id}" /> </li>
 			<li>상품 수량 : <c:out value="${list.product_qty}" /> </li>
 			<li>상품 가격 : <c:out value="${list.price}" /> </li>
@@ -31,10 +31,14 @@
 				<c:if test="${list.delevery_status == 'N'}">반품거부</c:if> 
 			</li>
 			
-			<div>
-				<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>/order/cancel/${list.order_id}'">주문 취소</button>
-				
-			</div>
+			<c:if test="${list.delevery_status == 'O'}">
+				<div>
+					<form name="orderCancel" action="/order/cancel/${list.order_id}" method="get">
+						<button type="submit">주문 취소</button>
+					</form>
+				</div>
+			</c:if>
+			
 		</ul>
 	</c:forEach>
 	

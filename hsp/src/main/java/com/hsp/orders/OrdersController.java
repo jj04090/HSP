@@ -28,51 +28,63 @@ public class OrdersController {
 	
 	@PostMapping("") // 주문 등록 Json으로 값 들어옴 -> 예상 파라미터 (Order, List<String>) -> List<String> : Prodcut_id
 	@ResponseBody
-	public ModelAndView orderRegit(Orders orders, Product product) {
+	public ModelAndView orderRegit(Orders orders, String user_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		orderServiceImpl.applyOrder(orders, product);
-		modelAndView.setViewName("");
+		orderServiceImpl.applyOrder(orders, user_id);
+		modelAndView.setViewName("redirect:/order");
 		return modelAndView;
 	}
 	
 	@GetMapping("") // 주문 목록 조회	//사업자인 경우 팔린 주문 조회   //사용자인 경우 자신이 구매한 주문 목록 조회
-	public ModelAndView orderList() {
+	public ModelAndView orderList(String log) {
+		System.out.println(log);
 		ModelAndView modelAndView = new ModelAndView();
 		List<Orders> result = null;
-		List<OrderDetail> bizSelect = null;
+		List<Orders> bizSelect = null;
+		
 		if (!channel_id.isEmpty()) { // 사업자 접근 -> 채널 ID로 주문 상품 조회
 			bizSelect = orderServiceImpl.viewSoldList(channel_id);
 			modelAndView.addObject("ordersList", bizSelect);
-			modelAndView.setViewName("/order/orderBizList");
+			modelAndView.addObject("user_type", "B");
+			modelAndView.setViewName("/order/orderList");
+			
 		} else { // 사용자인 경우 -> User_id로 Order Table Select
 			result = orderServiceImpl.viewOrderList(user_id);
 			List<String> cancelAble = orderServiceImpl.getStatus(result);
+			modelAndView.addObject("user_type", "C");
 			modelAndView.addObject("ordersList", result);
 			modelAndView.addObject("cancelAble", cancelAble);
 			modelAndView.setViewName("/order/orderList");
 		}
+		
 		return modelAndView;
 	}
 	
 	@GetMapping("/{order_id}") // 주문 상세 조회
 	public ModelAndView orderView(@PathVariable(name = "order_id") String order_id) { 
 		ModelAndView modelAndView = new ModelAndView();
-		List<OrderInfo> orderInfo = null;
-		orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
-		modelAndView.addObject("orderInfo", orderInfo);
-		modelAndView.addObject("auth", "C");
-		modelAndView.setViewName("/order/orderView");
+		
+		if (!channel_id.isEmpty()) { // 사업자 접근
+			List<OrderInfo> orderInfo = orderServiceImpl.viewSold(order_id, channel_id);
+			modelAndView.addObject("orderInfoList", orderInfo);
+			modelAndView.setViewName("/order/orderBizView");
+		} else {
+			List<OrderInfo> orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
+			modelAndView.addObject("orderInfo", orderInfo);
+			modelAndView.setViewName("/order/orderView");
+		}
+		
 		return modelAndView;
 	}
 	
-	@GetMapping("/{order_id}/{product_id}") // 사업자 주문 상세 조회
-	public ModelAndView soldView(@PathVariable(name = "order_id") String order_id, @PathVariable(name = "product_id") String product_id) {
-		ModelAndView modelAndView = new ModelAndView();
-		OrderInfo orderInfo = orderServiceImpl.viewSold(order_id, product_id);
-		modelAndView.addObject("orderInfo", orderInfo);
-		modelAndView.setViewName("/order/orderBizView");
-		return modelAndView;
-	}
+//	@GetMapping("/{order_id}/{product_id}") // 사업자 주문 상세 조회
+//	public ModelAndView soldView(@PathVariable(name = "order_id") String order_id, @PathVariable(name = "product_id") String product_id) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		OrderInfo orderInfo = orderServiceImpl.viewSold(order_id, product_id);
+//		modelAndView.addObject("orderInfo", orderInfo);
+//		modelAndView.setViewName("/order/orderBizView");
+//		return modelAndView;
+//	}
 	
 	@GetMapping("/returnform") // 반품 신청 폼
 	public ModelAndView orderReturn(@RequestParam(value = "order_id") String order_id, @RequestParam(value = "product_id") String product_id) {
@@ -115,6 +127,14 @@ public class OrdersController {
 		String result = orderServiceImpl.cancelOrder(order_id);
 		modelAndView.setViewName("redirect:/order");
 		modelAndView.addObject("log", result); // 처리 메시지는 어떻게 할건지 나중에 논의
+		return modelAndView;
+	}
+	
+	@GetMapping("/cancelschedual/{order_id}") // new // 정기 주문 취소
+	public ModelAndView cancelschedual(@PathVariable String order_id) {
+		ModelAndView modelAndView = new ModelAndView();
+		orderServiceImpl.cancelSchedual(order_id);
+		modelAndView.setViewName("redirect:/order");
 		return modelAndView;
 	}
 	

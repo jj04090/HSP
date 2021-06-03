@@ -10,5 +10,5 @@ public interface OrderInfoMapper {
 	public List<OrderInfo> selectByOrder_id(Map<String, String> order_id) throws Exception;
 	public List<OrderInfo> list(OrderInfo orderInfo) throws Exception;
 	
-	public OrderInfo selectForBizView(Map<String, String> forQuery) throws Exception;
+	public List<OrderInfo> selectForBizView(Map<String, String> forQuery) throws Exception;
 }

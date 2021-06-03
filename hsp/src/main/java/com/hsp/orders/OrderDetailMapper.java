@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface OrderDetailMapper {
 	public OrderDetail select(OrderDetail orderDetail) throws Exception;
 	public List<OrderDetail> list(OrderDetail orderDetail) throws Exception;
-	public List<OrderDetail> selectByChannelId(String channel_id) throws Exception;
 	public void statusUpdate(OrderDetail orderDetail) throws Exception;
+	public void insert(OrderDetail orderDetail) throws Exception;
 }

@@ -54,13 +54,37 @@
         <include refid="whereSql" />
     </select>
     
+    <select id="selectByChannelId" parameterType="String" resultMap="ordersResultMap">
+    	SELECT DISTINCT(ORD.ORDER_ID)
+		FROM PRODUCT P
+		     , ORDER_DETAIL ORD
+		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
+		AND P.CHANNEL_ID = #{channel_id}
+    </select>
+    
 	<update id="update" parameterType="com.hsp.orders.Orders">
         UPDATE ORDERS
         <set>
         	<if test="order_status != null and order_status != ''">
-                AND ORDER_STATUS = #{order_status} ,
+                ORDER_STATUS = #{order_status} ,
             </if>
         </set>
-        Where ORDER_ID = ${order_id}
+        WHERE ORDER_ID = '${order_id}'
     </update>
+    
+    <insert id="insert" parameterType="com.hsp.orders.Orders">
+        INSERT INTO ORDERS (
+            					ORDER_ID
+            					, USER_ID
+            					, ORDER_TYPE
+            					, ORDER_DATE
+            					, ORDER_STATUS
+        ) VALUES (
+            #{order_id}
+            , #{user_id}
+            , #{order_type}
+            , #{order_date}
+            , #{order_status}
+        )
+    </insert>
 </mapper>

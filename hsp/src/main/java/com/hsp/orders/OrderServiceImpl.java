@@ -1,12 +1,17 @@
 package com.hsp.orders;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hsp.channel.Subscribe;
@@ -36,13 +41,74 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	SubscribeMapper subscribeMapper;
 	@Autowired
+	ShoppingCartMapper ShoppingCartMapper;
+	@Autowired
 	ShoppingCartMapper shoppingCartMapper;
 	@Autowired
 	PaymentServiceImpl paymentServiceImpl;
 	
 	@Override
-	public void applyOrder(Orders orders, Product product) {
-		
+	public void applyOrder(Orders orders, String user_id) {
+		try {
+			ShoppingCart shoppingCart = new ShoppingCart();
+			shoppingCart.setUser_id(user_id);
+			List<ShoppingCart> shopingCartList = shoppingCartMapper.list(shoppingCart);
+			
+			Date now = new Date();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			orders.setOrder_date(df.format(now));
+			orders.setUser_id(user_id);
+			orders.setOrder_type(shopingCartList.get(0).getCart_type());
+			orders.setOrder_status("O");
+			ordersMapper.insert(orders);
+						
+			Subscribe subscribe = new Subscribe();
+			subscribe.setUser_id(user_id);
+//			List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // Subscribe 매퍼 추가 후 사용
+			List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+			
+			for (ShoppingCart shoppingCarts : shopingCartList) {
+				Product product = new Product();
+				product.setProduct_id(shoppingCarts.getProduct_id());
+				product = productMapper.select(product);
+				
+				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setOrder_id(orders.getOrder_id());
+				orderDetail.setProduct_id(shoppingCarts.getProduct_id());
+				orderDetail.setProduct_qty(shoppingCarts.getProduct_count());
+				orderDetail.setPrice(product.getProduct_price());
+				
+				float discount = 0;
+				for (Subscribe subscribes : subscribeList) {
+					if (product.getChannel_id().equals(subscribes.getChannel_id())) {
+						orderDetail.setDiscount(product.getDiscount());
+						discount = Float.parseFloat(product.getDiscount());
+					} else {
+						orderDetail.setDiscount("0");
+					}
+				}
+				
+				orderDetail.setDelevery_status("O");
+				
+				int price = Integer.parseInt(product.getProduct_price());
+				int count = Integer.parseInt(shoppingCarts.getProduct_count());
+				double discountPrice = price * ( discount / 100 );
+				double total = price - discountPrice;
+				total = total * count;
+				
+				orderDetail.setTotal_price(String.valueOf(total));
+				
+				orderDetailMapper.insert(orderDetail);
+			}
+			
+			ShoppingCart clearCart = new ShoppingCart();
+			clearCart.setUser_id(user_id);
+			shoppingCartMapper.delete(shoppingCart);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -52,6 +118,7 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderDetail> orderDetailList = null;
 		Boolean flag = false;
 		String result = null;
+		
 		try {
 			orderDetailList = orderDetailMapper.list(orderDetail);
 			for (int i = 0; i < orderDetailList.size(); i++) {
@@ -72,6 +139,7 @@ public class OrderServiceImpl implements OrderService {
 					}
 				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,17 +152,21 @@ public class OrderServiceImpl implements OrderService {
 		Orders orders = new Orders();
 		orders.setUser_id(user_id);
 		List<Orders> ordersList = null;
+		
 		try {
 			ordersList = ordersMapper.list(orders);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return ordersList;
 	}
 	
 	@Override
 	public List<String> getStatus(List<Orders> orders) {
 		List<String> result = new ArrayList<String>();
+		
 		try {
 			for (int i = 0; i < orders.size(); i++) {
 				result.add("Y");
@@ -111,6 +183,7 @@ public class OrderServiceImpl implements OrderService {
 				}
 				
 			}
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -119,15 +192,22 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<OrderDetail> viewSoldList(String channel_id) {
-		List<OrderDetail> orderInfoList = null;
+	public List<Orders> viewSoldList(String channel_id) {
+		List<Orders> orderList = null;
+		
 		try {
-			orderInfoList = orderDetailMapper.selectByChannelId(channel_id);
+			orderList = ordersMapper.selectByChannelId(channel_id);
+			
+			for (int i = 0; i < orderList.size(); i++) {
+				Orders orders = ordersMapper.select(orderList.get(i));
+				orderList.set(i, orders);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return orderInfoList;
+		return orderList;
 	}
 	
 	
@@ -135,13 +215,14 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderInfo> viewOrder(String user_id, String order_id) {
 		List<OrderInfo> orderInfoList = null;
+		
 		try {
 			HashMap<String, String> orderid = new HashMap<String, String>();
 			orderid.put("user_id", user_id);
 			orderid.put("order_id", order_id);
 			orderInfoList = orderInfoMapper.selectByOrder_id(orderid);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return orderInfoList;
@@ -159,6 +240,7 @@ public class OrderServiceImpl implements OrderService {
 			orderDetail.setProduct_id(returns.getProduct_id());
 			orderDetail.setDelevery_status("R");
 			orderDetailMapper.statusUpdate(orderDetail);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,27 +257,31 @@ public class OrderServiceImpl implements OrderService {
 			result = orderDetailMapper.select(orderDetail);
 			result.setDelevery_status(delevery_status);
 			orderDetailMapper.statusUpdate(result);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public OrderInfo viewSold(String order_id, String product_id) {
+	public List<OrderInfo> viewSold(String order_id, String channel_id) {
 		Orders order = new Orders();
 		order.setOrder_id(order_id);
-		OrderInfo orderInfo = null;
+		List<OrderInfo> orderInfo = null;
+		
 		try {
 			order = ordersMapper.select(order);
 			Map<String, String> query = new HashMap<String, String>();
-			query.put("order_id", order_id);
-			query.put("product_id", product_id);
 			query.put("user_id", order.getUser_id());
+			query.put("order_id", order_id);
+			query.put("channel_id", channel_id);
+			
 			orderInfo = orderInfoMapper.selectForBizView(query);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return orderInfo;
 	}
 
@@ -205,16 +291,20 @@ public class OrderServiceImpl implements OrderService {
 		product.setChannel_id(channel_id);
 		List<Product> productList = null;
 		List<Returns> returnsList = new ArrayList<Returns>();
+		
 		try {
 			productList = productMapper.list(product);
+			
 			for (int i = 0; i < productList.size(); i++) {
 				Returns returns = new Returns();
 				returns.setProduct_id(productList.get(i).getProduct_id());
 				returnsList.addAll(returnsMapper.list(returns));
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return returnsList;
 	}
 
@@ -223,12 +313,14 @@ public class OrderServiceImpl implements OrderService {
 		Returns returns = new Returns();
 		returns.setReturn_id(return_id);
 		Returns returnView = null;
+		
 		try {
 			returnView = returnsMapper.select(returns);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return returnView;
 	}
 
@@ -240,7 +332,6 @@ public class OrderServiceImpl implements OrderService {
 			ShoppingCart shoppingCart = new ShoppingCart();
 			shoppingCart.setUser_id(user_id);
 			List<ShoppingCart> cartList = shoppingCartMapper.list(shoppingCart);
-			List<Product> productList = new ArrayList<Product>();
 			Map<Product, Integer> productPlusQty = new HashMap<Product, Integer>();
 			
 			for (ShoppingCart cart : cartList) { // 쇼핑카트에 담긴 상품들 리스트(List<Product>) 생성
@@ -281,15 +372,144 @@ public class OrderServiceImpl implements OrderService {
 		
 		return (int)totalPrice;
 	}
-	
-	
 
-	/*
 	@Override
-	@Scheduled(cron = " 0/10 * * * * *")
-	public void schedualTest() {
-		System.out.println("현재 시각 : " + new Date(System.currentTimeMillis()));
+	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *
+	public void schedualOrder() {
+		
+		try {
+			List<Orders> orderList = ordersMapper.list(new Orders());
+			
+			for (Orders order : orderList) {
+				if (order.getOrder_status().equals("W") && order.getOrder_status().equals("O")) {
+					String orderDate = order.getOrder_date();
+					SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+					Date date = fm.parse(orderDate);
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(date);
+					
+					Calendar rightNow = Calendar.getInstance();
+					rightNow.add(Calendar.DATE, -7);
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					
+					if ( df.format(cal.getTime()).compareTo(df.format(rightNow.getTime())) == 0 ) {
+						paymentServiceImpl.routinePayment(order, this.schedualPrice(order));
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	*/
 
+	@Override
+	public int schedualPrice(Orders orders) {
+		String user_id = ""; // user_id를 어디에서 가져온다는 가정
+		OrderDetail setOrderDetail = new OrderDetail();
+		setOrderDetail.setOrder_id(orders.getOrder_id());
+		int totalPrice = 0;
+		
+		try {
+			List<OrderDetail> orderDetails = orderDetailMapper.list(setOrderDetail);
+			
+			for (OrderDetail orderDetail : orderDetails) {
+				Product product = new Product();
+				product.setProduct_id(orderDetail.getProduct_id());
+				product = productMapper.select(product);
+				
+				int price = Integer.parseInt(product.getProduct_price());
+				int count = Integer.parseInt(orderDetail.getProduct_qty());
+				float discount = 0;
+				
+				Subscribe subscribe = new Subscribe();
+				subscribe.setUser_id(user_id);
+//				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
+				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				
+				for (Subscribe subscribes : subscribeList) {
+					if (subscribes.getChannel_id().equals(product.getChannel_id())) {
+						discount = Float.parseFloat(product.getDiscount());
+					}
+				}
+				
+				double discountPrice = price * ( discount / 100 );
+				double total = price - discountPrice;
+				total = total * count;
+				
+				totalPrice = totalPrice + (int)total;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return totalPrice;
+	}
+
+	@Override
+	public void schedualOrderApply(Orders orders, Orders previousOrder) { // 결제하고 Orders 줘야됨
+		
+		try {
+			orders.setUser_id(previousOrder.getUser_id());
+			orders.setOrder_type(previousOrder.getOrder_type());
+			
+			Date now = new Date();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			orders.setOrder_date(df.format(now));
+			orders.setOrder_type("O");
+			ordersMapper.insert(orders);
+			
+			OrderDetail setOrderDetail = new OrderDetail();
+			setOrderDetail.setOrder_id(previousOrder.getOrder_id());
+			List<OrderDetail> orderDetailList = orderDetailMapper.list(setOrderDetail);
+			
+			for (OrderDetail orderDetail : orderDetailList) {
+				Product product = new Product();
+				product.setProduct_id(orderDetail.getProduct_id());
+				product = productMapper.select(product);
+				
+				int price = Integer.parseInt(product.getProduct_price());
+				int count = Integer.parseInt(orderDetail.getProduct_qty());
+				float discount = 0;
+				
+				Subscribe subscribe = new Subscribe();
+				subscribe.setUser_id(previousOrder.getUser_id());
+//				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
+				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				
+				for (Subscribe subscribes : subscribeList) {
+					if (subscribes.getChannel_id().equals(product.getChannel_id())) {
+						discount = Float.parseFloat(product.getDiscount());
+					}
+				}
+				
+				double discountPrice = price * ( discount / 100 );
+				double total = price - discountPrice;
+				total = total * count;
+				
+				orderDetail.setDiscount(String.valueOf(discount));
+				orderDetail.setDelevery_status("O");
+				orderDetail.setTotal_price(String.valueOf(total));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void cancelSchedual(String order_id) {
+		Orders orders = new Orders();
+		orders.setOrder_id(order_id);
+		orders.setOrder_status("B");
+		
+		try {
+			ordersMapper.update(orders);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

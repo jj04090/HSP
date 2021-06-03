@@ -16,18 +16,19 @@
 <body>
 	<h1>사업자 주문 상세보기</h1>
 	
+	<c:forEach items="${orderInfoList}" var = "orderInfo">
+	
 	<ul>
 			<li>주문 ID : ${orderInfo.order_id} </li>
 			<li>상품 종류 : <c:if test="${orderInfo.order_type == 'S'}">일반상품</c:if>
 					  <c:if test="${orderInfo.order_type == 'W'}">정기상품</c:if> 
 			</li>
 			<li>상품 명 : ${orderInfo.product_name} </li>
-			<li>상품 사진 : <img class='small1' src="/hsp/product/display?filename=${orderInfo.product_img}"> </li>
+			<li>상품 사진 : <img class='small1' src="/product/display?filename=${orderInfo.product_img}"> </li>
 			<li>상품 ID : ${orderInfo.product_id} </li>
 			<li>상품 개수 : ${orderInfo.product_qty} </li>
 			<li>상품 가격 : ${orderInfo.price} </li>
 			<li>상품 할인율 : ${orderInfo.discount} % </li> 
-			<li>배송비 : ${orderInfo.delevery_fee} </li>
 			<li>주소 : ${orderInfo.address} </li>
 			<li>상세 주소 : ${orderInfo.detail_address} </li>
 			<li>우편 번호 : ${orderInfo.zip_code} </li>
@@ -60,6 +61,8 @@
 				</c:if>
 			</form>
 	</div>
+	
+	</c:forEach>
 	
 </body>
 </html>

@@ -14,7 +14,6 @@
         <result column="PRODUCT_QTY" property="product_qty" />
         <result column="PRICE" property="price" />
         <result column="DISCOUNT" property="discount" />
-        <result column="DELEVERY_FEE" property="delevery_fee" />
         <result column="DELEVERY_STATUS" property="delevery_status" />
         <result column="NAME" property="name" />
         <result column="ADDRESS" property="address" />
@@ -51,9 +50,6 @@
             <if test="discount != null and discount != ''">
                 AND DISCOUNT = #{discount}
             </if>
-            <if test="delevery_fee != null and delevery_fee != ''">
-                AND DELEVERY_FEE = #{delevery_fee}
-            </if>
             <if test="delevery_status != null and delevery_status != ''">
                 AND DELEVERY_STATUS = #{delevery_status}
             </if>
@@ -80,7 +76,6 @@
             	, PRODUCT_QTY
             	, PRICE
             	, DISCOUNT
-            	, DELEVERY_FEE
             	, DELEVERY_STATUS
             	, NAME
             	, ADDRESS
@@ -99,7 +94,6 @@
         	   , ORD.PRODUCT_QTY
         	   , ORD.PRICE
 	 		   , ORD.DISCOUNT
-	 		   , ORD.DELEVERY_FEE
 	 		   , ORD.DELEVERY_STATUS
 	 		   , U.NAME
 	 		   , U.ADDRESS
@@ -123,7 +117,6 @@
         	   , ORD.PRODUCT_QTY
         	   , ORD.PRICE
 	 		   , ORD.DISCOUNT
-	 		   , ORD.DELEVERY_FEE
 	 		   , ORD.DELEVERY_STATUS
 	 		   , U.NAME
 	 		   , U.ADDRESS
@@ -133,7 +126,8 @@
 			(SELECT NAME, ADDRESS, DETAIL_ADDRESS, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
 		WHERE (O.ORDER_ID = ORD.ORDER_ID)
 		AND (ORD.PRODUCT_ID = P.PRODUCT_ID)
-		AND (ORD.ORDER_ID = #{order_id} AND ORD.PRODUCT_ID = #{product_id} )
+		AND (ORD.ORDER_ID = #{order_id} )
+		AND (P.CHANNEL_ID = #{channel_id} )
     </select>
     
     <select id="list" parameterType="com.hsp.orders.OrderInfo" resultMap="orderInfoResultMap">
@@ -143,7 +137,6 @@
             	, PRODUCT_QTY
             	, PRICE
             	, DISCOUNT
-            	, DELEVERY_FEE
             	, DELEVERY_STATUS
         FROM ORDER_DETAIL
     </select>

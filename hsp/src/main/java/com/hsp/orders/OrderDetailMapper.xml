@@ -10,8 +10,8 @@
         <result column="PRODUCT_QTY" property="product_qty" />
         <result column="PRICE" property="price" />
         <result column="DISCOUNT" property="discount" />
-        <result column="DELEVERY_FEE" property="delevery_fee" />
         <result column="DELEVERY_STATUS" property="delevery_status" />
+        <result column="TOTAL_PRICE" property="total_price" />
     </resultMap>
 
     <sql id="whereSql">
@@ -31,11 +31,11 @@
             <if test="discount != null and discount != ''">
                 AND DISCOUNT = #{discount}
             </if>
-            <if test="delevery_fee != null and delevery_fee != ''">
-                AND DELEVERY_FEE = #{delevery_fee}
-            </if>
             <if test="delevery_status != null and delevery_status != ''">
                 AND DELEVERY_STATUS = #{delevery_status}
+            </if>
+            <if test="total_price != null and total_price != ''">
+                AND TOTAL_PRICE = #{total_price}
             </if>
         </where>
     </sql>
@@ -47,8 +47,8 @@
             	, PRODUCT_QTY
             	, PRICE
             	, DISCOUNT
-            	, DELEVERY_FEE
             	, DELEVERY_STATUS
+            	, TOTAL_PRICE
         FROM ORDER_DETAIL
         <include refid="whereSql" />
     </select>
@@ -60,22 +60,10 @@
             	, PRODUCT_QTY
             	, PRICE
             	, DISCOUNT
-            	, DELEVERY_FEE
             	, DELEVERY_STATUS
+            	, TOTAL_PRICE
         FROM ORDER_DETAIL
         <include refid="whereSql" />
-    </select>
-
-	<select id="selectByChannelId" parameterType="String" resultMap="orderDetailResultMap">
-    	SELECT ORD.ORDER_ID
-    	  	   , ORD.PRODUCT_ID
-    	       , ORD.PRODUCT_QTY
-    	   	   , ORD.PRICE
-    	   	   , ORD.DELEVERY_STATUS
-		FROM PRODUCT P
-		     , ORDER_DETAIL ORD
-		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
-		AND P.CHANNEL_ID = #{channel_id}
     </select>
     
     <update id="statusUpdate" parameterType="com.hsp.orders.OrderDetail">
@@ -88,5 +76,25 @@
         WHERE ORDER_ID = '${order_id}'
         AND PRODUCT_ID = '${product_id}'
     </update>
+    
+    <insert id="insert" parameterType="com.hsp.orders.OrderDetail">
+        INSERT INTO ORDER_DETAIL (
+            					ORDER_ID
+            					, PRODUCT_ID
+            					, PRODUCT_QTY
+            					, PRICE
+            					, DISCOUNT
+            					, DELEVERY_STATUS
+            					, TOTAL_PRICE
+        ) VALUES (
+            #{order_id}
+            , #{product_id}
+            , #{product_qty}
+            , #{price}
+            , #{discount}
+            , #{delevery_status}
+            , #{total_price}
+        )
+    </insert>
 	
 </mapper>

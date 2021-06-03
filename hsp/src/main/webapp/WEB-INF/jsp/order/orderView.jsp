@@ -23,12 +23,11 @@
 					  <c:if test="${list.order_type == 'W'}">정기상품</c:if> 
 			</li>
 			<li>상품 명 : ${list.product_name} </li>
-			<li>상품 사진 : <img class='small1' src="/hsp/product/display?filename=${list.product_img}"> </li>
+			<li>상품 사진 : <img class='small1' src="/product/display?filename=${list.product_img}"> </li>
 			<li>상품 ID : ${list.product_id} </li>
 			<li>상품 개수 : ${list.product_qty} </li>
 			<li>상품 가격 : ${list.price} </li>
 			<li>상품 할인율 : ${list.discount} % </li> 
-			<li>배송비 : ${list.delevery_fee} </li>
 			<li>주소 : ${list.address} </li>
 			<li>상세 주소 : ${list.detail_address} </li>
 			<li>우편 번호 : ${list.zip_code} </li>
@@ -44,12 +43,15 @@
 			
 			<c:if test="${list.delevery_status == 'C'}">
 				<div>
-					<button type="submit" formmethod="get" onclick="location.href='<%=request.getContextPath()%>
-						/order/returnform?order_id=${list.order_id}&product_id=${list.product_id}'">반품 신청</button>
+					<form name="return" action="/order/returnform" method="get">
+						<input type="hidden" name="order_id" value="${list.order_id}">
+						<input type="hidden" name="product_id" value="${list.product_id}">
+						<button type="submit">반품 신청</button>
+					</form>
 				</div>
 			</c:if>
 				
-			<c:if test="${list.delevery_status == 'D'}">
+			<c:if test="${list.delevery_status == 'O'}">
 				<div>
 					<form name="change" action="/order/change" method="post">
 						<input type="hidden" name="_method" value="PUT" />
