@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Review Update</title>
+<%@ include file="../include/header.jsp"%>
 
-<script src="/resources/ckeditor/ckeditor.js"></script>
-
-<style>
-	.image_container img { margin:20px 0; }
-	.small1 { width: 500px; }
-	.small2 { height: 100px; }
-</style>
-
-</head>
-<body>
-	<h1>리뷰 수정</h1>
+	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
+        <div class="custom-container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="active"> 리뷰 수정 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 	
 	<!-- 	
 	<form name="edit" action="/hsp/review" method="post" enctype="multipart/form-data">
@@ -88,5 +85,6 @@
 		</div>
 	</form>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

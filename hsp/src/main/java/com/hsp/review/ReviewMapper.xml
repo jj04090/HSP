@@ -66,6 +66,21 @@
         FROM REVIEW
         <include refid="whereSql" />
     </select>
+    
+    <select id="highRate" parameterType="com.hsp.review.ReviewMapper" resultMap="reviewResultMap">
+        SELECT
+        	REVIEW_ID,
+        	PRODUCT_ID,
+        	ORDER_ID,
+        	PRODUCT_GRADE,
+        	REVIEW_TITLE,
+        	REVIEW_CONTENT,
+        	REVIEW_IMG
+        FROM REVIEW
+        HAVING MAX(PRODUCT_GRADE)
+        LIMIT 1
+        <include refid="whereSql" />
+    </select>
 
     <insert id="insert" parameterType="com.hsp.review.ReviewMapper">
         INSERT INTO REVIEW (

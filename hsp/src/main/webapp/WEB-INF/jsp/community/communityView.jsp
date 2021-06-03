@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Community View</title>
-
-<style>
-.small1 { width: 500px; }
-.small2 { height: 100px; }
-</style>
-
-</head>
-<body>
-	<h1>게시글 상세 확인</h1>
+<%@ include file="../include/header.jsp"%>
+	
+	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
+        <div class="custom-container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Community</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 	
 	<ul>
 		<li>게시글 ID : ${community.community_id} </li>
@@ -32,5 +32,6 @@
 		</c:forEach>
 	</ul>
 	
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
