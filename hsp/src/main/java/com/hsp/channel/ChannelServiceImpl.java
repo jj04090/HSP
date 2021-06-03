@@ -2,65 +2,128 @@ package com.hsp.channel;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.hsp.orders.OrderDetail;
 
 @Service
 public class ChannelServiceImpl implements ChannelService {
-
+	@Autowired
+	private ChannelMapper channelMapper;
+	
+	@Autowired
+	private SubscribeMapper subscribeMapper;
+	
 	@Override
 	public void registChannel(Channel channel) {
-		// TODO Auto-generated method stub
+		Channel getChannel = this.viewChannel(channel);
 		
+		if(getChannel != null) {
+			try {
+				channelMapper.insert(channel);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}	
 	}
 
 	@Override
 	public void updateChannel(Channel channel) {
-		// TODO Auto-generated method stub
-		
+		try {
+			channelMapper.update(channel);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deleteChannel(Channel channel) {
-		// TODO Auto-generated method stub
-		
+		try {
+			channelMapper.delete(channel);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public Channel viewChannel(Channel channel) {
+		try {
+			return channelMapper.select(channel);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Channel> viewChannelList(Channel channel) {
-		// TODO Auto-generated method stub
+		try {
+			return channelMapper.list(channel);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
-	@Override
-	public Channel viewChannel(Channel channel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<OrderDetail> viewSales(Channel channel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void startSubscribe(Subscribe subscribe) {
-		// TODO Auto-generated method stub
+		List<Subscribe> getSubscribes = viewSubscribeList(subscribe);
 		
+		for(int i=0; i<getSubscribes.size(); i++) {
+			if(subscribe.getChannel_id() != getSubscribes.get(i).getChannel_id()) {
+				try {
+					subscribeMapper.insert(subscribe);
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
 	public void finishSubscribe(Subscribe subscribe) {
-		// TODO Auto-generated method stub
+		List<Subscribe> getSubscribes = viewSubscribeList(subscribe);
 		
+		for(int i=0; i<getSubscribes.size(); i++) {
+			if(subscribe.getChannel_id() == getSubscribes.get(i).getChannel_id()) {
+				try {
+					subscribeMapper.delete(subscribe);
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+	}
+
+	@Override
+	public Subscribe viewSubscribe(Subscribe subscribe) {
+		try {
+			return subscribeMapper.select(subscribe);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Subscribe> viewSubscribeList(Subscribe subscribe) {
-		// TODO Auto-generated method stub
+		try {
+			return subscribeMapper.list(subscribe);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
+
 
 }

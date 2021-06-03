@@ -33,5 +33,21 @@
         DELETE FROM SUBSCRIBE
         <include refid="whereSql" />
     </delete>
+    
+    <select id="select" parameterType="com.hsp.channel.Subscribe" resultMap="subscribeResultMap">
+        SELECT
+        	USER_ID,
+			CHANNEL_ID
+        FROM SUBSCRIBE
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="list" resultMap="subscribeResultMap">
+        SELECT
+			USER_ID,
+			CHANNEL_ID
+        FROM SUBSCRIBE
+        <include refid="whereSql" />
+    </select>
 
 </mapper>

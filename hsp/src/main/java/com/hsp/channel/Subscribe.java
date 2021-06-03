@@ -30,5 +30,4 @@ public class Subscribe implements Serializable {
 	public String toString() {
 		return "Subscribe [user_id=" + user_id + ", channel_id=" + channel_id + "]";
 	}
-	
 }
