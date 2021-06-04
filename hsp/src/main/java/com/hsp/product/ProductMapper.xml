@@ -58,6 +58,25 @@
         <include refid="whereSql" />
     </select>
     
+    <select id="sellingList" resultMap="productResultMap">
+        SELECT 
+        	P.PRODUCT_ID
+        	, P.CHANNEL_ID
+        	, P.PRODUCT_IMG
+        	, P.PRODUCT_NAME
+        	, P.PRODUCT_PRICE
+        	, P.DISCOUNT
+        	, P.PRODUCT_DETAIL
+        	, P.ORDERABLE_CYCLE
+		FROM 
+			ORDER_DETAIL ORD
+			, PRODUCT P
+		WHERE (ORD.PRODUCT_ID = P.PRODUCT_ID)
+		GROUP BY ORD.PRODUCT_ID
+		ORDER BY COUNT(ORD.PRODUCT_ID) DESC
+		LIMIT 5
+    </select>
+    
     <select id="list" parameterType="com.hsp.product.Product" resultMap="productResultMap">
         SELECT
             	PRODUCT_ID

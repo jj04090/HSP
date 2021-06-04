@@ -19,10 +19,10 @@
                             <h3 class="footer-title">제공되는 서비스</h3>
                             <div class="footer-info-list">
                                 <ul>
-                                    <li><a href="wishlist.html"> 쇼핑카트 </a></li>
-                                    <li><a href="my-account.html"> 마이페이지 </a></li>
-                                    <li><a href="return-policy.html"> 교환 </a></li>
-                                    <li><a href="#"> 상품 문의 </a></li>
+                                    <li><a href="wishlist.html"> 채널 관리 </a></li>
+                                    <li><a href="my-account.html"> 주문 관리 </a></li>
+                                    <li><a href="return-policy.html"> 상품 관리 </a></li>
+                                    <li><a href="#"> 게시글 관리 </a></li>
                                 </ul>
                             </div>
                         </div>

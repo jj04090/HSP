@@ -17,7 +17,7 @@
         <result column="DELEVERY_STATUS" property="delevery_status" />
         <result column="NAME" property="name" />
         <result column="ADDRESS" property="address" />
-        <result column="DETAIL_ADDRESS" property="detail_address" />
+        <result column="DETAIL_ADD" property="detail_add" />
         <result column="ZIP_CODE" property="zip_code" />
     </resultMap>
 
@@ -59,8 +59,8 @@
             <if test="address != null and address != ''">
                 AND ADDRESS = #{address}
             </if>
-            <if test="detail_address != null and detail_address != ''">
-                AND DETAIL_ADDRESS = #{detail_address}
+            <if test="detail_add != null and detail_add != ''">
+                AND DETAIL_ADD = #{detail_add}
             </if>
             <if test="zip_code != null and zip_code != ''">
                 AND ZIP_CODE = #{zip_code}
@@ -79,7 +79,7 @@
             	, DELEVERY_STATUS
             	, NAME
             	, ADDRESS
-            	, DETAIL_ADDRESS
+            	, DETAIL_ADD
             	, ZIP_CODE
         FROM ORDER_DETAIL
         <include refid="whereSql" />
@@ -97,12 +97,12 @@
 	 		   , ORD.DELEVERY_STATUS
 	 		   , U.NAME
 	 		   , U.ADDRESS
-	 		   , U.DETAIL_ADDRESS
+	 		   , U.DETAIL_ADD
 	 		   , U.ZIP_CODE
 		FROM PRODUCT P
 			 , ORDER_DETAIL ORD
 			 , ORDERS O
-			 ,(SELECT USER_ID, NAME, ADDRESS, DETAIL_ADDRESS, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
+			 ,(SELECT USER_ID, NAME, ADDRESS, DETAIL_ADD, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
 		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
 			AND (O.ORDER_ID = ORD.ORDER_ID)
 			AND ORD.ORDER_ID = #{order_id}
@@ -120,10 +120,10 @@
 	 		   , ORD.DELEVERY_STATUS
 	 		   , U.NAME
 	 		   , U.ADDRESS
-	 		   , U.DETAIL_ADDRESS
+	 		   , U.DETAIL_ADD
 	 		   , U.ZIP_CODE
 		FROM ORDERS O, ORDER_DETAIL ORD, PRODUCT P, 
-			(SELECT NAME, ADDRESS, DETAIL_ADDRESS, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
+			(SELECT NAME, ADDRESS, DETAIL_ADD, ZIP_CODE FROM USER WHERE USER_ID = #{user_id}) U
 		WHERE (O.ORDER_ID = ORD.ORDER_ID)
 		AND (ORD.PRODUCT_ID = P.PRODUCT_ID)
 		AND (ORD.ORDER_ID = #{order_id} )

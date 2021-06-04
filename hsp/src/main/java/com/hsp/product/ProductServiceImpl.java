@@ -1,5 +1,7 @@
 package com.hsp.product;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,16 +27,20 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hsp.channel.Subscribe;
+import com.hsp.channel.SubscribeMapper;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductMapper productMapper;
+	@Autowired
+	SubscribeMapper subscribeMapper;
 
 	@Override
-	public List<Product> viewProductList(String channel_id) {
+	public List<Product> viewProductList() {
 		Product product = new Product();
-		product.setChannel_id(channel_id);
 		List<Product> listProduct = null;
 		
 		try {
@@ -43,6 +50,73 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		return listProduct;
+	}
+	
+	@Override
+	public String subsCheck(Product product, String user_id) {
+		String msg = "X";
+		Subscribe subs = new Subscribe();
+		subs.setUser_id(user_id);
+		
+		try {
+			List<Subscribe> subsList = subscribeMapper.list(subs);
+			for (Subscribe subsCheck : subsList) {
+				if (subsCheck.getChannel_id().equals(product.getChannel_id())) {
+					msg = "O";
+					break;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return msg;
+	}
+	
+	@Override
+	public List<String> discountPrice(List<Product> productList) {
+		List<String> discountList = new ArrayList<String>();
+		
+		for (Product product : productList) {
+			int price = Integer.parseInt(product.getProduct_price());
+			float discount = Integer.parseInt(product.getDiscount());
+			double discountPrice = price * ( discount / 100 );
+			double total = price - discountPrice;
+			total = total * 1;
+			
+			discountList.add(String.valueOf((int)total));
+		}
+		
+		
+		return discountList;
+	}
+	
+	@Override
+	public String singleDiscount(Product product) {
+		int price = Integer.parseInt(product.getProduct_price());
+		float discount = Integer.parseInt(product.getDiscount());
+		double discountPrice = price * ( discount / 100 );
+		double total = price - discountPrice;
+		total = total * 1;
+		
+		return String.valueOf((int)total);
+	}
+	
+	@Override
+	public List<Product> channelProduct(String channel_id) {
+		List<Product> productList = null;
+		Product product = new Product();
+		product.setChannel_id(channel_id);
+		
+		try {
+			productList = productMapper.list(product);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return productList;
 	}
 
 	@Override
@@ -179,4 +253,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		return;	
 	}
+
+	
+
 }
