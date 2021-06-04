@@ -68,16 +68,10 @@ public class UserController {
 	@PutMapping
 	public ModelAndView updateUser(@ModelAttribute User user) {
 		ModelAndView mav = new ModelAndView(new RedirectView("/user"));
-		User getUser = (User)session.getAttribute("user");
-		
-		if(getUser.getUser_id() == user.getUser_id()) {
-			String encryptPW = userServiceImpl.encryptPW(user.getPassword());
-			user.setPassword(encryptPW);
-			userServiceImpl.updateUser(user);
-			
-			session.invalidate();
-			session.setAttribute("user", userServiceImpl.viewUser(user));
-		}
+
+		userServiceImpl.updateUser(user);
+		session.invalidate();
+		session.setAttribute("user", userServiceImpl.viewUser(user));
 		
 		return mav;
 	}

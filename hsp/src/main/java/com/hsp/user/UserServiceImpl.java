@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		
 		if(getUser != null) {
 			if(getUser.getPassword().equals(user.getPassword())) {
-				session.setAttribute("user", user);
+				session.setAttribute("user", getUser);
 				session.setMaxInactiveInterval(60 * 60);
 			}
 			return true;
