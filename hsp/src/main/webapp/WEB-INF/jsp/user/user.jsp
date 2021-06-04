@@ -14,11 +14,11 @@
                              <div class="col-lg-4 col-md-4">
                                  <div class="myaccount-tab-menu nav" role="tablist">
                                      <a href="#account_view" data-toggle="tab">내 정보 조회</a>
-                                     <a href="#account_edit" data-toggle="tab">비밀번호 변경</a>
+                                     <a href="#password_edit" data-toggle="tab">비밀번호 변경</a>
                                      <a href="#address_view" data-toggle="tab">배송지 조회</a>
                                      <a href="#address_edit" data-toggle="tab">배송지 변경</a>
                                      <a href="#order_view" data-toggle="tab">주문 조회</a>
-                                     <a href="#" data-toggle="tab">회원탈퇴</a>
+                                     <a href="#withdrawal" data-toggle="tab">회원탈퇴</a>
                                  </div>
                              </div>
                              <!-- My Account Tab Menu End -->
@@ -70,11 +70,33 @@
                                      </div>
                                      <!-- Single Tab Content End -->
                                      <!-- Single Tab Content Start -->
-                                     
-                                     
-                                     <!-- 비밀번호 변경 구현 -->
-                                     
-                                     
+                                     <div class="tab-pane fade" id="password_edit" role="tabpanel">
+                                         <div class="myaccount-content">
+                                             <div class="account-details-form">
+                                                 <form name="pwedit" action="/user/password" method="POST" enctype="multipart/form-data">
+                                                 	<input type="hidden" name="_method" value="PUT" />
+                                                     <div class="row">
+                                                         <div class="col-lg-12">
+                                                             <div class="account-info input-style mb-30">
+                                                                 <label>현재 비밀번호 </label>
+                                                                 <input type="password" name="password" id="password" />
+                                                             </div>
+                                                         </div>
+                                                         <div class="col-lg-12">
+                                                             <div class="account-info input-style mb-30">
+                                                                 <label>새 비밀번호 </label>
+                                                                 <input type="password" name="new_password" id="new_password" />
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <input type="hidden" name="user_id" value="${user.user_id}" id="user_id" />
+                                                     <div class="account-info-btn">
+                                                         <button>비밀번호 변경</button>
+                                                     </div>
+                                                 </form>
+                                             </div>
+                                         </div>
+                                     </div>
                                      <!-- Single Tab Content End -->
                                      <!-- Single Tab Content Start -->
                                      <div class="tab-pane fade" id="address_view" role="tabpanel">
@@ -147,6 +169,39 @@
                                      
                                      
                                      <!-- Single Tab Content End -->
+                                     <div class="tab-pane fade" id="withdrawal" role="tabpanel">
+                                         <div class="myaccount-content">
+                                             <div class="account-details-form">
+                                                 <form name="pwedit" action="/user" method="POST" enctype="multipart/form-data">
+                                                 	<input type="hidden" name="_method" value="DELETE" />
+                                                     <div class="row">
+                                                        <span> 회원탈퇴 시, 삭제된 정보는 복구할 수 없습니다.
+                                                        	<br> 회원탈퇴를 위한 조건을 확인하시길 바랍니다. <br>
+                                                        	<br> - 회원님의 모든 개인 정보는 삭제됩니다.
+                                                        	<br> - 플랫폼에서 활동하신 내역은 삭제되지 않습니다.
+                                                        	<br> - 보유하신 채널이 없어야 합니다.
+                                                        	<br> - 현재 구매 진행중인 상품이 없어야 합니다.
+                                                        </span>
+                                                        <fieldset>
+                                                            <legend>본인 확인</legend>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="account-info input-style mb-30">
+		                                                                <label>현재 비밀번호 </label>
+		                                                                <input type="password" name="password" id="password" />
+		                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="user_id" value="${user.user_id}" id="user_id" />
+                                                            <div class="account-info-btn">
+                                                         		<button>회원탈퇴 </button>
+                                                     		</div>
+                                                        </fieldset>
+                                                     </div> 
+                                                 </form>
+                                             </div>
+                                         </div>
+                                     </div>
                                      <!-- Single Tab Content End -->
                                  </div>
                              </div> 
