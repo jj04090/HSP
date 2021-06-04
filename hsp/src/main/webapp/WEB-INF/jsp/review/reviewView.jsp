@@ -25,8 +25,13 @@
 		<li>리뷰 내용 : ${review.review_content} </li>
 		<li>평점 : ${review.product_grade} </li>
 	</ul>
+<!--
 	<form name="edit" action="/review/${review.review_id}/editform" method="get">
 		<button type="submit">리뷰 수정</button>
+	</form>
+-->
+	<form name="list" action="/review/${review.product_id}" method="get">
+		<button type="submit">목록으로</button>
 	</form>
 	
 <%@ include file="../include/footer.jsp"%>

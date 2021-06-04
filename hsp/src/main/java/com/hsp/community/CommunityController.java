@@ -29,6 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsp.orders.OrderInfo;
+import com.hsp.user.User;
+
 @RestController
 @RequestMapping("/community")
 public class CommunityController {
@@ -43,15 +46,28 @@ public class CommunityController {
 	
 	String channel_id = "C01";
 	String community_id = "COMMU01";
+	String user_id = "ADMIN";
 	
 	//게시글 목록 조회
 	@GetMapping("/{channel_id}")
 	public ModelAndView listCommunity(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
-		modelAndView.setViewName("/community/communityBizList");
-		modelAndView.addObject("channel_id", channel_id);
-		modelAndView.addObject("listCommunity", listCommunity);
+		
+		User user = (User)httpSession.getAttribute("user");
+		String bizCheck = user.getUser_type();
+		
+		if (bizCheck == "B") {
+			List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
+			modelAndView.setViewName("/community/communityBizList");
+			modelAndView.addObject("channel_id", channel_id);
+			modelAndView.addObject("listCommunity", listCommunity);
+		} else {
+			List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
+			modelAndView.setViewName("/community/communityList");
+			modelAndView.addObject("channel_id", channel_id);
+			modelAndView.addObject("listCommunity", listCommunity);
+		}
+		
 		return modelAndView;
 	}
 	
@@ -59,16 +75,33 @@ public class CommunityController {
 	@GetMapping("/{channel_id}/{community_id}")
 	public ModelAndView viewCommunity(@PathVariable String channel_id, @PathVariable String community_id) {
 		Community community = new Community();
-		community.setChannel_id(channel_id);
-		community.setCommunity_id(community_id);
-		Community result = communityServiceImpl.viewCommunity(community);
-		
-		List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
-		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/community/communityView");
-		modelAndView.addObject("community", result);
-		modelAndView.addObject("listComment", listComment);
+		
+		User user = (User)httpSession.getAttribute("user");
+		String bizCheck = user.getUser_type();
+		
+		if (bizCheck == "B") {
+			community.setChannel_id(channel_id);
+			community.setCommunity_id(community_id);
+			Community result = communityServiceImpl.viewCommunity(community);
+			
+			List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
+			
+			modelAndView.setViewName("/community/communityBizView");
+			modelAndView.addObject("community", result);
+			modelAndView.addObject("listComment", listComment);
+		} else {
+			community.setChannel_id(channel_id);
+			community.setCommunity_id(community_id);
+			Community result = communityServiceImpl.viewCommunity(community);
+			
+			List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
+
+			modelAndView.setViewName("/community/communityView");
+			modelAndView.addObject("community", result);
+			modelAndView.addObject("listComment", listComment);
+		}
+		
 		return modelAndView;
 	}
 	

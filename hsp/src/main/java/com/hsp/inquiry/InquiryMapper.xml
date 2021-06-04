@@ -9,7 +9,7 @@
         <result column="PRODUCT_ID" property="product_id" />
         <result column="INQUIRY_TITLE" property="inquiry_title" />
         <result column="INQUIRY_CONTENT" property="inquiry_content" />
-        <result column="INQUIRY_REGIT_DATE" property="inquriy_regit_date" />
+        <result column="INQUIRY_REGIT_DATE" property="inquiry_regit_date" />
         <result column="ANSWER" property="answer" />
     </resultMap>
 
@@ -30,7 +30,7 @@
             <if test="inquiry_content != null and inquiry_content != ''">
                 AND INQUIRY_CONTENT = #{inquiry_content}
             </if>
-            <if test="inquriy_regit_date != null and inquriy_regit_date != ''">
+            <if test="inquiry_regit_date != null and inquiry_regit_date != ''">
                 AND INQUIRY_REGIT_DATE = #{inquriy_regit_date}
             </if>
             <if test="answer != null and answer != ''">
@@ -83,13 +83,25 @@
     </insert>
 
     <update id="update" parameterType="com.hsp.inquiry.Inquiry">
-        UPDATE MISSION
+        UPDATE INQUIRY
         <set>
+            <if test="inquiry_id != null">
+                INQUIRY_ID = #{inquiry_id},
+            </if>
+            <if test="user_id != null">
+                USER_ID = #{user_id},
+            </if>
+            <if test="product_id != null">
+                PRODUCT_ID = #{product_id},
+            </if>
             <if test="inquiry_title != null">
                 INQUIRY_TITLE = #{inquiry_title},
             </if>
             <if test="inquiry_content != null">
                 INQUIRY_CONTENT = #{inquiry_content},
+            </if>
+            <if test="inquiry_regit_date != null">
+                INQUIRY_REGIT_DATE = #{inquiry_regit_date}
             </if>
         </set>
         <where>
@@ -100,10 +112,28 @@
     </update>
     
     <update id="answer" parameterType="com.hsp.inquiry.Inquiry">
-        UPDATE MISSION
+        UPDATE INQUIRY
         <set>
+            <if test="inquiry_id != null">
+                INQUIRY_ID = #{inquiry_id},
+            </if>
+            <if test="user_id != null">
+                USER_ID = #{user_id},
+            </if>
+            <if test="product_id != null">
+                PRODUCT_ID = #{product_id},
+            </if>
+            <if test="inquiry_title != null">
+                INQUIRY_TITLE = #{inquiry_title},
+            </if>
+            <if test="inquiry_content != null">
+                INQUIRY_CONTENT = #{inquiry_content},
+            </if>
+            <if test="inquiry_regit_date != null">
+                INQUIRY_REGIT_DATE = #{inquiry_regit_date}
+            </if>
             <if test="answer != null">
-                ANSWER = #{answer},
+            	ANSWER = #{answer}
             </if>
         </set>
         <where>

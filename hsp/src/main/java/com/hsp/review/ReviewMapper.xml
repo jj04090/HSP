@@ -96,20 +96,32 @@
             #{product_grade},
             #{review_title},
             #{review_content},
-            #{review_img},
+            #{review_img}
         )
     </insert>
 
     <update id="update" parameterType="com.hsp.review.Review">
-        UPDATE MISSION
+        UPDATE REVIEW
         <set>
-        	<if test="review_title != null">
+        	<if test="review_id != null">
+                REVIEW_ID = #{review_id},
+            </if>
+            <if test="order_id != null">
+                ORDER_ID = #{order_id},
+            </if>
+            <if test="product_id != null">
+                PRODUCT_ID = #{product_id},
+            </if>
+            <if test="product_grade != 0">
+                PRODUCT_GRADE = #{product_grade},
+            </if>
+            <if test="review_title != null">
                 REVIEW_TITLE = #{review_title},
             </if>
             <if test="review_content != null">
                 REVIEW_CONTENT = #{review_content},
             </if>
-            <if test="review_img != 0">
+            <if test="review_img != null">
                 REVIEW_IMG = #{review_img},
             </if>
         </set>

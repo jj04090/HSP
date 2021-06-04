@@ -22,7 +22,7 @@
 		</div>
 
 		<div>
-			주문 ID : <input type="text" name="order_id" value=${order_id} id="order_id" readonly />
+			주문 ID : <input type="text" name="order_id" value=${order_id} id="order_id" />
 		</div>
 		
 		<div>

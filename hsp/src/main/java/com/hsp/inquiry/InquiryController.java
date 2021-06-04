@@ -106,7 +106,7 @@ public class InquiryController {
 	public ModelAndView updateInquiry(Inquiry inquiry) {
 		ModelAndView modelAndView = new ModelAndView();
 		inquiryServiceImpl.updateInquiry(inquiry);
-		modelAndView.setViewName("redirect:/inquiry/" + inquiry.getInquiry_id());
+		modelAndView.setViewName("redirect:/inquiry/" + inquiry.getProduct_id() + "/" + inquiry.getInquiry_id());
 		return modelAndView;
 	}
 	
@@ -114,8 +114,8 @@ public class InquiryController {
 	@PutMapping("/answer")
 	public ModelAndView updateAnswer(Inquiry inquiry) {
 		ModelAndView modelAndView = new ModelAndView();
-		inquiryServiceImpl.updateInquiry(inquiry);
-		modelAndView.setViewName("redirect:/inquiry/" + inquiry.getInquiry_id());
+		inquiryServiceImpl.updateAnswer(inquiry);
+		modelAndView.setViewName("redirect:/inquiry/" + inquiry.getProduct_id() + "/" + inquiry.getInquiry_id());
 		return modelAndView;
 	}
 	

@@ -62,17 +62,17 @@ public class ReviewController {
 		return modelAndView;
 	}
 	
-	//리뷰 수정 폼
-	@GetMapping("/{review_id}/editform")
-	public ModelAndView updatereview(@PathVariable String review_id) {
-		ModelAndView modelAndView = new ModelAndView();
-		Review review = new Review();
-		review.setReview_id(review_id);
-		Review result = reviewServiceImpl.viewReview(review);
-		modelAndView.setViewName("/review/reviewEditForm");
-		modelAndView.addObject("review", result);
-		return modelAndView;
-	}
+//	//리뷰 수정 폼
+//	@GetMapping("/{review_id}/editform")
+//	public ModelAndView updatereview(@PathVariable String review_id) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		Review review = new Review();
+//		review.setReview_id(review_id);
+//		Review result = reviewServiceImpl.viewReview(review);
+//		modelAndView.setViewName("/review/reviewEditForm");
+//		modelAndView.addObject("review", result);
+//		return modelAndView;
+//	}
 	
 	//리뷰 등록 폼
 	@GetMapping("/registform")
@@ -94,14 +94,14 @@ public class ReviewController {
 		return modelAndView;
 	}
 	
-	//리뷰 수정
-	@PutMapping("")
-	public ModelAndView updateReview(Review review, MultipartFile attach) {
-		ModelAndView modelAndView = new ModelAndView();
-		reviewServiceImpl.updateReview(review, attach);
-		modelAndView.setViewName("redirect:/review/" + review.getProduct_id() + "/" + review.getReview_id());
-		return modelAndView;
-	}
+//	//리뷰 수정
+//	@PutMapping("")
+//	public ModelAndView updateReview(Review review, MultipartFile attach) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		reviewServiceImpl.updateReview(review, attach);
+//		modelAndView.setViewName("redirect:/review/" + review.getProduct_id() + "/" + review.getReview_id());
+//		return modelAndView;
+//	}
 	
 	//리뷰 삭제
 	@DeleteMapping("")
@@ -116,7 +116,7 @@ public class ReviewController {
 		reviewServiceImpl.postCKEditorImgUpload(req, res, upload);
 	}
 	
-	@GetMapping("/review/display")
+	@GetMapping("/display")
 	public ResponseEntity<Resource> display(@RequestParam("filename") String fileName)throws Exception{
 		
 		return reviewServiceImpl.display(fileName);

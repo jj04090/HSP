@@ -22,12 +22,16 @@
 		<li>상품 ID : ${inquiry.product_id} </li>
 		<li>문의 제목 : ${inquiry.inquiry_title} </li>
 		<li>문의 내용 : ${inquiry.inquiry_content} </li>
+		<li>답변 내용 : ${inquiry.answer} </li>
 	</ul>
-	<form name="edit" action="/${inquiry.inquiry_id}/editform" method="get">
-		<button type="submit">게시글 수정</button>
+	<form name="edit" action="/inquiry/${inquiry.inquiry_id}/editform" method="get">
+		<button type="submit">문의 수정</button>
 	</form>
-	<form name="answer" action="/${inquiry.inquiry_id}/editanswerform" method="get">
+	<form name="answer" action="/inquiry/${inquiry.inquiry_id}/answereditform" method="get">
 		<button type="submit">답글 달기</button>
+	</form>
+	<form name="list" action="/inquiry/${inquiry.product_id}" method="get">
+		<button type="submit">목록으로</button>
 	</form>
 	
 <%@ include file="../include/footer.jsp"%>

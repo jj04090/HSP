@@ -93,7 +93,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public String imgUpload(MultipartFile attach) {
-		String savePath = "C:\\Users\\ws059\\project";//경로 변경해야함
+		String savePath = "C:\\images";
 		String logicalName = attach.getOriginalFilename();
 		String physicalName = UUID.randomUUID().toString() + "_" + logicalName;
 		
@@ -108,7 +108,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public ResponseEntity<Resource> display(String fileName) {
-		String uploadPath = "C:\\Users\\ws059\\project\\";//경로 변경해야함
+		String uploadPath = "C:\\images\\";
 		Resource resource = new FileSystemResource(uploadPath + fileName);
 		
 		if (!resource.exists()) {
@@ -130,7 +130,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, MultipartFile upload) {
-		String uploadPath = "C:\\Users\\ws059\\project"; // 기본 경로
+		String uploadPath = "C:\\images";
 		// 랜덤 문자 생성
 		UUID uid = UUID.randomUUID();
 		

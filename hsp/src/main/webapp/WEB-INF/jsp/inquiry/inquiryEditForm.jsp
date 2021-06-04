@@ -16,7 +16,7 @@
         </div>
     </div>
 	
-	<form name="edit" action="/inquiry" method="post" enctype="multipart/form-data">
+	<form name="edit" action="/inquiry/inquiry" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
@@ -39,8 +39,6 @@
 			문의 내용 : <input type="text" name="inquiry_content" placeholder=${inquiry.inquiry_content} id="inquiry_content" />
 		</div>
 
-		<textarea rows="5" cols="50" id="inquiryDes" name="inquiry_detail">${inquiry.inquiry_detail}</textarea>
-		
 		<div>
 			<button type="submit">문의 수정</button>
 		</div>

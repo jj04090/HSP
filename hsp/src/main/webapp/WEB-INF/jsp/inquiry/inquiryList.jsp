@@ -18,7 +18,7 @@
 	
 	<c:forEach items="${listInquiry}" var = "list">
 		<ul>
-			<li>제목 : <a href="/inquiry/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
+			<li>제목 : <a href="/inquiry/${list.product_id}/${list.inquiry_id}"> <c:out value="${list.inquiry_title}" /> </a> </li>
 			<li>내용 : <c:out value="${list.inquiry_content}" /></li>
 		</ul>
 	</c:forEach>
