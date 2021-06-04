@@ -125,7 +125,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public ResponseEntity<Resource> display(String fileName) {
-		String uploadPath = "C:\\images";//경로 변경해야함
+		String uploadPath = "C:\\images\\";//경로 변경해야함
 		Resource resource = new FileSystemResource(uploadPath + fileName);
 		
 		if (!resource.exists()) {
