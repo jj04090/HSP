@@ -174,8 +174,7 @@
     <select id="selectByProductId" parameterType="String" resultMap="channelResultMap">
     	SELECT CHANNEL.*
 		FROM CHANNEL,
-		     PRODUCT,
-		     ORDER_DETAIL
+		     PRODUCT
 		WHERE PRODUCT.PRODUCT_ID = #{product_id}
 		AND PRODUCT.CHANNEL_ID = CHANNEL.CHANNEL_ID
     </select>

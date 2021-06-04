@@ -16,12 +16,12 @@
 <body>
 	<h1>상품 리스트</h1>
 	
-	<c:forEach items="${listProduct}" var = "list">
+	<c:forEach items="${shoppingList}" var = "list">
 		<ul>
-			<li>사진 : <img class='small1' src="/hsp/product/display?filename=${list.product_img}"> </li>
-			<li>이름 : <a href="/hsp/product/${list.product_id}"> <c:out value="${list.product_name}" /> </a> </li>
-			<li>가격 : <c:out value="${list.product_price}" /></li>
-			<li>할인율 : <c:out value="${list.discount}" /></li>
+			<li>사진 : <img class='small1' src="/hsp/product/display?filename=${shoppingList.getProduct.product_img}"> </li>
+			<li>이름 : <a href="/hsp/product/${shoppingList.getProduct.product_id}"> <c:out value="${shoppingList.getProduct.product_name}" /> </a> </li>
+			<li>가격 : <c:out value="${shoppingList.getProduct.product_price}" /></li>
+			<li>할인율 : <c:out value="${shoppingList.getProduct.discount}" /></li>
 		</ul>
 	</c:forEach>
 	

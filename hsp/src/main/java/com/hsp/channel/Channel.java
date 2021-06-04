@@ -8,7 +8,7 @@ public class Channel implements Serializable {
 	private String channel_name;
 	private String category;
 	private String introduction;
-	private int business_no;
+	private String business_no;
 	private String bank_name;
 	private String account;
 	private String auth_code;
@@ -21,7 +21,7 @@ public class Channel implements Serializable {
 	}
 
 	public Channel(String channel_id, String user_id, String channel_name, String category, String introduction,
-			int business_no, String bank_name, String account, String auth_code, String access_token,
+			String business_no, String bank_name, String account, String auth_code, String access_token,
 			String refresh_token, String user_seq_no) {
 		this.channel_id = channel_id;
 		this.user_id = user_id;
@@ -77,11 +77,11 @@ public class Channel implements Serializable {
 		this.introduction = introduction;
 	}
 
-	public int getBusiness_no() {
+	public String getBusiness_no() {
 		return business_no;
 	}
 
-	public void setBusiness_no(int business_no) {
+	public void setBusiness_no(String business_no) {
 		this.business_no = business_no;
 	}
 

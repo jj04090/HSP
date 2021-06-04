@@ -59,7 +59,7 @@
             NAME,
             PASSWORD,
            	ADDRESS,
-           	DETAIL_ADDRESS,
+           	DETAIL_ADD,
            	ZIP_CODE,
            	EMAIL,
            	USER_TYPE,
@@ -75,7 +75,7 @@
             NAME,
             PASSWORD,
            	ADDRESS,
-           	DETAIL_ADDRESS,
+           	DETAIL_ADD,
            	ZIP_CODE,
            	EMAIL,
            	USER_TYPE,
@@ -86,7 +86,7 @@
             #{name},
             #{password},
             #{address},
-            #{detail_address},
+            #{detail_add},
             #{zip_code},
             #{email},
             #{user_type},
@@ -113,7 +113,7 @@
                 ADDRESS = #{address},
             </if>
             <if test="detail_address != null and detail_address != ''">
-                DETAIL_ADDRESS = #{detail_address},
+                DETAIL_ADD = #{detail_add},
             </if>
             <if test="zip_code != null and zip_code != ''">
                 ZIP_CODE = #{zip_code},
