@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsp.community.Comment;
+import com.hsp.community.Community;
+import com.hsp.user.User;
+
 @RestController
 @RequestMapping("/inquiry")
 public class InquiryController {
@@ -33,10 +37,24 @@ public class InquiryController {
 	@GetMapping("/{product_id}")
 	public ModelAndView listInquiry(@PathVariable String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Inquiry> listInquiry = inquiryServiceImpl.viewInquiryList(product_id);
-		modelAndView.setViewName("/inquiry/inquiryList");
-		modelAndView.addObject("product_id", product_id);
-		modelAndView.addObject("listInquiry", listInquiry);
+		
+		User user = (User)httpSession.getAttribute("user");
+		String bizCheck = user.getUser_type();
+		String u_id = user.getUser_id();
+		
+		if (bizCheck == "B") {
+			List<Inquiry> listInquiry = inquiryServiceImpl.viewInquiryList(product_id);
+			modelAndView.setViewName("/inquiry/inquiryBizList");
+			modelAndView.addObject("product_id", product_id);
+			modelAndView.addObject("listInquiry", listInquiry);
+		} else {
+			List<Inquiry> listInquiry = inquiryServiceImpl.viewInquiryMyList(u_id);
+			modelAndView.setViewName("/inquiry/inquiryList");
+			modelAndView.addObject("product_id", product_id);
+			modelAndView.addObject("user_id", u_id);
+			modelAndView.addObject("listInquiry", listInquiry);
+		}
+
 		return modelAndView;
 	}
 	
@@ -44,12 +62,25 @@ public class InquiryController {
 	@GetMapping("/{product_id}/{inquiry_id}")
 	public ModelAndView viewInquiry(@PathVariable String product_id, @PathVariable String inquiry_id) {
 		Inquiry inquiry = new Inquiry();
-		inquiry.setProduct_id(product_id);
-		inquiry.setInquiry_id(inquiry_id);
-		Inquiry result = inquiryServiceImpl.viewInquiry(inquiry);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/inquiry/inquiryView");
-		modelAndView.addObject("inquiry", result);
+		
+		User user = (User)httpSession.getAttribute("user");
+		String bizCheck = user.getUser_type();
+		
+		if (bizCheck == "B") {
+			inquiry.setProduct_id(product_id);
+			inquiry.setInquiry_id(inquiry_id);
+			Inquiry result = inquiryServiceImpl.viewInquiry(inquiry);
+			modelAndView.setViewName("/inquiry/inquiryBizView");
+			modelAndView.addObject("inquiry", result);
+		} else {
+			inquiry.setProduct_id(product_id);
+			inquiry.setInquiry_id(inquiry_id);
+			Inquiry result = inquiryServiceImpl.viewInquiry(inquiry);
+			modelAndView.setViewName("/inquiry/inquiryView");
+			modelAndView.addObject("inquiry", result);
+		}
+		
 		return modelAndView;
 	}
 	

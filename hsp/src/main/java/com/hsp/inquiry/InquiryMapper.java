@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface InquiryMapper {
 	public List<Inquiry> list(Inquiry inquiry) throws Exception;
+	
+	public List<Inquiry> myList(Inquiry inquiry) throws Exception;
 
 	public Inquiry select(Inquiry inquiry) throws Exception;
 

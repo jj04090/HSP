@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/bizheader.jsp"%>
 	
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
         <div class="custom-container">
@@ -15,7 +16,10 @@
             </div>
         </div>
     </div>
-		<div class="col-lg-8">
+	
+
+	
+	<div class="col-lg-8">
                         <div class="blog-details-wrapper">
                             <div class="blog-details-top-content">
                                 
@@ -49,8 +53,8 @@
                             </div>
                             <div class="blog-prev-next-wrap">
                                 <div class="row">
-									<form name="edit" action="/inquiry/${inquiry.inquiry_id}/editform" method="get">
-										<button type="submit">문의 수정</button>
+                                	<form name="answer" action="/inquiry/${inquiry.inquiry_id}/answereditform" method="get">
+										<button type="submit">답변하기</button>
 									</form>
 									<form name="list" action="/inquiry/${inquiry.product_id}" method="get">
 										<button type="submit">목록으로</button>
@@ -60,6 +64,6 @@
                         </div>
                     </div>
 	
-<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

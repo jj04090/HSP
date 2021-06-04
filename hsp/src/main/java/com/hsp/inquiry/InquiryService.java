@@ -7,6 +7,7 @@ public interface InquiryService {
 	public void updateInquiry(Inquiry inquiry);
 	public void deleteInquiry(Inquiry inquiry);
 	public List<Inquiry> viewInquiryList(String product_id);
+	public List<Inquiry> viewInquiryMyList(String user_id);
 	public Inquiry viewInquiry(Inquiry inquiry);
 	public void updateAnswer(Inquiry inquiry);
 }

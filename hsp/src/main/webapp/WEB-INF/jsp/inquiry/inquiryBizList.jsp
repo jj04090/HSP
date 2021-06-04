@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/bizheader.jsp"%>
 	
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
         <div class="custom-container">
@@ -16,11 +17,8 @@
         </div>
     </div>
 	
-
-	
-
 	<div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
-		<h4 class="sidebar-widget-title">${user_id}님의 문의 목록 </h4>
+		<h4 class="sidebar-widget-title">${product_id} 상품 문의 목록 </h4>
 		<div class="sidebar-categories-list">
 			<c:forEach items="${listInquiry}" var = "list">
 				<ul>
@@ -29,11 +27,8 @@
 				</ul>
 			</c:forEach>
     	</div>
-    	<form name="regit" action="/inquiry/registform" method="get">
-			<button type="submit">문의 등록</button>
-		</form>
     </div>
-    
-<%@ include file="../include/footer.jsp"%>
+	
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

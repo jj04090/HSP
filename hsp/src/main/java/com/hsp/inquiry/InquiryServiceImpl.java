@@ -24,6 +24,19 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 	
 	@Override
+	public List<Inquiry> viewInquiryMyList(String user_id) {
+		Inquiry inquiry = new Inquiry();
+		inquiry.setUser_id(user_id);
+		List<Inquiry> listInquiry = null;
+		try {
+			listInquiry = inquiryMapper.myList(inquiry);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listInquiry;
+	}
+	
+	@Override
 	public Inquiry viewInquiry(Inquiry inquiry) {
 		Inquiry result = null;
 		try {
