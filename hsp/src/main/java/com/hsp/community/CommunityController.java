@@ -126,7 +126,7 @@ public class CommunityController {
 		communityServiceImpl.postCKEditorImgUpload(req, res, upload);
 	}
 	
-	@GetMapping("/community/display")
+	@GetMapping("/display")
 	public ResponseEntity<Resource> display(@RequestParam("filename") String fileName)throws Exception{
 		
 		return communityServiceImpl.display(fileName);
