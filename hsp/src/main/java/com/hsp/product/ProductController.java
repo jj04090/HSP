@@ -33,44 +33,70 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsp.channel.Channel;
+import com.hsp.channel.ChannelServiceImpl;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
 	
 	@Autowired
 	ProductServiceImpl productServiceImpl;
+	@Autowired
+	ChannelServiceImpl channelServiceImpl;
 	
+//	String user_id = "U01";
+	String user_id = "ADMIN";
 	String channel_id = "C01";
 
 	@GetMapping("")
 	public ModelAndView listProduct() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Product> listProduct = productServiceImpl.viewProductList();
+		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
+		modelAndView.addObject("discountPrice", discountPrice);
 		modelAndView.setViewName("/product/productAll");
+		return modelAndView;
+	}
+	
+	@GetMapping("/biz")
+	public ModelAndView bixProduct() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/product/bizmain");
 		return modelAndView;
 	}
 	
 	@GetMapping("/{channel_id}")
 	public ModelAndView channelProduct(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
+		Channel channel = new Channel();
+		channel.setChannel_id(channel_id);
 		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
+		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
+		channel = channelServiceImpl.viewChannel(channel);
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
+		modelAndView.addObject("discountPrice", discountPrice);
+		modelAndView.addObject("channel", channel);
 		modelAndView.setViewName("/product/productList");
 		return modelAndView;
 	}
 	
 	@GetMapping("/{channel_id}/{product_id}")
 	public ModelAndView viewProduct(@PathVariable String channel_id, @PathVariable String product_id) {
+		ModelAndView modelAndView = new ModelAndView();
 		Product product = new Product();
 		product.setProduct_id(product_id);
 		product.setChannel_id(channel_id);
 		Product result = productServiceImpl.viewProduct(product);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/product/productView");
+		String discount = productServiceImpl.singleDiscount(result);
+		String subsCheck = productServiceImpl.subsCheck(result, user_id);
 		modelAndView.addObject("product", result);
+		modelAndView.addObject("discount", discount);
+		modelAndView.addObject("subsCheck", subsCheck);
+		modelAndView.setViewName("/product/productView");
 		return modelAndView;
 	}
 	

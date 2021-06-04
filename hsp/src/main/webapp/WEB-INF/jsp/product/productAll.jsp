@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
@@ -8,7 +9,7 @@
                 <div class="breadcrumb-content text-center">
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="main">Home</a>
                         </li>
                         <li class="active">모든 상품</li>
                     </ul>
@@ -129,7 +130,7 @@
                         <div class="shop-bottom-area">
                             <div class="row">
                             
-                            <c:forEach items="${listProduct}" var = "list">
+                            <c:forEach items="${listProduct}" var = "list" varStatus="status">
                                 <div class="custom-col-5 wow tmFadeInUp" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
                                     <div class="single-product-wrap mb-50">
                                         <div class="product-img-action-wrap mb-10">
@@ -156,8 +157,9 @@
                                             </div>
                                             <h2><a href="/product/${list.channel_id}/${list.product_id}"> <c:out value="${list.product_name}" /> </a></h2>
                                             <div class="product-price">
-                                                <span class="new-price"> <c:out value="${list.product_price}" /> 원 </span>
-                                                <span class="old-price">$10.00</span>
+                                                <span class="new-price"> <fmt:formatNumber value="${discountPrice[status.index]}" pattern="#,###" /> 원 </span>
+                                                
+                                                <span class="old-price"> <fmt:formatNumber value="${list.product_price}" pattern="#,###" /> 원 </span>
                                             </div>
                                         </div>
                                     </div>

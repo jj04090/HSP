@@ -17,6 +17,9 @@ public interface ProductService {
 	public List<Product> viewProductList(); // 파라미터 Product -> X
 	public Product viewProduct(Product product);
 	public List<Product> channelProduct(String channel_id);
+	public List<String> discountPrice(List<Product> productList);
+	public String singleDiscount(Product product);
+	public String subsCheck(Product product, String user_id);
 	
 	public String imgUpload(MultipartFile attach);
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload);
