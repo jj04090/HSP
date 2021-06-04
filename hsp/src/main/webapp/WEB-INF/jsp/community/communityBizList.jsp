@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp"%>
-	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/bizheader.jsp"%>
+
+
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
         <div class="custom-container">
             <div class="breadcrumb-content text-center">
@@ -50,7 +52,12 @@
                 </div>
             </div>
         </div>
+        
+    <form name="regit" action="/community/commuregistform" method="get">
+		<button type="submit">게시글 등록</button>
+	</form>
 
-<%@ include file="../include/footer.jsp"%>
+
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

@@ -29,10 +29,7 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	@Autowired
 	CommunityMapper communityMapper;
-	
-	@Autowired
-	CommentMapper commentMapper;
-	
+
 	@Override
 	public List<Community> viewCommunityList(String channel_id) {
 		Community community = new Community();
@@ -45,20 +42,7 @@ public class CommunityServiceImpl implements CommunityService {
 		}
 		return listCommunity;
 	}
-	
-	@Override
-	public List<Comment> viewCommentList(String community_id) {
-		Comment comment = new Comment();
-		comment.setCommunity_id(community_id);
-		List<Comment> listComment = null;
-		try {
-			listComment = commentMapper.list(comment);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return listComment;
-	}
-	
+
 	@Override
 	public Community viewCommunity(Community community) {
 		Community result = null;
@@ -79,7 +63,6 @@ public class CommunityServiceImpl implements CommunityService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override

@@ -16,7 +16,7 @@
         </div>
     </div>
 	
-	<form name="edit" action="/community" method="post" enctype="multipart/form-data">
+	<form name="edit" action="/community/commu" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
@@ -65,7 +65,7 @@
 		</script>
 		
 		<div>
-			<button type="submit">게시글 수정!</button>
+			<button type="submit">게시글 수정</button>
 		</div>
 	</form>
 

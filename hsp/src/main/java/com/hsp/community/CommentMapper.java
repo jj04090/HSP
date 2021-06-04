@@ -12,4 +12,6 @@ public interface CommentMapper {
 	public void update(Comment comment) throws Exception;
 
 	public void delete(Comment comment) throws Exception;
+	
+	public Comment select(Comment comment) throws Exception;
 }

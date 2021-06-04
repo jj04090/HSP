@@ -15,7 +15,6 @@ public interface CommunityService {
 	public void updateCommunity(Community community, MultipartFile attach);
 	public void deleteCommunity(Community community);
 	public List<Community> viewCommunityList(String channel_id);
-	public List<Comment> viewCommentList(String community_id);
 	public Community viewCommunity(Community community);
 	
 	public String imgUpload(MultipartFile attach);

@@ -38,14 +38,18 @@ public class CommunityController {
 	@Autowired
 	CommunityServiceImpl communityServiceImpl;
 	
+	@Autowired
+	CommentServiceImpl commentServiceImpl;
+	
 	String channel_id = "C01";
+	String community_id = "COMMU01";
 	
 	//게시글 목록 조회
 	@GetMapping("/{channel_id}")
 	public ModelAndView listCommunity(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
-		modelAndView.setViewName("/community/communityList");
+		modelAndView.setViewName("/community/communityBizList");
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listCommunity", listCommunity);
 		return modelAndView;
@@ -59,7 +63,7 @@ public class CommunityController {
 		community.setCommunity_id(community_id);
 		Community result = communityServiceImpl.viewCommunity(community);
 		
-		List<Comment> listComment = communityServiceImpl.viewCommentList(community_id);
+		List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/community/communityView");
@@ -81,7 +85,7 @@ public class CommunityController {
 	}
 	
 	//게시글 등록 폼
-	@GetMapping("/registform")
+	@GetMapping("/commuregistform")
 	public ModelAndView regitCommunity() {
 		ModelAndView modelAndView = new ModelAndView();
 		String community_id = "COMMU" + UUID.randomUUID().toString().subSequence(0, 5);
@@ -96,7 +100,7 @@ public class CommunityController {
 	}
 	
 	//게시글 등록
-	@PostMapping("")
+	@PostMapping("/commu")
 	public ModelAndView regitCommunity(Community community, @RequestParam("attach") MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.registCommunity(community, attach);
@@ -105,7 +109,7 @@ public class CommunityController {
 	}
 	
 	//게시글 수정
-	@PutMapping("")
+	@PutMapping("/commu")
 	public ModelAndView updateCommunity(Community community, MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.updateCommunity(community, attach);

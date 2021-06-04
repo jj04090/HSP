@@ -30,7 +30,18 @@
         </where>
     </sql>
 
-    <select id="list" parameterType="com.hsp.community.CommentMapper" resultMap="commentResultMap">
+    <select id="list" parameterType="com.hsp.community.Comment" resultMap="commentResultMap">
+        SELECT
+            	COMMENT_ID,
+            	COMMUNITY_ID,
+            	USER_ID,
+            	COMMENT_CONTENT,
+            	REGIT_DATE
+        FROM COMMENT
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="select" parameterType="com.hsp.community.Comment" resultMap="commentResultMap">
         SELECT
             	COMMENT_ID,
             	COMMUNITY_ID,
@@ -41,7 +52,7 @@
         <include refid="whereSql" />
     </select>
 
-    <insert id="insert" parameterType="com.hsp.community.CommentMapper">
+    <insert id="insert" parameterType="com.hsp.community.Comment">
         INSERT INTO COMMENT (
             COMMENT_ID,
 			COMMUNITY_ID,
@@ -53,12 +64,11 @@
             #{community_id},
             #{user_id},
             #{comment_content},
-            #{regit_date},
+            #{regit_date}
         )
-        <include refid="whereSql" />
     </insert>
 
-    <update id="update" parameterType="com.hsp.community.CommentMapper">
+    <update id="update" parameterType="com.hsp.community.Comment">
         UPDATE COMMENT
         <set>
         	<if test="comment_id != null">
@@ -83,7 +93,7 @@
         </where>
     </update>
 
-    <delete id="delete" parameterType="com.hsp.community.CommentMapper">
+    <delete id="delete" parameterType="com.hsp.community.Comment">
         DELETE FROM COMMENT
         <where>
         	COMMENT_ID = #{comment_id}

@@ -16,11 +16,11 @@
         </div>
     </div>
 
-	<form name='regit' action="/community" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/community/commu" method="post" enctype="multipart/form-data">
 		<div>
 			게시글 ID : <input type="text" name="community_id" value=${community_id} id="community_id" readonly />
 		</div>
-
+		
 		<div>
 			채널 ID : <input type="text" name="channel_id" value=${channel_id} id="channel_id" readonly />
 		</div>
