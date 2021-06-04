@@ -121,8 +121,6 @@
                 </div>
             </div>
         </div>
-       //푸터 추가
-       	
 <%@ include file="../include/footer.jsp"%>
 </body>
 <script type="text/javascript"
@@ -137,16 +135,17 @@
 		var IMP = window.IMP;
 		var iamportRequest;
 		IMP.init('imp99346121'); //이거 받아와서 숨기기
+		var urlType = "/payment";
+		
+		<c:if test="${cartType eq 'W'}">
+			urlType = "/payment/routine";
+		</c:if>
+		
 		$.ajax({
 			type : 'POST',
-			url : '/payment', //구별하기
+			url : urlType,
 			data : {
-				user : {
-					user_id : "aa"
-				}/* ,
-				product : {
-					product_id : 1
-				} */
+				user_id : document.getElementById("userId").value
 			},
 			success : function(data) {
 				console.log(data);
@@ -164,18 +163,28 @@
 						var msg = '결제가 완료되었습니다.\n';
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						var iconValue = 'success';
-						//location.replace('/shoppingcart');
-						/* $.ajax({      //주문등록으로 보내기, 주문객체(orders_id) 보냄
+						swal({
+							title : "결제 상태",
+							text : msg,
+							icon : iconValue
+						//"info,success,warning,error" 중 택1
+						})
+						$.ajax({      //주문등록으로 보내기, 주문객체(orders_id) 보냄
 						    type: 'POST',
-						    url: '/payment',
-						    headers: { "Content-Type": "application/json" },
+						    url: '/order',
+						   // headers: { "Content-Type": "application/json" },
 						    data: {
-						    	merchant_uid: rsp.merchant_uid
+						    	order_id: rsp.merchant_uid,
+						    	user_id : document.getElementById("userId").value,
+						    	cartType : '${cartType}'
+						    }, success:function(data) {
+						    	location.href="/order";
 						    }
-						}); */
+						});
 					} else {
 						var msg = '결제에 실패하였습니다.';
 						var iconValue = 'error';
+						console.log(rsp)
 					}
 					swal({
 						title : "결제 상태",
@@ -212,7 +221,6 @@
 			contentType: "application/json",
 			data : JSON.stringify(arr),
 			success: function(data){
-				console.log("???");
 				location.reload(true);
 			}
 		});
@@ -228,7 +236,6 @@
 				user_id : document.getElementById("userId").value
 			},
 			success: function(data){
-				console.log("???");
 				location.reload(true);
 			}
 		});

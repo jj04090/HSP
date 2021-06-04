@@ -48,23 +48,23 @@ public class OrderServiceImpl implements OrderService {
 	PaymentServiceImpl paymentServiceImpl;
 	
 	@Override
-	public void applyOrder(Orders orders, String user_id) {
+	public void applyOrder(Orders orders, String cartType) {
 		try {
 			ShoppingCart shoppingCart = new ShoppingCart();
-			shoppingCart.setUser_id(user_id);
+			shoppingCart.setUser_id(orders.getUser_id());
+			shoppingCart.setCart_type(cartType);
 			List<ShoppingCart> shopingCartList = shoppingCartMapper.list(shoppingCart);
 			
 			Date now = new Date();
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			orders.setOrder_date(df.format(now));
-			orders.setUser_id(user_id);
-			orders.setOrder_type(shopingCartList.get(0).getCart_type());
+			orders.setOrder_type(cartType);
 			orders.setOrder_status("O");
 			ordersMapper.insert(orders);
 						
 			Subscribe subscribe = new Subscribe();
-			subscribe.setUser_id(user_id);
+			subscribe.setUser_id(orders.getUser_id());
 //			List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // Subscribe 매퍼 추가 후 사용
 			List<Subscribe> subscribeList = new ArrayList<Subscribe>();
 			
@@ -103,7 +103,8 @@ public class OrderServiceImpl implements OrderService {
 			}
 			
 			ShoppingCart clearCart = new ShoppingCart();
-			clearCart.setUser_id(user_id);
+			clearCart.setUser_id(orders.getUser_id());
+			clearCart.setCart_type(cartType);
 			shoppingCartMapper.delete(shoppingCart);
 			
 		} catch (Exception e) {
@@ -325,12 +326,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int totalPrice(String user_id) {
+	public int totalPrice(String user_id, String cartType) {
 		double totalPrice = 0;
 		
 		try {
 			ShoppingCart shoppingCart = new ShoppingCart();
 			shoppingCart.setUser_id(user_id);
+			shoppingCart.setCart_type(cartType);
 			List<ShoppingCart> cartList = shoppingCartMapper.list(shoppingCart);
 			Map<Product, Integer> productPlusQty = new HashMap<Product, Integer>();
 			

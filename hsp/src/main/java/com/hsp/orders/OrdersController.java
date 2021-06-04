@@ -28,9 +28,10 @@ public class OrdersController {
 	
 	@PostMapping("") // 주문 등록 Json으로 값 들어옴 -> 예상 파라미터 (Order, List<String>) -> List<String> : Prodcut_id
 	@ResponseBody
-	public ModelAndView orderRegit(Orders orders, String user_id) {
+	public ModelAndView orderRegit(Orders orders, String cartType) {
+		System.out.println(orders.getOrder_id()+orders.getUser_id()+"/////////////////"+cartType);
 		ModelAndView modelAndView = new ModelAndView();
-		orderServiceImpl.applyOrder(orders, user_id);
+		orderServiceImpl.applyOrder(orders, cartType);
 		modelAndView.setViewName("redirect:/order");
 		return modelAndView;
 	}

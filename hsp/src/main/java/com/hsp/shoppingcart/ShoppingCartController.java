@@ -50,7 +50,8 @@ public class ShoppingCartController {
 			shoppingList = shoppingCartServiceImpl.viewShoppingCart(shoppingCart);
 			
 			mv.addObject("shoppingList", shoppingList);
-			mv.addObject("total", orderServiceImpl.totalPrice("U02"));
+			mv.addObject("total", orderServiceImpl.totalPrice("U02", cartType));
+			mv.addObject("cartType", cartType.toUpperCase());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

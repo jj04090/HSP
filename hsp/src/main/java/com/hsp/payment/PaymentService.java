@@ -3,7 +3,7 @@ package com.hsp.payment;
 import com.hsp.orders.Orders;
 
 public interface PaymentService {
-
+	
 	//결제 취소
 	public boolean cancelPayment(String merchant_uid) throws Exception;
 	
