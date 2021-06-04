@@ -89,7 +89,7 @@
             #{detail_add},
             #{zip_code},
             #{email},
-            #{user_type},
+            'C',
             #{regit_date}
         )
     </insert>
@@ -112,7 +112,7 @@
             <if test="address != null and address != ''">
                 ADDRESS = #{address},
             </if>
-            <if test="detail_address != null and detail_address != ''">
+            <if test="detail_add != null and detail_add != ''">
                 DETAIL_ADD = #{detail_add},
             </if>
             <if test="zip_code != null and zip_code != ''">

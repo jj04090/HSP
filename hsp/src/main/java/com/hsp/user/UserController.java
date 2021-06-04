@@ -26,6 +26,7 @@ public class UserController {
 	@GetMapping
 	public ModelAndView user() {
 		ModelAndView mav = new ModelAndView();
+		
 		User getUser = (User)session.getAttribute("user");
 		mav.setView(new RedirectView("/user/" + getUser.getUser_id()));
 		
@@ -50,7 +51,10 @@ public class UserController {
 	
 	@PostMapping
 	public ModelAndView registUser(@ModelAttribute User user) {
-		ModelAndView mav = new ModelAndView(new RedirectView("/user"));
+		ModelAndView mav = new ModelAndView(new RedirectView("/login"));
+		
+		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+		user.setPassword(encryptPW);
 		userServiceImpl.registUser(user);
 		
 		return mav;
@@ -67,10 +71,12 @@ public class UserController {
 		User getUser = (User)session.getAttribute("user");
 		
 		if(getUser.getUser_id() == user.getUser_id()) {
+			String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+			user.setPassword(encryptPW);
 			userServiceImpl.updateUser(user);
 			
 			session.invalidate();
-			session.setAttribute("user", user);
+			session.setAttribute("user", userServiceImpl.viewUser(user));
 		}
 		
 		return mav;
@@ -79,6 +85,7 @@ public class UserController {
 	@DeleteMapping
 	public ModelAndView deleteUser() {
 		ModelAndView mav = new ModelAndView(new RedirectView("/main"));
+		
 		User getUser = (User)session.getAttribute("user");
 		userServiceImpl.deleteUser(getUser);
 		session.invalidate();

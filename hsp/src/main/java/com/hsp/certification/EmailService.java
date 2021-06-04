@@ -1,8 +1,8 @@
 package com.hsp.certification;
 
+import com.hsp.user.User;
+
 public interface EmailService {
-	public void certEmail(String email);
-	public void sendID(String email);
-	public void sendPW(String email);
-	
+	public void sendID(User user);
+	public void sendPW(User user);
 }

@@ -89,7 +89,7 @@
                                             <li><a href="#">English</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="login-register.html">로그인 / 회원 가입</a></li>
+                                    <li><a href="/login">로그인 / 회원 가입</a></li>
                                 </ul>
                             </div>
                         </div>

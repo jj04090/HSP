@@ -30,21 +30,25 @@ public class CommonController {
 		Product mostOrderedproduct = commonServiceImpl.mostOrdered();
 		List<Product> sellingList = commonServiceImpl.sellingList();
 		List<Channel> topChannel = commonServiceImpl.channelList();
+		
 		modelAndView.addObject("grade", mostReviewProduct);
 		modelAndView.addObject("ordered", mostOrderedproduct);
 		modelAndView.addObject("sellingList", sellingList);
 		modelAndView.addObject("topChannel", topChannel);
 		modelAndView.setViewName("/main/main");
-		return modelAndView; 
+		
+		return modelAndView;
 	}
 	
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("login");
+		return new ModelAndView("/main/login");
 	}
 	
 	@PostMapping("/login")
 	public ModelAndView login(@ModelAttribute User user) {
+		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+		user.setPassword(encryptPW);
 		userServiceImpl.login(user);
 		
 		return new ModelAndView(new RedirectView("/main"));
@@ -57,27 +61,22 @@ public class CommonController {
 		return new ModelAndView(new RedirectView("/main"));
 	}
 	
-	@GetMapping("/findID")
-	public ModelAndView findID() {
-		return new ModelAndView("findID");
+	@GetMapping("/find")
+	public ModelAndView find() {
+		return new ModelAndView("/main/find");
 	}
 	
 	@PostMapping("/findID")
 	public ModelAndView findID(@ModelAttribute User user) {
 		userServiceImpl.findID(user);
 		
-		return new ModelAndView(new RedirectView("/main"));
+		return new ModelAndView(new RedirectView("/login"));
 	}
-	
-	@GetMapping("/findPW")
-	public ModelAndView findPW() {
-		return new ModelAndView("findPW");
-	}
-	
+
 	@PostMapping("/findPW")
 	public ModelAndView findPW(@ModelAttribute User user) {
 		userServiceImpl.findPW(user);
 		
-		return new ModelAndView(new RedirectView("/main"));
+		return new ModelAndView(new RedirectView("/login"));
 	}
 }
