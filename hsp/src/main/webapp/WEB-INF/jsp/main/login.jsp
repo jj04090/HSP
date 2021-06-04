@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	main
+	login.jsp
 </body>
 </html>
