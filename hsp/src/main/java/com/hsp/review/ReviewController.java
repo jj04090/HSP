@@ -64,7 +64,7 @@ public class ReviewController {
 	
 	//리뷰 수정 폼
 	@GetMapping("/{review_id}/editform")
-	public ModelAndView updatereview(@PathVariable(name = "review_id") String review_id) {
+	public ModelAndView updatereview(@PathVariable String review_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Review review = new Review();
 		review.setReview_id(review_id);
@@ -99,7 +99,7 @@ public class ReviewController {
 	public ModelAndView updateReview(Review review, MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		reviewServiceImpl.updateReview(review, attach);
-		modelAndView.setViewName("redirect:/review/" + review.getReview_id());
+		modelAndView.setViewName("redirect:/review/" + review.getProduct_id() + "/" + review.getReview_id());
 		return modelAndView;
 	}
 	

@@ -16,8 +16,8 @@
         </div>
     </div>
 	
-	<form name="edit" action="/reviewupdate" method="post" enctype="multipart/form-data">
-		<!-- <input type="hidden" name="_method" value="PUT" />  -->
+	<form name="edit" action="/review" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
 			리뷰 ID : <input type="text" name="review_id" value=${review.review_id} id="review_id" readonly />
@@ -32,7 +32,13 @@
 		</div>
 
 		<div>
-			평점 : <input type="text" name="review_grade" placeholder=${review.review_grade} id="review_grade" />
+			평점 : <select name="product_grade" id="product_grade">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						  </select>
 		</div>
 		
 		<div>
@@ -59,11 +65,7 @@
 			리뷰 제목 : <input type="text" name="review_title" placeholder=${review.review_title} id="review_title" />
 		</div>
 		
-		<div>
-			리뷰 내용 : <input type="text" name="review_content" placeholder=${review.review_content} id="review_content" />
-		</div>
-
-		<textarea rows="5" cols="50" id="reviewDes" name="review_detail">${review.review_detail}</textarea>
+		<textarea rows="5" cols="50" id="reviewDes" name="review_content">${review.review_content}</textarea>
 
 		<script>
 			var ckeditor_config = {

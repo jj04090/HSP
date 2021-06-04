@@ -70,7 +70,7 @@ public class CommunityController {
 	
 	//게시글 수정 폼
 	@GetMapping("/{community_id}/editform")
-	public ModelAndView updateCommunity(@PathVariable(name = "community_id") String community_id) {
+	public ModelAndView updateCommunity(@PathVariable String community_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Community community = new Community();
 		community.setCommunity_id(community_id);
@@ -109,7 +109,7 @@ public class CommunityController {
 	public ModelAndView updateCommunity(Community community, MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		communityServiceImpl.updateCommunity(community, attach);
-		modelAndView.setViewName("redirect:/community/" + community.getCommunity_id());
+		modelAndView.setViewName("redirect:/community/" + community.getChannel_id() + "/" + community.getCommunity_id());
 		return modelAndView;
 	}
 	

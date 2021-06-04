@@ -25,7 +25,7 @@
 		<li>리뷰 내용 : ${review.review_content} </li>
 		<li>평점 : ${review.product_grade} </li>
 	</ul>
-	<form name="edit" action="/${review.review_id}/editform" method="get">
+	<form name="edit" action="/review/${review.review_id}/editform" method="get">
 		<button type="submit">리뷰 수정</button>
 	</form>
 	

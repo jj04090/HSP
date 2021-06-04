@@ -16,8 +16,8 @@
         </div>
     </div>
 	
-	<form name="edit" action="/inquiryupdate" method="post" enctype="multipart/form-data">
-		<!-- <input type="hidden" name="_method" value="PUT" />  -->
+	<form name="edit" action="/inquiry" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
 			문의 ID : <input type="text" name="inquiry_id" value=${inquiry.inquiry_id} id="inquiry_id" readonly />

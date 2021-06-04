@@ -16,15 +16,15 @@
         </div>
     </div>
 	
-	<form name="edit" action="/communityupdate" method="post" enctype="multipart/form-data">
-		<!-- <input type="hidden" name="_method" value="PUT" />  -->
+	<form name="edit" action="/community" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
 			채널 ID : <input type="text" name="channel_id" value=${community.channel_id} id="channel_id" readonly />
 		</div>
 
 		<div>
-			채널 ID : <input type="text" name="community_id" value=${community.product_id} id="product_id" readonly />
+			게시글 ID : <input type="text" name="community_id" value=${community.community_id} id="community_id" readonly />
 		</div>
 
 		<div>
@@ -51,11 +51,7 @@
 		} 
 		</script>
 		
-		<div>
-			게시글 내용 : <input type="text" name="community_content" placeholder=${community.community_content} id="community_content" />
-		</div>
-
-		<textarea rows="5" cols="50" id="communityDes" name="community_detail">${community.community_detail}</textarea>
+		<textarea rows="5" cols="50" id="communityDes" name="community_content">${community.community_content}</textarea>
 
 		<script>
 			var ckeditor_config = {

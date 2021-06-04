@@ -66,9 +66,7 @@
                                     </div>
                                     
                                     <div class="blog-comment-submit">
-                                        <form name="edit" action="/${community.community_id}/editform" method="get">
-											<button type="submit">게시글 수정</button>
-										</form>
+<!-- 버튼 원래 있던 자리 -->
                                     </div>
                                 </form>
                             </div>
@@ -193,6 +191,12 @@
                 </div>
             </div>
         </div>
+        <form name="edit" action="/community/${community.community_id}/editform" method="get">
+			<button type="submit">게시글 수정</button>
+		</form>
+		<form name="list" action="/community/${community.channel_id}" method="get">
+			<button type="submit">목록으로</button>
+		</form>
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>
