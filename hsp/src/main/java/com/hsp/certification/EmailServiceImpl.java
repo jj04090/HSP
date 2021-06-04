@@ -59,8 +59,10 @@ public class EmailServiceImpl implements EmailService {
 			mailHelper.setText(text);
 			mailSender.send(mail);
 			
-			user.setPassword(tempPW);
+			String encryptPW = userServiceImpl.encryptPW(tempPW);
+			user.setPassword(encryptPW);
 			userServiceImpl.updateUser(user);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

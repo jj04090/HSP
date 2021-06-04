@@ -57,7 +57,7 @@ public class ChannelController {
 	
 	@GetMapping("/edit")
 	public ModelAndView updateChannel() {
-		return new ModelAndView("/channel/registChannel");
+		return new ModelAndView("/channel/updateChannel");
 	}
 	
 	@PutMapping

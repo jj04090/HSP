@@ -61,7 +61,7 @@ public class ChannelServiceImpl implements ChannelService {
 	@Override
 	public List<Channel> viewChannelList(Channel channel) {
 		try {
-			return channelMapper.list(channel);
+			return channelMapper.list();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
