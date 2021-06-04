@@ -65,7 +65,7 @@
 		</script>
 		
 		<div>
-			<button type="submit">게시글 수정</button>
+			<button type="submit">게시글 수정!</button>
 		</div>
 	</form>
 
