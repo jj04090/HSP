@@ -36,12 +36,19 @@
 		<div>
 			문의 제목 : <input type="text" name="inquiry_title" placeholder="제목" id="inquiry_title" />
 		</div>
-		
-		<div>
-			문의 내용 : <input type="text" name="inquiry_content" placeholder="내용" id="inquiry_content" />
-		</div>
 
-		<textarea rows="5" cols="50" id="inquiryDes" name="inquiry_detail"></textarea>
+		<textarea rows="5" cols="50" id="inquiryDes" name="inquiry_content"></textarea>
+
+		<script>
+			var ckeditor_config = {
+				resize_enaleb : false,
+				enterMode : CKEDITOR.ENTER_BR,
+				shiftEnterMode : CKEDITOR.ENTER_P,
+				filebrowserUploadUrl : "/inquiry/ckUpload"
+			};
+
+			CKEDITOR.replace("inquiryDes", ckeditor_config);
+		</script>
 		
 		<div>
 			<button type="submit">문의 작성</button>

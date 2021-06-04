@@ -14,13 +14,13 @@ public class InquiryServiceImpl implements InquiryService {
 	public List<Inquiry> viewInquiryList(String product_id) {
 		Inquiry inquiry = new Inquiry();
 		inquiry.setProduct_id(product_id);
-		List<Inquiry> listinquiry = null;
+		List<Inquiry> listInquiry = null;
 		try {
-			listinquiry = inquiryMapper.list(inquiry);
+			listInquiry = inquiryMapper.list(inquiry);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return listinquiry;
+		return listInquiry;
 	}
 	
 	@Override

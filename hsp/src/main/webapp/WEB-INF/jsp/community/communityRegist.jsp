@@ -48,9 +48,7 @@
 		} 
 		</script>
 		
-		<div>
-			게시글 내용 : <input type="text" name="community_content" placeholder="내용" id="community_content" />
-		</div>
+		<textarea rows="5" cols="50" id="communityDes" name="community_content"></textarea>
 
 		<script>
 			var ckeditor_config = {

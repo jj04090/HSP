@@ -30,6 +30,16 @@
 		</div>
 
 		<div>
+			평점 : <select name="product_grade" id="product_grade">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						  </select>
+		</div>
+
+		<div>
 			리뷰 제목 : <input type="text" name="review_title" placeholder="제목" id="review_title" />
 		</div>
 		
@@ -48,18 +58,14 @@
 		} 
 		</script>
 		
-		<div>
-			리뷰 내용 : <input type="text" name="review_content" placeholder="내용" id="review_content" />
-		</div>
-
-		<textarea rows="5" cols="50" id="reviewDes" name="review_detail"></textarea>
+		<textarea rows="5" cols="50" id="reviewDes" name="review_content"></textarea>
 
 		<script>
 			var ckeditor_config = {
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/review/ckUpload"
+				filebrowserUploadUrl : "/review/ckUpload"
 			};
 
 			CKEDITOR.replace("reviewDes", ckeditor_config);

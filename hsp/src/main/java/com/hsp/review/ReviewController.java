@@ -42,10 +42,10 @@ public class ReviewController {
 	@GetMapping("/{product_id}")
 	public ModelAndView listReview(@PathVariable String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Review> listreview = reviewServiceImpl.viewReviewList(product_id);
+		List<Review> listReview = reviewServiceImpl.viewReviewList(product_id);
 		modelAndView.setViewName("/review/reviewList");
 		modelAndView.addObject("product_id", product_id);
-		modelAndView.addObject("listreview", listreview);
+		modelAndView.addObject("listReview", listReview);
 		return modelAndView;
 	}
 	

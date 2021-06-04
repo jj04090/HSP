@@ -41,12 +41,12 @@
 
     <select id="list" parameterType="com.hsp.inquiry.Inquiry" resultMap="inquiryResultMap">
         SELECT
-            	INQUIRY_ID,
-            	USER_ID,
-            	PRODUCT_ID,
-            	INQUIRY_TITLE,
-            	INQUIRY_CONTENT,
-            	INQUIRY_REGIT_DATE
+            INQUIRY_ID,
+            USER_ID,
+            PRODUCT_ID,
+            INQUIRY_TITLE,
+            INQUIRY_CONTENT,
+            INQUIRY_REGIT_DATE
         FROM INQUIRY
         <include refid="whereSql" />
     </select>

@@ -33,13 +33,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> viewReviewList(String product_id) {
 		Review review = new Review();
 		review.setProduct_id(product_id);
-		List<Review> listreview = null;
+		List<Review> listReview = null;
 		try {
-			listreview = reviewMapper.list(review);
+			listReview = reviewMapper.list(review);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return listreview;
+		return listReview;
 	}
 	
 	@Override

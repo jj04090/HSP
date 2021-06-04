@@ -45,7 +45,9 @@
 			ORDER_ID,
 			PRODUCT_ID,
   			PRODUCT_GRADE,
-  			REVIEW_TITLE
+  			REVIEW_TITLE,
+  			REVIEW_CONTENT,
+  			REVIEW_IMG
         FROM REVIEW
             <include refid="whereSql" />
     </select>

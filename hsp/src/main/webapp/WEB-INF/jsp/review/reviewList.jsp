@@ -19,9 +19,9 @@
 	<c:forEach items="${listReview}" var = "list">
 		<ul>
 			<li>사진 : <img class='small1' src="/review/display?filename=${list.review_img}"> </li>
-			<li>제목 : <a href="/review/${list.review_id}"> <c:out value="${list.review_title}" /> </a> </li>
+			<li>제목 : <a href="/review/${list.product_id}/${list.review_id}"> <c:out value="${list.review_title}" /> </a> </li>
 			<li>내용 : <c:out value="${list.review_content}" /></li>
-			<li>평점 : <c:out value="${list.review_grade}" /></li>
+			<li>평점 : <c:out value="${list.product_grade}" /></li>
 		</ul>
 	</c:forEach>
 	
