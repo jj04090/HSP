@@ -1,32 +1,20 @@
 package com.hsp.product;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hsp.channel.Channel;
 import com.hsp.channel.ChannelServiceImpl;
+import com.hsp.inquiry.Inquiry;
+import com.hsp.inquiry.InquiryServiceImpl;
+import com.hsp.review.Review;
+import com.hsp.review.ReviewServiceImpl;
 
 @RestController
 @RequestMapping("/product")
@@ -44,6 +36,12 @@ public class ProductController {
 	ProductServiceImpl productServiceImpl;
 	@Autowired
 	ChannelServiceImpl channelServiceImpl;
+	@Autowired
+	ReviewServiceImpl reviewServiceImpl;
+	@Autowired
+	InquiryServiceImpl inquiryServiceImpl;
+	@Autowired
+	HttpSession httpSession;
 	
 //	String user_id = "U01";
 	String user_id = "ADMIN";
@@ -61,14 +59,23 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/biz")
-	public ModelAndView bixProduct() {
+	@GetMapping("/bizproduct")
+	public ModelAndView bixProduct() { // 새션 작업해야됨 // 위에 꺼랑 통합
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/product/bizmain");
+		Channel channel = new Channel();
+		channel.setChannel_id(channel_id);
+		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
+		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
+		channel = channelServiceImpl.viewChannel(channel);
+		modelAndView.addObject("channel_id", channel_id);
+		modelAndView.addObject("listProduct", listProduct);
+		modelAndView.addObject("discountPrice", discountPrice);
+		modelAndView.setViewName("/product/productListBiz");
 		return modelAndView;
 	}
 	
-	@GetMapping("/{channel_id}")
+	/*
+	@GetMapping("/{channel_id}") // channel로 이동
 	public ModelAndView channelProduct(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		Channel channel = new Channel();
@@ -83,6 +90,7 @@ public class ProductController {
 		modelAndView.setViewName("/product/productList");
 		return modelAndView;
 	}
+	*/
 	
 	@GetMapping("/{channel_id}/{product_id}")
 	public ModelAndView viewProduct(@PathVariable String channel_id, @PathVariable String product_id) {
@@ -93,10 +101,32 @@ public class ProductController {
 		Product result = productServiceImpl.viewProduct(product);
 		String discount = productServiceImpl.singleDiscount(result);
 		String subsCheck = productServiceImpl.subsCheck(result, user_id);
+//		Review review = new Review();
+//		review.setProduct_id(product_id);
+		List<Review> reviewList = reviewServiceImpl.viewReviewList();
+		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList();
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
+		modelAndView.addObject("reviewList", reviewList);
+		modelAndView.addObject("inquiryList", inquiryList);
 		modelAndView.setViewName("/product/productView");
+		return modelAndView;
+	}
+	
+	@GetMapping("/biz/{product_id}")
+	public ModelAndView viewProductBiz(@PathVariable String product_id) { // 위에 꺼랑 통합 // 세션
+		ModelAndView modelAndView = new ModelAndView();
+		Product product = new Product();
+		product.setProduct_id(product_id);
+		product.setChannel_id(channel_id);
+		Product result = productServiceImpl.viewProduct(product);
+		String discount = productServiceImpl.singleDiscount(result);
+		String subsCheck = productServiceImpl.subsCheck(result, user_id);
+		modelAndView.addObject("product", result);
+		modelAndView.addObject("discount", discount);
+		modelAndView.addObject("subsCheck", subsCheck);
+		modelAndView.setViewName("/product/productViewBiz");
 		return modelAndView;
 	}
 	
@@ -106,7 +136,7 @@ public class ProductController {
 		Product product = new Product();
 		product.setProduct_id(product_id);
 		Product result = productServiceImpl.viewProduct(product);
-		modelAndView.setViewName("/product/productEditForm");
+		modelAndView.setViewName("/product/productEditBiz");
 		modelAndView.addObject("product", result);
 		return modelAndView;
 	}
@@ -115,9 +145,9 @@ public class ProductController {
 	public ModelAndView regitProduct() {
 		ModelAndView modelAndView = new ModelAndView();
 		String product_id = "P" + UUID.randomUUID().toString().subSequence(0, 9);
-		modelAndView.setViewName("/product/productRegist");
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("product_id", product_id);
+		modelAndView.setViewName("/product/productRegistBiz");
 		return modelAndView;
 	}
 

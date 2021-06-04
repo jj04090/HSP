@@ -6,6 +6,7 @@ public class Channel implements Serializable {
 	private String channel_id;
 	private String user_id;
 	private String channel_name;
+	private String channel_img;
 	private String category;
 	private String introduction;
 	private String business_no;
@@ -20,12 +21,13 @@ public class Channel implements Serializable {
 		
 	}
 
-	public Channel(String channel_id, String user_id, String channel_name, String category, String introduction,
-			String business_no, String bank_name, String account, String auth_code, String access_token,
-			String refresh_token, String user_seq_no) {
+	public Channel(String channel_id, String user_id, String channel_name, String channel_img, String category,
+			String introduction, String business_no, String bank_name, String account, String auth_code,
+			String access_token, String refresh_token, String user_seq_no) {
 		this.channel_id = channel_id;
 		this.user_id = user_id;
 		this.channel_name = channel_name;
+		this.channel_img = channel_img;
 		this.category = category;
 		this.introduction = introduction;
 		this.business_no = business_no;
@@ -35,6 +37,16 @@ public class Channel implements Serializable {
 		this.access_token = access_token;
 		this.refresh_token = refresh_token;
 		this.user_seq_no = user_seq_no;
+	}
+
+	
+
+	public String getChannel_img() {
+		return channel_img;
+	}
+
+	public void setChannel_img(String channel_img) {
+		this.channel_img = channel_img;
 	}
 
 	public String getChannel_id() {
@@ -136,12 +148,11 @@ public class Channel implements Serializable {
 	@Override
 	public String toString() {
 		return "Channel [channel_id=" + channel_id + ", user_id=" + user_id + ", channel_name=" + channel_name
-				+ ", category=" + category + ", introduction=" + introduction + ", business_no=" + business_no
-				+ ", bank_name=" + bank_name + ", account=" + account + ", auth_code=" + auth_code + ", access_token="
-				+ access_token + ", refresh_token=" + refresh_token + ", user_seq_no=" + user_seq_no + "]";
+				+ ", channel_img=" + channel_img + ", category=" + category + ", introduction=" + introduction
+				+ ", business_no=" + business_no + ", bank_name=" + bank_name + ", account=" + account + ", auth_code="
+				+ auth_code + ", access_token=" + access_token + ", refresh_token=" + refresh_token + ", user_seq_no="
+				+ user_seq_no + "]";
 	}
-
 	
-
 	
 }

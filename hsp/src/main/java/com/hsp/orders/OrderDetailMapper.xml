@@ -74,6 +74,7 @@
 		HAVING COUNT(*) = (SELECT MAX(MYCOUNT)
 							FROM (SELECT PRODUCT_ID, COUNT(*) AS MYCOUNT
 									FROM ORDER_DETAIL GROUP BY PRODUCT_ID) AS RESULT)
+									LIMIT 1
     </select>
     
     <update id="statusUpdate" parameterType="com.hsp.orders.OrderDetail">

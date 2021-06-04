@@ -1,7 +1,5 @@
 package com.hsp.product;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

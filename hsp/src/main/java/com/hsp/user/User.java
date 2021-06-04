@@ -133,6 +133,14 @@ public class User implements Serializable {
 	public void setItemSizePerPage(int itemSizePerPage) {
 		this.itemSizePerPage = itemSizePerPage;
 	}
+
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", phone=" + phone + ", name=" + name + ", password=" + password
+				+ ", address=" + address + ", detail_add=" + detail_add + ", zip_code=" + zip_code + ", email=" + email
+				+ ", user_type=" + user_type + ", regit_date=" + regit_date + ", itemStart=" + itemStart
+				+ ", itemSizePerPage=" + itemSizePerPage + "]";
+	}
     
     
 }

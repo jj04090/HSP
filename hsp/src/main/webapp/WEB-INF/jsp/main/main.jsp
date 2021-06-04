@@ -135,7 +135,10 @@
                          -->
                     </div>
                     <div class="product-slider-active-1 nav-style-2 product-hm1-mrg slick-initialized slick-slider"><span class="pro-icon-1-prev slick-arrow" style=""><i class="far fa-angle-left"></i></span>
-                        <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4692px; transform: translate3d(-1380px, 0px, 0px);"><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-5" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4692px; transform: translate3d(-1380px, 0px, 0px);">
+                        
+                        <!-- 
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-5" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -180,7 +183,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -224,7 +229,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-30%</span>
@@ -268,7 +275,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-17%</span>
@@ -311,7 +320,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-38%</span>
@@ -355,7 +366,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 276px;">
+                        </div>
+                        
+                        
+                         -->
+                        
+                        
+                        
+                        <div class="product-plr-1 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-26%</span>
@@ -398,7 +416,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -443,7 +463,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 276px;">
+                        </div>
+                        
+                        <!--  
+                        <div class="product-plr-1 slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -487,7 +510,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-30%</span>
@@ -531,7 +556,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-17%</span>
@@ -574,7 +601,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        -->
+                        
+                        <div class="product-plr-1 slick-slide" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-38%</span>
@@ -618,7 +649,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-26%</span>
@@ -661,7 +695,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -706,7 +742,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="hot yellow">Hot</span>
@@ -750,7 +788,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-30%</span>
@@ -794,7 +834,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-17%</span>
@@ -837,7 +879,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
+                        </div>
+                        
+                        <div class="product-plr-1 slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
                             <div class="single-product-wrap">
                                 <div class="product-badges product-badges-mrg">
                                     <span class="discount red">-38%</span>
@@ -881,7 +925,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div></div></div>
+                        </div>
+                        
+                         
+                        
+                        
+                        </div>
+                        </div>
                         
                         
                         

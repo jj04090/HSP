@@ -111,7 +111,7 @@
                                             <li><a href="index-2.html">Home 2 – 사업자 화면</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="shop.html">Channel <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="/channel">Channel <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop.html">Shop – Left Sidebar</a></li>
                                             <li><a href="shop-right-sidebar.html">Shop – Right Sidebar</a></li>

@@ -38,7 +38,7 @@
                                          <input type="hidden" value="${cartValue.shoppingCart.user_id}" id="userId">
                                             <tr>
                                                 <td class="product-thumbnail">
-                                                    <a href="product-details.html"><img class='small1' src="/hsp/product/display?filename=${cartValue.product.product_img}"></a>
+                                                    <a href="product-details.html"><img class='small1' src="/product/display?filename=${cartValue.product.product_img}"></a>
                                                 </td>
                                                 <td class="product-name">
                                                     <h5><a href="/hsp/product/${cartValue.product.product_id}"> <c:out value="${cartValue.product.product_name}" /> </a></h5>

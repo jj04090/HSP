@@ -77,7 +77,7 @@ public class CommonServiceImpl implements CommonService {
 		List<Channel> channel = null;
 		
 		try {
-//			channel = channelMapper.list(channel) 매퍼 추가 후 사용
+			channel = channelMapper.topChannel();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

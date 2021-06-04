@@ -2,6 +2,7 @@ package com.hsp.user;
 
 import java.security.MessageDigest;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,9 @@ public class UserServiceImpl implements UserService {
 		
 		if(getUser != null) {
 			if(getUser.getPassword().equals(user.getPassword())) {
-				session.setAttribute("user", user);
+				session.setAttribute("user", getUser);
 				session.setMaxInactiveInterval(60 * 60);
+				System.out.println(getUser);
 			}
 			return true;
 		}

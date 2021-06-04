@@ -2,6 +2,9 @@ package com.hsp.common;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,20 +25,28 @@ public class CommonController {
 	private UserServiceImpl userServiceImpl;
 	@Autowired
 	CommonServiceImpl commonServiceImpl;
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("/main")
-	public ModelAndView main() {
+	public ModelAndView main(HttpSession session, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		Product mostReviewProduct = commonServiceImpl.getMaxReview();
-		Product mostOrderedproduct = commonServiceImpl.mostOrdered();
-		List<Product> sellingList = commonServiceImpl.sellingList();
-		List<Channel> topChannel = commonServiceImpl.channelList();
+		User getUser = (User)session.getAttribute("user");
 		
-		modelAndView.addObject("grade", mostReviewProduct);
-		modelAndView.addObject("ordered", mostOrderedproduct);
-		modelAndView.addObject("sellingList", sellingList);
-		modelAndView.addObject("topChannel", topChannel);
-		modelAndView.setViewName("/main/main");
+//		if (getUser.getUser_type().equals("B")) {
+//			modelAndView.setViewName("/main/bizmain");
+//		} else {
+			Product mostReviewProduct = commonServiceImpl.getMaxReview();
+			Product mostOrderedproduct = commonServiceImpl.mostOrdered();
+			List<Product> sellingList = commonServiceImpl.sellingList();
+			List<Channel> topChannel = commonServiceImpl.channelList();
+			
+			modelAndView.addObject("grade", mostReviewProduct);
+			modelAndView.addObject("ordered", mostOrderedproduct);
+			modelAndView.addObject("sellingList", sellingList);
+			modelAndView.addObject("topChannel", topChannel);
+			modelAndView.setViewName("/main/main");
+//		}
 		
 		return modelAndView;
 	}
@@ -50,7 +61,6 @@ public class CommonController {
 		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
 		user.setPassword(encryptPW);
 		userServiceImpl.login(user);
-		
 		return new ModelAndView(new RedirectView("/main"));
 	}
 	
