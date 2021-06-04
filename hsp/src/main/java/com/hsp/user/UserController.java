@@ -35,7 +35,7 @@ public class UserController {
 	
 	@GetMapping("/{user_id}")
 	public ModelAndView viewUser(@PathVariable String user_id) {
-		ModelAndView mav = new ModelAndView("user/user");
+		ModelAndView mav = new ModelAndView("/user/user");
 		
 		User user = new User();
 		user.setUser_id(user_id);
@@ -46,12 +46,12 @@ public class UserController {
 	
 	@GetMapping("/regist")
 	public ModelAndView registUser() {
-		return new ModelAndView("user/registUser");
+		return new ModelAndView("/user/registUser");
 	}
 	
 	@PostMapping
 	public ModelAndView registUser(@ModelAttribute User user) {
-		ModelAndView mav = new ModelAndView(new RedirectView("/main"));
+		ModelAndView mav = new ModelAndView(new RedirectView("/login"));
 		
 		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
 		user.setPassword(encryptPW);
@@ -62,7 +62,7 @@ public class UserController {
 	
 	@GetMapping("/edit")
 	public ModelAndView updateUser() {
-		return new ModelAndView("user/updateUser");
+		return new ModelAndView("/user/updateUser");
 	}
 	
 	@PutMapping

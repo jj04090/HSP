@@ -1,5 +1,7 @@
 package com.hsp.common;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.hsp.channel.Channel;
+import com.hsp.product.Product;
 import com.hsp.user.User;
 import com.hsp.user.UserServiceImpl;
 
@@ -16,10 +20,24 @@ public class CommonController {
 	
 	@Autowired
 	private UserServiceImpl userServiceImpl;
+	@Autowired
+	CommonServiceImpl commonServiceImpl;
 	
 	@GetMapping("/main")
 	public ModelAndView main() {
-		return new ModelAndView("/main/main");
+		ModelAndView modelAndView = new ModelAndView();
+		Product mostReviewProduct = commonServiceImpl.getMaxReview();
+		Product mostOrderedproduct = commonServiceImpl.mostOrdered();
+		List<Product> sellingList = commonServiceImpl.sellingList();
+		List<Channel> topChannel = commonServiceImpl.channelList();
+		
+		modelAndView.addObject("grade", mostReviewProduct);
+		modelAndView.addObject("ordered", mostOrderedproduct);
+		modelAndView.addObject("sellingList", sellingList);
+		modelAndView.addObject("topChannel", topChannel);
+		modelAndView.setViewName("/main/main");
+		
+		return modelAndView;
 	}
 	
 	@GetMapping("/login")

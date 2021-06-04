@@ -19,8 +19,8 @@ import com.hsp.product.Product;
 @RequestMapping("/order")
 public class OrdersController {
 	
-	String channel_id = "";
-//	String channel_id = "C01";
+//	String channel_id = "";
+	String channel_id = "C01";
 	String user_id = "ADMIN";
 	
 	@Autowired

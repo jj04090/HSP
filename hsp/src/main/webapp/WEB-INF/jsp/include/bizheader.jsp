@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-4">
                             <div class="covid-update text-center">
-                                <p><a href="#">채널을 구독하세요!</a> 채널을 구독하면 할인가에 구매 할 수 있습니다.</p>
+                                <p><a href="#">사업자 관리 화면</a> 자신의 채널을 관리하세요</p>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-4">
@@ -89,7 +89,7 @@
                                             <li><a href="#">English</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/login">로그인 / 회원 가입</a></li>
+                                    <li><a href="login-register.html">로그인 / 회원 가입</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                             <li><a href="index-2.html">Home 2 – 사업자 화면</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="shop.html">Channel <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="shop.html">채널 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop.html">Shop – Left Sidebar</a></li>
                                             <li><a href="shop-right-sidebar.html">Shop – Right Sidebar</a></li>
@@ -133,7 +133,7 @@
                                     </li>
                                     
                                     
-                                    <li class="position-static"><a href="/product">Product <i class="fa fa-chevron-down"></i></a>
+                                    <li class="position-static"><a href="/product">주문 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Medical Accessories</a>
@@ -187,7 +187,23 @@
                                         </ul>
                                     </li>
                                     
-                                    <li><a href="blog.html">Community <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="blog.html">상품 관리 <i class="fa fa-chevron-down"></i></a>
+                                        <ul class="sub-menu">
+                                            <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
+                                            <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>
+                                            <li><a href="blog-grid-no-sidebar.html">Blog Grid – No Sidebar</a></li>
+                                            <li><a href="blog-grid-wide.html">Grid Wide</a></li>
+                                            <li><a href="#">Single Layout <i class="fa fa-chevron-right"></i></a>
+                                                <ul class="level-menu level-menu-modify">
+                                                    <li><a href="blog-details.html">Left Sidebar</a></li>
+                                                    <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
+                                                    <li><a href="blog-details-no-sidebar.html">No Sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li><a href="blog.html">게시글 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
                                             <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>

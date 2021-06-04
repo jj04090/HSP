@@ -89,7 +89,7 @@
             #{detail_add},
             #{zip_code},
             #{email},
-            #{user_type},
+            'C',
             #{regit_date}
         )
     </insert>
