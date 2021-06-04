@@ -15,16 +15,18 @@ public class OrderInfo implements Serializable{
 	private String delevery_status;
 	private String name;
 	private String address;
-	private String detail_address;
+	private String detail_add;
 	private String zip_code;
 	
 	public OrderInfo() {
 		
 	}
 	
+	
+
 	public OrderInfo(String order_id, String user_id, String order_type, String product_name, String product_id,
-			String product_img, String product_qty, String price, String discount,
-			String delevery_status, String name, String address, String detail_address, String zip_code) {
+			String product_img, String product_qty, String price, String discount, String delevery_status, String name,
+			String address, String detail_add, String zip_code) {
 		this.order_id = order_id;
 		this.user_id = user_id;
 		this.order_type = order_type;
@@ -37,9 +39,11 @@ public class OrderInfo implements Serializable{
 		this.delevery_status = delevery_status;
 		this.name = name;
 		this.address = address;
-		this.detail_address = detail_address;
+		this.detail_add = detail_add;
 		this.zip_code = zip_code;
 	}
+
+
 
 	public String getProduct_img() {
 		return product_img;
@@ -138,12 +142,14 @@ public class OrderInfo implements Serializable{
 		this.address = address;
 	}
 
-	public String getDetail_address() {
-		return detail_address;
+	
+
+	public String getDetail_add() {
+		return detail_add;
 	}
 
-	public void setDetail_address(String detail_address) {
-		this.detail_address = detail_address;
+	public void setDetail_add(String detail_add) {
+		this.detail_add = detail_add;
 	}
 
 	public String getZip_code() {
@@ -159,10 +165,10 @@ public class OrderInfo implements Serializable{
 		return "OrderInfo [order_id=" + order_id + ", user_id=" + user_id + ", order_type=" + order_type
 				+ ", product_name=" + product_name + ", product_id=" + product_id + ", product_img=" + product_img
 				+ ", product_qty=" + product_qty + ", price=" + price + ", discount=" + discount + ", delevery_status="
-				+ delevery_status + ", name=" + name + ", address=" + address + ", detail_address=" + detail_address
+				+ delevery_status + ", name=" + name + ", address=" + address + ", detail_add=" + detail_add
 				+ ", zip_code=" + zip_code + "]";
 	}
-	
+
 	
 	
 }
