@@ -13,30 +13,34 @@ import com.hsp.product.ProductMapper;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-	
+
 	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
-	
+
 	@Autowired
 	private ProductMapper productMapper;
-	
 
-	//장바구니 등록
+	// 장바구니 등록
 	@Override
 	public void registShoppingCart(ShoppingCart shoppingCart) throws Exception {
-		shoppingCartMapper.insert(shoppingCart);
+		ShoppingCart sc = shoppingCartMapper.select(shoppingCart);
+		if (sc != null) {
+			shoppingCartMapper.update(shoppingCart);
+		} else {
+			shoppingCartMapper.insert(shoppingCart);
+		}
 	}
 
-	//장바구니 비우기
+	// 장바구니 비우기
 	@Override
 	public void deleteShoppingCart(ShoppingCart shoppingCart) throws Exception {
 		shoppingCartMapper.delete(shoppingCart);
 	}
 
-	//장바구니 조회
+	// 장바구니 조회
 	@Override
 	public List<CartValue> viewShoppingCart(ShoppingCart shoppingCart) throws Exception {
 		Product product = new Product();
@@ -51,11 +55,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			temp.setShoppingCart(sc);
 			sl.add(temp);
 		}
-		
+
 		return sl;
 	}
 
-	//장바구니 수정
+	// 장바구니 수정
 	@Override
 	public void editShoppingCart(List<ShoppingCart> list) throws Exception {
 		for (ShoppingCart shoppingCart : list) {

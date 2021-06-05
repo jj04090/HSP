@@ -106,7 +106,8 @@ public class OrderServiceImpl implements OrderService {
 			clearCart.setUser_id(orders.getUser_id());
 			clearCart.setCart_type(cartType);
 			shoppingCartMapper.delete(shoppingCart);
-			
+			paymentServiceImpl.routinePayment(orders, this.schedualPrice(orders));
+			System.out.println("ㅇㅎㅇㅎㅇㅎㅇㅎㅎㅇㅎㅇㅎㅎ"+orders+"======="+this.schedualPrice(orders));//이거 200이넹?
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -427,8 +428,8 @@ public class OrderServiceImpl implements OrderService {
 				
 				Subscribe subscribe = new Subscribe();
 				subscribe.setUser_id(user_id);
-//				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
-				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
+//				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
 				
 				for (Subscribe subscribes : subscribeList) {
 					if (subscribes.getChannel_id().equals(product.getChannel_id())) {

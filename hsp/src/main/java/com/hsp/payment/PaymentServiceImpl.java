@@ -1,5 +1,6 @@
 package com.hsp.payment;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -33,8 +34,10 @@ import com.hsp.product.ProductMapper;
 import com.hsp.user.User;
 import com.hsp.user.UserMapper;
 import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.AgainPaymentData;
 import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.BillingCustomer;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 
@@ -76,17 +79,18 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Orders routinePayment(Orders orders, int price) throws Exception {
 		User user = (User) httpSession.getAttribute("user");
-		BigDecimal amount = new BigDecimal(100);
+		BigDecimal amount = new BigDecimal(price);
 		String merchantUid = "biling" + new Date().getTime();
-		AgainPaymentData againPaymentData = new AgainPaymentData("cid_113", merchantUid, amount);
+		AgainPaymentData againPaymentData = new AgainPaymentData(user.getUser_id()+"bilingkey", merchantUid, amount);
 		againPaymentData.setName("빌링키 결제테스트상품입니다.");
 
 		IamportResponse<Payment> iamportResponse = new IamportClient("1722439638143134",
 				"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N")
 						.againPayment(againPaymentData);
-		System.out.println(iamportResponse.getMessage() + iamportResponse.getCode() + iamportResponse.getResponse());
+		System.out.println("-==-=-=-=-==-=-"+iamportResponse.getMessage() + iamportResponse.getCode() + iamportResponse.getResponse());
 		Orders order = new Orders();
 		order.setOrder_id(merchantUid);
+		System.out.println(order + "가격 ////////" + price);
 		return order;
 	}
 	
@@ -184,5 +188,16 @@ public class PaymentServiceImpl implements PaymentService {
 			return map;
 		}
 		return null;
+	}
+	
+	public boolean checkBilingKey(String user_id) {
+		try {
+			IamportResponse<BillingCustomer> response = new IamportClient("1722439638143134",
+					"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N").getBillingCustomer(user_id+"bilingkey");
+		} catch (IamportResponseException | IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

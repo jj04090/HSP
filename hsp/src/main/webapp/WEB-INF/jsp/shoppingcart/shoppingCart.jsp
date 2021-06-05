@@ -144,9 +144,6 @@
 		$.ajax({
 			type : 'POST',
 			url : urlType,
-			data : {
-				user_id : document.getElementById("userId").value
-			},
 			success : function(data) {
 				console.log(data);
 				IMP.request_pay({
