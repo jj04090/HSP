@@ -106,7 +106,8 @@ public class OrderServiceImpl implements OrderService {
 			clearCart.setUser_id(orders.getUser_id());
 			clearCart.setCart_type(cartType);
 			shoppingCartMapper.delete(shoppingCart);
-			
+			paymentServiceImpl.routinePayment(orders, this.schedualPrice(orders));
+			System.out.println("ㅇㅎㅇㅎㅇㅎㅇㅎㅎㅇㅎㅇㅎㅎ"+orders+"======="+this.schedualPrice(orders));//이거 200이넹?
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

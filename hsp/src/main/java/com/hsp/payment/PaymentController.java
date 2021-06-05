@@ -22,16 +22,16 @@ import com.hsp.user.UserServiceImpl;
 public class PaymentController {
 	@Autowired
 	private OrderServiceImpl orderServiceImpl;
-	
+
 	@Autowired
 	private PaymentServiceImpl paymentServiceImpl;
-	
+
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
 	@Autowired
 	private HttpServletResponse httpServletResponse;
-	
+
 	@Autowired
 	private HttpSession httpSession;
 
@@ -39,7 +39,7 @@ public class PaymentController {
 	@GetMapping
 	public ModelAndView paymentProcess() {
 		ModelAndView mv = new ModelAndView();
-		
+
 		try {
 			paymentServiceImpl.calculate();
 		} catch (Exception e) {
@@ -53,27 +53,26 @@ public class PaymentController {
 	// 일반 결제 정보 전송
 	@PostMapping
 	@ResponseBody
-	public IamportRequest normalPayment(String user_id) {
-		//String user_id = (String) httpSession.getAttribute("user_id");
-		User user = new User();
-		user.setUser_id(user_id);
-		user = userServiceImpl.viewUser(user);
-		
-		return new IamportRequest("html5_inicis","merchant_uid"+UUID.randomUUID().toString(), "장바구니 상품 구매", orderServiceImpl.totalPrice(user.getUser_id(),"S"), user.getEmail(), user.getName());
+	public IamportRequest normalPayment() {
+		User getUser = (User) httpSession.getAttribute("user");
+
+		return new IamportRequest("html5_inicis", "merchant_uid" + UUID.randomUUID().toString(), "장바구니 상품 구매",
+				orderServiceImpl.totalPrice(getUser.getUser_id(), "S"), getUser.getEmail(), getUser.getName());
 	}
 
 	// 정기 결제 정보 전송
 	@PostMapping("/routine")
 	@ResponseBody
-	public IamportRequest routinePayment(String user_id) {
-		//String user_id = (String) httpSession.getAttribute("user_id");
-		User user = new User();
-		user.setUser_id(user_id);
-		user = userServiceImpl.viewUser(user);
-		
-		//빌링키를 조회하여 만약 존재한다면 카드등록말고 그대로 진행한다. 아니 선택지를 준다
-		return new IamportRequest("html5_inicis.INIBillTst","merchant_uid"+UUID.randomUUID().toString(), "정기상품 결제", orderServiceImpl.totalPrice(user.getUser_id(),"W"), user.getEmail(), user.getName(), user.getUser_id()+"bilingkey");
+	public IamportRequest routinePayment() {
+		User getUser = (User) httpSession.getAttribute("user");
+		boolean flag = paymentServiceImpl.checkBilingKey(getUser.getUser_id());
+		// 빌링키를 조회하여 만약 존재한다면 카드등록말고 그대로 진행한다. 아니 선택지를 준다
+		if (flag) {
+			return new IamportRequest("html5_inicis.INIBillTst", "merchant_uid" + UUID.randomUUID().toString(),
+					"정기상품 결제", orderServiceImpl.totalPrice(getUser.getUser_id(), "W"), getUser.getEmail(),
+					getUser.getName(), getUser.getUser_id() + "bilingkey");
+		}
+		return new IamportRequest();
 	}
-	
-	
+
 }
