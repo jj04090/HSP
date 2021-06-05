@@ -103,8 +103,8 @@ public class ProductController {
 		String subsCheck = productServiceImpl.subsCheck(result, user_id);
 //		Review review = new Review();
 //		review.setProduct_id(product_id);
-		List<Review> reviewList = reviewServiceImpl.viewReviewList();
-		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList();
+		List<Review> reviewList = reviewServiceImpl.viewReviewList(product_id);
+		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList(product_id);
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
