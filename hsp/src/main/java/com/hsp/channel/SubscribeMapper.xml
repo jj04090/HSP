@@ -49,5 +49,11 @@
         FROM SUBSCRIBE
         <include refid="whereSql" />
     </select>
+    
+    <select id="count" parameterType="com.hsp.channel.Subscribe" resultType="string">
+        SELECT COUNT(*)
+		FROM SUBSCRIBE
+        <include refid="whereSql" />
+    </select>
 
 </mapper>

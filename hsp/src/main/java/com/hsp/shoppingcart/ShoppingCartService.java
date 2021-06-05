@@ -13,8 +13,8 @@ public interface ShoppingCartService {
 	public void deleteShoppingCart(ShoppingCart shoppingCart) throws Exception;
 	
 	//장바구니 수정
-	public List<ShoppingCart> editShoppingCart(ShoppingCart shoppingCart) throws Exception;
+	public void editShoppingCart(List<ShoppingCart> list) throws Exception;
 		
 	//장바구니 조회
-	public List<ShoppingCart> viewShoppingCart(ShoppingCart shoppingCart) throws Exception;
+	public List<CartValue> viewShoppingCart(ShoppingCart shoppingCart) throws Exception;
 }

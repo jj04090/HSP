@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 public class EmailConfiguration {
-	@Bean(name="mailSender")
+	@Bean
 	public JavaMailSender getJavaMailSender() {
 		Properties properties = new Properties(); 
 		properties.put("mail.smtp.auth", true);
@@ -21,9 +21,9 @@ public class EmailConfiguration {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
-		mailSender.setUsername("smcapstoneTeam03@gmail.com");
+		mailSender.setUsername("smcapstoneteam03@gmail.com");
 		mailSender.setPassword("root406^^");
-		mailSender.setDefaultEncoding("utf-8");
+		mailSender.setDefaultEncoding("UTF-8");
 		mailSender.setJavaMailProperties(properties);
 		
 		return mailSender;

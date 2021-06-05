@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 
 	<div class="slider-banner-area padding-10-row-col">
@@ -94,14 +95,14 @@
                                 <div class="col-xl-12 col-lg-6 col-md-6 col-12 col-sm-12">
                                     <div class="banner-wrap wow tmFadeInUp mb-10" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
                                         <div class="banner-img banner-img-zoom">
-                                            <a href="product-details.html"><img src="assets/images/banner/banner-2.jpg" alt=""></a>
+                                            <a href="product-details.html"><img src="/product/display?filename=${ordered.product_img}" alt="" height="240" width="480"></a>
                                         </div>
                                         <div class="banner-content-1">
                                             <span>많은 사람들이 구매한 상품</span>
-                                            <h2>Sanitizer Gel Alcohol</h2>
-                                            <h3>$15.00</h3>
-                                            <div class="btn-style-1">
-                                                <a class="font-size-14 btn-1-padding-2" href="product-details.html">Shop now </a>
+                                            <h2>${ordered.product_name}</h2>
+                                            <h3>${ordered.product_price}</h3>
+                                            <div class="btn-style-1" >
+                                                <a class="font-size-14 btn-1-padding-2" href="/product/${ordered.channel_id}/${ordered.product_id}">Shop now </a>
                                             </div>
                                         </div>
                                         <div class="banner-badge banner-badge-position1">
@@ -118,837 +119,104 @@
                 </div>
             </div>
         </div>
-	
-	<div class="product-area pt-80 pb-75">
+		
+		<br>
+		
+		<div class="product-area pb-20">
             <div class="custom-container">
-                <div class="product-area-border">
-                    <div class="section-title-timer-wrap">
-                        <div class="section-title-1">
-                            <h2>가장 인기있는 상품</h2>
-                        </div>
-                        <!-- 
-                        <div id="timer-1-active" class="timer-style-1 syotimer">
-                            <span>End in:</span>
-                            <div data-countdown="2021/8/30"></div>
-                        <div class="syotimer__head"></div><div class="syotimer__body"><div class="syotimer-cell syotimer-cell_type_hour"><div class="syotimer-cell__value" style="opacity: 1;">2145</div><div class="syotimer-cell__unit">hours</div></div><div class="syotimer-cell syotimer-cell_type_minute"><div class="syotimer-cell__value" style="opacity: 1;">57</div><div class="syotimer-cell__unit">minutes</div></div><div class="syotimer-cell syotimer-cell_type_second"><div class="syotimer-cell__value" style="opacity: 1;">19</div><div class="syotimer-cell__unit">seconds</div></div></div><div class="syotimer__footer"></div>
-                        </div>
-                         -->
+                <div class="section-title-btn-wrap mb-40 wow tmFadeInUp" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
+                    <div class="section-title-1">
+                        <h2>가장 인기있는 상품</h2>
                     </div>
-                    <div class="product-slider-active-1 nav-style-2 product-hm1-mrg slick-initialized slick-slider"><span class="pro-icon-1-prev slick-arrow" style=""><i class="far fa-angle-left"></i></span>
-                        <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 4692px; transform: translate3d(-1380px, 0px, 0px);"><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-5" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-38%</span>
+                    <div class="btn-style-2 mrg-top-xs">
+                        <a href="/product">더 많은 상품을 만나보세요! <i class="far fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                	
+                	<c:forEach items="${sellingList}" var = "list"  varStatus="status">
+                	
+                    <div class="custom-col-5">
+                        <div class="single-product-wrap mb-50 wow tmFadeInUp" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
+                            <div class="product-img-action-wrap mb-20">
+                                <div class="product-img product-img-zoom">
+                                    <a href="/product/${list.channel_id}/${list.product_id}">
+                                        <img class="default-img" src="/product/display?filename=${list.product_img}" alt="">
+                                        <img class="hover-img" src="/product/display?filename=${list.product_img}" alt="">
+                                    </a>
                                 </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Surgical Latex Gloves</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
+                                <div class="product-action-1">
+                                    <button aria-label="장바구니 추가"><i class="far fa-shopping-bag"></i></button>
+                                    <button aria-label="좋아요"><i class="far fa-heart"></i></button>
                                 </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">18</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">12</span>
-                                        </div>
-                                    </div>
+                                <div class="product-badges product-badges-position product-badges-mrg">
+                                    <span class=" red">구독시 -${list.discount}%</span>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-20%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-10"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
+                            <div class="product-content-wrap">
+                                <h2><a href="/product/${list.channel_id}/${list.product_id}">${list.product_name}</a></h2>
+                                <div class="product-price">
+                                    <span class="new-price"><fmt:formatNumber value="${discount[status.index]}" pattern="#,###" /> 원</span>
+                                    <span class="old-price"><fmt:formatNumber value="${list.product_price}" pattern="#,###" /> 원</span>
                                 </div>
                             </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-30%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">12-Ply Gauze Sponges</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$7.00</span>
-                                        <span class="old-price">$10.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-4.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-4-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-6"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">14</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-17%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Cara Portable Air Compressor</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$120.00</span>
-                                        <span class="old-price">$145.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-42"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">4</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-38%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$15.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-26%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="0">Personal</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="0">Disposable Hand Wash Gel</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$20.00</span>
-                                        <span class="old-price">$27.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="0">
-                                            <img class="default-img" src="assets/images/product/product-1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="0"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="0"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="0"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-33"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">4</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-38%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="0">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="0">Surgical Latex Gloves</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="0">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="0"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="0"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="0"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">18</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">12</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-20%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="0">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="0">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="0">
-                                            <img class="default-img" src="assets/images/product/product-3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="0"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="0"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="0"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-10"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-30%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="0">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="0">12-Ply Gauze Sponges</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$7.00</span>
-                                        <span class="old-price">$10.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="0">
-                                            <img class="default-img" src="assets/images/product/product-4.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-4-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="0"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="0"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="0"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-6"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">14</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="0" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-17%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="0">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="0">Cara Portable Air Compressor</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$120.00</span>
-                                        <span class="old-price">$145.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="0">
-                                            <img class="default-img" src="assets/images/product/product-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="0"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="0"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="0"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-42"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">4</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-38%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$15.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-26%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Personal</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Disposable Hand Wash Gel</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$20.00</span>
-                                        <span class="old-price">$27.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-33"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">4</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-38%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Surgical Latex Gloves</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">18</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">12</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="hot yellow">Hot</span>
-                                    <span class="discount red">-20%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$16.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-10"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-30%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">12-Ply Gauze Sponges</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$7.00</span>
-                                        <span class="old-price">$10.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-4.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-4-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-6"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">14</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-17%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Cara Portable Air Compressor</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$120.00</span>
-                                        <span class="old-price">$145.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-42"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">4</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><div class="product-plr-1 slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true" tabindex="-1" style="width: 276px;">
-                            <div class="single-product-wrap">
-                                <div class="product-badges product-badges-mrg">
-                                    <span class="discount red">-38%</span>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="product-category">
-                                        <a href="shop.html" tabindex="-1">Hospital Equipment</a>
-                                    </div>
-                                    <h2><a href="product-details.html" tabindex="-1">Manual Oxygen Device</a></h2>
-                                    <div class="product-price">
-                                        <span class="new-price">$12.00</span>
-                                        <span class="old-price">$15.00</span>
-                                    </div>
-                                </div>
-                                <div class="product-img-action-wrap mb-20 mt-25">
-                                    <div class="product-img product-img-zoom">
-                                        <a href="product-details.html" tabindex="-1">
-                                            <img class="default-img" src="assets/images/product/product-2.jpg" alt="">
-                                            <img class="hover-img" src="assets/images/product/product-2-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-action-1">
-                                        <button aria-label="Add To Cart" tabindex="-1"><i class="far fa-shopping-bag"></i></button>
-                                        <button aria-label="Add To Wishlist" tabindex="-1"><i class="far fa-heart"></i></button>
-                                        <button aria-label="Compare" tabindex="-1"><i class="far fa-signal"></i></button>
-                                    </div>
-                                </div>
-                                <div class="product-stock">
-                                    <div class="status-bar">
-                                        <div class="sold-bar sold-bar-width-40"></div>
-                                    </div>
-                                    <div class="product-stock-status">
-                                        <div class="sold stock-status-same-style">
-                                            <span class="label">Sold: </span>
-                                            <span class="value">9</span>
-                                        </div>
-                                        <div class="available stock-status-same-style">
-                                            <span class="label">Available: </span>
-                                            <span class="value">1</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div></div></div>
-                        
-                        
-                        
-                        
-                        
-                    <span class="pro-icon-1-next slick-arrow" style=""><i class="far fa-angle-right"></i></span></div>
+                        </div>
+                    </div>
+                    
+                    </c:forEach>
+                    
                 </div>
             </div>
         </div>
         
-        <div class="banner-area pb-40">
+        <div class="product-area pb-20">
             <div class="custom-container">
+                <div class="section-title-btn-wrap mb-40 wow tmFadeInUp" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
+                    <div class="section-title-1">
+                        <h2>인기 있는 채널</h2>
+                    </div>
+                    <div class="btn-style-2 mrg-top-xs">
+                        <a href="/channel">더 많은 채널을 만나보세요! <i class="far fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="banner-wrap wow tmFadeInUp mb-30" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
-                            <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="assets/images/banner/banner-3.jpg" alt=""></a>
+                	
+                	<c:forEach items="${topChannel}" var = "toplist"  varStatus="status">
+                	
+                    <div class="custom-col-5">
+                        <div class="single-product-wrap mb-50 wow tmFadeInUp" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
+                            <div class="product-img-action-wrap mb-20">
+                                <div class="product-img product-img-zoom">
+                                    <a href="/product/${list.channel_id}/${list.product_id}">
+                                        <img class="default-img" src="/channel/display?filename=${toplist.channel_img}" alt="">
+                                        <img class="hover-img" src="/channel/display?filename=${toplist.channel_img}" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-action-1">
+                                    <button aria-label="구독하기"><i class="far fa-heart"></i></button>
+                                </div>
+                                <div class="product-badges product-badges-position product-badges-mrg">
+                                    <span class=" red">HOT</span>
+                                </div>
                             </div>
-                            <div class="banner-content-1">
-                                <span>Personal</span>
-                                <h2>Temperature Gun</h2>
-                                <h3>$35.00</h3>
-                                <div class="btn-style-1">
-                                    <a class="font-size-14 btn-1-padding-2" href="product-details.html">Shop now </a>
+                            <div class="product-content-wrap">
+                                <h2><a href="/product/${list.channel_id}/${list.product_id}">${toplist.channel_name}</a></h2>
+                                <div class="product-price">
+                                    <span class="new-price"> ${count[status.index]}</span>
+                                    <span class="new-price"> 구독자 </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="banner-wrap wow tmFadeInUp mb-30" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
-                            <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="assets/images/banner/banner-4.jpg" alt=""></a>
-                            </div>
-                            <div class="banner-content-1">
-                                <span>Home Medical Supplies</span>
-                                <h2>Steam Vaporizer</h2>
-                                <h3>$86.00</h3>
-                                <div class="btn-style-1">
-                                    <a class="font-size-14 btn-1-padding-2" href="product-details.html">Shop now </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="banner-wrap wow tmFadeInUp mb-30" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
-                            <div class="banner-img banner-img-zoom">
-                                <a href="product-details.html"><img src="assets/images/banner/banner-5.jpg" alt=""></a>
-                            </div>
-                            <div class="banner-content-1">
-                                <span>Hospital Equipment</span>
-                                <h2>Stainless Steel Scissors</h2>
-                                <h3>$13.00</h3>
-                                <div class="btn-style-1">
-                                    <a class="font-size-14 btn-1-padding-2" href="product-details.html">Shop now </a>
-                                </div>
-                            </div>
-                            <div class="banner-badge banner-badge-position2">
-                                <h3>
-                                    <span>19%</span>
-                                    Off
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    </c:forEach>
+                    
                 </div>
             </div>
         </div>
+		
+
+        
         
 <%@ include file="../include/footer.jsp"%>
 </body>

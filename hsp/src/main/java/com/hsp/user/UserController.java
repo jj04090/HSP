@@ -26,6 +26,7 @@ public class UserController {
 	@GetMapping
 	public ModelAndView user() {
 		ModelAndView mav = new ModelAndView();
+		
 		User getUser = (User)session.getAttribute("user");
 		mav.setView(new RedirectView("/user/" + getUser.getUser_id()));
 		
@@ -34,7 +35,7 @@ public class UserController {
 	
 	@GetMapping("/{user_id}")
 	public ModelAndView viewUser(@PathVariable String user_id) {
-		ModelAndView mav = new ModelAndView("user/user");
+		ModelAndView mav = new ModelAndView("/user/user");
 		
 		User user = new User();
 		user.setUser_id(user_id);
@@ -45,12 +46,15 @@ public class UserController {
 	
 	@GetMapping("/regist")
 	public ModelAndView registUser() {
-		return new ModelAndView("user/registUser");
+		return new ModelAndView("/user/registUser");
 	}
 	
 	@PostMapping
 	public ModelAndView registUser(@ModelAttribute User user) {
-		ModelAndView mav = new ModelAndView(new RedirectView("/user"));
+		ModelAndView mav = new ModelAndView(new RedirectView("/login"));
+		
+		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+		user.setPassword(encryptPW);
 		userServiceImpl.registUser(user);
 		
 		return mav;
@@ -58,7 +62,7 @@ public class UserController {
 	
 	@GetMapping("/edit")
 	public ModelAndView updateUser() {
-		return new ModelAndView("user/updateUser");
+		return new ModelAndView("/user/updateUser");
 	}
 	
 	@PutMapping
@@ -67,10 +71,12 @@ public class UserController {
 		User getUser = (User)session.getAttribute("user");
 		
 		if(getUser.getUser_id() == user.getUser_id()) {
+			String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+			user.setPassword(encryptPW);
 			userServiceImpl.updateUser(user);
 			
 			session.invalidate();
-			session.setAttribute("user", user);
+			session.setAttribute("user", userServiceImpl.viewUser(user));
 		}
 		
 		return mav;
@@ -79,6 +85,7 @@ public class UserController {
 	@DeleteMapping
 	public ModelAndView deleteUser() {
 		ModelAndView mav = new ModelAndView(new RedirectView("/main"));
+		
 		User getUser = (User)session.getAttribute("user");
 		userServiceImpl.deleteUser(getUser);
 		session.invalidate();

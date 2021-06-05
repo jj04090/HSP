@@ -70,7 +70,9 @@
                             </c:forEach>
 	
 	
-							
+							<form name="regit" action="/product/registform" method="get">
+								<button type="submit">상품 등록</button>
+							</form>
 	
 	
 					</div>

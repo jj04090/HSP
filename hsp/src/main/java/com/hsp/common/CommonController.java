@@ -2,6 +2,9 @@ package com.hsp.common;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.hsp.channel.Channel;
 import com.hsp.product.Product;
+import com.hsp.product.ProductServiceImpl;
 import com.hsp.user.User;
 import com.hsp.user.UserServiceImpl;
 
@@ -22,31 +26,48 @@ public class CommonController {
 	private UserServiceImpl userServiceImpl;
 	@Autowired
 	CommonServiceImpl commonServiceImpl;
+	@Autowired
+	ProductServiceImpl productServiceImpl;
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("/main")
-	public ModelAndView main() {
+	public ModelAndView main(HttpSession session, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
-		Product mostReviewProduct = commonServiceImpl.getMaxReview();
-		Product mostOrderedproduct = commonServiceImpl.mostOrdered();
-		List<Product> sellingList = commonServiceImpl.sellingList();
-		List<Channel> topChannel = commonServiceImpl.channelList();
-		modelAndView.addObject("grade", mostReviewProduct);
-		modelAndView.addObject("ordered", mostOrderedproduct);
-		modelAndView.addObject("sellingList", sellingList);
-		modelAndView.addObject("topChannel", topChannel);
-		modelAndView.setViewName("/main/main");
-		return modelAndView; 
+		User getUser = (User)session.getAttribute("user");
+		
+//		if (getUser.getUser_type().equals("B")) {
+//			modelAndView.setViewName("/main/bizmain");
+//		} else {
+			Product mostReviewProduct = commonServiceImpl.getMaxReview();
+			Product mostOrderedproduct = commonServiceImpl.mostOrdered();
+			List<Product> sellingList = commonServiceImpl.sellingList();
+			List<String> discountPrice = productServiceImpl.discountPrice(sellingList);
+			List<Channel> topChannel = commonServiceImpl.channelList();
+			List<String> subsCount = commonServiceImpl.subsCount(topChannel);
+			
+			modelAndView.addObject("grade", mostReviewProduct);
+			modelAndView.addObject("ordered", mostOrderedproduct);
+			modelAndView.addObject("sellingList", sellingList);
+			modelAndView.addObject("discount", discountPrice);
+			modelAndView.addObject("topChannel", topChannel);
+			modelAndView.addObject("count", subsCount);
+			modelAndView.setViewName("/main/main");
+//		}
+		
+		return modelAndView;
 	}
 	
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("login");
+		return new ModelAndView("/main/login");
 	}
 	
 	@PostMapping("/login")
 	public ModelAndView login(@ModelAttribute User user) {
+		String encryptPW = userServiceImpl.encryptPW(user.getPassword());
+		user.setPassword(encryptPW);
 		userServiceImpl.login(user);
-		
 		return new ModelAndView(new RedirectView("/main"));
 	}
 	
@@ -57,27 +78,22 @@ public class CommonController {
 		return new ModelAndView(new RedirectView("/main"));
 	}
 	
-	@GetMapping("/findID")
-	public ModelAndView findID() {
-		return new ModelAndView("findID");
+	@GetMapping("/find")
+	public ModelAndView find() {
+		return new ModelAndView("/main/find");
 	}
 	
 	@PostMapping("/findID")
 	public ModelAndView findID(@ModelAttribute User user) {
 		userServiceImpl.findID(user);
 		
-		return new ModelAndView(new RedirectView("/main"));
+		return new ModelAndView(new RedirectView("/login"));
 	}
-	
-	@GetMapping("/findPW")
-	public ModelAndView findPW() {
-		return new ModelAndView("findPW");
-	}
-	
+
 	@PostMapping("/findPW")
 	public ModelAndView findPW(@ModelAttribute User user) {
 		userServiceImpl.findPW(user);
 		
-		return new ModelAndView(new RedirectView("/main"));
+		return new ModelAndView(new RedirectView("/login"));
 	}
 }

@@ -106,10 +106,7 @@
                             <nav>
                                 <ul>
                                     <li><a class="active" href="/main">Home <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="/main">Home 1 – 사용자 화면</a></li>
-                                            <li><a href="index-2.html">Home 2 – 사업자 화면</a></li>
-                                        </ul>
+                                        
                                     </li>
                                     <li><a href="shop.html">채널 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
@@ -133,89 +130,28 @@
                                     </li>
                                     
                                     
-                                    <li class="position-static"><a href="/product">주문 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <li class="position-static"><a href="/order">주문 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Medical Accessories</a>
-                                                <ul>
-                                                    <li><a href="product-details.html">Ice Cold Water Therapy</a></li>
-                                                    <li><a href="product-details.html">Oxygen Breathing Machine</a></li>
-                                                    <li><a href="product-details.html">Stainless Steel Kidney Tray</a></li>
-                                                    <li><a href="product-details.html">Stainless Steel Scissors</a></li>
-                                                </ul>
+                                                <a class="menu-title" href="#">주문된 상품을 처리하세요!</a>
+                                                
                                             </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Face Mask</a>
-                                                <ul>
-                                                    <li><a href="product-details.html">Surgical Face Mask</a></li>
-                                                    <li><a href="product-details.html">Search Lab N95 Face Mask</a></li>
-                                                    <li><a href="product-details.html">N95 Face Mask</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">Hospital Equipment</a>
-                                                <ul>
-                                                    <li><a href="product-details.html">Hospital Ward Bed</a></li>
-                                                    <li><a href="product-details.html">Lightweight Transport Chair</a></li>
-                                                    <li><a href="product-details.html">Men V-Neck Scrub Top</a></li>
-                                                    <li><a href="product-details.html">Essentials Pocket Scrub</a></li>
-                                                    <li><a href="product-details.html">Manual Oxygen Device</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="sub-mega-menu sub-mega-menu-width-34">
-                                                <div class="menu-banner-wrap">
-                                                    <a href="product-details.html"><img src="/assets/images/banner/menu-banner.jpg" alt=""></a>
-                                                    <div class="menu-banner-content">
-                                                        <h4>Personal</h4>
-                                                        <h3>Temperature <br> Gun</h3>
-                                                        <div class="menu-banner-price">
-                                                            <span class="new-price">$35.00</span>
-                                                            <span class="old-price">$45.00</span>
-                                                        </div>
-                                                        <div class="menu-banner-btn">
-                                                            <a href="product-details.html">Shop now</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="menu-banner-discount">
-                                                        <h3>
-                                                            <span>22%</span>
-                                                            off
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            
                                         </ul>
                                     </li>
                                     
                                     <li><a href="blog.html">상품 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
-                                            <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>
-                                            <li><a href="blog-grid-no-sidebar.html">Blog Grid – No Sidebar</a></li>
-                                            <li><a href="blog-grid-wide.html">Grid Wide</a></li>
-                                            <li><a href="#">Single Layout <i class="fa fa-chevron-right"></i></a>
-                                                <ul class="level-menu level-menu-modify">
-                                                    <li><a href="blog-details.html">Left Sidebar</a></li>
-                                                    <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a href="blog-details-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="blog.html">자신의 상품을 관리하세요!</a></li>
+                                            
                                         </ul>
                                     </li>
                                     
-                                    <li><a href="blog.html">게시글 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <!-- 세션에서 추가하는걸로 -->
+                                    <li><a href="/commuinty/{channnel_id}">커뮤니티 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog Grid – Left Sidebar</a></li>
-                                            <li><a href="blog-grid-right-sidebar.html">Blog Grid – Right Sidebar</a></li>
-                                            <li><a href="blog-grid-no-sidebar.html">Blog Grid – No Sidebar</a></li>
-                                            <li><a href="blog-grid-wide.html">Grid Wide</a></li>
-                                            <li><a href="#">Single Layout <i class="fa fa-chevron-right"></i></a>
-                                                <ul class="level-menu level-menu-modify">
-                                                    <li><a href="blog-details.html">Left Sidebar</a></li>
-                                                    <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                    <li><a href="blog-details-no-sidebar.html">No Sidebar</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="blog.html">커뮤니티 게시글 관리하세요!</a></li>
+                                            
                                         </ul>
                                     </li>
                                     

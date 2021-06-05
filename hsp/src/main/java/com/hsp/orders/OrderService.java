@@ -5,7 +5,7 @@ import java.util.List;
 import com.hsp.product.Product;
 
 public interface OrderService {
-	public void applyOrder(Orders orders, String user_id);
+	public void applyOrder(Orders orders, String cartType);
 	public String cancelOrder(String order_id); // 파라미터 Orders -> String, 반환타입 void -> String
 	public void cancelSchedual(String order_id); // new
 	public List<Orders> viewOrderList(String user_id);
@@ -32,5 +32,5 @@ public interface OrderService {
 	public int schedualPrice(Orders orders);
 	public void schedualOrderApply(Orders orders, Orders previousOrder);
 	
-	public int totalPrice(String user_id);
+	public int totalPrice(String user_id, String cartType);
 }

@@ -1,5 +1,6 @@
 package com.hsp.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hsp.channel.Channel;
 import com.hsp.channel.ChannelMapper;
+import com.hsp.channel.Subscribe;
 import com.hsp.channel.SubscribeMapper;
 import com.hsp.orders.OrderDetail;
 import com.hsp.orders.OrderDetailMapper;
@@ -22,6 +24,8 @@ public class CommonServiceImpl implements CommonService {
 	ReviewMapper reviewMapper;
 	@Autowired
 	ProductMapper productMapper;
+	@Autowired
+	SubscribeMapper subscribeMapper;
 	@Autowired
 	OrderDetailMapper orderDetailMapper;
 	@Autowired
@@ -77,13 +81,33 @@ public class CommonServiceImpl implements CommonService {
 		List<Channel> channel = null;
 		
 		try {
-//			channel = channelMapper.list(channel) 매퍼 추가 후 사용
+			channel = channelMapper.topChannel();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return channel;
+	}
+
+	@Override
+	public List<String> subsCount(List<Channel> channel) {
+		List<String> count = new ArrayList<String>();
+		
+		try {
+			for (Channel channels : channel) {
+				Subscribe subscribe = new Subscribe();
+				subscribe.setChannel_id(channels.getChannel_id());
+				String subscount = subscribeMapper.count(subscribe);
+				
+				count.add(subscount);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return count;
 	}
 	
 

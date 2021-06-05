@@ -7,6 +7,7 @@
         <result column="CHANNEL_ID" property="channel_id" />
         <result column="USER_ID" property="user_id" />
         <result column="CHANNEL_NAME" property="channel_name" />
+        <result column="CHANNEL_IMG" property="channel_img" />
         <result column="CATEGORY" property="category" />
         <result column="INTRODUCTION" property="introduction" />
         <result column="BUSINESS_NO" property="business_no" />
@@ -28,6 +29,9 @@
             </if>
             <if test="channel_name != null and channel_name != ''">
                 AND CHANNEL_NAME = #{channel_name}
+            </if>
+            <if test="channel_img != null and channel_img != ''">
+                AND CHANNEL_IMG = #{channel_img}
             </if>
             <if test="category != null and category != ''">
                 AND CATEGORY = #{category}
@@ -64,6 +68,7 @@
             CHANNEL_ID,
             USER_ID,
             CHANNEL_NAME,
+            CHANNEL_IMG,
             CATEGORY,
             INTRODUCTION,
             BUSINESS_NO,
@@ -78,6 +83,7 @@
             #{channel_id},
             #{user_id},
             #{channel_name},
+            #{channel_img},
             #{category},
             #{introduction},
             #{business_no},
@@ -95,6 +101,9 @@
         <set>
             <if test="channel_name != null and channel_name != ''">
                 CHANNEL_NAME = #{channel_name},
+            </if>
+            <if test="channel_img != null and channel_img != ''">
+                AND CHANNEL_IMG = #{channel_img}
             </if>
             <if test="category != null and category != ''">
                 CATEGORY = #{category},
@@ -141,6 +150,7 @@
         	CHANNEL_ID,
             USER_ID,
             CHANNEL_NAME,
+            CHANNEL_IMG,
             CATEGORY,
             INTRODUCTION,
             BUSINESS_NO,
@@ -159,6 +169,7 @@
         	CHANNEL_ID,
             USER_ID,
             CHANNEL_NAME,
+            CHANNEL_IMG,
             CATEGORY,
             INTRODUCTION,
             BUSINESS_NO,
@@ -171,11 +182,28 @@
         FROM CHANNEL
     </select>
     
+    <select id="topChannel" resultMap="channelResultMap">
+    	SELECT C.CHANNEL_ID
+      			, C.USER_ID
+        		, C.CHANNEL_NAME
+        		, C.CHANNEL_IMG
+        		, C.CATEGORY
+        		, C.INTRODUCTION
+        		, C.BUSINESS_NO
+		
+		FROM 
+   			CHANNEL C
+    		, SUBSCRIBE S
+		WHERE (C.CHANNEL_ID = S.CHANNEL_ID)
+		GROUP BY S.CHANNEL_ID
+		ORDER BY COUNT(S.CHANNEL_ID) DESC
+		LIMIT 3
+    </select>
+    
     <select id="selectByProductId" parameterType="String" resultMap="channelResultMap">
     	SELECT CHANNEL.*
 		FROM CHANNEL,
-		     PRODUCT,
-		     ORDER_DETAIL
+		     PRODUCT
 		WHERE PRODUCT.PRODUCT_ID = #{product_id}
 		AND PRODUCT.CHANNEL_ID = CHANNEL.CHANNEL_ID
     </select>

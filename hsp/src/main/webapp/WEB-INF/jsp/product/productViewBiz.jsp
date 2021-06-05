@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/bizheader.jsp"%>
 
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
             <div class="custom-container">
@@ -236,11 +236,8 @@
                                                 <span>수량</span>
                                                 <div class="pro-details-quality-stock-wrap">
                                                     <div class="product-quality">
-                                                    	
-                                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1" id="product_count">
-                                                    	<div class="dec qtybutton">-</div>
-                                                    	<div class="inc qtybutton">+</div>
-                                                    </div>
+                                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                                    <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
                                                     <div class="pro-details-stock">
                                                         <span><i class="fas fa-check-circle"></i> 구매가능</span>
                                                     </div>
@@ -248,14 +245,9 @@
                                             </div>
                                             <div class="pro-details-action-wrap">
                                                 <div class="pro-details-add-to-cart">
-                                                	<form name="edit" action="/shoppingcart" method="post">
-                                                	<input type="hidden" name="user_id" value=${channel_id} id="user_id" />
-                                                	<input type="hidden" name="product_id" value=${product.product_id} id="product_id" />
-                                                	<input type="hidden" name="product_count" value=1 id="product_count" />
-                                                	<input type="hidden" name="cart_type" value=${product.orderable_cycle} id="cart_type" />
-														<button type="submit">장바구니에 추가</button>
+                                                    <form name="regit" action="/product/${product.product_id}/editform" method="get">
+														<button type="submit">상품 수정</button>
 													</form>
-                                                    
                                                 </div>
                                                 <div class="pro-details-action tooltip-style-4">
                                                     <button aria-label="좋아요"><i class="fad fa-heart"></i> </button>
@@ -287,9 +279,6 @@
                                     </div>
                                     <div class="pro-details-review">
                                         <p><span>5.00</span> average based on 2 ratings.</p>
-                                        
-                                        <c:forEach items="${reviewList}" var = "reviewlist">
-                                        
                                         <div class="single-pro-details-review">
                                             <div class="review-img">
                                                 <img src="assets/images/client/client-1.jpeg" alt="">
@@ -302,13 +291,12 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
-                                                        ${reviewlist.product_grade}
                                                     </div>
                                                     <div class="review-name">
-                                                        <h6>${reviewlist.review_title}</h6>
+                                                        <h6>Edna Watson</h6>
                                                     </div>
                                                 </div>
-                                                <p>${reviewlist.review_content}</p>
+                                                <p>Very good and fast delivery during the week. Thank you!</p>
                                                 <div class="review-date-btn">
                                                     <div class="review-date">
                                                         <span> April 16, 2020 at 3:08 am </span>
@@ -319,12 +307,37 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                       </c:forEach>
-                                       	
+                                        <div class="single-pro-details-review">
+                                            <div class="review-img">
+                                                <img src="assets/images/client/client-2.jpeg" alt="">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-name-rating">
+                                                    <div class="review-rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <div class="review-name">
+                                                        <h6>Edna Watson</h6>
+                                                    </div>
+                                                </div>
+                                                <p>Very good and fast delivery during the week. Thank you!</p>
+                                                <div class="review-date-btn">
+                                                    <div class="review-date">
+                                                        <span> April 16, 2020 at 3:08 am </span>
+                                                    </div>
+                                                    <div class="review-btn">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="ratting-form-wrapper">
-                                            <h3>리뷰 남기기 </h3>
-                                            <p> </p>
+                                            <h3>Add a review </h3>
+                                            <p>Your email address will not be published. Required fields are marked </p>
                                             <div class="comment-form-rating-wrap">
                                                 <span>Your rating: *</span>
                                                 <div class="comment-form-rating">
@@ -366,17 +379,12 @@
                     <div class="col-lg-3 col-md-12 col-12">
                         <div class="sidebar-wrapper sidebar-wrapper-mr1">
                             <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-2 mb-20">
-                                <h4 class="sidebar-widget-title">상품 문의</h4>
-                                <div class="product-highlight">
-                                    <ul>
-                                    	<c:forEach items="${inquiryList}" var = "quiryList">
-                                    		<li>
-                                            	<a href="/channel/${quiryList.inquiry_title}"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
-                                            	
-                                        	</li>
-                                    	</c:forEach>
-                                        
-                                    </ul>
+                                <h4 class="sidebar-widget-title">다른 상품 검색하기 </h4>
+                                <div class="search-style-3">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search…">
+                                        <button type="submit"> <i class="far fa-search"></i> </button>
+                                    </form>
                                 </div>
                             </div>
                            
@@ -392,6 +400,6 @@
 			<button type="submit">상품 수정</button>
 		</form>
 	
-<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

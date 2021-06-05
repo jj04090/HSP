@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	user
+	user.jsp
 </body>
 </html>

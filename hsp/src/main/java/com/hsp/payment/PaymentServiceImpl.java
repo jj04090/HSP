@@ -89,31 +89,17 @@ public class PaymentServiceImpl implements PaymentService {
 		order.setOrder_id(merchantUid);
 		return order;
 	}
-
-	@Override
-	public void calculate() throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	// 결제 정산
-	/*
 	@Override
 	public void calculate() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
-
-		SimpleDateFormat date = new SimpleDateFormat("yyyyMMddHHmmss");
-		String code = "M202111883U1" + UUID.randomUUID().toString().substring(0, 8);
-
-		JSONObject jsonObject = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		JSONObject finalJsonObject = new JSONObject();
-
 		
 
-		 // order 테이블의 주문상태가 결제완료인 것들을 확인하여 order_detail의 주문상태가 전부 O인 경우가 아니면 정산 진행
+		SimpleDateFormat date = new SimpleDateFormat("yyyyMMddHHmmss");
 
+		 // order 테이블의 주문상태가 결제완료인 것들을 확인하여 order_detail의 주문상태가 전부 O인 경우가 아니면 정산 진행
 
 		List<Orders> list = ordersMapper.list(new Orders());
 
@@ -123,11 +109,18 @@ public class PaymentServiceImpl implements PaymentService {
 			if (temp != "C" || temp != "P") {
 				Map<OrderDetail, Channel> map = calCheck(orders);
 				for (OrderDetail key : map.keySet()) {
+					
+					JSONObject jsonObject = new JSONObject();
+					JSONArray jsonArray = new JSONArray();
+					JSONObject finalJsonObject = new JSONObject();
+					
 					Channel channel = map.get(key);
 					User user = new User();
 					user.setUser_id(channel.getUser_id());
 					user = userMapper.select(user);
-
+					
+					String code = "M202111883U1" + UUID.randomUUID().toString().substring(0, 8);
+					
 					jsonObject.put("tran_no", "1");
 					jsonObject.put("bank_tran_id", code.toUpperCase());
 					jsonObject.put("bank_code_std", "004");
@@ -163,13 +156,13 @@ public class PaymentServiceImpl implements PaymentService {
 					System.out.println(responseEntity.getBody());
 					
 					orders.setOrder_status("P");
-					//ordersMapper.update(orders);
+					ordersMapper.update(orders);
 				}	
 			}
 		}
-	} */
+	} 
 
-	/*public Map<OrderDetail, Channel> calCheck(Orders orders) throws Exception {
+	public Map<OrderDetail, Channel> calCheck(Orders orders) throws Exception {
 		// 주문한 상품들의 채널을 가져옴
 		Map<OrderDetail, Channel> map = new HashMap<>();
 		List<OrderDetail> detailList;
@@ -191,5 +184,5 @@ public class PaymentServiceImpl implements PaymentService {
 			return map;
 		}
 		return null;
-	}*/
+	}
 }

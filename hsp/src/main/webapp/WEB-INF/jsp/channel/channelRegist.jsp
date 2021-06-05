@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/bizheader.jsp"%>
 
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
             <div class="custom-container">
@@ -10,7 +10,7 @@
                         <li>
                             <a href="index.html">Home</a>
                         </li>
-                        <li class="active"> 상품 등록 </li>
+                        <li class="active"> 채널 등록 </li>
                     </ul>
                 </div>
             </div>
@@ -19,17 +19,17 @@
     <div class="login-register-area pt-75 pb-75">
 		<div class="container">
 
-	<form name='regit' action="/product" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/channel" method="post" enctype="multipart/form-data">
 		<div>
 			채널 ID : <input type="text" name="channel_id" value=${channel_id} id="channel_id" readonly />
 		</div>
 
 		<div>
-			상품 ID : <input type="text" name="product_id" value=${product_id} id="product_id" readonly />
+			유저 ID : <input type="text" name="user_id" value=${user_id} id="user_id" readonly />
 		</div>
 
 		<div>
-			상품 제목 : <input type="text" name="product_name" placeholder="제목"id="product_name" />
+			채널 이름 : <input type="text" name="channel_name" placeholder="채널 이름"id="channel_name" />
 		</div>
 		
 		<input type="file" name="attach" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
@@ -46,33 +46,27 @@
 			reader.readAsDataURL(event.target.files[0]); 
 		} 
 		</script>
-		
-		<div>
-			상품 가격 : <input type="text" name="product_price" placeholder="가격" id="product_price" />
-		</div>
 
 		<div>
-			제공할 할인율 : <input type="text" name="discount" placeholder="제공할 할인율" id="discount" />
-		</div>
-
-		<div>
-			주문 가능한 주기 : <select name="orderable_cycle" id="orderable_cycle">
-							<option value="S">일반</option>
-							<option value="W">정기</option>
+			채널 카테고리 : <select name="category" id="category">
+							<option value="A">모든</option>
+							<option value="K">한식</option>
+							<option value="C">중식</option>
+							<option value="S">양식</option>
 						  </select>
 		</div>
 
-		<textarea rows="5" cols="50" id="productDes" name="product_detail"></textarea>
+		<textarea rows="5" cols="50" id="channelDes" name="introduction"></textarea>
 
 		<script>
 			var ckeditor_config = {
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/product/ckUpload"
+				filebrowserUploadUrl : "/channel/ckUpload"
 			};
 
-			CKEDITOR.replace("productDes", ckeditor_config);
+			CKEDITOR.replace("channelDes", ckeditor_config);
 		</script>
 		
 		<div>
@@ -83,6 +77,6 @@
 		</div>
 	</div>
 
-<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

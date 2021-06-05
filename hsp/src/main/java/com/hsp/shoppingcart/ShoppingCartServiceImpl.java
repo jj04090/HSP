@@ -38,25 +38,28 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
 	//장바구니 조회
 	@Override
-	public List<ShoppingCart> viewShoppingCart(ShoppingCart shoppingCart) throws Exception {
+	public List<CartValue> viewShoppingCart(ShoppingCart shoppingCart) throws Exception {
 		Product product = new Product();
-		List<ShoppingList> sl = new ArrayList<ShoppingList>();
+		List<CartValue> sl = new ArrayList<CartValue>();
 		List<ShoppingCart> shoppingList = new ArrayList<ShoppingCart>();
 		shoppingList = shoppingCartMapper.list(shoppingCart);
 
 		for (ShoppingCart sc : shoppingList) {
 			product.setProduct_id(sc.getProduct_id());
-			ShoppingList temp = new ShoppingList();
+			CartValue temp = new CartValue();
 			temp.setProduct(productMapper.select(product));
+			temp.setShoppingCart(sc);
+			sl.add(temp);
 		}
 		
-		return shoppingList;
+		return sl;
 	}
 
 	//장바구니 수정
 	@Override
-	public List<ShoppingCart> editShoppingCart(ShoppingCart shoppingCart) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void editShoppingCart(List<ShoppingCart> list) throws Exception {
+		for (ShoppingCart shoppingCart : list) {
+			shoppingCartMapper.update(shoppingCart);
+		}
 	}
 }

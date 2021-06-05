@@ -82,7 +82,8 @@
             </if>
         </set>
         <where>
-	        <if test="user_id != ''">
+	       	<if test="product_id != ''">
+	        		PRODUCT_ID = #{product_id} AND 
 	        		USER_ID = #{user_id}
 	       	</if>
        	</where>
