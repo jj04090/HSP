@@ -47,7 +47,7 @@ public class OrdersController {
 			bizSelect = orderServiceImpl.viewSoldList(channel_id);
 			modelAndView.addObject("ordersList", bizSelect);
 			modelAndView.addObject("user_type", "B");
-			modelAndView.setViewName("/order/orderList");
+			modelAndView.setViewName("/order/orderBizList");
 			
 		} else { // 사용자인 경우 -> User_id로 Order Table Select
 			result = orderServiceImpl.viewOrderList(user_id);

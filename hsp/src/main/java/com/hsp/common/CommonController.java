@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.hsp.channel.Channel;
 import com.hsp.product.Product;
+import com.hsp.product.ProductServiceImpl;
 import com.hsp.user.User;
 import com.hsp.user.UserServiceImpl;
 
@@ -25,6 +26,8 @@ public class CommonController {
 	private UserServiceImpl userServiceImpl;
 	@Autowired
 	CommonServiceImpl commonServiceImpl;
+	@Autowired
+	ProductServiceImpl productServiceImpl;
 	@Autowired
 	HttpSession session;
 	
@@ -39,12 +42,16 @@ public class CommonController {
 			Product mostReviewProduct = commonServiceImpl.getMaxReview();
 			Product mostOrderedproduct = commonServiceImpl.mostOrdered();
 			List<Product> sellingList = commonServiceImpl.sellingList();
+			List<String> discountPrice = productServiceImpl.discountPrice(sellingList);
 			List<Channel> topChannel = commonServiceImpl.channelList();
+			List<String> subsCount = commonServiceImpl.subsCount(topChannel);
 			
 			modelAndView.addObject("grade", mostReviewProduct);
 			modelAndView.addObject("ordered", mostOrderedproduct);
 			modelAndView.addObject("sellingList", sellingList);
+			modelAndView.addObject("discount", discountPrice);
 			modelAndView.addObject("topChannel", topChannel);
+			modelAndView.addObject("count", subsCount);
 			modelAndView.setViewName("/main/main");
 //		}
 		

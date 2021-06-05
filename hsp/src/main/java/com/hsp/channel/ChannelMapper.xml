@@ -186,6 +186,7 @@
     	SELECT C.CHANNEL_ID
       			, C.USER_ID
         		, C.CHANNEL_NAME
+        		, C.CHANNEL_IMG
         		, C.CATEGORY
         		, C.INTRODUCTION
         		, C.BUSINESS_NO

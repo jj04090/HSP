@@ -9,5 +9,6 @@ public interface SubscribeMapper {
 	public Subscribe delete(Subscribe subscribe) throws Exception;
 	public Subscribe select(Subscribe subscribe) throws Exception;
 	public List<Subscribe> list(Subscribe subscribe) throws Exception;
+	public String count(Subscribe subscribe) throws Exception;
 	
 }
