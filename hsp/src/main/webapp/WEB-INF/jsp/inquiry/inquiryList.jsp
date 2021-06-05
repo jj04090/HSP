@@ -29,6 +29,7 @@
 				</ul>
 			</c:forEach>
     	</div>
+    	
     	<form name="regit" action="/inquiry/registform" method="get">
 			<button type="submit">문의 등록</button>
 		</form>
