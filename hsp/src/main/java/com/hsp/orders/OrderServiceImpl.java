@@ -384,7 +384,7 @@ public class OrderServiceImpl implements OrderService {
 			List<Orders> orderList = ordersMapper.list(new Orders());
 			
 			for (Orders order : orderList) {
-				if (order.getOrder_status().equals("W") && order.getOrder_status().equals("O")) {
+				if (order.getOrder_type().equals("W") && order.getOrder_status().equals("O")) {
 					String orderDate = order.getOrder_date();
 					SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 					Date date = fm.parse(orderDate);

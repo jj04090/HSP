@@ -173,6 +173,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public String imgUpload(MultipartFile attach) {
 		String savePath = "C:\\Users\\ws059\\project";
+		
+//		String uploadPath = req.getSession().getServletContext().getRealPath("/").concat("resources");
+//		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		
 		String logicalName = attach.getOriginalFilename();
 		String physicalName = UUID.randomUUID().toString() + "_" + logicalName;
 		
