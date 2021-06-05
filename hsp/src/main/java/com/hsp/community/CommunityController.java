@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsp.channel.Channel;
+import com.hsp.channel.ChannelServiceImpl;
 import com.hsp.orders.OrderInfo;
 import com.hsp.user.User;
 
@@ -43,6 +45,9 @@ public class CommunityController {
 	
 	@Autowired
 	CommentServiceImpl commentServiceImpl;
+	
+	@Autowired
+	ChannelServiceImpl channelServiceImpl;
 	
 	String channel_id = "C01";
 	String community_id = "COMMU01";
@@ -75,6 +80,7 @@ public class CommunityController {
 	@GetMapping("/{channel_id}/{community_id}")
 	public ModelAndView viewCommunity(@PathVariable String channel_id, @PathVariable String community_id) {
 		Community community = new Community();
+		Channel channel = new Channel();
 		ModelAndView modelAndView = new ModelAndView();
 		
 		User user = (User)httpSession.getAttribute("user");
@@ -85,9 +91,13 @@ public class CommunityController {
 			community.setCommunity_id(community_id);
 			Community result = communityServiceImpl.viewCommunity(community);
 			
+			channel.setChannel_id(channel_id);
+			Channel resultChannel = channelServiceImpl.viewChannel(channel);
+			
 			List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
 			
 			modelAndView.setViewName("/community/communityBizView");
+			modelAndView.addObject("channel", resultChannel);
 			modelAndView.addObject("community", result);
 			modelAndView.addObject("listComment", listComment);
 		} else {
@@ -95,9 +105,13 @@ public class CommunityController {
 			community.setCommunity_id(community_id);
 			Community result = communityServiceImpl.viewCommunity(community);
 			
+			channel.setChannel_id(channel_id);
+			Channel resultChannel = channelServiceImpl.viewChannel(channel);
+			
 			List<Comment> listComment = commentServiceImpl.viewCommentList(community_id);
 
 			modelAndView.setViewName("/community/communityView");
+			modelAndView.addObject("channel", resultChannel);
 			modelAndView.addObject("community", result);
 			modelAndView.addObject("listComment", listComment);
 		}

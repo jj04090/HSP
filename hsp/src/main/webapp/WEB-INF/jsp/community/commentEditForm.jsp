@@ -24,7 +24,7 @@
 		</div>
 		
 		<div>
-			댓글 ID : <input type="text" name="user_id" value=${comment.user_id} id="user_id" readonly />
+			유저 ID : <input type="text" name="user_id" value=${comment.user_id} id="user_id" readonly />
 		</div>
 
 		<div>
