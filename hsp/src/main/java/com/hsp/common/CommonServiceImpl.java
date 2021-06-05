@@ -36,7 +36,7 @@ public class CommonServiceImpl implements CommonService {
 		Review review = new Review();
 		Product product = new Product();
 		try {
-			review = reviewMapper.select(review); // SQL 수정되야함.
+			review = reviewMapper.highRate();
 			product.setProduct_id(review.getProduct_id());
 			product = productMapper.select(product);
 			
@@ -106,6 +106,21 @@ public class CommonServiceImpl implements CommonService {
 			e.printStackTrace();
 		}
 		
+		
+		return count;
+	}
+
+	@Override
+	public String totalSubs(String channel_id) {
+		String count = "";
+		Subscribe subs = new Subscribe();
+		subs.setChannel_id(channel_id);
+		
+		try {
+			count = subscribeMapper.count(subs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return count;
 	}

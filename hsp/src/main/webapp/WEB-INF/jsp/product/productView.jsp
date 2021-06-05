@@ -231,21 +231,19 @@
                                             </div>
                                             
                                             
-                                            
                                             <div class="pro-details-quality-stock-area">
                                                 <span>수량</span>
                                                 <div class="pro-details-quality-stock-wrap">
                                                     <div class="product-quality">
-                                                    	
-                                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1" id="product_count">
-                                                    	<div class="dec qtybutton">-</div>
-                                                    	<div class="inc qtybutton">+</div>
-                                                    </div>
+                                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                                    <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
                                                     <div class="pro-details-stock">
                                                         <span><i class="fas fa-check-circle"></i> 구매가능</span>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            
                                             <div class="pro-details-action-wrap">
                                                 <div class="pro-details-add-to-cart">
                                                 	<form name="edit" action="/shoppingcart" method="post">

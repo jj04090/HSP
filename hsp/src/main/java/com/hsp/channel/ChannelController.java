@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.hsp.common.CommonServiceImpl;
 import com.hsp.product.Product;
 import com.hsp.product.ProductServiceImpl;
 import com.hsp.user.User;
@@ -35,13 +36,17 @@ public class ChannelController {
 	@Autowired
 	private ProductServiceImpl productServiceImpl;
 	@Autowired
+	CommonServiceImpl commonServiceImpl;
+	@Autowired
 	private HttpSession session;
 	
 	@GetMapping("") // 전체 채널 조회 (완료)
 	public ModelAndView channel() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Channel> channelList = channelServiceImpl.viewChannelList();
+		List<String> subsCount = commonServiceImpl.subsCount(channelList);
 		modelAndView.addObject("channelList", channelList);
+		modelAndView.addObject("subs", subsCount);
 		modelAndView.setViewName("/channel/channelList");
 		return modelAndView;
 	}

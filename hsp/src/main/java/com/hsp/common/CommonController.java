@@ -35,10 +35,15 @@ public class CommonController {
 	public ModelAndView main() {
 		ModelAndView modelAndView = new ModelAndView();
 		User getUser = (User)session.getAttribute("user");
+		String channel_id = (String)session.getAttribute("channel_id");
 		System.out.println("main User: " + getUser);
-//		if (getUser.getUser_type().equals("B")) {
-//			modelAndView.setViewName("/main/bizmain");
-//		} else {
+		System.out.println("channel_id:" + channel_id);
+		
+		if (channel_id.length() != 0) {
+			String count = commonServiceImpl.totalSubs(channel_id);
+			modelAndView.addObject("count", count);
+			modelAndView.setViewName("/main/bizmain");
+		} else {
 			Product mostReviewProduct = commonServiceImpl.getMaxReview();
 			Product mostOrderedproduct = commonServiceImpl.mostOrdered();
 			List<Product> sellingList = commonServiceImpl.sellingList();
@@ -52,8 +57,9 @@ public class CommonController {
 			modelAndView.addObject("discount", discountPrice);
 			modelAndView.addObject("topChannel", topChannel);
 			modelAndView.addObject("count", subsCount);
+			modelAndView.addObject("user_name", getUser.getName());
 			modelAndView.setViewName("/main/main");
-//		}
+		}
 		
 		return modelAndView;
 	}
@@ -75,7 +81,7 @@ public class CommonController {
 	public ModelAndView logout() {
 		userServiceImpl.logout();
 		
-		return new ModelAndView(new RedirectView("/main"));
+		return new ModelAndView(new RedirectView("/login"));
 	}
 	
 	@GetMapping("/find")

@@ -390,6 +390,7 @@ public class OrderServiceImpl implements OrderService {
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(date);
 					
+					
 					Calendar rightNow = Calendar.getInstance();
 //					rightNow.add(Calendar.DATE, -7);
 					rightNow.add(Calendar.DATE, -0);
@@ -427,8 +428,8 @@ public class OrderServiceImpl implements OrderService {
 				
 				Subscribe subscribe = new Subscribe();
 				subscribe.setUser_id(user_id);
-//				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
-				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
+//				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
 				
 				for (Subscribe subscribes : subscribeList) {
 					if (subscribes.getChannel_id().equals(product.getChannel_id())) {

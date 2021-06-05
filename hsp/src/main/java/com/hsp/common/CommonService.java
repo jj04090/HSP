@@ -11,4 +11,5 @@ public interface CommonService {
 	public List<String> subsCount(List<Channel> channel);
 	public List<Product> sellingList();
 	public List<Channel> channelList();
+	public String totalSubs(String channel_id);
 }

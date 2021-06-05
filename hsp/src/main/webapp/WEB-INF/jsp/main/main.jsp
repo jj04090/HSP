@@ -72,12 +72,12 @@
                                 <div class="col-xl-12 col-lg-6 col-md-6 col-12 col-sm-12">
                                     <div class="banner-wrap wow tmFadeInUp mb-10" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
                                         <div class="banner-img banner-img-zoom">
-                                            <a href="product-details.html"><img src="assets/images/banner/banner-1.jpg" alt=""></a>
+                                            <a href="product-details.html"><img src="/product/display?filename=${grade.product_img}" alt="" height="240" width="480"></a>
                                         </div>
                                         <div class="banner-content-1">
                                             <span>가장 평점이 좋은 상품</span>
-                                            <h2>Portable Mesh Atomizer</h2>
-                                            <h3>$40.00</h3>
+                                            <h2>${grade.product_name}</h2>
+                                            <h3>${grade.product_price}</h3>
                                             <div class="btn-style-1">
                                                 <a class="font-size-14 btn-1-padding-2" href="product-details.html">Shop now </a>
                                             </div>

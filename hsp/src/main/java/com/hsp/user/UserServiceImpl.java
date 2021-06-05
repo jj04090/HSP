@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hsp.certification.EmailServiceImpl;
 import com.hsp.channel.Channel;
+import com.hsp.channel.ChannelMapper;
 import com.hsp.channel.ChannelServiceImpl;
 
 @Service
@@ -23,6 +24,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	ChannelMapper channelMapper;
 	
 	@Autowired
 	private HttpSession session;
@@ -30,13 +33,29 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		User getUser = viewUser(user);
-		if(getUser != null) {
-			if(getUser.getPassword().equals(user.getPassword())) {
-				session.setAttribute("user", getUser);
-				session.setMaxInactiveInterval(60 * 60);
+		
+		try {
+			if(getUser != null) {
+				if(getUser.getPassword().equals(user.getPassword())) {
+					session.setAttribute("user", getUser);
+					session.setAttribute("user_name", getUser.getName());
+					Channel channel = new Channel();
+					channel.setUser_id(getUser.getUser_id());
+					Channel findChannel = channelMapper.select(channel);
+					if (findChannel == null) {
+						session.setAttribute("channel_id", "");
+					} else {
+						session.setAttribute("channel_id", findChannel.getChannel_id());						
+					}
+					
+					session.setMaxInactiveInterval(60 * 60);
+				}
+				return true;
 			}
-			return true;
+		} catch (Exception e) {
+			
 		}
+		
 		return false;
 	}
 
