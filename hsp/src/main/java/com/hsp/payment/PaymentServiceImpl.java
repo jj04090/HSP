@@ -78,10 +78,9 @@ public class PaymentServiceImpl implements PaymentService {
 	// 정기 결제
 	@Override
 	public Orders routinePayment(Orders orders, int price) throws Exception {
-		User user = (User) httpSession.getAttribute("user");
 		BigDecimal amount = new BigDecimal(price);
 		String merchantUid = "biling" + new Date().getTime();
-		AgainPaymentData againPaymentData = new AgainPaymentData(user.getUser_id()+"bilingkey", merchantUid, amount);
+		AgainPaymentData againPaymentData = new AgainPaymentData(orders.getUser_id()+"bilingkey", merchantUid, amount);
 		againPaymentData.setName("빌링키 결제테스트상품입니다.");
 
 		IamportResponse<Payment> iamportResponse = new IamportClient("1722439638143134",
@@ -90,6 +89,7 @@ public class PaymentServiceImpl implements PaymentService {
 		System.out.println("-==-=-=-=-==-=-"+iamportResponse.getMessage() + iamportResponse.getCode() + iamportResponse.getResponse());
 		Orders order = new Orders();
 		order.setOrder_id(merchantUid);
+		order.setOrder_type("W");
 		System.out.println(order + "가격 ////////" + price);
 		return order;
 	}

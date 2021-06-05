@@ -106,8 +106,9 @@ public class OrderServiceImpl implements OrderService {
 			clearCart.setUser_id(orders.getUser_id());
 			clearCart.setCart_type(cartType);
 			shoppingCartMapper.delete(shoppingCart);
-			paymentServiceImpl.routinePayment(orders, this.schedualPrice(orders));
-			System.out.println("ㅇㅎㅇㅎㅇㅎㅇㅎㅎㅇㅎㅇㅎㅎ"+orders+"======="+this.schedualPrice(orders));//이거 200이넹?
+			if (cartType == "W") {
+				paymentServiceImpl.routinePayment(orders, this.schedualPrice(orders));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -377,7 +378,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
+	@Scheduled(cron = "0/10 * * * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
 	public void schedualOrder() {
 		
 		try {

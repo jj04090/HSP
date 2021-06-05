@@ -78,7 +78,7 @@
                                             <h2>계좌 등록/인증</h2>
                                             <h3>정산 서비스를 제공받으려면 &nbsp;&nbsp;&nbsp; 필수입니다!</h3>
                                             <div class="btn-style-1">
-                                                <a class="font-size-14 btn-1-padding-2" href="">계좌 등록/인증 </a>
+                                                <a class="font-size-14 btn-1-padding-2" onclick="auth_call();">계좌 등록/인증 </a>
                                             </div>
                                         </div>
                                     </div>
@@ -107,4 +107,25 @@
         
 <%@ include file="../include/bizfooter.jsp"%>
 </body>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function auth_call() {
+	 var tmpWindow = window.open('about:blank','_blank','width=500,height=600,top=60,left=500')
+	    tmpWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"+
+			"response_type=code&"+
+	        "client_id=728a9fc1-5d1d-4db9-b7e9-e9efcadf2f12&"+ // 
+	        "redirect_uri=http://localhost/certification&"+
+	        "scope=login inquiry transfer&"+
+	        "state=12345678901234567890123456789012&"+
+	        "auth_type=0&"+
+	        "authorized_cert_yn=N"
+}
+
+</script>
 </html>
