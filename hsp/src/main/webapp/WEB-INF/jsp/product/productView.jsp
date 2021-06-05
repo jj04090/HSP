@@ -249,7 +249,7 @@
                                             <div class="pro-details-action-wrap">
                                                 <div class="pro-details-add-to-cart">
                                                 	<form name="edit" action="/shoppingcart" method="post">
-                                                	<input type="hidden" name="user_id" value=${channel_id} id="user_id" />
+                                                	<input type="hidden" name="user_id" value=${user_id} id="user_id" />
                                                 	<input type="hidden" name="product_id" value=${product.product_id} id="product_id" />
                                                 	<input type="hidden" name="product_count" value=1 id="product_count" />
                                                 	<input type="hidden" name="cart_type" value=${product.orderable_cycle} id="cart_type" />

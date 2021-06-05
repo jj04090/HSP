@@ -30,12 +30,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		User getUser = viewUser(user);
-		
 		if(getUser != null) {
 			if(getUser.getPassword().equals(user.getPassword())) {
 				session.setAttribute("user", getUser);
 				session.setMaxInactiveInterval(60 * 60);
-				System.out.println(getUser);
 			}
 			return true;
 		}

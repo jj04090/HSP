@@ -32,10 +32,10 @@ public class CommonController {
 	HttpSession session;
 	
 	@GetMapping("/main")
-	public ModelAndView main(HttpSession session, HttpServletResponse response) {
+	public ModelAndView main() {
 		ModelAndView modelAndView = new ModelAndView();
 		User getUser = (User)session.getAttribute("user");
-		
+		System.out.println("main User: " + getUser);
 //		if (getUser.getUser_type().equals("B")) {
 //			modelAndView.setViewName("/main/bizmain");
 //		} else {

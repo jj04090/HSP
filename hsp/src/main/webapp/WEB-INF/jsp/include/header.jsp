@@ -146,7 +146,8 @@
                                     </li>
                                      -->
                                     
-                                    <li><a href="contact-us.html">Contact</a></li>
+                                    <!-- 뒤에 유저 아이디 PathVaria -->
+                                    <li><a href="/user">My Page</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -159,44 +160,16 @@
                                     <a href="wishlist.html"><i class="far fa-heart"></i></a>
                                 </div>
                                 <div class="header-action-icon header-action-mrg-none">
-                                    <a href="cart.html">
+                                    <a href="/shoppingcart">
                                         <i class="far fa-shopping-bag"></i>
-                                        <span class="pro-count blue">02</span>
                                     </a>
                                     <div class="cart-dropdown-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="product-details.html"><img alt="" src="/assets/images/cart/cart-1.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="product-details.html">Surgical Latex Gloves</a></h4>
-                                                    <h3><span>1 × </span>$10.00</h3>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="far fa-times"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="product-details.html"><img alt="" src="/assets/images/cart/cart-2.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="product-details.html">Surgical Latex Gloves</a></h4>
-                                                    <h3><span>1 × </span>$10.00</h3>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="far fa-times"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        
                                         <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-total">
-                                                <h4>Total <span>$383.00</span></h4>
-                                            </div>
+                                            
                                             <div class="shopping-cart-button">
-                                                <a href="cart.html">View cart</a>
-                                                <a href="checkout.html">Checkout</a>
+                                                <a href="/shoppingcart/s">일반 상품</a>
+                                                <a href="/shoppingcart/w">정기 상품</a>
                                             </div>
                                         </div>
                                     </div>

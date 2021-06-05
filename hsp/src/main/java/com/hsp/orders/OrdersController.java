@@ -2,6 +2,8 @@ package com.hsp.orders;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hsp.product.Product;
+import com.hsp.user.User;
 
 @RestController
 @RequestMapping("/order")
 public class OrdersController {
 	
-//	String channel_id = "";
-	String channel_id = "C01";
-	String user_id = "ADMIN";
+	@Autowired
+	HttpSession httpSession;
+	
+	String channel_id = "";
+//	String channel_id = "C01";
+//	String user_id = "ADMIN";
 	
 	@Autowired
 	OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
@@ -38,6 +43,7 @@ public class OrdersController {
 	
 	@GetMapping("") // 주문 목록 조회	//사업자인 경우 팔린 주문 조회   //사용자인 경우 자신이 구매한 주문 목록 조회
 	public ModelAndView orderList(String log) {
+		User getUser = (User)httpSession.getAttribute("user");
 		System.out.println(log);
 		ModelAndView modelAndView = new ModelAndView();
 		List<Orders> result = null;
@@ -50,7 +56,7 @@ public class OrdersController {
 			modelAndView.setViewName("/order/orderBizList");
 			
 		} else { // 사용자인 경우 -> User_id로 Order Table Select
-			result = orderServiceImpl.viewOrderList(user_id);
+			result = orderServiceImpl.viewOrderList(getUser.getUser_id());
 			List<String> cancelAble = orderServiceImpl.getStatus(result);
 			modelAndView.addObject("user_type", "C");
 			modelAndView.addObject("ordersList", result);
@@ -63,6 +69,7 @@ public class OrdersController {
 	
 	@GetMapping("/{order_id}") // 주문 상세 조회
 	public ModelAndView orderView(@PathVariable(name = "order_id") String order_id) { 
+		User getUser = (User)httpSession.getAttribute("user");
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if (!channel_id.isEmpty()) { // 사업자 접근
@@ -70,7 +77,7 @@ public class OrdersController {
 			modelAndView.addObject("orderInfoList", orderInfo);
 			modelAndView.setViewName("/order/orderBizView");
 		} else {
-			List<OrderInfo> orderInfo = orderServiceImpl.viewOrder(user_id, order_id);
+			List<OrderInfo> orderInfo = orderServiceImpl.viewOrder(getUser.getUser_id(), order_id);
 			modelAndView.addObject("orderInfo", orderInfo);
 			modelAndView.setViewName("/order/orderView");
 		}

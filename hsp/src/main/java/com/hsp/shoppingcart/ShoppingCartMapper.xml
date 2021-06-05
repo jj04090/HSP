@@ -67,7 +67,7 @@
             #{user_id},
             #{product_id},
             #{product_count},
-            #{cart_type},
+            #{cart_type}
         )
     </insert>
 

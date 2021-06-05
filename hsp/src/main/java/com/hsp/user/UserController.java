@@ -1,5 +1,7 @@
 package com.hsp.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.hsp.orders.OrderServiceImpl;
+import com.hsp.orders.Orders;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
+	@Autowired
+	private OrderServiceImpl orderServiceImpl;
 	@Autowired
 	private HttpSession session;
 	
@@ -40,6 +46,11 @@ public class UserController {
 		User user = new User();
 		user.setUser_id(user_id);
 		mav.addObject("user", userServiceImpl.viewUser(user));
+		
+		List<Orders> orders = orderServiceImpl.viewOrderList(user_id);
+		List<String> cancelAble = orderServiceImpl.getStatus(orders);
+		mav.addObject("order", orders);
+		mav.addObject("cancel", cancelAble);
 		
 		return mav;
 	}

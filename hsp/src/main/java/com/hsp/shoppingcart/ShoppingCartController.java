@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsp.orders.OrderServiceImpl;
+import com.hsp.user.User;
 
 @RestController
 @RequestMapping("/shoppingcart")
@@ -38,11 +39,12 @@ public class ShoppingCartController {
 	@GetMapping("/{cartType}")
 	public ModelAndView viewShoppingCart(@PathVariable String cartType) {
 		ModelAndView mv = new ModelAndView();
+		User getUser = (User)httpSession.getAttribute("user");
 		mv.setViewName("/shoppingcart/shoppingCart");
 		
 		ShoppingCart shoppingCart = new ShoppingCart();
 		shoppingCart.setCart_type(cartType);
-		shoppingCart.setUser_id("U02"); //세션에서 가져오기
+		shoppingCart.setUser_id(getUser.getUser_id()); //세션에서 가져오기
 		
 		try {
 			List<CartValue> shoppingList = new ArrayList<CartValue>();
@@ -50,7 +52,7 @@ public class ShoppingCartController {
 			shoppingList = shoppingCartServiceImpl.viewShoppingCart(shoppingCart);
 			
 			mv.addObject("shoppingList", shoppingList);
-			mv.addObject("total", orderServiceImpl.totalPrice("U02", cartType));
+			mv.addObject("total", orderServiceImpl.totalPrice(getUser.getUser_id(), cartType));
 			mv.addObject("cartType", cartType.toUpperCase());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,21 +63,21 @@ public class ShoppingCartController {
 	
 	// 장바구니 등록
 	@PostMapping
-	@ResponseBody
-	public void registShoppingCart(ShoppingCart shoppingCart) {
+//	@ResponseBody
+	public ModelAndView registShoppingCart(ShoppingCart shoppingCart) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/shoppingcart/"+shoppingCart.getCart_type());
 		try {
 			shoppingCartServiceImpl.registShoppingCart(shoppingCart);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return modelAndView;
 	}
 
 	// 장바구니 수정
 	@PutMapping
 	public void updateShoppingCart(@RequestBody ArrayList<ShoppingCart> list) {
-		ModelAndView mv = new ModelAndView("/shoppingcart/shoppingCart");
-		//수정 후 페이지 갱신
-		System.out.println("??;;"+list.get(0).getProduct_count());
 		try {
 			shoppingCartServiceImpl.editShoppingCart(list);
 		} catch (Exception e) {

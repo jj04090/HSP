@@ -354,7 +354,7 @@ public class OrderServiceImpl implements OrderService {
 				int count = 1;
 				float discount = 0;
 				
-				if (subscribe.getChannel_id().isEmpty()) { // 사용자가 구독하지 않는 상태
+				if (subscribe == null) { // 사용자가 구독하지 않는 상태
 					count = productQty.getValue();
 					
 				} else { // 사용자가 구독한 상태
@@ -376,7 +376,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *
+	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
 	public void schedualOrder() {
 		
 		try {
@@ -391,7 +391,8 @@ public class OrderServiceImpl implements OrderService {
 					cal.setTime(date);
 					
 					Calendar rightNow = Calendar.getInstance();
-					rightNow.add(Calendar.DATE, -7);
+//					rightNow.add(Calendar.DATE, -7);
+					rightNow.add(Calendar.DATE, -0);
 					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 					
 					if ( df.format(cal.getTime()).compareTo(df.format(rightNow.getTime())) == 0 ) {

@@ -27,6 +27,7 @@ import com.hsp.inquiry.Inquiry;
 import com.hsp.inquiry.InquiryServiceImpl;
 import com.hsp.review.Review;
 import com.hsp.review.ReviewServiceImpl;
+import com.hsp.user.User;
 
 @RestController
 @RequestMapping("/product")
@@ -44,7 +45,7 @@ public class ProductController {
 	HttpSession httpSession;
 	
 //	String user_id = "U01";
-	String user_id = "ADMIN";
+//	String user_id = "ADMIN";
 	String channel_id = "C01";
 
 	@GetMapping("")
@@ -95,21 +96,23 @@ public class ProductController {
 	@GetMapping("/{channel_id}/{product_id}")
 	public ModelAndView viewProduct(@PathVariable String channel_id, @PathVariable String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
+		User getUser = (User)httpSession.getAttribute("user");
 		Product product = new Product();
 		product.setProduct_id(product_id);
 		product.setChannel_id(channel_id);
 		Product result = productServiceImpl.viewProduct(product);
 		String discount = productServiceImpl.singleDiscount(result);
-		String subsCheck = productServiceImpl.subsCheck(result, user_id);
+		String subsCheck = productServiceImpl.subsCheck(result, getUser.getUser_id());
 //		Review review = new Review();
 //		review.setProduct_id(product_id);
-		List<Review> reviewList = reviewServiceImpl.viewReviewList();
-		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList();
+//		List<Review> reviewList = reviewServiceImpl.viewReviewList(); // product_id
+//		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList(); // product_id
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
-		modelAndView.addObject("reviewList", reviewList);
-		modelAndView.addObject("inquiryList", inquiryList);
+//		modelAndView.addObject("reviewList", reviewList);
+//		modelAndView.addObject("inquiryList", inquiryList);
+		modelAndView.addObject("user_id", getUser.getUser_id());
 		modelAndView.setViewName("/product/productView");
 		return modelAndView;
 	}
@@ -122,10 +125,10 @@ public class ProductController {
 		product.setChannel_id(channel_id);
 		Product result = productServiceImpl.viewProduct(product);
 		String discount = productServiceImpl.singleDiscount(result);
-		String subsCheck = productServiceImpl.subsCheck(result, user_id);
+//		String subsCheck = productServiceImpl.subsCheck(result, user_id);
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
-		modelAndView.addObject("subsCheck", subsCheck);
+//		modelAndView.addObject("subsCheck", subsCheck);
 		modelAndView.setViewName("/product/productViewBiz");
 		return modelAndView;
 	}

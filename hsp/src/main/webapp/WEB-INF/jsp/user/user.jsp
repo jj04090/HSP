@@ -166,7 +166,50 @@
                                      
                                      
                                      <!-- 주문 조회 구현 -->
-                                     
+                                     <div class="tab-pane fade active show" id="order_view" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>주문 ID</th>
+                                                                <th>날짜</th>
+                                                                <th>상태</th>
+                                                                <th>Total</th>
+                                                                <th>취소/정기 취소</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        	<c:forEach items="${order}" var = "list" varStatus="status">
+                                                        	
+                                                            <tr>
+                                                                <td>${list.order_id}</td>
+                                                                <td>${list.order_date}</td>
+                                                                <td>
+                                                                	<c:if test="${list.order_status == 'O'}">결제완료</c:if>
+																	<c:if test="${list.order_status == 'C'}">결제취소</c:if>
+																	<c:if test="${list.order_status == 'B'}">정기주문취소</c:if>
+                                                                </td>
+                                                                <td>$3000</td>
+                                                                <td> <!-- <a href="cart.html" class="check-btn sqr-btn "> View</a>    -->
+                                                                	<c:if test="${list.order_type == 'W' && list.order_status == 'O'}">
+																		<a href="/order/cancelschedual/${list.order_id}" class="check-btn sqr-btn "> 정기 주문 취소</a>
+																	</c:if>
+		
+																	<c:if test="${cancel[status.index] == 'Y'}">
+																		
+																		<a href="/order/cancel/${list.order_id}" class="check-btn sqr-btn "> 주문 취소</a>
+																	</c:if>
+                                                                
+                                                                </td>
+                                                            </tr>
+                                                            </c:forEach>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                      
                                      <!-- Single Tab Content End -->
                                      <div class="tab-pane fade" id="withdrawal" role="tabpanel">
