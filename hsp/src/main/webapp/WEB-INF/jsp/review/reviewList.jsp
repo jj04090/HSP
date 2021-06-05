@@ -16,6 +16,7 @@
         </div>
     </div>
 	
+	
 	<c:forEach items="${listReview}" var = "list">
 		<ul>
 			<li>사진 : <img class='small1' src="/review/display?filename=${list.review_img}"> </li>
