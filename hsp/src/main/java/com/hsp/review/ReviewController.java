@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/hsp")
+@RequestMapping("/review")
 public class ReviewController {
 	@Autowired
 	private HttpSession httpSession;
@@ -39,19 +39,21 @@ public class ReviewController {
 	String product_id = "P01";
 	
 	//리뷰 목록 조회
-	@GetMapping("/review")
-	public ModelAndView listReview() {
+	@GetMapping("/{product_id}")
+	public ModelAndView listReview(@PathVariable String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Review> listreview = reviewServiceImpl.viewReviewList();
+		List<Review> listReview = reviewServiceImpl.viewReviewList(product_id);
 		modelAndView.setViewName("/review/reviewList");
-		modelAndView.addObject("listreview", listreview);
+		modelAndView.addObject("product_id", product_id);
+		modelAndView.addObject("listReview", listReview);
 		return modelAndView;
 	}
 	
 	//리뷰 상세 조회
-	@GetMapping("/review/{review_id}")
-	public ModelAndView viewreview(@PathVariable(name = "review_id") String review_id) {
+	@GetMapping("/{product_id}/{review_id}")
+	public ModelAndView viewreview(@PathVariable String product_id, @PathVariable String review_id) {
 		Review review = new Review();
+		review.setProduct_id(product_id);
 		review.setReview_id(review_id);
 		Review result = reviewServiceImpl.viewReview(review);
 		ModelAndView modelAndView = new ModelAndView();
@@ -60,20 +62,20 @@ public class ReviewController {
 		return modelAndView;
 	}
 	
-	//리뷰 수정 폼
-	@GetMapping("/review/{review_id}/editform")
-	public ModelAndView updatereview(@PathVariable(name = "review_id") String review_id) {
-		ModelAndView modelAndView = new ModelAndView();
-		Review review = new Review();
-		review.setReview_id(review_id);
-		Review result = reviewServiceImpl.viewReview(review);
-		modelAndView.setViewName("/review/reviewEditForm");
-		modelAndView.addObject("review", result);
-		return modelAndView;
-	}
+//	//리뷰 수정 폼
+//	@GetMapping("/{review_id}/editform")
+//	public ModelAndView updatereview(@PathVariable String review_id) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		Review review = new Review();
+//		review.setReview_id(review_id);
+//		Review result = reviewServiceImpl.viewReview(review);
+//		modelAndView.setViewName("/review/reviewEditForm");
+//		modelAndView.addObject("review", result);
+//		return modelAndView;
+//	}
 	
 	//리뷰 등록 폼
-	@GetMapping("/review/registform")
+	@GetMapping("/registform")
 	public ModelAndView regitReview() {
 		ModelAndView modelAndView = new ModelAndView();
 		String review_id = "R" + UUID.randomUUID().toString().subSequence(0, 9);
@@ -84,76 +86,37 @@ public class ReviewController {
 	}
 	
 	//리뷰 등록
-	@PostMapping("/review")
+	@PostMapping("")
 	public ModelAndView regitReview(Review review, @RequestParam("attach") MultipartFile attach) {
 		ModelAndView modelAndView = new ModelAndView();
 		reviewServiceImpl.registReview(review, attach);
-		modelAndView.setViewName("redirect:/hsp/review");
+		modelAndView.setViewName("redirect:/review/" + review.getProduct_id());
 		return modelAndView;
 	}
 	
-	//리뷰 수정
-	@PostMapping("/reviewupdate")
-	public ModelAndView updateReview(Review review, MultipartFile attach) {
-		ModelAndView modelAndView = new ModelAndView();
-		reviewServiceImpl.updateReview(review, attach);
-		modelAndView.setViewName("redirect:/hsp/review/" + review.getReview_id());
-		return modelAndView;
-	}
+//	//리뷰 수정
+//	@PutMapping("")
+//	public ModelAndView updateReview(Review review, MultipartFile attach) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		reviewServiceImpl.updateReview(review, attach);
+//		modelAndView.setViewName("redirect:/review/" + review.getProduct_id() + "/" + review.getReview_id());
+//		return modelAndView;
+//	}
 	
 	//리뷰 삭제
-	@DeleteMapping("/review")
+	@DeleteMapping("")
 	public ModelAndView deleteReview(Review review) {
 		ModelAndView modelAndView = null;
 		return modelAndView;
 	}
 	
 	//사진업로드
-	@PostMapping("/review/ckUpload")
+	@PostMapping("/ckUpload")
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload) throws Exception {
-		String uploadPath = "C:\\Users\\ws059\\project"; // 기본 경로
-		// 랜덤 문자 생성
-		UUID uid = UUID.randomUUID();
-		
-		OutputStream out = null;
-		PrintWriter printWriter = null;
-				
-		// 인코딩
-		res.setCharacterEncoding("utf-8");
-		res.setContentType("text/html;charset=utf-8");
-		
-		try {
-			
-			String fileName = upload.getOriginalFilename();  // 파일 이름 가져오기
-			byte[] bytes = upload.getBytes();
-			
-			// 업로드 경로
-			String ckUploadPath = uploadPath + File.separator + uid + "_" + fileName;
-			
-			out = new FileOutputStream(new File(ckUploadPath));
-			out.write(bytes);
-			out.flush();  // out에 저장된 데이터를 전송하고 초기화
-			
-			printWriter = res.getWriter();
-			String fileUrl = "/hsp/review/display?filename=" + uid + "_" + fileName;  // 작성화면
-			
-			// 업로드시 메시지 출력
-			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
-			
-			printWriter.flush();
-			
-		} catch (IOException e) { e.printStackTrace();
-		} finally {
-			try {
-				if(out != null) { out.close(); }
-				if(printWriter != null) { printWriter.close(); }
-			} catch(IOException e) { e.printStackTrace(); }
-		} 
-		
-		return;	
+		reviewServiceImpl.postCKEditorImgUpload(req, res, upload);
 	}
 	
-	@GetMapping("/review/display")
+	@GetMapping("/display")
 	public ResponseEntity<Resource> display(@RequestParam("filename") String fileName)throws Exception{
 		
 		return reviewServiceImpl.display(fileName);

@@ -10,37 +10,33 @@
                     <li>
                         <a href="index.html">Home</a>
                     </li>
-                    <li class="active">Inquiry</li>
+                    <li class="active">Comment</li>
                 </ul>
             </div>
         </div>
     </div>
 	
-	<form name="edit" action="/inquiry/inquiry" method="post" enctype="multipart/form-data">
+	<form name="edit" action="/community/comme" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="PUT" />
 		
 		<div>
-			문의 ID : <input type="text" name="inquiry_id" value=${inquiry.inquiry_id} id="inquiry_id" readonly />
-		</div>
-
-		<div>
-			유저 ID : <input type="text" name="user_id" value=${inquiry.user_id} id="user_id" readonly />
+			댓글 ID : <input type="text" name="comment_id" value=${comment.comment_id} id="comment_id" readonly />
 		</div>
 		
 		<div>
-			상품 ID : <input type="text" name="product_id" value=${inquiry.product_id} id="inquiry_id" readonly />
+			댓글 ID : <input type="text" name="user_id" value=${comment.user_id} id="user_id" readonly />
 		</div>
 
 		<div>
-			문의 제목 : <input type="text" name="inquiry_title" placeholder=${inquiry.inquiry_title} id="inquiry_title" />
+			게시글 ID : <input type="text" name="community_id" value=${comment.community_id} id="community_id" readonly />
 		</div>
 		
 		<div>
-			문의 내용 : <input type="text" name="inquiry_content" placeholder=${inquiry.inquiry_content} id="inquiry_content" />
+			댓글 내용 : <input type="text" name="comment_content" value=${comment.comment_content} id="comment_content" />
 		</div>
 
 		<div>
-			<button type="submit">문의 수정</button>
+			<button type="submit">댓글 수정</button>
 		</div>
 	</form>
 

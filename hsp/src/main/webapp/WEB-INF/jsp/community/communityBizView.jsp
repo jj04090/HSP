@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/bizheader.jsp"%>
+
+
 	
 	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
         <div class="custom-container">
@@ -76,7 +79,7 @@
 		                                <div class="blog-author-content">
 		                                    <h4>${list.user_id}</h4>
 		                                    <p>${list.comment_content}</p>
-		                                    <form name="edit" action="/community/${list.community_id}/${list.comment_id}/editform" method="get">
+		                                    <form name="edit" action="/community/${list.comment_id}/editform" method="get">
 												<button type="submit">댓글 수정</button>
 											</form>
 		                                </div>
@@ -194,12 +197,17 @@
                 </div>
             </div>
         </div>
-        <form name="regit" action="/community/commeregistform" method="get">
+        <form name="edit" action="/community/${community.community_id}/editform" method="get">
+			<button type="submit">게시글 수정</button>
+		</form>
+		<form name="regit" action="/community/commenregistform" method="get">
 			<button type="submit">댓글 등록</button>
 		</form>
 		<form name="list" action="/community/${community.channel_id}" method="get">
 			<button type="submit">목록으로</button>
 		</form>
-<%@ include file="../include/footer.jsp"%>
+
+
+<%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

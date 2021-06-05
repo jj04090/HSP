@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hsp.community.CommentMapper">
+    <resultMap id="commentResultMap" type="com.hsp.community.Comment">
+        <result column="COMMENT_ID" property="comment_id" />
+        <result column="COMMUNITY_ID" property="community_id" />
+        <result column="USER_ID" property="user_id" />
+        <result column="COMMENT_CONTENT" property="comment_content" />
+        <result column="REGIT_DATE" property="regit_date" />
+    </resultMap>
+    <sql id="whereSql">
+        <where>
+            <if test="comment_id != null and comment_id != ''">
+                AND COMMENT_ID = #{comment_id}
+            </if>
+            <if test="community_id != null and community_id != ''">
+                AND COMMUNITY_ID = #{community_id}
+            </if>
+            <if test="user_id != null and user_id != ''">
+                AND USER_ID = #{user_id}
+            </if>
+            <if test="comment_content != null and comment_content != ''">
+                AND COMMENT_CONTENT = #{comment_content}
+            </if>
+            <if test="regit_date != null and regit_date != ''">
+                AND REGIT_DATE = #{regit_date}
+            </if>
+        </where>
+    </sql>
+
+    <select id="list" parameterType="com.hsp.community.Comment" resultMap="commentResultMap">
+        SELECT
+            	COMMENT_ID,
+            	COMMUNITY_ID,
+            	USER_ID,
+            	COMMENT_CONTENT,
+            	REGIT_DATE
+        FROM COMMENT
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="select" parameterType="com.hsp.community.Comment" resultMap="commentResultMap">
+        SELECT
+            	COMMENT_ID,
+            	COMMUNITY_ID,
+            	USER_ID,
+            	COMMENT_CONTENT,
+            	REGIT_DATE
+        FROM COMMENT
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="com.hsp.community.Comment">
+        INSERT INTO COMMENT (
+            COMMENT_ID,
+			COMMUNITY_ID,
+			USER_ID,
+  			COMMENT_CONTENT,
+  			REGIT_DATE
+        ) VALUES (
+            #{comment_id},
+            #{community_id},
+            #{user_id},
+            #{comment_content},
+            #{regit_date}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.hsp.community.Comment">
+        UPDATE COMMENT
+        <set>
+        	<if test="comment_id != null">
+                COMMENT_ID = #{comment_id},
+            </if>
+            <if test="community_id != null">
+                COMMUNITY_ID = #{community_id},
+            </if>
+            <if test="user_id != null">
+                USER_ID = #{user_id},
+            </if>
+            <if test="comment_content != null">
+                COMMENT_CONTENT = #{comment_content},
+            </if>
+            <if test="regit_date != null">
+                REGIT_DATE = #{regit_date},
+            </if>
+        </set>
+        <where>
+        	COMMENT_ID = #{comment_id}
+        	AND  COMMUNITY_ID = #{community_id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="com.hsp.community.Comment">
+        DELETE FROM COMMENT
+        <where>
+        	COMMENT_ID = #{comment_id}
+        	AND  COMMUNITY_ID = #{community_id}
+        </where>
+        <include refid="whereSql" />
+    </delete>
+    
+</mapper>

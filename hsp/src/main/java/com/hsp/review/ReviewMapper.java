@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ReviewMapper {
-	public List<Review> list() throws Exception;
+	public List<Review> list(Review review) throws Exception;
 
 	public Review select(Review review) throws Exception;
 
@@ -14,4 +14,6 @@ public interface ReviewMapper {
 	public void update(Review review) throws Exception;
 
 	public void delete(Review review) throws Exception;
+	
+	public Review highRate() throws Exception;
 }

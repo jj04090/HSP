@@ -8,7 +8,7 @@ public class Inquiry implements Serializable{
 	private String product_id;
 	private String inquiry_title;
 	private String inquiry_content;
-	private String inquriy_regit_date;
+	private String inquiry_regit_date;
 	private String inquiry_type;
 	private String answer;
 
@@ -20,13 +20,13 @@ public class Inquiry implements Serializable{
 	}
 	
 	public Inquiry(String inquiry_id, String user_id, String product_id, String inquiry_title, String inquiry_content,
-			String inquriy_regit_date, String inquiry_type, String answer, int itemStart, int itemSizePerPage) {
+			String inquiry_regit_date, String inquiry_type, String answer, int itemStart, int itemSizePerPage) {
 		this.inquiry_id = inquiry_id;
 		this.user_id = user_id;
 		this.product_id = product_id;
 		this.inquiry_title = inquiry_title;
 		this.inquiry_content = inquiry_content;
-		this.inquriy_regit_date = inquriy_regit_date;
+		this.inquiry_regit_date = inquiry_regit_date;
 		this.inquiry_type = inquiry_type;
 		this.answer = answer;
 		this.itemStart = itemStart;
@@ -73,12 +73,12 @@ public class Inquiry implements Serializable{
 		this.inquiry_content = inquiry_content;
 	}
 
-	public String getInquriy_regit_date() {
-		return inquriy_regit_date;
+	public String getInquiry_regit_date() {
+		return inquiry_regit_date;
 	}
 
-	public void setInquriy_regit_date(String inquriy_regit_date) {
-		this.inquriy_regit_date = inquriy_regit_date;
+	public void setInquiry_regit_date(String inquiry_regit_date) {
+		this.inquiry_regit_date = inquiry_regit_date;
 	}
 	
 	public String getInquiry_type() {
@@ -116,8 +116,8 @@ public class Inquiry implements Serializable{
 	@Override
 	public String toString() {
 		return "Inquiry [inquiry_id=" + inquiry_id + ", user_id=" + user_id + ", product_id=" + product_id
-				+ ", inquiry_title=" + inquiry_title + ", inquiry_content=" + inquiry_content + ", inquriy_regit_date="
-				+ inquriy_regit_date + ", inquiry_type=" + inquiry_type + ", answer=" + answer + ", itemStart="
+				+ ", inquiry_title=" + inquiry_title + ", inquiry_content=" + inquiry_content + ", inquiry_regit_date="
+				+ inquiry_regit_date + ", inquiry_type=" + inquiry_type + ", answer=" + answer + ", itemStart="
 				+ itemStart + ", itemSizePerPage=" + itemSizePerPage + "]";
 	}
 }

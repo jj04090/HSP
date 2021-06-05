@@ -1,33 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Review Register</title>
+<%@ include file="../include/header.jsp"%>
+	
+	<div class="breadcrumb-area breadcrumb-area-padding-2 bg-gray-2">
+        <div class="custom-container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Review</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<script src="/resources/ckeditor/ckeditor.js"></script>
-
-<style>
-	.image_container img { margin:20px 0; }
-</style>
-
-</head>
-<body>
-	<h1>리뷰 등록</h1>
-
-	<form name='regit' action="/hsp/review" method="post" enctype="multipart/form-data">
+	<form name='regit' action="/review" method="post" enctype="multipart/form-data">
 		<div>
 			리뷰 ID : <input type="text" name="review_id" value=${review_id} id="review_id" readonly />
 		</div>
 
 		<div>
-			주문 ID : <input type="text" name="order_id" value=${order_id} id="order_id" readonly />
+			주문 ID : <input type="text" name="order_id" value=${order_id} id="order_id" />
 		</div>
 		
 		<div>
 			상품 ID : <input type="text" name="product_id" value=${product_id} id="product_id" readonly />
+		</div>
+
+		<div>
+			평점 : <select name="product_grade" id="product_grade">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						  </select>
 		</div>
 
 		<div>
@@ -49,18 +58,14 @@
 		} 
 		</script>
 		
-		<div>
-			리뷰 내용 : <input type="text" name="review_content" placeholder="내용" id="review_content" />
-		</div>
-
-		<textarea rows="5" cols="50" id="reviewDes" name="review_detail"></textarea>
+		<textarea rows="5" cols="50" id="reviewDes" name="review_content"></textarea>
 
 		<script>
 			var ckeditor_config = {
 				resize_enaleb : false,
 				enterMode : CKEDITOR.ENTER_BR,
 				shiftEnterMode : CKEDITOR.ENTER_P,
-				filebrowserUploadUrl : "/hsp/review/ckUpload"
+				filebrowserUploadUrl : "/review/ckUpload"
 			};
 
 			CKEDITOR.replace("reviewDes", ckeditor_config);
@@ -71,5 +76,6 @@
 		</div>
 	</form>
 
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
