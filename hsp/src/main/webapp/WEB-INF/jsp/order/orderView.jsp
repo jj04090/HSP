@@ -1,19 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Order View</title>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/header.jsp"%>
 
-<style>
-.small1 { width: 100px; }
-.small2 { height: 100px; }
-</style>
-
-</head>
-<body>
 	<h1>주문 상세 확인</h1>
 	
 	<c:forEach items="${orderInfo}" var = "list">
@@ -29,7 +19,7 @@
 			<li>상품 가격 : ${list.price} </li>
 			<li>상품 할인율 : ${list.discount} % </li> 
 			<li>주소 : ${list.address} </li>
-			<li>상세 주소 : ${list.detail_address} </li>
+			<li>상세 주소 : ${list.detail_add} </li>
 			<li>우편 번호 : ${list.zip_code} </li>
 			
 			<li>주문 상태 :
@@ -67,5 +57,6 @@
 		</ul>
 	</c:forEach>
 	
+<%@ include file="../include/footer.jsp"%>
 </body>
 </html>
