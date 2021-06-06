@@ -13,7 +13,7 @@
                                 <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 2832px;"><div class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-end bg-img slick-slide slick-current slick-active" style="background-image: url(&quot;/product/display?filename=62622_42672_2650.jpg&quot;); width: 944px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" data-slick-index="0" aria-hidden="false" tabindex="0">
                                     <div class="hero-slider-content-1 slider-animated-1">
                                         <h1 class="animated">HMR 식품을 간편하게 구입하세요 <br>&amp; 간편식품 </h1>
-                                        <p class="animated">  채널 구독을 통하여 할인을 받고 구매하세요!  정기 주문도 가능합니다! </p>
+                                        <p class="animated" >  채널 구독을 통하여 할인을 받고 구매하세요!  정기 주문도 가능합니다! </p>
                                         <div class="btn-style-1">
                                             <a class="animated" href="/product" tabindex="0"> 상품 보기 </a>
                                         </div>

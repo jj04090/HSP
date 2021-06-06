@@ -44,6 +44,7 @@ public class OrdersController {
 	@GetMapping("") // 주문 목록 조회	//사업자인 경우 팔린 주문 조회   //사용자인 경우 자신이 구매한 주문 목록 조회
 	public ModelAndView orderList(String log) {
 		User getUser = (User)httpSession.getAttribute("user");
+		String channel_id = (String)httpSession.getAttribute("channel_id");
 		System.out.println(log);
 		ModelAndView modelAndView = new ModelAndView();
 		List<Orders> result = null;
@@ -70,6 +71,7 @@ public class OrdersController {
 	@GetMapping("/{order_id}") // 주문 상세 조회
 	public ModelAndView orderView(@PathVariable(name = "order_id") String order_id) { 
 		User getUser = (User)httpSession.getAttribute("user");
+		String channel_id = (String)httpSession.getAttribute("channel_id");
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if (!channel_id.isEmpty()) { // 사업자 접근

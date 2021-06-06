@@ -52,7 +52,6 @@ public class CommonServiceImpl implements CommonService {
 		Product product = new Product();
 		try {
 			OrderDetail orderDetail = orderDetailMapper.mostSelling();
-			product.setProduct_id(orderDetail.getProduct_id());
 			
 			product = productMapper.select(product);
 		} catch (Exception e) {
@@ -123,6 +122,20 @@ public class CommonServiceImpl implements CommonService {
 		}
 		
 		return count;
+	}
+
+	@Override
+	public String monthProfit(String channel_id) {
+		String profit = "0";
+		
+		try {
+			profit = channelMapper.sumMonthProfit(channel_id);
+			profit = profit.substring(0, profit.length() - 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return profit;
 	}
 	
 

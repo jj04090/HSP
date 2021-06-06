@@ -33,7 +33,7 @@
                                         <c:forEach items="${ordersList}" var = "list" varStatus="status">
                                             <tr>
                                                 <td class="wishlist-product-thumbnail">
-                                                    <a href="#"><i class="far fa-times"></i></a>
+                                                    <a href="#">${status.count}</a>
                                                 </td>
                                                 <td class="wishlist-product-info">
                                                     <h5><a href="/order/${list.order_id}"> <c:out value="주문 ${status.count}" /> </a></h5>
@@ -59,15 +59,6 @@
                                                     </span>
                                                     <div class="wishlist-product-add">
                                                         
-                                                        <c:if test="${user_type == 'C'}">
-		
-														<c:if test="${list.order_type == 'W' && list.order_status == 'O'}">
-															<div>
-																<form name="schedualCancel" action="/order/cancelschedual/${list.order_id}" method="get">
-																	<button type="submit">정기 주문 취소</button>
-																</form>
-															</div>
-														</c:if>
 																		<!-- a테그로 해결해야됨 -->
 														<c:if test="${cancelAble[status.index] == 'Y'}">
 															<div>
@@ -77,7 +68,6 @@
 															</div>
 														</c:if>
 													
-													</c:if>
                                                         
                                                     </div>
                                                 </td>
@@ -95,46 +85,6 @@
         </div>
 		
 		
-		
-		
-		
-		
-		
-		
-	
-	<c:forEach items="${ordersList}" var = "list" varStatus="status">
-		<ul>
-			<li> 주문 ID : <a href="/order/${list.order_id}"> <c:out value="${list.order_id}" /> </a> </li>
-			<li>주문 종류 : 
-				<c:if test="${list.order_type == 'S'}">일반상품</c:if>
-				<c:if test="${list.order_type == 'W'}">정기상품</c:if>
-			</li>
-			<li>주문 일자 : <c:out value="${list.order_date}" /> </li>
-			<li>결제 상태 : <c:out value="${list.order_status}" /> </li>
-		
-		<c:if test="${user_type == 'C'}">
-		
-			<c:if test="${list.order_type == 'W' && list.order_status == 'O'}">
-				<div>
-					<form name="schedualCancel" action="/order/cancelschedual/${list.order_id}" method="get">
-						<button type="submit">정기 주문 취소</button>
-					</form>
-				</div>
-			</c:if>
-		
-			<c:if test="${cancelAble[status.index] == 'Y'}">
-				<div>
-					<form name="orderCancel" action="/order/cancel/${list.order_id}" method="get">
-						<button type="submit">주문 취소</button>
-					</form>
-				</div>
-			</c:if>
-		
-		</c:if>
-		
-		</ul>
-		
-	</c:forEach>
 	
 		</div>
 	</div>

@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -251,6 +252,34 @@ public class ChannelServiceImpl implements ChannelService {
 		} 
 		
 		return;	
+	}
+
+	@Override
+	public List<String> checkSubs(List<Channel> channelList, String user_id) {
+		List<String> check = new ArrayList<String>();
+		
+		try {
+			for (Channel channel : channelList) {
+				Subscribe subscribe = new Subscribe();
+				subscribe.setChannel_id(channel.getChannel_id());
+				subscribe.setUser_id(user_id);
+				
+				subscribe = subscribeMapper.select(subscribe);
+				
+				if (subscribe != null) {
+					check.add("O");
+				} else {
+					check.add("X");
+				}
+				
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		return check;
 	}
 
 }

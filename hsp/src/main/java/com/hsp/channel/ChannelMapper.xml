@@ -208,4 +208,15 @@
 		AND PRODUCT.CHANNEL_ID = CHANNEL.CHANNEL_ID
     </select>
     
+    <select id="sumMonthProfit" parameterType="String" resultType="String">
+    	SELECT SUM(ORD.TOTAL_PRICE)
+		FROM ORDER_DETAIL ORD
+ 	 		, PRODUCT P
+     		, ORDERS O
+		WHERE (ORD.PRODUCT_ID = P.PRODUCT_ID)
+		AND (ORD.ORDER_ID = O.ORDER_ID)
+		AND P.CHANNEL_ID = #{channel_id}
+		AND date_format(O.ORDER_DATE, '%Y-%m-%d') between '2021-06-01' and date_format(now(), '%Y-%m-%d')
+    </select>
+    
 </mapper>

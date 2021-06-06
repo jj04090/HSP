@@ -45,7 +45,14 @@
                                 </div>
                                 <h3><a href="/channel/${list.channel_id}"> <c:out value="${list.channel_name}" /> </a></h3>
                                 <div class="blog-btn">
-                                    <a href="blog-details.html">Read more <i class="far fa-long-arrow-right"></i></a>
+                                	<c:if test="${checkSubs[status.index] == 'O'}">
+	                                    <a href="blog-details.html">구독 중 <i class="far fa-long-arrow-right"></i></a>
+                                	</c:if>
+                                	
+                                	<c:if test="${checkSubs[status.index] == 'X'}">
+	                                    <a href="/channel/subscribe/${list.channel_id}">구독 하기 <i class="far fa-long-arrow-right"></i></a>
+                                	</c:if>
+                                	
                                 </div>
                             </div>
                         </div>

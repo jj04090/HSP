@@ -12,4 +12,5 @@ public interface CommonService {
 	public List<Product> sellingList();
 	public List<Channel> channelList();
 	public String totalSubs(String channel_id);
+	public String monthProfit(String channel_id);
 }

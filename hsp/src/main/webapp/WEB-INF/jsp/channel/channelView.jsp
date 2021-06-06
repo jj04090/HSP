@@ -13,7 +13,7 @@
                         <li>
                             <a href="/main">Home</a>
                         </li>
-                        <li class="active">Shop</li>
+                        <li class="/channel">channel</li>
                     </ul>
                 </div>
             </div>
@@ -68,12 +68,13 @@
                             </div>
                             <!-- 상품 하나 하나 끝 -->
                             </c:forEach>
-	
-	
+							
+							<!-- 사업자 화면에 표시 -->
+							<!-- 
 							<form name="regit" action="/product/registform" method="get">
 								<button type="submit">상품 등록</button>
 							</form>
-	
+							 -->
 	
 					</div>
 				</div>
@@ -82,6 +83,16 @@
 				
 				<div class="col-lg-3">
                         <div class="sidebar-wrapper sidebar-wrapper-mr1">
+                        	
+                        	<div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
+                                <h4 class="sidebar-widget-title">채널 대표사진</h4>
+                                <div class="sidebar-brand-list">
+                                    <img class="default-img" src="/product/display?filename=${channel.channel_img}" alt="">
+                                    
+                                </div>
+                            </div>
+                        
+                        
                             <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
                                 <h4 class="sidebar-widget-title">채널 설명</h4>
                                 <div class="sidebar-categories-list">
@@ -113,18 +124,9 @@
                                 <h4 class="sidebar-widget-title">채널 커뮤니티</h4>
                                 <div class="sidebar-brand-list">
                                     <ul>
-                                        <li><a href="shop.html">Allergy Clinic <span>(6)</span></a></li>
-                                        <li><a href="shop.html">Axs Health <span>(5)</span></a></li>
-                                        <li><a href="shop.html">BioZen <span>(6)</span></a></li>
-                                        <li><a href="shop.html">Caravus <span>(4)</span></a></li>
-                                        <li><a href="shop.html">Health Care <span>(5)</span></a></li>
-                                        <li><a href="shop.html">Life Omic <span>(5)</span></a></li>
-                                        <li><a href="shop.html">Med Care <span>(5)</span></a></li>
-                                        <li><a href="shop.html">Page Med <span>(3)</span></a></li>
-                                        <li><a href="shop.html">Pharmacy <span>(3)</span></a></li>
-                                        <li><a href="shop.html">Primacy <span>(8)</span></a></li>
-                                        <li><a href="shop.html">Search Lab <span>(5)</span></a></li>
-                                        <li><a href="shop.html">Stomach Care <span>(6)</span></a></li>
+                                    	<c:forEach items="${communityList}" var = "commList" varStatus="status">
+                                    		<li><a href="shop.html">${commList.community_title} <span>(6)</span></a></li>
+                                    	</c:forEach>
                                     </ul>
                                 </div>
                             </div>

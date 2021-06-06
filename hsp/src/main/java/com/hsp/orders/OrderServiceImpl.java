@@ -378,7 +378,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	@Scheduled(cron = "0/10 * * * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
+	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
 	public void schedualOrder() {
 		
 		try {
@@ -390,6 +390,7 @@ public class OrderServiceImpl implements OrderService {
 					SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 					Date date = fm.parse(orderDate);
 					Calendar cal = Calendar.getInstance();
+					
 					cal.setTime(date);
 					
 					
@@ -399,7 +400,8 @@ public class OrderServiceImpl implements OrderService {
 					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 					
 					if ( df.format(cal.getTime()).compareTo(df.format(rightNow.getTime())) == 0 ) {
-						paymentServiceImpl.routinePayment(order, this.schedualPrice(order));
+						Orders schedualOrder = paymentServiceImpl.routinePayment(order, this.schedualPrice(order)); // 오더 반환해주는거 insert 해줘야됨
+						
 					}
 				}
 			}
@@ -430,8 +432,7 @@ public class OrderServiceImpl implements OrderService {
 				
 				Subscribe subscribe = new Subscribe();
 				subscribe.setUser_id(user_id);
-				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
-//				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); 
 				
 				for (Subscribe subscribes : subscribeList) {
 					if (subscribes.getChannel_id().equals(product.getChannel_id())) {
@@ -458,8 +459,8 @@ public class OrderServiceImpl implements OrderService {
 	public void schedualOrderApply(Orders orders, Orders previousOrder) { // 결제하고 Orders 줘야됨
 		
 		try {
-			orders.setUser_id(previousOrder.getUser_id());
-			orders.setOrder_type(previousOrder.getOrder_type());
+			orders.setUser_id(orders.getOrder_id());
+			orders.setOrder_type("W");
 			
 			Date now = new Date();
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -481,9 +482,9 @@ public class OrderServiceImpl implements OrderService {
 				float discount = 0;
 				
 				Subscribe subscribe = new Subscribe();
-				subscribe.setUser_id(previousOrder.getUser_id());
-//				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
-				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				subscribe.setUser_id(previousOrder.getUser_id()); //세션에서 가져올까?
+				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
+//				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
 				
 				for (Subscribe subscribes : subscribeList) {
 					if (subscribes.getChannel_id().equals(product.getChannel_id())) {
@@ -495,9 +496,12 @@ public class OrderServiceImpl implements OrderService {
 				double total = price - discountPrice;
 				total = total * count;
 				
-				orderDetail.setDiscount(String.valueOf(discount));
+				orderDetail.setOrder_id(orders.getOrder_id());
+				orderDetail.setDiscount(String.valueOf((int)discount));
 				orderDetail.setDelevery_status("O");
-				orderDetail.setTotal_price(String.valueOf(total));
+				orderDetail.setTotal_price(String.valueOf((int)total));
+				
+				orderDetailMapper.insert(orderDetail); // 이 로직이 맞을까?
 			}
 			
 		} catch (Exception e) {

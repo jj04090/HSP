@@ -22,6 +22,7 @@ public interface ChannelService {
 	public void finishSubscribe(Subscribe subscribe);
 	public Subscribe viewSubscribe(Subscribe subscribe);
 	public List<Subscribe> viewSubscribeList(Subscribe subscribe);
+	public List<String> checkSubs(List<Channel> channelList, String user_id);
 	
 	public String imgUpload(MultipartFile attach);
 	public ResponseEntity<Resource> display(String fileName);

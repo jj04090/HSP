@@ -12,4 +12,5 @@ public interface ChannelMapper {
 	public List<Channel> list() throws Exception;
 	public List<Channel> topChannel() throws Exception;
 	public Channel selectByProductId(String product_id) throws Exception;
+	public String sumMonthProfit(String channel_id) throws Exception;
 }
