@@ -214,44 +214,15 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="pro-details-color-wrap">
-                                                <span>구독 여부</span>
-                                                <div class="pro-details-color-list pro-details-color-mrg tooltip-style-3">
-                                                    <ul>
-                                                    	<c:if test="${subsCheck == 'O'}">
-                                                    		<li><a aria-label="구독중" class="green" href="#">green</a></li>
-                                                    	</c:if>
-                                                    	
-					  									<c:if test="${subsCheck == 'X'}">
-					  										<li><a aria-label="구독 필요" class="pink" href="#">pink</a></li>
-					  									</c:if>
-					  									
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                          
                                             
-                                            
-                                            
-                                            <div class="pro-details-quality-stock-area">
-                                                <span>수량</span>
-                                                <div class="pro-details-quality-stock-wrap">
-                                                    <div class="product-quality">
-                                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                                    <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                                    <div class="pro-details-stock">
-                                                        <span><i class="fas fa-check-circle"></i> 구매가능</span>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="pro-details-action-wrap">
                                                 <div class="pro-details-add-to-cart">
                                                     <form name="regit" action="/product/${product.product_id}/editform" method="get">
 														<button type="submit">상품 수정</button>
 													</form>
                                                 </div>
-                                                <div class="pro-details-action tooltip-style-4">
-                                                    <button aria-label="좋아요"><i class="fad fa-heart"></i> </button>
-                                                </div>
+                                                
                                             </div>
                                             <div class="product-details-meta">
                                                 <ul>
@@ -279,6 +250,9 @@
                                     </div>
                                     <div class="pro-details-review">
                                         <p><span>5.00</span> average based on 2 ratings.</p>
+                                        
+                                        <c:forEach items="${reviewList}" var = "reviewlist">
+                                        
                                         <div class="single-pro-details-review">
                                             <div class="review-img">
                                                 <img src="assets/images/client/client-1.jpeg" alt="">
@@ -291,86 +265,27 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
+                                                        ${reviewlist.product_grade}
                                                     </div>
                                                     <div class="review-name">
-                                                        <h6>Edna Watson</h6>
+                                                        <h6>${reviewlist.review_title}</h6>
                                                     </div>
                                                 </div>
-                                                <p>Very good and fast delivery during the week. Thank you!</p>
+                                                <p>${reviewlist.review_content}</p>
                                                 <div class="review-date-btn">
                                                     <div class="review-date">
-                                                        <span> April 16, 2020 at 3:08 am </span>
+                                                        <span>  </span>
                                                     </div>
                                                     <div class="review-btn">
-                                                        <a href="#">Reply</a>
+                                                        <a href="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="single-pro-details-review">
-                                            <div class="review-img">
-                                                <img src="assets/images/client/client-2.jpeg" alt="">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-name-rating">
-                                                    <div class="review-rating">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
-                                                    <div class="review-name">
-                                                        <h6>Edna Watson</h6>
-                                                    </div>
-                                                </div>
-                                                <p>Very good and fast delivery during the week. Thank you!</p>
-                                                <div class="review-date-btn">
-                                                    <div class="review-date">
-                                                        <span> April 16, 2020 at 3:08 am </span>
-                                                    </div>
-                                                    <div class="review-btn">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ratting-form-wrapper">
-                                            <h3>Add a review </h3>
-                                            <p>Your email address will not be published. Required fields are marked </p>
-                                            <div class="comment-form-rating-wrap">
-                                                <span>Your rating: *</span>
-                                                <div class="comment-form-rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                            </div>
-                                            <div class="rating-form-style">
-                                                <form action="#">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6">
-                                                            <input type="text" placeholder="Name *">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6">
-                                                            <input type="email" placeholder="Email *">
-                                                        </div>
-                                                        <div class="col-lg-12 col-md-12">
-                                                            <textarea placeholder="Your review"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cookies-consent">
-                                                        <input type="checkbox" value="yes">
-                                                        <p>Save my name, email, and website in this browser for the next time I comment.</p>
-                                                    </div>
-                                                    <div class="form-submit">
-                                                        <input type="submit" value="Submit">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        
+                                       </c:forEach>
+                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -379,12 +294,17 @@
                     <div class="col-lg-3 col-md-12 col-12">
                         <div class="sidebar-wrapper sidebar-wrapper-mr1">
                             <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-2 mb-20">
-                                <h4 class="sidebar-widget-title">다른 상품 검색하기 </h4>
-                                <div class="search-style-3">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search…">
-                                        <button type="submit"> <i class="far fa-search"></i> </button>
-                                    </form>
+                                <h4 class="sidebar-widget-title">상품 문의</h4>
+                                <div class="product-highlight">
+                                    <ul>
+                                    	<c:forEach items="${inquiryList}" var = "quiryList">
+                                    		<li>
+                                            	<a href="/inquiry/${quiryList.inquiry_id}/answereditform"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
+                                            	
+                                        	</li>
+                                    	</c:forEach>
+                                        
+                                    </ul>
                                 </div>
                             </div>
                            
@@ -396,9 +316,6 @@
             </div>
         </div>
         
-        <form name="edit" action="/product/${product.product_id}/editform" method="get">
-			<button type="submit">상품 수정</button>
-		</form>
 	
 <%@ include file="../include/bizfooter.jsp"%>
 </body>

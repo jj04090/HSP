@@ -44,92 +44,64 @@ public class ProductController {
 	@Autowired
 	HttpSession httpSession;
 	
-//	String user_id = "U01";
-//	String user_id = "ADMIN";
-	String channel_id = "C01";
 
 	@GetMapping("")
 	public ModelAndView listProduct() {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Product> listProduct = productServiceImpl.viewProductList();
-		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
-		modelAndView.addObject("channel_id", channel_id);
-		modelAndView.addObject("listProduct", listProduct);
-		modelAndView.addObject("discountPrice", discountPrice);
-		modelAndView.setViewName("/product/productAll");
-		return modelAndView;
-	}
+		User getUser = (User)httpSession.getAttribute("user");
+		String channel_id = (String)httpSession.getAttribute("channel_id");
 	
-	@GetMapping("/bizproduct")
-	public ModelAndView bixProduct() { // 새션 작업해야됨 // 위에 꺼랑 통합
-		ModelAndView modelAndView = new ModelAndView();
-		Channel channel = new Channel();
-		channel.setChannel_id(channel_id);
-		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
-		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
-		channel = channelServiceImpl.viewChannel(channel);
-		modelAndView.addObject("channel_id", channel_id);
-		modelAndView.addObject("listProduct", listProduct);
-		modelAndView.addObject("discountPrice", discountPrice);
-		modelAndView.setViewName("/product/productListBiz");
+		if (!channel_id.isEmpty()) { // 사업자
+			Channel channel = new Channel();
+			channel.setChannel_id(channel_id);
+			List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
+			List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
+			channel = channelServiceImpl.viewChannel(channel);
+			modelAndView.addObject("channel_id", channel_id);
+			modelAndView.addObject("listProduct", listProduct);
+			modelAndView.addObject("discountPrice", discountPrice);
+			modelAndView.setViewName("/product/productListBiz");
+		} else {
+			List<Product> listProduct = productServiceImpl.viewProductList();
+			List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
+			modelAndView.addObject("channel_id", channel_id);
+			modelAndView.addObject("listProduct", listProduct);
+			modelAndView.addObject("discountPrice", discountPrice);
+			modelAndView.setViewName("/product/productAll");
+		}
+		
 		return modelAndView;
 	}
-	
-	/*
-	@GetMapping("/{channel_id}") // channel로 이동
-	public ModelAndView channelProduct(@PathVariable String channel_id) {
-		ModelAndView modelAndView = new ModelAndView();
-		Channel channel = new Channel();
-		channel.setChannel_id(channel_id);
-		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
-		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
-		channel = channelServiceImpl.viewChannel(channel);
-		modelAndView.addObject("channel_id", channel_id);
-		modelAndView.addObject("listProduct", listProduct);
-		modelAndView.addObject("discountPrice", discountPrice);
-		modelAndView.addObject("channel", channel);
-		modelAndView.setViewName("/product/productList");
-		return modelAndView;
-	}
-	*/
 	
 	@GetMapping("/{channel_id}/{product_id}")
 	public ModelAndView viewProduct(@PathVariable String channel_id, @PathVariable String product_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		User getUser = (User)httpSession.getAttribute("user");
+		String checkChannel = (String)httpSession.getAttribute("channel_id");
+		
 		Product product = new Product();
 		product.setProduct_id(product_id);
 		product.setChannel_id(channel_id);
 		Product result = productServiceImpl.viewProduct(product);
 		String discount = productServiceImpl.singleDiscount(result);
 		String subsCheck = productServiceImpl.subsCheck(result, getUser.getUser_id());
-//		Review review = new Review();
-//		review.setProduct_id(product_id);
-//		List<Review> reviewList = reviewServiceImpl.viewReviewList(); // product_id
-//		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList(); // product_id
+		Review review = new Review();
+		review.setProduct_id(product_id);
+		List<Review> reviewList = reviewServiceImpl.viewReviewList(product_id); // product_id
+		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList(product_id); // product_id
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
-//		modelAndView.addObject("reviewList", reviewList);
-//		modelAndView.addObject("inquiryList", inquiryList);
+		modelAndView.addObject("reviewList", reviewList);
+		modelAndView.addObject("inquiryList", inquiryList);
 		modelAndView.addObject("user_id", getUser.getUser_id());
-		modelAndView.setViewName("/product/productView");
-		return modelAndView;
-	}
-	
-	@GetMapping("/biz/{product_id}")
-	public ModelAndView viewProductBiz(@PathVariable String product_id) { // 위에 꺼랑 통합 // 세션
-		ModelAndView modelAndView = new ModelAndView();
-		Product product = new Product();
-		product.setProduct_id(product_id);
-		product.setChannel_id(channel_id);
-		Product result = productServiceImpl.viewProduct(product);
-		String discount = productServiceImpl.singleDiscount(result);
-//		String subsCheck = productServiceImpl.subsCheck(result, user_id);
-		modelAndView.addObject("product", result);
-		modelAndView.addObject("discount", discount);
-//		modelAndView.addObject("subsCheck", subsCheck);
-		modelAndView.setViewName("/product/productViewBiz");
+		
+		if (!checkChannel.isEmpty()) {
+			modelAndView.setViewName("/product/productViewBiz");
+		} else {
+			modelAndView.setViewName("/product/productView");
+		}
+		
 		return modelAndView;
 	}
 	
@@ -147,6 +119,8 @@ public class ProductController {
 	@GetMapping("/registform")
 	public ModelAndView regitProduct() {
 		ModelAndView modelAndView = new ModelAndView();
+		String channel_id = (String)httpSession.getAttribute("channel_id");
+		System.out.println();
 		String product_id = "P" + UUID.randomUUID().toString().subSequence(0, 9);
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("product_id", product_id);

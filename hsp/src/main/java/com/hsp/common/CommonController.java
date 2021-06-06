@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.hsp.channel.Channel;
+import com.hsp.channel.ChannelMapper;
 import com.hsp.product.Product;
 import com.hsp.product.ProductServiceImpl;
 import com.hsp.user.User;
@@ -39,9 +40,11 @@ public class CommonController {
 		System.out.println("main User: " + getUser);
 		System.out.println("channel_id:" + channel_id);
 		
-		if (channel_id.length() != 0) {
+		if (channel_id.length() != 0) { // 사업자
 			String count = commonServiceImpl.totalSubs(channel_id);
+			String monthProfit = commonServiceImpl.monthProfit(channel_id);
 			modelAndView.addObject("count", count);
+			modelAndView.addObject("monthProfit", monthProfit);
 			modelAndView.setViewName("/main/bizmain");
 		} else {
 			Product mostReviewProduct = commonServiceImpl.getMaxReview();

@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.hsp.common.CommonServiceImpl;
+import com.hsp.community.Community;
+import com.hsp.community.CommunityServiceImpl;
 import com.hsp.product.Product;
 import com.hsp.product.ProductServiceImpl;
 import com.hsp.user.User;
@@ -38,15 +40,20 @@ public class ChannelController {
 	@Autowired
 	CommonServiceImpl commonServiceImpl;
 	@Autowired
+	CommunityServiceImpl communityServiceImpl;
+	@Autowired
 	private HttpSession session;
 	
 	@GetMapping("") // 전체 채널 조회 (완료)
 	public ModelAndView channel() {
 		ModelAndView modelAndView = new ModelAndView();
+		User getUser = (User)session.getAttribute("user");
 		List<Channel> channelList = channelServiceImpl.viewChannelList();
 		List<String> subsCount = commonServiceImpl.subsCount(channelList);
+		List<String> checkSubs = channelServiceImpl.checkSubs(channelList, getUser.getUser_id());
 		modelAndView.addObject("channelList", channelList);
 		modelAndView.addObject("subs", subsCount);
+		modelAndView.addObject("checkSubs", checkSubs);
 		modelAndView.setViewName("/channel/channelList");
 		return modelAndView;
 	}
@@ -59,10 +66,12 @@ public class ChannelController {
 		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
 		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
 		channel = channelServiceImpl.viewChannel(channel);
+		List<Community> commuList = communityServiceImpl.viewCommunityList(channel_id);
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
 		modelAndView.addObject("discountPrice", discountPrice);
 		modelAndView.addObject("channel", channel);
+		modelAndView.addObject("communityList", commuList);
 		modelAndView.setViewName("/channel/channelView");
 		return modelAndView;
 	}
@@ -120,13 +129,16 @@ public class ChannelController {
 		return mav;
 	}
 	
-	@PostMapping("/subscribe") // 채널 목록 조회 화면에서 구독 기능
-	public void registSubscribe() {
+	@GetMapping("/subscribe/{channel_id}") // 채널 목록 조회 화면에서 구독 기능
+	public ModelAndView registSubscribe(@PathVariable String channel_id) {
+		ModelAndView modelAndView = new ModelAndView();
 		User getUser = (User)session.getAttribute("user");
 		Subscribe subscribe = new Subscribe();
 		subscribe.setUser_id(getUser.getUser_id());
-		
+		subscribe.setChannel_id(channel_id);
 		channelServiceImpl.startSubscribe(subscribe);
+		modelAndView.setViewName("redirect:/channel");
+		return modelAndView;
 	}
 	
 	@DeleteMapping("/subscribe") // 구독 취소 기능

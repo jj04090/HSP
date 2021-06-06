@@ -324,7 +324,7 @@
                                             <h3>리뷰 남기기 </h3>
                                             <p> </p>
                                             <div class="comment-form-rating-wrap">
-                                                <span>Your rating: *</span>
+                                                <span>별점 *</span>
                                                 <div class="comment-form-rating">
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
@@ -336,22 +336,14 @@
                                             <div class="rating-form-style">
                                                 <form action="#">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-md-6">
-                                                            <input type="text" placeholder="Name *">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6">
-                                                            <input type="email" placeholder="Email *">
-                                                        </div>
+                                                        
                                                         <div class="col-lg-12 col-md-12">
-                                                            <textarea placeholder="Your review"></textarea>
+                                                            <textarea placeholder="리뷰를 남기세요"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="cookies-consent">
-                                                        <input type="checkbox" value="yes">
-                                                        <p>Save my name, email, and website in this browser for the next time I comment.</p>
-                                                    </div>
+                                                    
                                                     <div class="form-submit">
-                                                        <input type="submit" value="Submit">
+                                                        <input type="submit" value="리뷰 등록">
                                                     </div>
                                                 </form>
                                             </div>
@@ -369,16 +361,23 @@
                                     <ul>
                                     	<c:forEach items="${inquiryList}" var = "quiryList">
                                     		<li>
-                                            	<a href="/channel/${quiryList.inquiry_title}"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
+                                            	<a href="/inquiry/${product.product_id}/${quiryList.inquiry_id}"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
                                             	
                                         	</li>
                                     	</c:forEach>
-                                        
+                                    	
+                                        	
                                     </ul>
+                                    
                                 </div>
+                                
                             </div>
                            
-                            
+                            <div class="form-submit">
+                            	<form name="inquiry" action="/inquiry/registform" method="get">
+                                   <input type="submit" value="문의등록">
+                            	</form>
+                            </div>
                             
                         </div>
                     </div>
@@ -386,9 +385,6 @@
             </div>
         </div>
         
-        <form name="edit" action="/product/${product.product_id}/editform" method="get">
-			<button type="submit">상품 수정</button>
-		</form>
 	
 <%@ include file="../include/footer.jsp"%>
 </body>

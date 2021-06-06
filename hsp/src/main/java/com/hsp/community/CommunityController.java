@@ -61,7 +61,7 @@ public class CommunityController {
 		User user = (User)httpSession.getAttribute("user");
 		String bizCheck = user.getUser_type();
 		
-		if (bizCheck == "B") {
+		if (bizCheck.equals("B")) {
 			List<Community> listCommunity = communityServiceImpl.viewCommunityList(channel_id);
 			modelAndView.setViewName("/community/communityBizList");
 			modelAndView.addObject("channel_id", channel_id);
@@ -86,7 +86,7 @@ public class CommunityController {
 		User user = (User)httpSession.getAttribute("user");
 		String bizCheck = user.getUser_type();
 		
-		if (bizCheck == "B") {
+		if (bizCheck.equals("B")) {
 			community.setChannel_id(channel_id);
 			community.setCommunity_id(community_id);
 			Community result = communityServiceImpl.viewCommunity(community);

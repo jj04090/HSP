@@ -96,7 +96,7 @@
                                     		<c:when test="${user_name ne null}">
                                     			<a href="/user">${user_name}님</a>
                                     			/
-                                    			<a href="/user/logout">로그아웃</a>
+                                    			<a href="/logout">로그아웃</a>
                                     		</c:when>
                                     		
                                     		<c:otherwise>
@@ -127,24 +127,9 @@
                                     <li><a class="active" href="/main">Home <i class="fa fa-chevron-down"></i></a>
                                         
                                     </li>
-                                    <li><a href="shop.html">채널 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="/channel">채널 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop – Left Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop – Right Sidebar</a></li>
-                                            <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="#">Single Layout <i class="fa fa-chevron-right"></i></a>
-                                                <ul class="level-menu">
-                                                    <li><a href="product-details.html">List – Left Sidebar</a></li>
-                                                    <li><a href="product-details-right-sidebar.html">List – Right Sidebar</a></li>
-                                                    <li><a href="product-details-no-sidebar.html">List – No Sidebar</a></li>
-                                                    <li><a href="product-details-tab-left-sidebar.html">Tabs – Left Sidebar</a></li>
-                                                    <li><a href="product-details-tab-right-sidebar.html">Tabs – Right Sidebar</a></li>
-                                                    <li><a href="product-details-tab-no-sidebar.html">Tabs – No Sidebar</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="/channel">채널의 정보를 관리하세요!</a></li>
                                         </ul>
                                     </li>
                                     
@@ -156,39 +141,24 @@
                                                 
                                             </li>
                                             
-                                        </ul>
+                                         </ul>
                                     </li>
                                     
-                                    <li><a href="blog.html">상품 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="/product">상품 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog.html">자신의 상품을 관리하세요!</a></li>
+                                            <li><a href="/product">자신의 상품을 관리하세요!</a></li>
                                             
                                         </ul>
                                     </li>
                                     
                                     <!-- 세션에서 추가하는걸로 -->
-                                    <li><a href="/commuinty/{channnel_id}">커뮤니티 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="/community/${channel_id}">커뮤니티 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">커뮤니티 게시글 관리하세요!</a></li>
                                             
                                         </ul>
                                     </li>
                                     
-                                    <!-- 
-                                    <li><a href="#">Pages <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact-us.html">Contact</a></li>
-                                            <li><a href="compare.html">Compare</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
-                                            <li><a href="login-register.html">login/register</a></li>
-                                            <li><a href="purchase-guide.html">Purchase Guide</a></li>
-                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                        </ul>
-                                    </li>
-                                     -->
                                     
                                     <li><a href="contact-us.html">Contact</a></li>
                                 </ul>
@@ -196,55 +166,9 @@
                         </div>
                         <div class="header-action-right">
                             <div class="header-action">
-                                <div class="header-action-icon">
-                                    <a class="search-active" href="#"><i class="far fa-search"></i></a>
-                                </div>
-                                <div class="header-action-icon">
-                                    <a href="wishlist.html"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="header-action-icon header-action-mrg-none">
-                                    <a href="cart.html">
-                                        <i class="far fa-shopping-bag"></i>
-                                        <span class="pro-count blue">02</span>
-                                    </a>
-                                    <div class="cart-dropdown-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="product-details.html"><img alt="" src="/assets/images/cart/cart-1.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="product-details.html">Surgical Latex Gloves</a></h4>
-                                                    <h3><span>1 × </span>$10.00</h3>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="far fa-times"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="product-details.html"><img alt="" src="/assets/images/cart/cart-2.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="product-details.html">Surgical Latex Gloves</a></h4>
-                                                    <h3><span>1 × </span>$10.00</h3>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="far fa-times"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-total">
-                                                <h4>Total <span>$383.00</span></h4>
-                                            </div>
-                                            <div class="shopping-cart-button">
-                                                <a href="cart.html">View cart</a>
-                                                <a href="checkout.html">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
+                                
                                 <div class="header-action-icon d-block d-lg-none">
                                     <div class="burger-icon">
                                         <span class="burger-icon-top"></span>

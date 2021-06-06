@@ -97,7 +97,7 @@
                                     		<c:when test="${user_name ne null}">
                                     			<a href="/user">${user_name}님</a>
                                     			/
-                                    			<a href="/user/logout">로그아웃</a>
+                                    			<a href="/logout">로그아웃</a>
                                     		</c:when>
                                     		
                                     		<c:otherwise>

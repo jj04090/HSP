@@ -58,8 +58,11 @@
     	SELECT DISTINCT(ORD.ORDER_ID)
 		FROM PRODUCT P
 		     , ORDER_DETAIL ORD
+		     , ORDERS O
 		WHERE (P.PRODUCT_ID = ORD.PRODUCT_ID)
+		AND (ORD.ORDER_ID = O.ORDER_ID)
 		AND P.CHANNEL_ID = #{channel_id}
+		ORDER BY O.ORDER_DATE DESC
     </select>
     
 	<update id="update" parameterType="com.hsp.orders.Orders">

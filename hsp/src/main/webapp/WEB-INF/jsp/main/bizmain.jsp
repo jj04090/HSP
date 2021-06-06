@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/bizheader.jsp"%>
 
 	<div class="slider-banner-area padding-10-row-col">
@@ -86,13 +87,13 @@
                                 <div class="col-xl-12 col-lg-6 col-md-6 col-12 col-sm-12">
                                     <div class="banner-wrap wow tmFadeInUp mb-10" style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
                                         <div class="banner-img banner-img-zoom">
-                                            <a href="product-details.html"><img src="assets/images/banner/banner-2.jpg" alt=""></a>
+                                            <a href="/order"><img src="assets/images/banner/banner-2.jpg" alt=""></a>
                                         </div>
                                         <div class="banner-content-1">
                                             <h2>이번달 예상 수익</h2>
-                                            <h3>$15.00</h3>
+                                            <h3><fmt:formatNumber value="${monthProfit}" pattern="#,###" /> 원</h3>
                                             <div class="btn-style-1">
-                                                <a class="font-size-14 btn-1-padding-2" href="product-details.html">주문 목록 </a>
+                                                <a class="font-size-14 btn-1-padding-2" href="/order">주문 목록 </a>
                                             </div>
                                         </div>
                                         

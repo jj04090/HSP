@@ -16,54 +16,60 @@
             </div>
         </div>
     </div>
-	
-
-	
-	<div class="col-lg-8">
-                        <div class="blog-details-wrapper">
+	<div class="blog-details-area padding-30-row-col pt-75 pb-75">
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-8">
+	<div class="blog-details-wrapper">
                             <div class="blog-details-top-content">
                                 
                                 <h1>${inquiry.inquiry_title}</h1>
                                 <div class="blog-meta-3">
                                     <ul>
-                                        <li><a href="#"> ${inquiry.user_id}</a> </li>
+                                        <li><a href="#"> 등록자</a> </li>
                                         <li><i class="far fa-calendar"></i> ${inquiry.inquiry_regit_date}</li>
-                                        
-                                        <li> </li>
                                     </ul>
                                 </div>
                             </div>
-                            
-                            
-                            
-                            <div class="blog-details-middle-img">
+                            <p>${inquiry.inquiry_content}</p>
+
+                            <div class="blog-reply-wrapper">
                                 
-                            </div>
-                            <p class="blog-details-paragraph-mb">${inquiry.inquiry_content}</p>
-                            
-                            
-                            
-                            
-                            <div class="blog-author-wrap">
-                                
-                                <div class="blog-author-content">
-                                    <h4>답변</h4>
-                                    <p>${inquiry.answer}</p>
-                                </div>
-                            </div>
-                            <div class="blog-prev-next-wrap">
-                                <div class="row">
-                                	<form name="answer" action="/inquiry/${inquiry.inquiry_id}/answereditform" method="get">
-										<button type="submit">답변하기</button>
-									</form>
-									<form name="list" action="/inquiry/${inquiry.product_id}" method="get">
-										<button type="submit">목록으로</button>
-									</form>
-                                </div>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="input-style blog-input-style">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="input-style blog-input-style">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="textarea-style blog-textarea-style">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="blog-comment-submit">
+<!-- 버튼 원래 있던 자리 -->
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-	
+                </div>
+            </div>
+        </div>
+        <form name="answer" action="/inquiry/${inquiry.inquiry_id}/answereditform" method="get">
+			<button type="submit">답변하기</button>
+		</form>
+		<form name="list" action="/inquiry/${inquiry.product_id}" method="get">
+			<button type="submit">목록으로</button>
+		</form>
 <%@ include file="../include/bizfooter.jsp"%>
 </body>
 </html>

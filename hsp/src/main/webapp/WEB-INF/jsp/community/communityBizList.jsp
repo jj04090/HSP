@@ -42,14 +42,6 @@
 	                    </div>
 					</c:forEach>
                 </div>
-                <div class="pro-pagination-style text-center">
-                    <ul>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a class="next" href="#"><i class="far fa-angle-double-right"></i></a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         
