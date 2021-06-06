@@ -152,7 +152,7 @@
                                     </li>
                                     
                                     <!-- 세션에서 추가하는걸로 -->
-                                    <li><a href="/commuinty/{channnel_id}">커뮤니티 관리 <i class="fa fa-chevron-down"></i></a>
+                                    <li><a href="/community/${channel_id}">커뮤니티 관리 <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog.html">커뮤니티 게시글 관리하세요!</a></li>
                                             

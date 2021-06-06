@@ -53,6 +53,7 @@ public class CommonServiceImpl implements CommonService {
 		try {
 			OrderDetail orderDetail = orderDetailMapper.mostSelling();
 			
+			product.setProduct_id(orderDetail.getProduct_id());
 			product = productMapper.select(product);
 		} catch (Exception e) {
 			e.printStackTrace();
