@@ -32,6 +32,10 @@
 		</div>
 
 		<div>
+			문의 제목 : <input type="text" name="inquiry_title" value=${inquiry.inquiry_title} id="inquiry_title" readonly />
+		</div>
+
+		<div>
 			문의 내용 : <input type="text" name="inquiry_content" value=${inquiry.inquiry_content} id="inquiry_content" readonly />
 		</div>
 

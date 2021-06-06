@@ -42,7 +42,7 @@ public class InquiryController {
 		String bizCheck = user.getUser_type();
 		String u_id = user.getUser_id();
 		
-		if (bizCheck == "B") {
+		if (bizCheck.equals("B")) {
 			List<Inquiry> listInquiry = inquiryServiceImpl.viewInquiryList(product_id);
 			modelAndView.setViewName("/inquiry/inquiryBizList");
 			modelAndView.addObject("product_id", product_id);
@@ -67,7 +67,7 @@ public class InquiryController {
 		User user = (User)httpSession.getAttribute("user");
 		String bizCheck = user.getUser_type();
 		
-		if (bizCheck == "B") {
+		if (bizCheck.equals("B")) {
 			inquiry.setProduct_id(product_id);
 			inquiry.setInquiry_id(inquiry_id);
 			Inquiry result = inquiryServiceImpl.viewInquiry(inquiry);

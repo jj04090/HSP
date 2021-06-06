@@ -79,9 +79,6 @@
 		                                <div class="blog-author-content">
 		                                    <h4>${list.user_id}</h4>
 		                                    <p>${list.comment_content}</p>
-		                                    <form name="edit" action="/community/${list.comment_id}/editform" method="get">
-												<button type="submit">댓글 수정</button>
-											</form>
 		                                </div>
 		                            </div>
 								</c:forEach>
