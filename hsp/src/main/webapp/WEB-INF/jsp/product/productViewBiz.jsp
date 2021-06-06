@@ -299,7 +299,7 @@
                                     <ul>
                                     	<c:forEach items="${inquiryList}" var = "quiryList">
                                     		<li>
-                                            	<a href="/channel/${quiryList.inquiry_title}"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
+                                            	<a href="/inquiry/${quiryList.inquiry_id}/answereditform"> ${quiryList.inquiry_title} </a> <span> ${quiryList.inquiry_type} </span>
                                             	
                                         	</li>
                                     	</c:forEach>

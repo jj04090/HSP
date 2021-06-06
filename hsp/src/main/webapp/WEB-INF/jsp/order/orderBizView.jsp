@@ -52,28 +52,31 @@
 			</li>
 			
 	</ul>
+                               
                                 
-                                <div class="cart-shiping-update-wrapper">
-                                    <div class="continure-clear-btn">
-                                        <div class="continure-btn">
-                                            <form name="change" action="/order/change" method="post">
-				<input type="hidden" name="_method" value="PUT" />
-					
-				<input type="hidden" name="order_id" value="${orderInfo.order_id}">
-				<input type="hidden" name="product_id" value="${orderInfo.product_id}">
-					
-				<c:if test="${orderInfo.delevery_status == 'O'}">
-					<button type="submit" name="delevery_status" value="D">배송 등록</button>
-				</c:if>
-					
-				<c:if test="${orderInfo.delevery_status == 'R'}">
-					<button type="submit" name="delevery_status" value="F">반품 완료</button>
-					<button type="submit" name="delevery_status" value="N">반품 거부</button>
-				</c:if>
-			</form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="product-details-content pro-details-content-pl">
+									<div class="pro-details-action-wrap">
+		                                 <div class="pro-details-add-to-cart">
+		                                 	<form name="change" action="/order/change" method="post">
+												<input type="hidden" name="_method" value="PUT" />
+													
+												<input type="hidden" name="order_id" value="${orderInfo.order_id}">
+												<input type="hidden" name="product_id" value="${orderInfo.product_id}">
+													
+												<c:if test="${orderInfo.delevery_status == 'O'}">
+													<button type="submit" name="delevery_status" value="D">배송 등록</button>
+												</c:if>
+													
+												<c:if test="${orderInfo.delevery_status == 'R'}">
+													<button type="submit" name="delevery_status" value="F">반품 완료</button>
+													<button type="submit" name="delevery_status" value="N">반품 거부</button>
+												</c:if>
+											</form>
+		                                 </div>
+		                            </div>
+								
+							</div>
+                                
                             </div>
                     </div>
                 </div>
