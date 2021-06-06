@@ -105,24 +105,6 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	/*
-	@GetMapping("/biz/{product_id}")
-	public ModelAndView viewProductBiz(@PathVariable String product_id) { // 위에 꺼랑 통합 // 세션
-		ModelAndView modelAndView = new ModelAndView();
-		Product product = new Product();
-		product.setProduct_id(product_id);
-		product.setChannel_id(channel_id);
-		Product result = productServiceImpl.viewProduct(product);
-		String discount = productServiceImpl.singleDiscount(result);
-//		String subsCheck = productServiceImpl.subsCheck(result, user_id);
-		modelAndView.addObject("product", result);
-		modelAndView.addObject("discount", discount);
-//		modelAndView.addObject("subsCheck", subsCheck);
-		modelAndView.setViewName("/product/productViewBiz");
-		return modelAndView;
-	}
-	*/
-	
 	@GetMapping("/{product_id}/editform")
 	public ModelAndView updateProduct(@PathVariable(name = "product_id") String product_id) {
 		ModelAndView modelAndView = new ModelAndView();

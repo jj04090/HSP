@@ -401,7 +401,7 @@ public class OrderServiceImpl implements OrderService {
 					
 					if ( df.format(cal.getTime()).compareTo(df.format(rightNow.getTime())) == 0 ) {
 						Orders schedualOrder = paymentServiceImpl.routinePayment(order, this.schedualPrice(order)); // 오더 반환해주는거 insert 해줘야됨
-						
+						this.schedualOrderApply(schedualOrder, order);
 					}
 				}
 			}
@@ -483,8 +483,7 @@ public class OrderServiceImpl implements OrderService {
 				
 				Subscribe subscribe = new Subscribe();
 				subscribe.setUser_id(previousOrder.getUser_id()); //세션에서 가져올까?
-				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); // 매퍼 통해서 가져온다
-//				List<Subscribe> subscribeList = new ArrayList<Subscribe>();
+				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); 
 				
 				for (Subscribe subscribes : subscribeList) {
 					if (subscribes.getChannel_id().equals(product.getChannel_id())) {
@@ -501,7 +500,7 @@ public class OrderServiceImpl implements OrderService {
 				orderDetail.setDelevery_status("O");
 				orderDetail.setTotal_price(String.valueOf((int)total));
 				
-				orderDetailMapper.insert(orderDetail); // 이 로직이 맞을까?
+				orderDetailMapper.insert(orderDetail);
 			}
 			
 		} catch (Exception e) {
