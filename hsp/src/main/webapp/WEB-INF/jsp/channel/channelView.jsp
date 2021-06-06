@@ -125,7 +125,7 @@
                                 <div class="sidebar-brand-list">
                                     <ul>
                                     	<c:forEach items="${communityList}" var = "commList" varStatus="status">
-                                    		<li><a href="shop.html">${commList.community_title} <span>(6)</span></a></li>
+                                    		<li><a href="/community/${channel.channel_id}/${commList.community_id}">${commList.community_title} <span>(6)</span></a></li>
                                     	</c:forEach>
                                     </ul>
                                 </div>

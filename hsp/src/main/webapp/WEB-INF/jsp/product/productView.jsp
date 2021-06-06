@@ -251,7 +251,7 @@
                                                 	<input type="hidden" name="product_id" value=${product.product_id} id="product_id" />
                                                 	<input type="hidden" name="product_count" value=1 id="product_count" />
                                                 	<input type="hidden" name="cart_type" value=${product.orderable_cycle} id="cart_type" />
-														<button type="submit">장바구니에 추가</button>
+														<button type="submit" >장바구니에 추가</button>
 													</form>
                                                     
                                                 </div>
