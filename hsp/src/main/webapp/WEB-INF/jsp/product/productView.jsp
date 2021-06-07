@@ -228,6 +228,31 @@
 					  									
                                                     </ul>
                                                 </div>
+                                                
+                                                
+                                                <div class="product-details-content pro-details-content-pl">
+				                                	<div class="pro-details-action-wrap">
+				                                                <div class="pro-details-add-to-cart">
+				                                                	<c:if test="${checkSubs == 'O'}">
+					                                    				<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+																			<button type="submit">구독중</button>
+																		</form>
+				                                					</c:if>
+				                                	
+				                                					<c:if test="${checkSubs == 'X'}">
+				                                						<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+																			<button type="submit" style="background-color: red;">구독하기</button>
+																		</form>
+				                                					</c:if>
+				                                					
+				                                                	
+				                                                    
+				                                                </div>
+				                              		</div>
+				                               </div>
+                                                
+                                                
+                                                
                                             </div>
                                             
                                             
@@ -251,7 +276,7 @@
                                                 	<input type="hidden" name="product_id" value=${product.product_id} id="product_id" />
                                                 	<input type="hidden" name="product_count" value=1 id="product_count" />
                                                 	<input type="hidden" name="cart_type" value=${product.orderable_cycle} id="cart_type" />
-														<button type="submit">장바구니에 추가</button>
+														<button type="submit" >장바구니에 추가</button>
 													</form>
                                                     
                                                 </div>
@@ -284,14 +309,11 @@
                                         <h2> 사용자 리뷰(2)</h2>
                                     </div>
                                     <div class="pro-details-review">
-                                        <p><span>5.00</span> average based on 2 ratings.</p>
                                         
                                         <c:forEach items="${reviewList}" var = "reviewlist">
                                         
                                         <div class="single-pro-details-review">
-                                            <div class="review-img">
-                                                <img src="assets/images/client/client-1.jpeg" alt="">
-                                            </div>
+                                            
                                             <div class="review-content">
                                                 <div class="review-name-rating">
                                                     <div class="review-rating">
@@ -309,11 +331,9 @@
                                                 <p>${reviewlist.review_content}</p>
                                                 <div class="review-date-btn">
                                                     <div class="review-date">
-                                                        <span> April 16, 2020 at 3:08 am </span>
+                                                        <span> April 16, 2021 at 3:08 am </span>
                                                     </div>
-                                                    <div class="review-btn">
-                                                        <a href="#">Reply</a>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

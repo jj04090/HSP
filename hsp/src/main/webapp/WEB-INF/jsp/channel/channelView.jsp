@@ -25,7 +25,7 @@
 				<div class="col-lg-9">
 					<div class="shop-topbar-wrapper">
 						<div class="totall-product">
-							<p> " ${channel_id}의 상품 리스트 " </p>
+							<p> " ${channel.channel_name}의 상품 리스트 " </p>
 						</div>
 					</div>
 					
@@ -39,7 +39,7 @@
                                         <div class="product-img-action-wrap mb-10">
                                             <div class="product-img product-img-zoom">
                                                 <a href="/product/${list.channel_id}/${list.product_id}">
-                                                    <img class="default-img" src="/product/display?filename=${list.product_img}" alt="">
+                                                    <img class="default-img" src="/product/display?filename=${list.product_img}" alt="" >
                                                     <img class="hover-img" src="/product/display?filename=${list.product_img}" alt="">
                                                 </a>
                                             </div>
@@ -87,19 +87,41 @@
                         	<div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
                                 <h4 class="sidebar-widget-title">채널 대표사진</h4>
                                 <div class="sidebar-brand-list">
-                                    <img class="default-img" src="/product/display?filename=${channel.channel_img}" alt="">
+                                    <img class="default-img" src="/product/display?filename=${channel.channel_img}" alt="" height="180" width="180">
                                     
                                 </div>
                             </div>
-                        
+                            
+                            <div class="product-details-content pro-details-content-pl">
+                                	<div class="pro-details-action-wrap">
+                                                <div class="pro-details-add-to-cart">
+                                                	<c:if test="${checkSubs == 'O'}">
+	                                    				<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+															<button type="submit">구독중</button>
+														</form>
+                                					</c:if>
+                                	
+                                					<c:if test="${checkSubs == 'X'}">
+                                						<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+															<button type="submit" style="background-color: red;">구독하기</button>
+														</form>
+                                					</c:if>
+                                					
+                                                	
+                                                    
+                                                </div>
+                              		</div>
+                               </div>
+                        	
+                        	<br>
                         
                             <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
                                 <h4 class="sidebar-widget-title">채널 설명</h4>
                                 <div class="sidebar-categories-list">
                                     <ul>
-                                        <li><a href="shop.html">채널 이름</a>
+                                        <li ><a href="shop.html">채널 이름</a>
                                             <ul>
-                                                <li><a href="shop.html">${channel.channel_name}</a></li>
+                                                <Li><a href="shop.html">${channel.channel_name}</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="shop.html">채널 카테고리</a>
@@ -125,7 +147,7 @@
                                 <div class="sidebar-brand-list">
                                     <ul>
                                     	<c:forEach items="${communityList}" var = "commList" varStatus="status">
-                                    		<li><a href="shop.html">${commList.community_title} <span>(6)</span></a></li>
+                                    		<li><a href="/community/${channel.channel_id}/${commList.community_id}">${commList.community_title} <span>(6)</span></a></li>
                                     	</c:forEach>
                                     </ul>
                                 </div>

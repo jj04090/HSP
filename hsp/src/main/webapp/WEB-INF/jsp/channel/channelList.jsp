@@ -44,16 +44,29 @@
                                     </ul>
                                 </div>
                                 <h3><a href="/channel/${list.channel_id}"> <c:out value="${list.channel_name}" /> </a></h3>
-                                <div class="blog-btn">
-                                	<c:if test="${checkSubs[status.index] == 'O'}">
-	                                    <a href="blog-details.html">구독 중 <i class="far fa-long-arrow-right"></i></a>
-                                	</c:if>
+                                
+                                
+                                <div class="product-details-content pro-details-content-pl">
+                                	<div class="pro-details-action-wrap">
+                                                <div class="pro-details-add-to-cart">
+                                                	<c:if test="${checkSubs[status.index] == 'O'}">
+	                                    				<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+															<button type="submit">구독중</button>
+														</form>
+                                					</c:if>
                                 	
-                                	<c:if test="${checkSubs[status.index] == 'X'}">
-	                                    <a href="/channel/subscribe/${list.channel_id}">구독 하기 <i class="far fa-long-arrow-right"></i></a>
-                                	</c:if>
-                                	
-                                </div>
+                                					<c:if test="${checkSubs[status.index] == 'X'}">
+                                						<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+															<button type="submit" style="background-color: red;">구독하기</button>
+														</form>
+                                					</c:if>
+                                					
+                                                	
+                                                    
+                                                </div>
+                              		</div>
+                               </div>
+                               
                             </div>
                         </div>
                     </div>

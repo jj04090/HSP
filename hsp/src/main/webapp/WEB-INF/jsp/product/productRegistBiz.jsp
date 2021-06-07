@@ -22,7 +22,7 @@
 
 	<form name='regit' action="/product" method="post" enctype="multipart/form-data">
 		<div>
-			채널 ID : <input type="text" name="channel_id" value=${channel_id} id="channel_id" readonly />
+			채널 ID : <input type="text" name="channel_id" value=${channel_id} id="channel_id" />
 		</div>
 
 		<div>

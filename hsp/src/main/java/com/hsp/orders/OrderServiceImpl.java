@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import com.hsp.product.Product;
 import com.hsp.product.ProductMapper;
 import com.hsp.shoppingcart.ShoppingCart;
 import com.hsp.shoppingcart.ShoppingCartMapper;
+import com.hsp.user.User;
 import com.hsp.user.UserMapper;
 
 @Service
@@ -46,6 +49,8 @@ public class OrderServiceImpl implements OrderService {
 	ShoppingCartMapper shoppingCartMapper;
 	@Autowired
 	PaymentServiceImpl paymentServiceImpl;
+	@Autowired
+	HttpSession session;
 	
 	@Override
 	public void applyOrder(Orders orders, String cartType) {
@@ -380,7 +385,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
 	public void schedualOrder() {
-		
+		System.out.println("정기 결제 검사 Schedual");
 		try {
 			List<Orders> orderList = ordersMapper.list(new Orders());
 			
@@ -413,7 +418,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int schedualPrice(Orders orders) {
-		String user_id = ""; // user_id를 어디에서 가져온다는 가정
+//		User user = (User)session.getAttribute("user");
+//		String user_id = user.getUser_id(); // user_id를 어디에서 가져온다는 가정
 		OrderDetail setOrderDetail = new OrderDetail();
 		setOrderDetail.setOrder_id(orders.getOrder_id());
 		int totalPrice = 0;
@@ -431,7 +437,7 @@ public class OrderServiceImpl implements OrderService {
 				float discount = 0;
 				
 				Subscribe subscribe = new Subscribe();
-				subscribe.setUser_id(user_id);
+				subscribe.setUser_id(orders.getUser_id());
 				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); 
 				
 				for (Subscribe subscribes : subscribeList) {
@@ -465,7 +471,7 @@ public class OrderServiceImpl implements OrderService {
 			Date now = new Date();
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			orders.setOrder_date(df.format(now));
-			orders.setOrder_type("O");
+			orders.setOrder_status("O");
 			ordersMapper.insert(orders);
 			
 			OrderDetail setOrderDetail = new OrderDetail();
@@ -482,7 +488,7 @@ public class OrderServiceImpl implements OrderService {
 				float discount = 0;
 				
 				Subscribe subscribe = new Subscribe();
-				subscribe.setUser_id(previousOrder.getUser_id()); //세션에서 가져올까?
+				subscribe.setUser_id(previousOrder.getUser_id());
 				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); 
 				
 				for (Subscribe subscribes : subscribeList) {
@@ -496,6 +502,9 @@ public class OrderServiceImpl implements OrderService {
 				total = total * count;
 				
 				orderDetail.setOrder_id(orders.getOrder_id());
+				orderDetail.setProduct_id(product.getProduct_id());
+				orderDetail.setProduct_qty(orderDetail.getProduct_qty());
+				orderDetail.setPrice(product.getProduct_price());
 				orderDetail.setDiscount(String.valueOf((int)discount));
 				orderDetail.setDelevery_status("O");
 				orderDetail.setTotal_price(String.valueOf((int)total));
