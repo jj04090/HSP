@@ -17,14 +17,20 @@
 							<div class="slick-track" style="opacity: 1; width: 2331px;">
 								<div
 									class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-end bg-img slick-slide slick-current slick-active"
-									style="background-image: url(&quot;assets/images/slider/hm1-slider-1.jpg&quot;); width: 777px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+									style="background-image: url(&quot;assets/images/slider/hm1-slider-4.jpg&quot;); width: 777px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
 									data-slick-index="0" aria-hidden="false" tabindex="0">
 									<div class="hero-slider-content-1 slider-animated-1">
-										<h1 class="animated">
-											사업자 관리 화면 <br>&amp; 채널과 상품을 관리하세요
-										</h1>
-										<p class="animated">많은 기능 제공을 위해 발전 중입니다.</p>
-										<div class="btn-style-1">
+										<div
+											style="background-color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 0 50px 20px 50px;">
+											<h1 style="padding: 50px 0; font-weight: bold; color: black;"
+												class="animated">
+												사업자 관리 화면 <br>&amp; 채널과 상품을 관리하세요
+											</h1>
+											<p style="font-weight: bold; color: black;" class="animated">채널
+												많은 기능 제공을 위해 발전 중입니다.</p>
+										</div>
+										<div style="padding-top: 10px; float: right;"
+											class="btn-style-1">
 											<a class="animated" href="product-details.html" tabindex="0">
 												채널 관리 </a>
 										</div>
@@ -106,11 +112,15 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="product-details.html"><img
-										src="assets/images/banner/banner-1.jpg" alt=""></a>
+										src="assets/images/banner/banner-01.jpg" alt=""></a>
 								</div>
 								<div class="banner-content-1">
-									<h2>계좌 등록/인증</h2>
-									<h3>정산 서비스를 제공받으려면 &nbsp;&nbsp;&nbsp; 필수입니다!</h3>
+								<div
+											style="background-color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px 0 20px;">
+									<span style="font-weight: bold">계좌를 등록해보세요!</span>
+									<h2 style="font-weight: bold">계좌 등록/인증</h2>
+									<h3 style="font-weight: bold">정산 서비스를 제공받으려면 &nbsp;&nbsp;&nbsp; 필수입니다!</h3>
+									</div>
 									<div class="btn-style-1">
 										<a class="font-size-14 btn-1-padding-2" onclick="auth_call();">계좌
 											등록/인증 </a>
@@ -123,14 +133,17 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="/order"><img
-										src="assets/images/banner/banner-2.jpg" alt=""></a>
+										src="assets/images/banner/banner-02.jpg" alt=""></a>
 								</div>
 								<div class="banner-content-1">
+								<div
+											style="background-color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px 0 20px;">
+									<span style="font-weight: bold;">수익을 정산하세요!</span>
 									<h2>이번달 예상 수익</h2>
-									<h3>
-										<fmt:formatNumber value="${monthProfit}" pattern="#,###" />
+									<h3><fmt:formatNumber value="${monthProfit}" pattern="#,###" />
 										원
 									</h3>
+									</div>
 									<div class="btn-style-1">
 										<a class="font-size-14 btn-1-padding-2" href="/order">주문
 											목록 </a>
