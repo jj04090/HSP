@@ -89,6 +89,9 @@ public class ProductController {
 		review.setProduct_id(product_id);
 		List<Review> reviewList = reviewServiceImpl.viewReviewList(product_id); // product_id
 		List<Inquiry> inquiryList = inquiryServiceImpl.viewInquiryList(product_id); // product_id
+		Channel channel = new Channel();
+		channel.setChannel_id(result.getChannel_id()); 
+		String checkSubs = channelServiceImpl.singleCheckSubs(channel, getUser.getUser_id());
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
@@ -99,6 +102,7 @@ public class ProductController {
 		if (!checkChannel.isEmpty()) {
 			modelAndView.setViewName("/product/productViewBiz");
 		} else {
+			modelAndView.addObject("checkSubs", checkSubs);
 			modelAndView.setViewName("/product/productView");
 		}
 		

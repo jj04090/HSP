@@ -385,7 +385,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Scheduled(cron = "0 * 09 * * *") // 10초마다 0/10 * * * * *    // 0 * 09 * * * -> 월요일 9시
 	public void schedualOrder() {
-		
+		System.out.println("정기 결제 검사 Schedual");
 		try {
 			List<Orders> orderList = ordersMapper.list(new Orders());
 			
@@ -418,8 +418,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int schedualPrice(Orders orders) {
-		User user = (User)session.getAttribute("user");
-		String user_id = user.getUser_id(); // user_id를 어디에서 가져온다는 가정
+//		User user = (User)session.getAttribute("user");
+//		String user_id = user.getUser_id(); // user_id를 어디에서 가져온다는 가정
 		OrderDetail setOrderDetail = new OrderDetail();
 		setOrderDetail.setOrder_id(orders.getOrder_id());
 		int totalPrice = 0;
@@ -437,7 +437,7 @@ public class OrderServiceImpl implements OrderService {
 				float discount = 0;
 				
 				Subscribe subscribe = new Subscribe();
-				subscribe.setUser_id(user_id);
+				subscribe.setUser_id(orders.getUser_id());
 				List<Subscribe> subscribeList = subscribeMapper.list(subscribe); 
 				
 				for (Subscribe subscribes : subscribeList) {

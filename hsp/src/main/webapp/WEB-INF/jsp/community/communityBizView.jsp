@@ -86,6 +86,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
+                        
+                        
                         <div class="sidebar-wrapper sidebar-wrapper-mr1">
                             <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
                                 <h4 class="sidebar-widget-title">채널 설명 </h4>
@@ -110,20 +112,41 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="sidebar-wrapper sidebar-wrapper-mr1">
+                            <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
+                                
+                                <div class="product-details-content pro-details-content-pl">
+                                	<div class="pro-details-action-wrap">
+                                                <div class="pro-details-add-to-cart">
+                                                	
+                                					<form name="edit" action="/community/${community.community_id}/editform" method="get">
+														<button type="submit">게시글 수정</button>
+													</form>
+													<br>
+                                                	<form name="regit" action="/community/commenregistform" method="get">
+														<button type="submit">댓글 등록</button>
+													</form>
+                                                    <br>
+                                                    <form name="list" action="/community/${community.channel_id}" method="get">
+														<button type="submit">목록으로</button>
+													</form>
+                                                	<br>
+                                                </div>
+                              		</div>
+                               </div>
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
         </div>
-        <form name="edit" action="/community/${community.community_id}/editform" method="get">
-			<button type="submit">게시글 수정</button>
-		</form>
-		<form name="regit" action="/community/commenregistform" method="get">
-			<button type="submit">댓글 등록</button>
-		</form>
-		<form name="list" action="/community/${community.channel_id}" method="get">
-			<button type="submit">목록으로</button>
-		</form>
-
+        
 
 <%@ include file="../include/bizfooter.jsp"%>
 </body>

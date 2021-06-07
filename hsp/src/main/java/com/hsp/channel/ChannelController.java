@@ -61,17 +61,20 @@ public class ChannelController {
 	@GetMapping("/{channel_id}") // 해당 채널 조회 (완료)
 	public ModelAndView viewChannel(@PathVariable String channel_id) {
 		ModelAndView modelAndView = new ModelAndView();
+		User user = (User)session.getAttribute("user");
 		Channel channel = new Channel();
 		channel.setChannel_id(channel_id);
 		List<Product> listProduct = productServiceImpl.channelProduct(channel_id);
 		List<String> discountPrice = productServiceImpl.discountPrice(listProduct);
 		channel = channelServiceImpl.viewChannel(channel);
 		List<Community> commuList = communityServiceImpl.viewCommunityList(channel_id);
+		String checkSubs = channelServiceImpl.singleCheckSubs(channel, user.getUser_id());
 		modelAndView.addObject("channel_id", channel_id);
 		modelAndView.addObject("listProduct", listProduct);
 		modelAndView.addObject("discountPrice", discountPrice);
 		modelAndView.addObject("channel", channel);
 		modelAndView.addObject("communityList", commuList);
+		modelAndView.addObject("checkSubs", checkSubs);
 		modelAndView.setViewName("/channel/channelView");
 		return modelAndView;
 	}

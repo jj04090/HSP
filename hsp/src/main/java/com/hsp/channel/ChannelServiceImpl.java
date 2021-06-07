@@ -120,18 +120,17 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public void startSubscribe(Subscribe subscribe) {
-		List<Subscribe> getSubscribes = viewSubscribeList(subscribe);
+		Subscribe getSubscribe = viewSubscribe(subscribe);
 		
-		for(int i=0; i<getSubscribes.size(); i++) {
-			if(subscribe.getChannel_id() != getSubscribes.get(i).getChannel_id()) {
-				try {
-					subscribeMapper.insert(subscribe);
-					
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-			}
+		if (getSubscribe == null) {
+			try {
+				subscribeMapper.insert(subscribe);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
 		}
+		
 	}
 
 	@Override
@@ -279,6 +278,26 @@ public class ChannelServiceImpl implements ChannelService {
 		}
 		
 		
+		return check;
+	}
+
+	@Override
+	public String singleCheckSubs(Channel channel, String user_id) {
+		String check = "X";
+		Subscribe subs = new Subscribe();
+		subs.setChannel_id(channel.getChannel_id());
+		subs.setUser_id(user_id);
+		
+		try {
+			subs = subscribeMapper.select(subs);
+			
+			if (subs != null) {
+				check = "O";
+			} 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return check;
 	}
 

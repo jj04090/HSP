@@ -112,6 +112,7 @@ public class InquiryController {
 	@GetMapping("/registform")
 	public ModelAndView regitInquiry() {
 		ModelAndView modelAndView = new ModelAndView();
+		User getUser = (User)httpSession.getAttribute("user");
 		String inquiry_id = "I" + UUID.randomUUID().toString().subSequence(0, 9);
 		modelAndView.setViewName("/inquiry/inquiryRegist");
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
@@ -119,6 +120,7 @@ public class InquiryController {
 		String inquiry_regit_date = format1.format(date);
 		modelAndView.addObject("product_id", product_id);
 		modelAndView.addObject("inquiry_id", inquiry_id);
+		modelAndView.addObject("user_id", getUser.getUser_id());
 		modelAndView.addObject("inquiry_regit_date", inquiry_regit_date);
 		return modelAndView;
 	}

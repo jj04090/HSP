@@ -197,7 +197,7 @@
 		WHERE (C.CHANNEL_ID = S.CHANNEL_ID)
 		GROUP BY S.CHANNEL_ID
 		ORDER BY COUNT(S.CHANNEL_ID) DESC
-		LIMIT 3
+		LIMIT 5
     </select>
     
     <select id="selectByProductId" parameterType="String" resultMap="channelResultMap">

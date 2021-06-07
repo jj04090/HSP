@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		User getUser = viewUser(user);
-		
+		System.out.println(getUser);
 		try {
 			if(getUser != null) {
 				if(getUser.getPassword().equals(user.getPassword())) {
