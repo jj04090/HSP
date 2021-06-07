@@ -37,7 +37,7 @@ public class OrdersController {
 		System.out.println(orders.getOrder_id()+orders.getUser_id()+"/////////////////"+cartType);
 		ModelAndView modelAndView = new ModelAndView();
 		orderServiceImpl.applyOrder(orders, cartType);
-		modelAndView.setViewName("redirect:/order");
+		modelAndView.setViewName("redirect:/user/"+orders.getUser_id());
 		return modelAndView;
 	}
 	
