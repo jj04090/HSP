@@ -191,7 +191,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ResponseEntity<Resource> display(String fileName) {
-		String uploadPath = "C:\\Users\\user\\project\\";
+		String uploadPath = "C:\\Users\\ws059\\project\\";
 		Resource resource = new FileSystemResource(uploadPath + fileName);
 		
 		if (!resource.exists()) {

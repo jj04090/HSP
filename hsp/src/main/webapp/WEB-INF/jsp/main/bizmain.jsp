@@ -14,10 +14,10 @@
 						class="hero-slider-active-1 nav-style-1 nav-style-1-position-1 slick-initialized slick-slider">
 
 						<div class="slick-list draggable">
-							<div class="slick-track" style="opacity: 1; width: 2331px;">
+							<div class="slick-track" style="opacity: 1; width: 2832px;">
 								<div
 									class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-end bg-img slick-slide slick-current slick-active"
-									style="background-image: url(&quot;assets/images/slider/hm1-slider-4.jpg&quot;); width: 777px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+									style="background-image: url(&quot;assets/images/slider/hm1-slider-4.jpg&quot;); width: 944px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
 									data-slick-index="0" aria-hidden="false" tabindex="0">
 									<div class="hero-slider-content-1 slider-animated-1">
 										<div
@@ -44,7 +44,7 @@
 								</div>
 								<div
 									class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-end slick-slide"
-									style="background-image: url(&quot;assets/images/slider/hm1-slider-2.jpg&quot;); width: 777px; position: relative; left: -777px; top: 0px; z-index: 998; opacity: 0;"
+									style="background-image: url(&quot;assets/images/slider/hm1-slider-2.jpg&quot;); width: 944px; position: relative; left: -944px; top: 0px; z-index: 998; opacity: 0;"
 									data-slick-index="1" aria-hidden="true" tabindex="-1">
 									<div
 										class="hero-slider-content-1 slider-content-1-black slider-animated-1">
@@ -112,7 +112,8 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="product-details.html"><img
-										src="assets/images/banner/banner-01.jpg" alt=""></a>
+										src="assets/images/banner/banner-01.jpg" alt=""
+										height="252" width="480"></a>
 								</div>
 								<div class="banner-content-1">
 								<div
@@ -133,7 +134,8 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="/order"><img
-										src="assets/images/banner/banner-02.jpg" alt=""></a>
+										src="assets/images/banner/banner-02.jpg" alt=""
+										height="252" width="480"></a>
 								</div>
 								<div class="banner-content-1">
 								<div

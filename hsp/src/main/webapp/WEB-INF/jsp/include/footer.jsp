@@ -61,12 +61,7 @@
             </div>
         </footer>
         <div class="tm-demo-options-wrapper">
-            <div class="tm-demo-options-toolbar tooltip-style-2">
-                <a aria-label="Select Demo" class="view-demo-btn-active" href="#"><i class="far fa-ruler-triangle"></i></a>
-                <a aria-label="Support Channel" target="_blank" href="https://hasthemes.com/contact-us/"><i class="far fa-life-ring"></i></a>
-                <a aria-label="Description" href="#"><i class="far fa-book"></i></a>
-                <a target="_blank" aria-label="Purchase Medizin" href="https://1.envato.market/c/417168/275988/4415?subId1=hastheme&subId2=demo&subId3=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio&u=https%3A%2F%2Fthemeforest.net%2Fuser%2Fbootxperts%2Fportfolio"><i class="far fa-shopping-cart"></i></a>
-            </div>
+            
             <div class="tm-demo-panel text-center">
                 <div class="tm-demo-panel-header">
                     <h3> Medizin - Medical eCommerce Template</h3>

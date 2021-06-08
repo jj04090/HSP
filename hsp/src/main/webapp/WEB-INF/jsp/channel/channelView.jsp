@@ -126,7 +126,13 @@
                                         </li>
                                         <li><a href="shop.html">채널 카테고리</a>
                                         	<ul>
-                                                <li><a href="shop.html">${channel.category}</a></li>
+                                                <li>
+                                                	<c:if test="${channel.category == 'S'}"> 양식 </c:if>
+					  								<c:if test="${channel.category == 'K'}"> 한식 </c:if> 
+					  								<c:if test="${channel.category == 'C'}"> 중식 </c:if>
+					  								<c:if test="${channel.category == 'A'}"> 모든 </c:if>
+                                                
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href="shop.html">채널 인사말 </a>

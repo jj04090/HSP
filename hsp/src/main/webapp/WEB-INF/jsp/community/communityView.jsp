@@ -75,9 +75,11 @@
 		                                <div class="blog-author-content">
 		                                    <h4>${list.user_id}</h4>
 		                                    <p>${list.comment_content}</p>
+		                                    <!-- 
 		                                    <form name="edit" action="/community/${list.community_id}/${list.comment_id}/editform" method="get">
 												<button type="submit">댓글 수정</button>
 											</form>
+											 -->
 		                                </div>
 		                            </div>
                             	</div>
@@ -97,7 +99,12 @@
                                         </li>
                                         <li><a href="shop.html">채널 카테고리</a>
                                         	<ul>
-                                                <li><a href="shop.html">${channel.category}</a></li>
+                                                <li>
+                                                	<c:if test="${channel.category == 'S'}"> 양식 </c:if>
+					  								<c:if test="${channel.category == 'K'}"> 한식 </c:if> 
+					  								<c:if test="${channel.category == 'C'}"> 중식 </c:if>
+					  								<c:if test="${channel.category == 'A'}"> 모든 </c:if>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href="shop.html">채널 인사말 </a>
@@ -109,16 +116,37 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+                         <div class="sidebar-wrapper sidebar-wrapper-mr1">
+                            <div class="sidebar-widget sidebar-widget-wrap sidebar-widget-padding-1 mb-20">
+                                
+                                <div class="product-details-content pro-details-content-pl">
+                                	<div class="pro-details-action-wrap">
+                                                <div class="pro-details-add-to-cart">
+                                                	
+                                					<form name="regit" action="/community/commeregistform" method="get">
+														<button type="submit">댓글 등록</button>
+													</form>
+                                                	<br>
+													<form name="list" action="/community/${community.channel_id}" method="get">
+														<button type="submit">목록으로</button>
+													</form>
+                                                </div>
+                              		</div>
+                               </div>
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
         </div>
-        <form name="regit" action="/community/commeregistform" method="get">
-			<button type="submit">댓글 등록</button>
-		</form>
-		<form name="list" action="/community/${community.channel_id}" method="get">
-			<button type="submit">목록으로</button>
-		</form>
+       
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -140,7 +140,7 @@ public class ChannelController {
 		subscribe.setUser_id(getUser.getUser_id());
 		subscribe.setChannel_id(channel_id);
 		channelServiceImpl.startSubscribe(subscribe);
-		modelAndView.setViewName("redirect:/channel");
+		modelAndView.setViewName("redirect:/channel/"+channel_id);
 		return modelAndView;
 	}
 	

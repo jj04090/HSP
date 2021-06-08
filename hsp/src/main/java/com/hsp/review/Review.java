@@ -10,6 +10,8 @@ public class Review implements Serializable{
 	private String review_title;
 	private String review_content;
 	private String review_img;
+	private String review_date;
+	
 	
 	private int itemStart;
     private int itemSizePerPage;
@@ -18,8 +20,10 @@ public class Review implements Serializable{
 		
 	}
 
+	
+
 	public Review(String review_id, String order_id, String product_id, String product_grade, String review_title,
-			String review_content, String review_img, int itemStart, int itemSizePerPage) {
+			String review_content, String review_img, String review_date, int itemStart, int itemSizePerPage) {
 		this.review_id = review_id;
 		this.order_id = order_id;
 		this.product_id = product_id;
@@ -27,9 +31,24 @@ public class Review implements Serializable{
 		this.review_title = review_title;
 		this.review_content = review_content;
 		this.review_img = review_img;
+		this.review_date = review_date;
 		this.itemStart = itemStart;
 		this.itemSizePerPage = itemSizePerPage;
 	}
+
+	
+
+	public String getReview_date() {
+		return review_date;
+	}
+
+
+
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
+	}
+
+
 
 	public String getReview_id() {
 		return review_id;
@@ -103,11 +122,15 @@ public class Review implements Serializable{
 		this.itemSizePerPage = itemSizePerPage;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Review [review_id=" + review_id + ", order_id=" + order_id + ", product_id=" + product_id
 				+ ", product_grade=" + product_grade + ", review_title=" + review_title + ", review_content="
-				+ review_content + ", review_img=" + review_img + ", itemStart=" + itemStart + ", itemSizePerPage="
-				+ itemSizePerPage + "]";
+				+ review_content + ", review_img=" + review_img + ", review_date=" + review_date + ", itemStart="
+				+ itemStart + ", itemSizePerPage=" + itemSizePerPage + "]";
 	}
+
+	
 }

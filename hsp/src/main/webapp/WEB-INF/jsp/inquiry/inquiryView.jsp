@@ -38,7 +38,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="input-style blog-input-style">
-                                                
+                                                ---------------------------------------------------
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
@@ -46,9 +46,10 @@
                                                 
                                             </div>
                                         </div>
+                                        
                                         <div class="col-12">
                                             <div class="textarea-style blog-textarea-style">
-                                                
+                                                ${inquiry.answer}
                                             </div>
                                         </div>
                                     </div>
@@ -63,12 +64,15 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 
 		<form name="edit" action="/inquiry/${inquiry.inquiry_id}/editform" method="get">
 			<button type="submit">문의 수정</button>
 		</form>
 		<form name="list" action="/inquiry/${inquiry.product_id}" method="get">
 			<button type="submit">목록으로</button>
 		</form>
+		 -->
 <%@ include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -42,12 +42,22 @@
 	                    </div>
 					</c:forEach>
                 </div>
+       					 <div class="product-details-content pro-details-content-pl">
+									<div class="pro-details-action-wrap">
+		                                 <div class="pro-details-add-to-cart">
+		                                 	<form name="regit" action="/community/commuregistform" method="get">
+												<button type="submit">게시글 등록</button>
+											</form>
+		                                 </div>
+		                            </div>
+								
+							</div>
             </div>
         </div>
         
-    <form name="regit" action="/community/commuregistform" method="get">
-		<button type="submit">게시글 등록</button>
-	</form>
+        
+        
+    
 
 
 <%@ include file="../include/bizfooter.jsp"%>

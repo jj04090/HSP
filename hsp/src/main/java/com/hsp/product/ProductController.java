@@ -92,6 +92,9 @@ public class ProductController {
 		Channel channel = new Channel();
 		channel.setChannel_id(result.getChannel_id()); 
 		String checkSubs = channelServiceImpl.singleCheckSubs(channel, getUser.getUser_id());
+		Review reviewCount = new Review();
+		reviewCount.setProduct_id(result.getProduct_id());
+		String recount = reviewServiceImpl.reviewCount(reviewCount);
 		modelAndView.addObject("product", result);
 		modelAndView.addObject("discount", discount);
 		modelAndView.addObject("subsCheck", subsCheck);
@@ -103,6 +106,7 @@ public class ProductController {
 			modelAndView.setViewName("/product/productViewBiz");
 		} else {
 			modelAndView.addObject("checkSubs", checkSubs);
+			modelAndView.addObject("reviewCount", recount);
 			modelAndView.setViewName("/product/productView");
 		}
 		

@@ -16,7 +16,7 @@
 							<div class="slick-track" style="opacity: 1; width: 2832px;">
 								<div
 									class="single-hero-slider single-animation-wrap slider-height-1 custom-d-flex custom-align-item-end bg-img slick-slide slick-current slick-active"
-									style="background-image: url(&quot;/product/display?filename=mainn.jpg&quot;); width: 944px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+									style="background-image: url(&quot;assets/images/mainn.jpg&quot;); width: 944px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
 									data-slick-index="0" aria-hidden="false" tabindex="0">
 									<div class="hero-slider-content-1 slider-animated-1">
 										<div
@@ -110,7 +110,7 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="product-details.html"><img
-										src="/product/display?filename=mainn.jpg" alt=""
+										src="/product/display?filename=${grade.product_img}" alt=""
 										height="252" width="480"></a>
 								</div>
 								<div class="banner-content-1">
@@ -118,7 +118,7 @@
 											style="background-color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px 0 20px;">
 									<span style="font-weight: bold">가장 평점이 좋은 상품</span>
 									<h2 style="font-weight: bold">${grade.product_name}</h2>
-									<h3 style="font-weight: bold">${grade.product_price}</h3>
+									<h3 style="font-weight: bold"><fmt:formatNumber value="${grade.product_price}" pattern="#,###" /> 원</h3>
 									</div>
 									<div class="btn-style-1">
 										<a class="font-size-14 btn-1-padding-2"
@@ -139,7 +139,7 @@
 								style="visibility: visible; animation-name: medizinAnimationFadeInUp;">
 								<div class="banner-img banner-img-zoom">
 									<a href="product-details.html"><img
-										src="/product/display?filename=mainn.jpg" alt=""
+										src="/product/display?filename=${ordered.product_img}" alt=""
 										height="252" width="480"></a>
 								</div>
 								<div class="banner-content-1">
@@ -147,7 +147,7 @@
 											style="background-color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 10px 20px 0 20px;">
 									<span style="font-weight: bold;">많은 사람들이 구매한 상품</span>
 									<h2>${ordered.product_name}</h2>
-									<h3>${ordered.product_price}</h3>
+									<h3><fmt:formatNumber value="${ordered.product_price}" pattern="#,###" /> 원</h3>
 									</div>
 									<div class="btn-style-1">
 										<a class="font-size-14 btn-1-padding-2"

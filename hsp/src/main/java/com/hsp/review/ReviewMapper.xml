@@ -11,6 +11,7 @@
         <result column="REVIEW_TITLE" property="review_title" />
         <result column="REVIEW_CONTENT" property="review_content" />
         <result column="REVIEW_IMG" property="review_img" />
+        <result column="REVIEW_DATE" property="review_date" />
     </resultMap>
 
     <sql id="whereSql">
@@ -36,6 +37,9 @@
             <if test="review_img != null and review_img != ''">
                 AND REVIEW_IMG = #{review_img}
             </if>
+            <if test="review_date != null and review_date != ''">
+                AND REVIEW_DATE = #{review_date}
+            </if>
         </where>
     </sql>
 
@@ -47,7 +51,8 @@
   			PRODUCT_GRADE,
   			REVIEW_TITLE,
   			REVIEW_CONTENT,
-  			REVIEW_IMG
+  			REVIEW_IMG,
+  			REVIEW_DATE
         FROM REVIEW
             <include refid="whereSql" />
     </select>
@@ -60,7 +65,15 @@
   			PRODUCT_GRADE,
   			REVIEW_TITLE,
   			REVIEW_CONTENT,
-  			REVIEW_IMG
+  			REVIEW_IMG,
+  			REVIEW_DATE
+        FROM REVIEW
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="count" parameterType="com.hsp.review.Review" resultType="string">
+        SELECT
+        	count(*)
         FROM REVIEW
         <include refid="whereSql" />
     </select>
@@ -88,7 +101,8 @@
   			PRODUCT_GRADE,
   			REVIEW_TITLE,
   			REVIEW_CONTENT,
-  			REVIEW_IMG
+  			REVIEW_IMG,
+  			REVIEW_DATE
         ) VALUES (
             #{review_id},
             #{order_id},

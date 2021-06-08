@@ -8,6 +8,8 @@ public interface ReviewMapper {
 	public List<Review> list(Review review) throws Exception;
 
 	public Review select(Review review) throws Exception;
+	
+	public String count(Review review) throws Exception;
 
 	public void insert(Review review) throws Exception;
 

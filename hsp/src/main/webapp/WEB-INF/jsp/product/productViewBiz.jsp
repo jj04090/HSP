@@ -189,6 +189,7 @@
                                                     <span> 채널 ID: <a href="/channel/${product.channel_id}"> ${product.channel_id} </a></span>
                                                 </div>
                                                 <div class="pro-details-rating-wrap">
+                                                	<!-- 
                                                     <span>5.00</span>
                                                     <div class="pro-details-rating">
                                                         <i class="fas fa-star"></i>
@@ -197,6 +198,7 @@
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                     </div>
+                                                     -->
                                                     <a href="#"> 
                                                     	<c:if test="${product.orderable_cycle == 'S'}">일반상품</c:if>
 					  									<c:if test="${product.orderable_cycle == 'W'}">정기상품</c:if> 

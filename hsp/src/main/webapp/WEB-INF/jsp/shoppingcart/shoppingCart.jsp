@@ -43,13 +43,16 @@
                                                 <td class="product-name">
                                                     <h5><a href="/hsp/product/${cartValue.product.product_id}"> <c:out value="${cartValue.product.product_name}" /> </a></h5>
                                                 </td>
-                                                <td class="product-price"><span class="amount"><c:out value="${cartValue.product.product_price}" /> ￦</span></td>
+                                                <td class="product-price"><span class="amount"><fmt:formatNumber value="${cartValue.product.product_price}" pattern="#,###" /> 원
+                                                
+                                                
+                                                </span></td>
                                                 <td class="cart-quality">
                                                     <div class="product-quality">
                                                         <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="${cartValue.shoppingCart.product_count}" id="${cartValue.product.product_id}">
                                                     </div>
                                                 </td>
-                                                <td class="product-total"><span><c:out value="${cartValue.product.product_price * cartValue.shoppingCart.product_count}" /> ￦</span></td>
+                                                <td class="product-total"><span><c:out value="${cartValue.product.product_price * cartValue.shoppingCart.product_count}" /> 원</span></td>
                                                 <c:set var= "sum" value="${cartValue.product.product_price * cartValue.shoppingCart.product_count + sum}"/>
                                                 <td class="product-remove"><a href="#">삭 제</a></td>
                                             </tr>
@@ -103,13 +106,15 @@
                                 <div class="grand-total-wrap mb-40">
                                 
                                     <ul>
-                                        <li>합계 <h4><c:out value="${sum}"/> ￦</h4>
+                                        <li>합계 <h4><fmt:formatNumber value="${sum}" pattern="#,###" /> 원</h4>
+                                        
                                         </li>
-                                        <li>할인 금액 <h4><span>-</span><c:out value="${sum-total}"/> ￦</h4>
+                                        <li>할인 금액 <h4><span>-</span><fmt:formatNumber value="${sum-total}" pattern="#,###" /> 원</h4>
+                                        
                                         </li>
                                     </ul>
                                     <div class="grand-total">
-                                        <h4>총 결제금액 <span>${total} ￦</span></h4>
+                                        <h4>총 결제금액 <span><fmt:formatNumber value="${total}" pattern="#,###" /> 원</span></h4>
                                     </div>
                                     <div class="grand-total-btn">
                                         <a onclick="payment_call();">결 제</a>

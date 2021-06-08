@@ -100,7 +100,12 @@
                                         </li>
                                         <li><a href="shop.html">채널 카테고리</a>
                                         	<ul>
-                                                <li><a href="shop.html">${channel.category}</a></li>
+                                                <li>
+                                                	<c:if test="${channel.category == 'S'}"> 양식 </c:if>
+					  								<c:if test="${channel.category == 'K'}"> 한식 </c:if> 
+					  								<c:if test="${channel.category == 'C'}"> 중식 </c:if>
+					  								<c:if test="${channel.category == 'A'}"> 모든 </c:if>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href="shop.html">채널 인사말 </a>
@@ -125,7 +130,7 @@
 													</form>
 													<br>
                                                 	<form name="regit" action="/community/commenregistform" method="get">
-														<button type="submit">댓글 등록</button>
+														<button type="submit">사업자 댓글 등록</button>
 													</form>
                                                     <br>
                                                     <form name="list" action="/community/${community.channel_id}" method="get">

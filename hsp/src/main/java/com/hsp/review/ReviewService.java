@@ -16,6 +16,7 @@ public interface ReviewService {
 	public void deleteReview(Review review);
 	public List<Review> viewReviewList(String product_id);
 	public Review viewReview(Review review);
+	public String reviewCount(Review review);
 	
 	public String imgUpload(MultipartFile attach);
 	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload);

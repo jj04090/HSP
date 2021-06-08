@@ -172,4 +172,16 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return;	
 	}
+
+	@Override
+	public String reviewCount(Review review) {
+		String count = "0";
+		try {
+			count = reviewMapper.count(review);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 }

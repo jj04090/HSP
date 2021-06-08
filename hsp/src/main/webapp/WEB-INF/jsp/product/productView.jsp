@@ -234,19 +234,31 @@
 				                                	<div class="pro-details-action-wrap">
 				                                                <div class="pro-details-add-to-cart">
 				                                                	<c:if test="${checkSubs == 'O'}">
-					                                    				<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+					                                    				<form name="subscribe" action="/channel/subscribe/${product.channel_id}" method="get">
 																			<button type="submit">구독중</button>
 																		</form>
 				                                					</c:if>
 				                                	
 				                                					<c:if test="${checkSubs == 'X'}">
-				                                						<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+				                                						<form name="subscribe" action="/channel/subscribe/${product.channel_id}" method="get">
 																			<button type="submit" style="background-color: red;">구독하기</button>
 																		</form>
 				                                					</c:if>
 				                                					
-				                                                	
-				                                                    
+				                                					<!-- 
+				                                                	<c:if test="${checkSubs[status.index] == 'O'}">
+					                                    				<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+																			<button type="submit">구독중</button>
+																		</form>
+				                                					</c:if>
+				                                	
+				                                					<c:if test="${checkSubs[status.index] == 'X'}">
+				                                						<form name="subscribe" action="/channel/subscribe/${list.channel_id}" method="get">
+																			<button type="submit" style="background-color: red;">구독하기</button>
+																		</form>
+				                                					</c:if>
+				                                                     -->
+				                                                     
 				                                                </div>
 				                              		</div>
 				                               </div>
@@ -306,7 +318,7 @@
                                 
                                 <div class="pro-details-review-wrap">
                                     <div class="entry-product-section-heading">
-                                        <h2> 사용자 리뷰(2)</h2>
+                                        <h2> 사용자 리뷰 (${reviewCount})</h2>
                                     </div>
                                     <div class="pro-details-review">
                                         
@@ -317,12 +329,11 @@
                                             <div class="review-content">
                                                 <div class="review-name-rating">
                                                     <div class="review-rating">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        ${reviewlist.product_grade}
+                                                        <script>
+	                                                    		for (var i = 0; i < ${reviewlist.product_grade}; i++) {
+		                                                    	    document.write('<i class="fas fa-star"></i>');
+	                                                    		}
+	                                                    	</script>
                                                     </div>
                                                     <div class="review-name">
                                                         <h6>${reviewlist.review_title}</h6>
@@ -331,7 +342,7 @@
                                                 <p>${reviewlist.review_content}</p>
                                                 <div class="review-date-btn">
                                                     <div class="review-date">
-                                                        <span> April 16, 2021 at 3:08 am </span>
+                                                         <span> ${reviewlist.review_date} </span>
                                                     </div>
                                                     
                                                 </div>
